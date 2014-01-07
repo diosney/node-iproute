@@ -52,7 +52,7 @@ and there is a [issue tracker](https://github.com/diosney/node-iproute/issues) s
 As a general rule of thumb, all the module identifiers are the same that `iproute` provides, so you can easily use
 the module with basic `iproute` information.
 
-### ip link
+### ip link - Network devices configuration
 
 	var ip_link = require('iproute').link;
 
