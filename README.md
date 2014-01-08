@@ -4,7 +4,7 @@ Show and manipulate network devices, routing, policy routing and tunnels.
 
 Wrapper around native **iproute** suite to port its functionality to be used in Node.js space.
 
-<h2><span style="color:red;">Words of Caution</span></h2>
+## Words of Caution
 
 This is still a work in progress and below alpha quality. Its functionality is very limited (currently
 only support **ip-link**) so use it with caution.
@@ -19,10 +19,9 @@ Any issue you may encounter you may report it in the [issue tracker](https://git
 
 As the current Node.js version all the network related functionality that the built-in modules provide is quite limited,
 and mostly only gives read-only information through `os.networkInterfaces()` method, despite the fact that Unix/Linux
-networking related functions are awesome. This is mainly due the fact that the Node.js developers always wanted to
-maintain compatibility among all platform they support, like Windows.
+networking related functions are awesome.
 
-This module appeal that issue in the Unix/Linux platform by providing methods wrapping the OS functionality.
+This module appeal that issue in the Unix/Linux platform by providing methods wrapping the **iproute** user-space suite.
 
 With this module you will be able to interact with the **iproute** commands without have to care about executing directly
 any command or so, and will give you several handy utilities that will parse shown information for you.
@@ -52,15 +51,50 @@ and there is a [issue tracker](https://github.com/diosney/node-iproute/issues) s
 As a general rule of thumb, all the module identifiers are the same that `iproute` provides, so you can easily use
 the module with basic `iproute` information.
 
-### ip link - Network devices configuration
+### ip link - Network devices configuration.
 
 	var ip_link = require('iproute').link;
 
+#### `iproute` **official help**
+
+	Usage: ip link add [link DEV] [ name ] NAME
+						[ txqueuelen PACKETS ]
+						[ address LLADDR ]
+						[ broadcast LLADDR ]
+						[ mtu MTU ]
+						[ numtxqueues QUEUE_COUNT ]
+						[ numrxqueues QUEUE_COUNT ]
+						type TYPE [ ARGS ]
+
+			ip link delete DEV type TYPE [ ARGS ]
+
+			ip link set { dev DEVICE | group DEVGROUP } [ { up | down } ]
+						[ arp { on | off } ]
+						[ dynamic { on | off } ]
+						[ multicast { on | off } ]
+						[ allmulticast { on | off } ]
+						[ promisc { on | off } ]
+						[ trailers { on | off } ]
+						[ txqueuelen PACKETS ]
+						[ name NEWNAME ]
+						[ address LLADDR ]
+						[ broadcast LLADDR ]
+						[ mtu MTU ]
+						[ netns PID ]
+						[ netns NAME ]
+						[ alias NAME ]
+						[ vf NUM [ mac LLADDR ]
+							[ vlan VLANID [ qos VLAN-QOS ] ]
+							[ rate TXRATE ] ]
+							[ spoofchk { on | off} ] ]
+						[ master DEVICE ]
+						[ nomaster ]
+
+			ip link show [ DEVICE | group GROUP ]
+
+	TYPE := { vlan | veth | vcan | dummy | ifb | macvlan | can | bridge | ipoib }
+
 #### ip_link.show()
-
-`iproute` **official help**
-
-	ip link show [ DEVICE | group GROUP ]
 
 **Example:**
 
@@ -77,10 +111,6 @@ the module with basic `iproute` information.
 
 #### ip_link.delete()
 
-`iproute` **official help**
-
-	ip link delete DEV type TYPE [ ARGS ]
-
 **Example:**
 
 	ip_link.delete({
@@ -92,17 +122,6 @@ the module with basic `iproute` information.
 	});
 
 #### ip_link.add()
-
-`iproute` **official help**
-
-	ip link add [link DEV] [ name ] NAME
-				[ txqueuelen PACKETS ]
-				[ address LLADDR ]
-				[ broadcast LLADDR ]
-				[ mtu MTU ]
-				[ numtxqueues QUEUE_COUNT ]
-				[ numrxqueues QUEUE_COUNT ]
-				type TYPE [ ARGS ]
 
 **Example:**
 
@@ -121,30 +140,6 @@ the module with basic `iproute` information.
 
 #### ip_link.set()
 
-`iproute` **official help**
-
-	ip link set { dev DEVICE | group DEVGROUP } [ { up | down } ]
-					[ arp { on | off } ]
-					[ dynamic { on | off } ]
-					[ multicast { on | off } ]
-					[ allmulticast { on | off } ]
-					[ promisc { on | off } ]
-					[ trailers { on | off } ]
-					[ txqueuelen PACKETS ]
-					[ name NEWNAME ]
-					[ address LLADDR ]
-					[ broadcast LLADDR ]
-					[ mtu MTU ]
-					[ netns PID ]
-					[ netns NAME ]
-					[ alias NAME ]
-					[ vf NUM [ mac LLADDR ]
-		 				[ vlan VLANID [ qos VLAN-QOS ] ]
-						[ rate TXRATE ] ]
-						[ spoofchk { on | off} ] ]
-					[ master DEVICE ]
-					[ nomaster ]
-
 **Example:**
 
 	ip_link.set({
@@ -156,11 +151,44 @@ the module with basic `iproute` information.
 		}
 	});
 
+### ip address - Protocol address management.
+
+	var ip_address = require('iproute').address;
+
+#### `iproute` **official help**
+
+	Usage: ip addr {add|change|replace} IFADDR dev STRING [ LIFETIME ] [ CONFFLAG-LIST ]
+
+			ip addr del IFADDR dev STRING
+
+			ip addr {show|save|flush} [ dev STRING ] [ scope SCOPE-ID ]
+									[ to PREFIX ] [ FLAG-LIST ] [ label PATTERN ]
+
+			ip addr {showdump|restore}
+
+	IFADDR := PREFIX | ADDR peer PREFIX
+			[ broadcast ADDR ] [ anycast ADDR ]
+			[ label STRING ] [ scope SCOPE-ID ]
+	SCOPE-ID := [ host | link | global | NUMBER ]
+	FLAG-LIST := [ FLAG-LIST ] FLAG
+	FLAG  := [ permanent | dynamic | secondary | primary |
+			tentative | deprecated | dadfailed | temporary |
+			CONFFLAG-LIST ]
+	CONFFLAG-LIST := [ CONFFLAG-LIST ] CONFFLAG
+	CONFFLAG  := [ home | nodad ]
+	LIFETIME := [ valid_lft LFT ] [ preferred_lft LFT ]
+	LFT := forever | SECONDS
+
+
 ## Release notes
+
+### 0.2.0
+
+- Added `ip-address` support.
 
 ### 0.1.0
 
-- `ip link` complete support.
+- Added `ip-link` support.
 
 ## License
 
