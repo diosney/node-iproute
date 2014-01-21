@@ -1,6 +1,6 @@
 {
   "name": "iproute",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Show and manipulate network devices, addresses, routing, policy routing and tunnels.",
   "main": "index.js",
   "keywords": [
@@ -14,7 +14,8 @@
     "tunnel",
     "network",
     "monitor",
-    "link"
+    "link",
+    "vlan"
   ],
   "homepage": "https://github.com/diosney/node-iproute",
   "bugs": {

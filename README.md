@@ -96,7 +96,9 @@ the module with basic `iproute` information.
 
 #### ip_link.show()
 
-**Example:**
+**Examples:**
+
+*Show link information about the `eth0` device*
 
 	ip_link.show({
 		dev: 'eth0'
@@ -108,6 +110,70 @@ the module with basic `iproute` information.
 			console.log(links);
 		}
 	});
+
+*Shortcut to show all links*
+
+	ip_link.show(function (error, links) {
+        if (error) {
+            console.log(error);
+        }
+        else {
+            console.log(links);
+        }
+    });
+
+*The same as can be accomplished by passing an empty object as the first parameter*
+
+	ip_link.show({}, function (error, links) {
+        if (error) {
+            console.log(error);
+        }
+        else {
+            console.log(links);
+        }
+    });
+
+*The `links` output is an array of links with the expected following structure*
+
+	[{
+		index: 1,
+		name: 'eth0',
+		flags: [
+			'NO-CARRIER',
+			'BROADCAST',
+			'MULTICAST',
+			'UP'
+		],
+		type: 'ether',
+		mac: '00:24:d6:1c:2f:a6',
+		brd: 'ff:ff:ff:ff:ff:ff',
+		mtu: 1500,
+		qdisc: 'pfifo_fast',
+		state: 'DOWN',
+		mode: 'DEFAULT',
+		qlen: 1000
+	}]
+
+*This is a `links` example in case of a VLAN virtual link*
+
+	[{
+		index: 2,
+		name: 'eth0.1',
+		flags: [
+			'NO-CARRIER',
+			'BROADCAST',
+			'MULTICAST',
+			'UP'
+		],
+		type: 'ether',
+		vl_type: 'vlan',
+		mac: '00:24:d6:1c:2f:a6',
+		brd: 'ff:ff:ff:ff:ff:ff',
+		mtu: 1500,
+		qdisc: 'noqueue',
+		state: 'LOWERLAYERDOWN',
+		mode: 'DEFAULT'
+	}]
 
 #### ip_link.delete()
 
@@ -129,7 +195,7 @@ the module with basic `iproute` information.
 		link: 'eth0',
 		name: 'eth0.1',
 		type: 'vlan',
-		args: [{
+		type_args: [{
 			id: 1
 		}],
 	}, function (error) {
@@ -159,12 +225,12 @@ the module with basic `iproute` information.
 
 	Usage: ip addr {add|change|replace} IFADDR dev STRING [ LIFETIME ] [ CONFFLAG-LIST ]
 
-			ip addr del IFADDR dev STRING
+		   ip addr del IFADDR dev STRING
 
-			ip addr {show|save|flush} [ dev STRING ] [ scope SCOPE-ID ]
+		   ip addr {show|save|flush} [ dev STRING ] [ scope SCOPE-ID ]
 									[ to PREFIX ] [ FLAG-LIST ] [ label PATTERN ]
 
-			ip addr {showdump|restore}
+		   ip addr {showdump|restore}
 
 	IFADDR := PREFIX | ADDR peer PREFIX
 			[ broadcast ADDR ] [ anycast ADDR ]
@@ -179,8 +245,105 @@ the module with basic `iproute` information.
 	LIFETIME := [ valid_lft LFT ] [ preferred_lft LFT ]
 	LFT := forever | SECONDS
 
+#### ip_address.show()
+
+**Examples:**
+
+*Show only the `eth0` device addresses*
+
+	ip_address.show({
+		dev: 'eth0'
+	}, function (error, addresses) {
+		if (error) {
+			console.log(error);
+		}
+		else {
+			console.log(addresses);
+		}
+	});
+
+*Shortcut to show all links with its addresses*
+
+	ip_address.show(function (error, addresses) {
+        if (error) {
+            console.log(error);
+        }
+        else {
+            console.log(addresses);
+        }
+    });
+
+*The same as can be accomplished by passing an empty object as the first parameter*
+
+	ip_address.show({}, function (error, addresses) {
+        if (error) {
+            console.log(error);
+        }
+        else {
+            console.log(addresses);
+        }
+    });
+
+*The `addresses` output is a collection of links with the expected following structure*
+
+	{
+		eth0: [{
+            type: 'ether',
+            mac: '00:24:be:42:3c:f5',
+            brd : 'ff:ff:ff:ff:ff:ff'
+        }, {
+			type: 'inet',
+            address: '10.10.10.10/8',
+            scope: 'host'
+		}]
+	}
+
+#### ip_address.flush()
+
+**Examples:**
+
+	ip_address.flush({
+	    dev: 'eth0'
+	}, function (error) {
+	    if (error) {
+	        console.log(error);
+	    }
+	});
+
+#### ip_address.add()
+
+**Examples:**
+
+	ip_address.add({
+		dev    : 'eth0',
+		scope  : 'host',
+		address: '10.3.15.3/24'
+	}, function (error) {
+		if (error) {
+			console.log(error);
+		}
+	});
+
+#### ip_address.delete()
+
+**Examples:**
+
+	ip_address.delete({
+		address: '10.3.15.3/24'
+		dev    : 'eth0'
+	}, function (error) {
+		if (error) {
+			console.log(error);
+		}
+	});
 
 ## Release notes
+
+### 0.3.0
+
+- Improved error logging.
+
+- Improved options handling.
 
 ### 0.2.0
 
