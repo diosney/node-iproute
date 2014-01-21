@@ -6,8 +6,7 @@ Wrapper around native **iproute** suite to port its functionality to be used in 
 
 ## Words of Caution
 
-This is still a work in progress and below alpha quality. Its functionality is very limited (currently
-only support **ip-link**) so use it with caution.
+This is still a work in progress and below alpha quality. Its functionality is very limited so use it with caution.
 
 Any issue you may encounter you may report it in the [issue tracker](https://github.com/diosney/node-iproute/issues).
 
