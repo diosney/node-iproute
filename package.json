@@ -1,33 +1,36 @@
 {
-  "name": "iproute",
-  "version": "0.3.1",
-  "description": "Show and manipulate network devices, addresses, routing, policy routing and tunnels.",
-  "main": "index.js",
-  "keywords": [
-    "device",
-    "interface",
-    "address",
-    "route",
-    "routing",
-    "ip",
-    "iproute",
-    "tunnel",
-    "network",
-    "monitor",
-    "link",
-    "vlan"
-  ],
-  "homepage": "https://github.com/diosney/node-iproute",
-  "bugs": {
-    "url": "https://github.com/diosney/node-iproute/issues"
-  },
-  "author": {
-    "name": "Diosney Sarmiento",
-    "email": "diosney.s@gmail.com"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/diosney/node-iproute.git"
-  }
+	"name"       : "iproute",
+	"version"    : "0.4.0",
+	"description": "Show and manipulate network devices, addresses, routing, policy routing and tunnels.",
+	"main"       : "index.js",
+	"keywords"   : [
+		"device",
+		"interface",
+		"address",
+		"route",
+		"routing",
+		"ip",
+		"iproute",
+		"tunnel",
+		"network",
+		"monitor",
+		"link",
+		"vlan",
+		"rule",
+		"RPDB",
+		"table"
+	],
+	"homepage"   : "https://github.com/diosney/node-iproute",
+	"bugs"       : {
+		"url": "https://github.com/diosney/node-iproute/issues"
+	},
+	"author"     : {
+		"name" : "Diosney Sarmiento",
+		"email": "diosney.s@gmail.com"
+	},
+	"license"    : "MIT",
+	"repository" : {
+		"type": "git",
+		"url" : "https://github.com/diosney/node-iproute.git"
+	}
 }

@@ -48,50 +48,13 @@ and there is a [issue tracker](https://github.com/diosney/node-iproute/issues) s
 ## Usage
 
 As a general rule of thumb, all the module identifiers are the same that `iproute` provides, so you can easily use
-the module with basic `iproute` information.
+the module with basic `iproute` knowledge.
 
 ### ip link - Network devices configuration.
 
 	var ip_link = require('iproute').link;
 
-#### `iproute` **official help**
-
-	Usage: ip link add [link DEV] [ name ] NAME
-						[ txqueuelen PACKETS ]
-						[ address LLADDR ]
-						[ broadcast LLADDR ]
-						[ mtu MTU ]
-						[ numtxqueues QUEUE_COUNT ]
-						[ numrxqueues QUEUE_COUNT ]
-						type TYPE [ ARGS ]
-
-			ip link delete DEV type TYPE [ ARGS ]
-
-			ip link set { dev DEVICE | group DEVGROUP } [ { up | down } ]
-						[ arp { on | off } ]
-						[ dynamic { on | off } ]
-						[ multicast { on | off } ]
-						[ allmulticast { on | off } ]
-						[ promisc { on | off } ]
-						[ trailers { on | off } ]
-						[ txqueuelen PACKETS ]
-						[ name NEWNAME ]
-						[ address LLADDR ]
-						[ broadcast LLADDR ]
-						[ mtu MTU ]
-						[ netns PID ]
-						[ netns NAME ]
-						[ alias NAME ]
-						[ vf NUM [ mac LLADDR ]
-							[ vlan VLANID [ qos VLAN-QOS ] ]
-							[ rate TXRATE ] ]
-							[ spoofchk { on | off} ] ]
-						[ master DEVICE ]
-						[ nomaster ]
-
-			ip link show [ DEVICE | group GROUP ]
-
-	TYPE := { vlan | veth | vcan | dummy | ifb | macvlan | can | bridge | ipoib }
+#### `iproute` **official manual**: [http://stuff.onse.fi/man?program=ip-link](http://stuff.onse.fi/man?program=ip-link&section=)
 
 #### ip_link.show()
 
@@ -191,10 +154,10 @@ the module with basic `iproute` information.
 **Example:**
 
 	ip_link.add({
-		link: 'eth0',
-		name: 'eth0.1',
-		type: 'vlan',
-		type_args: [{
+		link:       'eth0',
+		name:       'eth0.1',
+		type:       'vlan',
+		type_args:  [{
 			id: 1
 		}],
 	}, function (error) {
@@ -208,8 +171,8 @@ the module with basic `iproute` information.
 **Example:**
 
 	ip_link.set({
-		dev: 'eth0',
-		state: 'down'
+		dev:    'eth0',
+		state:  'down'
 	}, function (error) {
 		if (error) {
 			console.log(error);
@@ -220,29 +183,7 @@ the module with basic `iproute` information.
 
 	var ip_address = require('iproute').address;
 
-#### `iproute` **official help**
-
-	Usage: ip addr {add|change|replace} IFADDR dev STRING [ LIFETIME ] [ CONFFLAG-LIST ]
-
-		   ip addr del IFADDR dev STRING
-
-		   ip addr {show|save|flush} [ dev STRING ] [ scope SCOPE-ID ]
-									[ to PREFIX ] [ FLAG-LIST ] [ label PATTERN ]
-
-		   ip addr {showdump|restore}
-
-	IFADDR := PREFIX | ADDR peer PREFIX
-			[ broadcast ADDR ] [ anycast ADDR ]
-			[ label STRING ] [ scope SCOPE-ID ]
-	SCOPE-ID := [ host | link | global | NUMBER ]
-	FLAG-LIST := [ FLAG-LIST ] FLAG
-	FLAG  := [ permanent | dynamic | secondary | primary |
-			tentative | deprecated | dadfailed | temporary |
-			CONFFLAG-LIST ]
-	CONFFLAG-LIST := [ CONFFLAG-LIST ] CONFFLAG
-	CONFFLAG  := [ home | nodad ]
-	LIFETIME := [ valid_lft LFT ] [ preferred_lft LFT ]
-	LFT := forever | SECONDS
+#### `iproute` **official manual**: [http://stuff.onse.fi/man?program=ip-address](http://stuff.onse.fi/man?program=ip-address&section=)
 
 #### ip_address.show()
 
@@ -287,13 +228,13 @@ the module with basic `iproute` information.
 
 	{
 		eth0: [{
-            type: 'ether',
-            mac: '00:24:be:42:3c:f5',
-            brd : 'ff:ff:ff:ff:ff:ff'
+            type:   'ether',
+            mac:    '00:24:be:42:3c:f5',
+            brd :   'ff:ff:ff:ff:ff:ff'
         }, {
-			type: 'inet',
-            address: '10.10.10.10/8',
-            scope: 'host'
+			type:   'inet',
+            address:'10.10.10.10/8',
+            scope:  'host'
 		}]
 	}
 
@@ -314,8 +255,8 @@ the module with basic `iproute` information.
 **Examples:**
 
 	ip_address.add({
-		dev    : 'eth0',
-		scope  : 'host',
+		dev:     'eth0',
+		scope:   'host',
 		address: '10.3.15.3/24'
 	}, function (error) {
 		if (error) {
@@ -329,14 +270,131 @@ the module with basic `iproute` information.
 
 	ip_address.delete({
 		address: '10.3.15.3/24'
-		dev    : 'eth0'
+		dev:     'eth0'
 	}, function (error) {
 		if (error) {
 			console.log(error);
 		}
 	});
 
+### ip rule - Routing policy database (RPDB) management.
+
+	var ip_rule = require('iproute').rule;
+
+#### `iproute` **official manual**: [http://stuff.onse.fi/man?program=ip-rule&section=8](http://stuff.onse.fi/man?program=ip-rule&section=8)
+
+#### ip_rule.add()
+
+**Examples:**
+
+*Unicast type rule (the default if not specified)*
+
+	ip_rule.add({
+		from:       '192.203.80.0/24',
+		table:      'inr.ruhep',
+		priority:   '220'
+	}, function (error) {
+		if (error) {
+			console.log(error);
+		}
+	});
+
+*NAT type rule*
+
+	ip_rule.add({
+		from:       '193.233.7.83',
+		nat:        '192.203.80.144',
+		table:      '1',
+		priority:   '320'
+	}, function (error) {
+		if (error) {
+			console.log(error);
+		}
+	});
+
+#### ip_rule.delete()
+
+**Examples:**
+
+*Delete the unused default rule*
+
+	ip_rule.delete({
+		priority: '32767'
+	}, function (error) {
+		if (error) {
+			console.log(error);
+		}
+	});
+
+#### ip_rule.flush()
+
+**Example:**
+
+	ip_rule.flush(function (error) {
+		if (error) {
+			console.log(error);
+		}
+	});
+
+#### ip_rule.show()
+
+**Example:**
+
+	ip_rule.show(function (error, rules) {
+		if (error) {
+			console.log(error);
+		}
+		else {
+			console.log(rules);
+		}
+	});
+
+*The `rules` output is an array of rles with the expected following structure*
+
+	[
+    	{
+    		priority: '0',
+    		type    : 'unicast',
+    		from    : 'all',
+    		lookup  : 'local'
+    	},
+    	{
+    		priority: '320',
+    		type    : 'masquerade',
+    		from    : '192.233.7.83',
+    		lookup  : 'default'
+    	},
+    	{
+    		priority: '32763',
+    		type    : 'prohibit',
+    		from    : '192.169.16.0/24',
+    		lookup  : 'default'
+    	},
+    	{
+    		priority: '32764',
+    		type    : 'unreachable',
+    		from    : '192.169.16.0/24',
+    		lookup  : 'default'
+    	},
+    	{
+    		priority: '32766',
+    		type    : 'unicast',
+    		from    : 'all',
+    		lookup  : 'main'
+    	},
+    	{
+    		priority: '32767',
+    		type    : 'unicast',
+    		from    : 'all',
+    		lookup  : 'default'
+    	}
+    ]
+
 ## Release notes
+
+### 0.4.0
+
+- Added `ip-rule` support.
 
 ### 0.3.0
 
