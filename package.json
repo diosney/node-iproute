@@ -1,9 +1,9 @@
 {
-	"name"       : "iproute",
-	"version"    : "0.4.2",
-	"description": "Show and manipulate network devices, addresses, routing, policy routing and tunnels.",
-	"main"       : "index.js",
-	"keywords"   : [
+	"name"        : "iproute",
+	"version"     : "0.5.0",
+	"description" : "Show and manipulate network devices, addresses, routing, policy routing and tunnels.",
+	"main"        : "index.js",
+	"keywords"    : [
 		"device",
 		"interface",
 		"address",
@@ -18,18 +18,22 @@
 		"vlan",
 		"rule",
 		"RPDB",
-		"table"
+		"table",
+		"utils"
 	],
-	"homepage"   : "https://github.com/diosney/node-iproute",
-	"bugs"       : {
+	"dependencies": {
+		"async": "*"
+	},
+	"homepage"    : "https://github.com/diosney/node-iproute",
+	"bugs"        : {
 		"url": "https://github.com/diosney/node-iproute/issues"
 	},
-	"author"     : {
+	"author"      : {
 		"name" : "Diosney Sarmiento",
 		"email": "diosney.s@gmail.com"
 	},
-	"license"    : "MIT",
-	"repository" : {
+	"license"     : "MIT",
+	"repository"  : {
 		"type": "git",
 		"url" : "https://github.com/diosney/node-iproute.git"
 	}

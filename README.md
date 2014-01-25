@@ -6,13 +6,22 @@ Wrapper around native **iproute** suite to port its functionality to be used in 
 
 ## Words of Caution
 
-This is still a work in progress and below alpha quality. Its functionality is very limited so use it with caution.
+This is still a work in progress and below alpha quality. Its functionality is limited so use it with caution.
 
-Any issue you may encounter you may report it in the [issue tracker](https://github.com/diosney/node-iproute/issues).
+I will continue to add more functionality as I needed for my side project, but if you need something, just request it
+at the [issue tracker](https://github.com/diosney/node-iproute/issues) and I will look into it.
 
 ## Installation
 
 	$ npm install iproute
+
+## Supported functionality
+
+- `ip-link`
+- `ip-address`
+- `ip-route`
+- `ip-rule`
+- `ip-utils` Custom utility library that complements `iproute` suite.
 
 ## Motivation
 
@@ -49,6 +58,13 @@ and there is a [issue tracker](https://github.com/diosney/node-iproute/issues) s
 
 As a general rule of thumb, all the module identifiers are the same that `iproute` provides, so you can easily use
 the module with basic `iproute` knowledge.
+
+### utils - General helpful utils to provide extra handy functionality not present in `iproute`.
+
+	var ip_utils = require('iproute').utils;
+
+Since this module is to provide extra functionality, is described in another readme file to make this one compact.
+Check `README-utils.md` in the project root directory for information about it.
 
 ### ip link - Network devices configuration.
 
@@ -277,6 +293,132 @@ the module with basic `iproute` knowledge.
 		}
 	});
 
+### ip route - Routing table management.
+
+	var ip_route = require('iproute').route;
+
+#### `iproute` **official manual**: [http://stuff.onse.fi/man?program=ip-route](http://stuff.onse.fi/man?program=ip-route)
+
+#### ip_route.show()
+
+**Example:**
+
+	ip_route.show({
+			table:'all'
+		},function (error, routes) {
+		if (error) {
+			console.log(error);
+		}
+		else {
+			console.log(routes);
+		}
+	});
+
+*The `routes` output is an array of routes with the expected following structure*
+
+	[{
+		type: 'unicast',
+		to: '127.0.0.0/24',
+        via: '127.0.0.1',
+        dev: 'lo'
+    },
+    {
+        type: 'broadcast',
+        to: '127.0.0.0',
+        dev: 'lo',
+        table: 'local',
+        proto: 'kernel',
+        scope: 'link',
+        src: '127.0.0.1'
+    },
+    {
+        type: 'local',
+        to: '127.0.0.0/8',
+        dev: 'lo',
+        table: 'local',
+        proto: 'kernel',
+        scope: 'host',
+        src: '127.0.0.1'
+    }]
+
+#### ip_route.flush()
+
+**Examples:**
+
+	ip_route.flush({
+	    table: 'cache'
+	}, function (error) {
+	    if (error) {
+	        console.log(error);
+	    }
+	});
+
+#### ip_route.add()
+
+**Examples:**
+
+*Unicast type route (the default if not specified)*
+
+	ip_route.add({
+		to:       '10.0.0.0/24',
+		via:      '192.168.56.1'
+	}, function (error) {
+		if (error) {
+			console.log(error);
+		}
+	});
+
+*Multipath route with load balance between devices*
+
+	ip_route.add({
+		to:       'default',
+		scope:    'global',
+		nexthop:  [{
+			dev: 'ppp0'
+		},
+		{
+			dev: 'ppp1'
+		}]
+	}, function (error) {
+		if (error) {
+			console.log(error);
+		}
+	});
+
+*A NAT route*
+
+	ip_route.add({
+		to:       '10.0.0.0/24',
+		type:     'nat',
+		via:      '192.168.56.1',
+		table:    'natted_routes'
+	}, function (error) {
+		if (error) {
+			console.log(error);
+		}
+	});
+
+#### ip_route.delete()
+
+**Examples:**
+
+*Delete multipath route with load balance between devices*
+
+	ip_route.delete({
+		to:       'default',
+		scope:    'global',
+		nexthop:  [{
+			dev: 'ppp0'
+		},
+		{
+			dev: 'ppp1'
+		}]
+	}, function (error) {
+		if (error) {
+			console.log(error);
+		}
+	});
+
 ### ip rule - Routing policy database (RPDB) management.
 
 	var ip_rule = require('iproute').rule;
@@ -349,7 +491,7 @@ the module with basic `iproute` knowledge.
 		}
 	});
 
-*The `rules` output is an array of rles with the expected following structure*
+*The `rules` output is an array of rules with the expected following structure*
 
 	[
     	{
@@ -391,6 +533,12 @@ the module with basic `iproute` knowledge.
     ]
 
 ## Release notes
+
+### 0.5.0
+
+- Added partial `ip-route` support.
+
+- Added `ip-utils` utility functions to provide extra functionality that complements `iproute`.
 
 ### 0.4.0
 
