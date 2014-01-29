@@ -124,3 +124,51 @@ It will add the tables passed in if they are not already present.
 			console.log(error);
 		}
 	});
+
+### ip_utils.routing_tables.delete()
+
+It will add the tables passed in if they are not already present.
+
+*Add a single table*
+
+	ip_utils.routing_tables.delete({
+		id: 50
+	}, function (error) {
+		if (error) {
+			console.log(error);
+		}
+	});
+
+### ip_utils.routing_tables.flush()
+
+It will flush all the present tables so use it carefully!
+
+It doesn't flush the route cache afterwards, so you can keep making changes (add some new tables) before the changes
+become active and all routes with unreferenced tables are lost.
+
+**Examples:**
+
+*Flush all tables*
+
+	ip_utils.routing_tables.flush(function (error) {
+		if (error) {
+			console.log(error);
+		}
+	});
+
+*Flush route cache so the changes become active*
+
+	ip_utils.routing_tables.flush(function (error) {
+		if (error) {
+			console.log(error);
+		}
+		else {
+			ip_route.flush({
+        		table: 'cache'
+        	}, function (error) {
+        		if (error) {
+        			console.log(error);
+        		}
+        	});
+		}
+	});
