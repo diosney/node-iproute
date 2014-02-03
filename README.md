@@ -17,11 +17,12 @@ at the [issue tracker](https://github.com/diosney/node-iproute/issues) and I wil
 
 ## Supported functionality
 
-- `ip-link`
-- `ip-address`
-- `ip-route`
-- `ip-rule`
-- `ip-utils` Custom utility library that complements `iproute` suite.
+- `ip-link`    Network devices configuration.
+- `ip-address` Protocol address management.
+- `ip-route`   Routing table management.
+- `ip-rule`    Routing policy database (RPDB) management.
+
+- `ip-utils`   Custom utility library that complements `iproute` suite.
 
 ## Motivation
 
@@ -72,7 +73,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 
 #### `iproute` **official manual**: [http://stuff.onse.fi/man?program=ip-link](http://stuff.onse.fi/man?program=ip-link&section=)
 
-#### ip_link.show()
+#### ip_link.show([options,] callback)
 
 **Examples:**
 
@@ -153,7 +154,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 		mode: 'DEFAULT'
 	}]
 
-#### ip_link.delete()
+#### ip_link.delete(options, callback)
 
 **Example:**
 
@@ -165,7 +166,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 		}
 	});
 
-#### ip_link.add()
+#### ip_link.add(options, callback)
 
 **Example:**
 
@@ -182,7 +183,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 		}
 	});
 
-#### ip_link.set()
+#### ip_link.set(options, callback)
 
 **Example:**
 
@@ -201,7 +202,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 
 #### `iproute` **official manual**: [http://stuff.onse.fi/man?program=ip-address](http://stuff.onse.fi/man?program=ip-address&section=)
 
-#### ip_address.show()
+#### ip_address.show([options,] callback)
 
 **Examples:**
 
@@ -254,7 +255,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 		}]
 	}
 
-#### ip_address.flush()
+#### ip_address.flush(options, callback)
 
 **Examples:**
 
@@ -266,7 +267,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 	    }
 	});
 
-#### ip_address.add()
+#### ip_address.add(options, callback)
 
 **Examples:**
 
@@ -280,7 +281,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 		}
 	});
 
-#### ip_address.delete()
+#### ip_address.delete(options, callback)
 
 **Examples:**
 
@@ -299,7 +300,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 
 #### `iproute` **official manual**: [http://stuff.onse.fi/man?program=ip-route](http://stuff.onse.fi/man?program=ip-route)
 
-#### ip_route.show()
+#### ip_route.show([options,] callback)
 
 **Example:**
 
@@ -341,7 +342,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
         src: '127.0.0.1'
     }]
 
-#### ip_route.flush()
+#### ip_route.flush(options, callback)
 
 **Examples:**
 
@@ -353,8 +354,8 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 	    }
 	});
 
-#### ip_route.add()
-#### ip_route.replace()
+#### ip_route.add(options, callback)
+#### ip_route.replace(options, callback)
 
 **Examples:**
 
@@ -399,7 +400,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 		}
 	});
 
-#### ip_route.delete()
+#### ip_route.delete(options, callback)
 
 **Examples:**
 
@@ -426,7 +427,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 
 #### `iproute` **official manual**: [http://stuff.onse.fi/man?program=ip-rule&section=8](http://stuff.onse.fi/man?program=ip-rule&section=8)
 
-#### ip_rule.add()
+#### ip_rule.add(options, callback)
 
 **Examples:**
 
@@ -455,7 +456,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 		}
 	});
 
-#### ip_rule.delete()
+#### ip_rule.delete(options, callback)
 
 **Examples:**
 
@@ -469,7 +470,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 		}
 	});
 
-#### ip_rule.flush()
+#### ip_rule.flush(callback)
 
 **Example:**
 
@@ -479,7 +480,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 		}
 	});
 
-#### ip_rule.show()
+#### ip_rule.show(callback)
 
 **Example:**
 
