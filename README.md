@@ -21,7 +21,6 @@ at the [issue tracker](https://github.com/diosney/node-iproute/issues) and I wil
 - `ip-address` Protocol address management.
 - `ip-route`   Routing table management.
 - `ip-rule`    Routing policy database (RPDB) management.
-
 - `ip-utils`   Custom utility library that complements `iproute` suite.
 
 ## Motivation
