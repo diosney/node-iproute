@@ -25,7 +25,7 @@
 		"async": "*"
 	},
 	"engines"     : {
-		"node": ">=0.10.0"
+		"node": ">=0.8.0"
 	},
 	"homepage"    : "https://github.com/diosney/node-iproute",
 	"bugs"        : {
