@@ -1,6 +1,6 @@
 {
 	"name"        : "iproute",
-	"version"     : "0.5.3",
+	"version"     : "0.5.4",
 	"description" : "Show and manipulate network devices, addresses, routing, policy routing and tunnels.",
 	"main"        : "index.js",
 	"keywords"    : [
@@ -23,6 +23,9 @@
 	],
 	"dependencies": {
 		"async": "*"
+	},
+	"engines"     : {
+		"node": ">=0.10.0"
 	},
 	"homepage"    : "https://github.com/diosney/node-iproute",
 	"bugs"        : {
