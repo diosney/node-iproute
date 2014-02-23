@@ -537,7 +537,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 
 ### 0.5.0
 
-- Added partial `ip-route` support.
+- Added `ip-route` support.
 
 - Added `ip-utils` utility functions to provide extra functionality that complements `iproute`.
 
