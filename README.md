@@ -531,7 +531,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 
 #### `iproute` **official manual**: [http://stuff.onse.fi/man?program=ip-monitor&section=8](http://stuff.onse.fi/man?program=ip-monitor&section=8)
 
-#### ip_monitor([objects])
+#### ip_monitor()
 
 **Examples:**
 
@@ -539,19 +539,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 
 	ip_monitor();
 
-*The same as above*
-
-	ip_monitor('all');
-
-*Monitor only changes on links*
-
-	ip_monitor('link');
-
-*Monitor changes on multiple objects at the same time*
-
-	ip_monitor('link address');
-
-*After starting the monitor with one of the above commands, you can start watching for changes:*
+*After starting the monitor, you can start watching for changes:*
 
 	ip_monitor.on('all',function(data){
 		console.log(data);
