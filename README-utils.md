@@ -12,13 +12,13 @@ General helpful utils to provide extra handy functionality not present in `iprou
 
 Path to IP forwarding kernel setting file path.
 
-### ip_utils.ip_forward.v{4,6}.enable(callback)
-### ip_utils.ip_forward.v{4,6}.disable(callback)
-### ip_utils.ip_forward.v{4,6}.status(callback)
+### ip_utils.ip_forward.v{4,6}.enable(cb)
+### ip_utils.ip_forward.v{4,6}.disable(cb)
+### ip_utils.ip_forward.v{4,6}.status(cb)
 
-### ip_utils.ip_forward.enable(callback)
-### ip_utils.ip_forward.disable(callback)
-### ip_utils.ip_forward.status(callback)
+### ip_utils.ip_forward.enable(cb)
+### ip_utils.ip_forward.disable(cb)
+### ip_utils.ip_forward.status(cb)
 
 ## ip_utils.routing_tables
 
@@ -30,7 +30,7 @@ It effectively provide wrapper functions to manage the `/etc/iproute/rt_tables` 
 
 IP routing tables file path.
 
-### ip_utils.routing_tables.show([options,] callback)
+### ip_utils.routing_tables.show([options,] cb)
 
 **Examples:**
 
@@ -80,7 +80,7 @@ IP routing tables file path.
       { id: '255', name: 'local' }
     ]
 
-### ip_utils.routing_tables.add(options, callback)
+### ip_utils.routing_tables.add(options, cb)
 
 It will add the tables passed in if they are not already present.
 
@@ -125,7 +125,7 @@ It will add the tables passed in if they are not already present.
 		}
 	});
 
-### ip_utils.routing_tables.delete(options, callback)
+### ip_utils.routing_tables.delete(options, cb)
 
 It will add the tables passed in if they are not already present.
 
@@ -139,7 +139,7 @@ It will add the tables passed in if they are not already present.
 		}
 	});
 
-### ip_utils.routing_tables.flush(callback)
+### ip_utils.routing_tables.flush(cb)
 
 It will flush all the present tables so use it carefully!
 

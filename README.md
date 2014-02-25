@@ -4,23 +4,17 @@ Show and manipulate network devices, routing, policy routing and tunnels.
 
 Wrapper around native **iproute** suite to port its functionality to be used in Node.js space.
 
-## Words of Caution
-
-This is still a work in progress and below alpha quality. Its functionality is limited so use it with caution.
-
-I will continue to add more functionality as I needed for my side project, but if you need something, just request it
-at the [issue tracker](https://github.com/diosney/node-iproute/issues) and I will look into it.
-
 ## Installation
 
 	$ npm install iproute
 
 ## Supported functionality
 
-- `ip-link`    Network devices configuration.
+- `ip-link`	Network devices configuration.
 - `ip-address` Protocol address management.
 - `ip-route`   Routing table management.
-- `ip-rule`    Routing policy database (RPDB) management.
+- `ip-rule`	Routing policy database (RPDB) management.
+- `ip-monitor` State monitoring.
 - `ip-utils`   Custom utility library that complements `iproute` suite.
 
 ## Motivation
@@ -40,7 +34,7 @@ By using it you will save a lot of boilerplate code that the module do for you a
 
 Basically the only system requirement is that the **iproute** utility have to be present in your system.
 
-You can install it in Debian based OSes with:
+You can install it in Debian based OSes (if is not already there) by issuing:
 
 	sudo apt-get install iproute
 
@@ -48,8 +42,6 @@ Other requirement is about permission levels. To properly execute the provided w
 `.delete()`) the application that uses the module must have the proper `sudo` privileges.
 
 ## Issues
-
-All patches and **constructive** suggestions are always welcome.
 
 The source is available for download from [GitHub](https://github.com/diosney/node-router)
 and there is a [issue tracker](https://github.com/diosney/node-iproute/issues) so you can report bugs there.
@@ -72,7 +64,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 
 #### `iproute` **official manual**: [http://stuff.onse.fi/man?program=ip-link](http://stuff.onse.fi/man?program=ip-link&section=)
 
-#### ip_link.show([options,] callback)
+#### ip_link.show([options,] cb)
 
 **Examples:**
 
@@ -92,24 +84,24 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 *Shortcut to show all links*
 
 	ip_link.show(function (error, links) {
-        if (error) {
-            console.log(error);
-        }
-        else {
-            console.log(links);
-        }
-    });
+		if (error) {
+			console.log(error);
+		}
+		else {
+			console.log(links);
+		}
+	});
 
 *The same as can be accomplished by passing an empty object as the first parameter*
 
 	ip_link.show({}, function (error, links) {
-        if (error) {
-            console.log(error);
-        }
-        else {
-            console.log(links);
-        }
-    });
+		if (error) {
+			console.log(error);
+		}
+		else {
+			console.log(links);
+		}
+	});
 
 *The `links` output is an array of links with the expected following structure*
 
@@ -153,7 +145,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 		mode: 'DEFAULT'
 	}]
 
-#### ip_link.delete(options, callback)
+#### ip_link.delete(options, cb)
 
 **Example:**
 
@@ -165,14 +157,14 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 		}
 	});
 
-#### ip_link.add(options, callback)
+#### ip_link.add(options, cb)
 
 **Example:**
 
 	ip_link.add({
-		link:       'eth0',
-		name:       'eth0.1',
-		type:       'vlan',
+		link:	   'eth0',
+		name:	   'eth0.1',
+		type:	   'vlan',
 		type_args:  [{
 			id: 1
 		}],
@@ -182,12 +174,12 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 		}
 	});
 
-#### ip_link.set(options, callback)
+#### ip_link.set(options, cb)
 
 **Example:**
 
 	ip_link.set({
-		dev:    'eth0',
+		dev:	'eth0',
 		state:  'down'
 	}, function (error) {
 		if (error) {
@@ -201,7 +193,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 
 #### `iproute` **official manual**: [http://stuff.onse.fi/man?program=ip-address](http://stuff.onse.fi/man?program=ip-address&section=)
 
-#### ip_address.show([options,] callback)
+#### ip_address.show([options,] cb)
 
 **Examples:**
 
@@ -221,57 +213,57 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 *Shortcut to show all links with its addresses*
 
 	ip_address.show(function (error, addresses) {
-        if (error) {
-            console.log(error);
-        }
-        else {
-            console.log(addresses);
-        }
-    });
+		if (error) {
+			console.log(error);
+		}
+		else {
+			console.log(addresses);
+		}
+	});
 
 *The same as can be accomplished by passing an empty object as the first parameter*
 
 	ip_address.show({}, function (error, addresses) {
-        if (error) {
-            console.log(error);
-        }
-        else {
-            console.log(addresses);
-        }
-    });
+		if (error) {
+			console.log(error);
+		}
+		else {
+			console.log(addresses);
+		}
+	});
 
 *The `addresses` output is a collection of links with the expected following structure*
 
 	{
 		eth0: [{
-            type:   'ether',
-            mac:    '00:24:be:42:3c:f5',
-            brd :   'ff:ff:ff:ff:ff:ff'
-        }, {
+			type:   'ether',
+			mac:	'00:24:be:42:3c:f5',
+			brd :   'ff:ff:ff:ff:ff:ff'
+		}, {
 			type:   'inet',
-            address:'10.10.10.10/8',
-            scope:  'host'
+			address:'10.10.10.10/8',
+			scope:  'host'
 		}]
 	}
 
-#### ip_address.flush(options, callback)
+#### ip_address.flush(options, cb)
 
 **Examples:**
 
 	ip_address.flush({
-	    dev: 'eth0'
+		dev: 'eth0'
 	}, function (error) {
-	    if (error) {
-	        console.log(error);
-	    }
+		if (error) {
+			console.log(error);
+		}
 	});
 
-#### ip_address.add(options, callback)
+#### ip_address.add(options, cb)
 
 **Examples:**
 
 	ip_address.add({
-		dev:     'eth0',
+		dev:	 'eth0',
 		scope:   'host',
 		address: '10.3.15.3/24'
 	}, function (error) {
@@ -280,13 +272,13 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 		}
 	});
 
-#### ip_address.delete(options, callback)
+#### ip_address.delete(options, cb)
 
 **Examples:**
 
 	ip_address.delete({
 		address: '10.3.15.3/24'
-		dev:     'eth0'
+		dev:	 'eth0'
 	}, function (error) {
 		if (error) {
 			console.log(error);
@@ -299,7 +291,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 
 #### `iproute` **official manual**: [http://stuff.onse.fi/man?program=ip-route](http://stuff.onse.fi/man?program=ip-route)
 
-#### ip_route.show([options,] callback)
+#### ip_route.show([options,] cb)
 
 **Example:**
 
@@ -319,50 +311,50 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 	[{
 		type: 'unicast',
 		to: '127.0.0.0/24',
-        via: '127.0.0.1',
-        dev: 'lo'
-    },
-    {
-        type: 'broadcast',
-        to: '127.0.0.0',
-        dev: 'lo',
-        table: 'local',
-        proto: 'kernel',
-        scope: 'link',
-        src: '127.0.0.1'
-    },
-    {
-        type: 'local',
-        to: '127.0.0.0/8',
-        dev: 'lo',
-        table: 'local',
-        proto: 'kernel',
-        scope: 'host',
-        src: '127.0.0.1'
-    }]
+		via: '127.0.0.1',
+		dev: 'lo'
+	},
+	{
+		type: 'broadcast',
+		to: '127.0.0.0',
+		dev: 'lo',
+		table: 'local',
+		proto: 'kernel',
+		scope: 'link',
+		src: '127.0.0.1'
+	},
+	{
+		type: 'local',
+		to: '127.0.0.0/8',
+		dev: 'lo',
+		table: 'local',
+		proto: 'kernel',
+		scope: 'host',
+		src: '127.0.0.1'
+	}]
 
-#### ip_route.flush(options, callback)
+#### ip_route.flush(options, cb)
 
 **Examples:**
 
 	ip_route.flush({
-	    table: 'cache'
+		table: 'cache'
 	}, function (error) {
-	    if (error) {
-	        console.log(error);
-	    }
+		if (error) {
+			console.log(error);
+		}
 	});
 
-#### ip_route.add(options, callback)
-#### ip_route.replace(options, callback)
+#### ip_route.add(options, cb)
+#### ip_route.replace(options, cb)
 
 **Examples:**
 
 *Unicast type route (the default if not specified)*
 
 	ip_route.add({
-		to:       '10.0.0.0/24',
-		via:      '192.168.56.1'
+		to:	   '10.0.0.0/24',
+		via:	  '192.168.56.1'
 	}, function (error) {
 		if (error) {
 			console.log(error);
@@ -372,8 +364,8 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 *Multipath route with load balance between devices*
 
 	ip_route.add({
-		to:       'default',
-		scope:    'global',
+		to:	   'default',
+		scope:	'global',
 		nexthop:  [{
 			dev: 'ppp0'
 		},
@@ -389,25 +381,25 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 *A NAT route*
 
 	ip_route.add({
-		to:       '10.0.0.0/24',
-		type:     'nat',
-		via:      '192.168.56.1',
-		table:    'natted_routes'
+		to:	   '10.0.0.0/24',
+		type:	 'nat',
+		via:	  '192.168.56.1',
+		table:	'natted_routes'
 	}, function (error) {
 		if (error) {
 			console.log(error);
 		}
 	});
 
-#### ip_route.delete(options, callback)
+#### ip_route.delete(options, cb)
 
 **Examples:**
 
 *Delete multipath route with load balance between devices*
 
 	ip_route.delete({
-		to:       'default',
-		scope:    'global',
+		to:	   'default',
+		scope:	'global',
 		nexthop:  [{
 			dev: 'ppp0'
 		},
@@ -426,15 +418,15 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 
 #### `iproute` **official manual**: [http://stuff.onse.fi/man?program=ip-rule&section=8](http://stuff.onse.fi/man?program=ip-rule&section=8)
 
-#### ip_rule.add(options, callback)
+#### ip_rule.add(options, cb)
 
 **Examples:**
 
 *Unicast type rule (the default if not specified)*
 
 	ip_rule.add({
-		from:       '192.203.80.0/24',
-		table:      'inr.ruhep',
+		from:	   '192.203.80.0/24',
+		table:	  'inr.ruhep',
 		priority:   '220'
 	}, function (error) {
 		if (error) {
@@ -445,9 +437,9 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 *NAT type rule*
 
 	ip_rule.add({
-		from:       '193.233.7.83',
-		nat:        '192.203.80.144',
-		table:      '1',
+		from:	   '193.233.7.83',
+		nat:		'192.203.80.144',
+		table:	  '1',
 		priority:   '320'
 	}, function (error) {
 		if (error) {
@@ -455,7 +447,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 		}
 	});
 
-#### ip_rule.delete(options, callback)
+#### ip_rule.delete(options, cb)
 
 **Examples:**
 
@@ -469,7 +461,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 		}
 	});
 
-#### ip_rule.flush(callback)
+#### ip_rule.flush(cb)
 
 **Example:**
 
@@ -479,7 +471,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 		}
 	});
 
-#### ip_rule.show(callback)
+#### ip_rule.show(cb)
 
 **Example:**
 
@@ -495,45 +487,110 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 *The `rules` output is an array of rules with the expected following structure*
 
 	[
-    	{
-    		priority: '0',
-    		type    : 'unicast',
-    		from    : 'all',
-    		lookup  : 'local'
-    	},
-    	{
-    		priority: '320',
-    		type    : 'masquerade',
-    		from    : '192.233.7.83',
-    		lookup  : 'default'
-    	},
-    	{
-    		priority: '32763',
-    		type    : 'prohibit',
-    		from    : '192.169.16.0/24',
-    		lookup  : 'default'
-    	},
-    	{
-    		priority: '32764',
-    		type    : 'unreachable',
-    		from    : '192.169.16.0/24',
-    		lookup  : 'default'
-    	},
-    	{
-    		priority: '32766',
-    		type    : 'unicast',
-    		from    : 'all',
-    		lookup  : 'main'
-    	},
-    	{
-    		priority: '32767',
-    		type    : 'unicast',
-    		from    : 'all',
-    		lookup  : 'default'
-    	}
-    ]
+		{
+			priority: '0',
+			type	: 'unicast',
+			from	: 'all',
+			lookup  : 'local'
+		},
+		{
+			priority: '320',
+			type	: 'masquerade',
+			from	: '192.233.7.83',
+			lookup  : 'default'
+		},
+		{
+			priority: '32763',
+			type	: 'prohibit',
+			from	: '192.169.16.0/24',
+			lookup  : 'default'
+		},
+		{
+			priority: '32764',
+			type	: 'unreachable',
+			from	: '192.169.16.0/24',
+			lookup  : 'default'
+		},
+		{
+			priority: '32766',
+			type	: 'unicast',
+			from	: 'all',
+			lookup  : 'main'
+		},
+		{
+			priority: '32767',
+			type	: 'unicast',
+			from	: 'all',
+			lookup  : 'default'
+		}
+	]
+
+### ip monitor - State monitoring.
+
+	var ip_monitor = require('iproute').monitor();
+
+#### `iproute` **official manual**: [http://stuff.onse.fi/man?program=ip-monitor&section=8](http://stuff.onse.fi/man?program=ip-monitor&section=8)
+
+#### ip_monitor([objects])
+
+**Examples:**
+
+*Monitor all objects state changes*
+
+	ip_monitor();
+
+*The same as above*
+
+	ip_monitor('all');
+
+*Monitor only changes on links*
+
+	ip_monitor('link');
+
+*Monitor changes on multiple objects at the same time*
+
+	ip_monitor('link address');
+
+*After starting the monitor with one of the above commands, you can start watching for changes:*
+
+	ip_monitor.on('all',function(data){
+		console.log(data);
+	});
+
+	ip_monitor.on('link',function(data){
+		console.log(data);
+	});
+
+The `data` object will hold the object type and the already parsed data, as it will be returned by any of the previous
+`.show()` methods. For instance, if the object is a link, the `data` object could be:
+
+	{
+		object: 'link',
+		data: [{
+			index: 1,
+			name: 'eth0',
+			flags: [
+				'NO-CARRIER',
+				'BROADCAST',
+				'MULTICAST',
+				'UP'
+			],
+			type: 'ether',
+			mac: '00:24:d6:1c:2f:a6',
+			brd: 'ff:ff:ff:ff:ff:ff',
+			mtu: 1500,
+			qdisc: 'pfifo_fast',
+			state: 'DOWN',
+			mode: 'DEFAULT',
+			qlen: 1000
+		}]
+	}
 
 ## Release notes
+
+### 0.6.0
+
+- Added initial `ip-monitor` support for **links**.
 
 ### 0.5.0
 
