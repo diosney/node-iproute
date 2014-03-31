@@ -265,7 +265,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/READ
 	ip_address.add({
 		dev:	 'eth0',
 		scope:   'host',
-		address: '10.3.15.3/24'
+		local: '10.3.15.3/24'
 	}, function (error) {
 		if (error) {
 			console.log(error);
