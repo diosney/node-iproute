@@ -15,5 +15,3 @@ exports.monitor = require('./lib/monitor/index');
 
 // General utilities functions to provide extra handy functionality not present in iproute.
 exports.utils = require('./lib/utils/index');
-
-// TODO: Poner los errores en los callbacks como mismo hice en netfilter-iptables.
