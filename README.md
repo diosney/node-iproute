@@ -56,7 +56,7 @@ the module with basic `iproute` knowledge.
 	var ip_utils = require('iproute').utils;
 
 Since this module is to provide extra functionality, is described in another readme file to make this one compact.
-Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/README-utils.md) in the project root directory for information about it.
+Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/docs/README-utils.md) in the project root directory for information about it.
 
 ### ip link - Network devices configuration.
 
