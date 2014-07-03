@@ -39,7 +39,27 @@ You can install it in Debian based OSes (if is not already there) by issuing:
 	sudo apt-get install iproute
 
 Other requirement is about permission levels. To properly execute the provided write methods like `.add()`, `.set()`,
-`.delete()`) the application that uses the module must have the proper `sudo` privileges.
+`.delete()`) the application that uses the module must have the proper `sudo` privileges. One way to do it could be by adding
+a custom user to the system:
+
+`sudo adduser --no-create-home iproute`
+
+then add its permissions at `/etc/sudoers` file:
+
+`iproute ALL= NOPASSWD: /sbin/ip`
+
+and then execute the commands with `sudo: true`:
+
+	ip_link.show({
+			sudo: true
+		}, function (error, links) {
+		if (error) {
+			console.log(error);
+		}
+		else {
+			console.log(links);
+		}
+	});
 
 ## Issues
 
