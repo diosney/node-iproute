@@ -481,7 +481,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/docs
 		}
 	});
 
-#### ip_rule.flush(cb)
+#### ip_rule.flush([options,] cb)
 
 **Example:**
 
@@ -491,7 +491,7 @@ Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/docs
 		}
 	});
 
-#### ip_rule.show(cb)
+#### ip_rule.show([options,] cb)
 
 **Example:**
 
