@@ -1,5 +1,10 @@
 ## Release notes
 
+### 0.7.0
+
+- Improved error logging: changed to use default `Error()` constructor so the stack
+ do not get lost.
+
 ### 0.6.7
 
 - `ip-address`: Changed `utils.scopes` from an array type to an map (object) type.
