@@ -1,6 +1,6 @@
 {
 	"name"        : "iproute",
-	"version"     : "0.6.6",
+	"version"     : "0.6.7",
 	"description" : "Show and manipulate network devices, addresses, routing, policy routing and tunnels.",
 	"main"        : "index.js",
 	"keywords"    : [

@@ -1,6 +1,6 @@
 ## Release notes
 
-### 0.6.5
+### 0.6.7
 
 - `ip-address`: Changed `utils.scopes` from an array type to an map (object) type.
 - `ip-rule`: Added two new parameters added to `iproute`: `suppress_prefixlength` and `suppress_ifgroup`.
