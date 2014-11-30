@@ -46,7 +46,7 @@ a custom user to the system:
 
 then add its permissions at `/etc/sudoers` file:
 
-`iproute ALL= NOPASSWD: /sbin/ip`
+`iproute ALL=NOPASSWD: /sbin/ip`
 
 and then execute the commands with `sudo: true`:
 
