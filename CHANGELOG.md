@@ -1,5 +1,10 @@
 ## Release notes
 
+### 0.7.1
+
+- Fixed typo in docs.
+- Removed year in license.
+ 
 ### 0.7.0
 
 - Improved error logging: changed to use default `Error()` constructor so the stack
