@@ -1,5 +1,9 @@
 ## Release notes
 
+### 0.7.2
+
+- (@steirico) Fixed missing declaration.
+
 ### 0.7.1
 
 - Fixed typo in docs.
