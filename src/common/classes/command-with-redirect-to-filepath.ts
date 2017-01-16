@@ -4,10 +4,9 @@ import { exec }           from 'child_process';
 
 import { FilePathGlobalOptionSchema, SchemaIds } from '../constants/schemas';
 import { CommandError }                          from '../errors/command';
-import { ParametersError }                       from '../errors/parameters';
 import { GlobalOptionsWithRequiredFilePath }     from '../interfaces/common';
-import ajv     from '../validator';
-import Command from './command';
+import Command                                   from './command';
+import { validate }                              from '../misc';
 
 const promisifiedExec = promisify(exec);
 
@@ -24,27 +23,14 @@ export default class CommandWithRedirectToFilepath<T_CommandOptions extends { [i
       globalOptions,
       ipCmd);
 
-    // TODO: Tried to merge into one generic function but generic types gave me trouble.
-    this.validateFilePathGlobalOption();
-
+    validate<GlobalOptionsWithRequiredFilePath>(SchemaIds.FilePathGlobalOption, FilePathGlobalOptionSchema, globalOptions);
     this.buildCmd();
-  }
-
-  private validateFilePathGlobalOption() {
-    const validate = ajv.getSchema(SchemaIds.FilePathGlobalOption)
-                     || ajv.compile(FilePathGlobalOptionSchema);
-
-    const isValid = validate(this.globalOptions);
-
-    if (!isValid) {
-      throw new ParametersError(ParametersError.message, validate.errors);
-    }
   }
 
   protected override buildCmd() {
     super.buildCmd();
 
-    this._cmd       = this.cmd.concat(...[`>`, `${this.globalOptions.filePath}`]);
+    this._cmd       = this.cmd.concat(...[ `>`, `${ this.globalOptions.filePath }` ]);
     this._cmdToExec = this.cmd.join(' ');
   }
 

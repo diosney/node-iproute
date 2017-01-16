@@ -1,7 +1,7 @@
-import ipForward     from './ip-forward';
+import ipForwarding  from './ip-forwarding';
 import routingTables from './routing-tables';
 
 export default {
-  ipForward,
+  ipForwarding,
   routingTables
 };

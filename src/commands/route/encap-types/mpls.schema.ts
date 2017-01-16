@@ -14,7 +14,7 @@ export const RouteMplsEncapArgsSchema: JSONSchemaType<AddRouteMplsEncapArgs> = {
       oneOf: [
         {
           type: 'string',
-          format: 'slash-separated-strings',
+          format: 'slash-separated-numbers',
           minLength: 1,
         },
         {

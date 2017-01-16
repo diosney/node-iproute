@@ -55,7 +55,7 @@ export const AddLinkVlanArgsSchema: JSONSchemaType<AddLinkVlanTypeArgs> = {
       nullable: true,
       items:    {
         type:   'string',
-        format: 'two-colon-separated-numbers'
+        format: 'colon-separated-numbers'
       }
     },
     'egress-qos-map':  {
@@ -64,7 +64,7 @@ export const AddLinkVlanArgsSchema: JSONSchemaType<AddLinkVlanTypeArgs> = {
       nullable: true,
       items:    {
         type:   'string',
-        format: 'two-colon-separated-numbers'
+        format: 'colon-separated-numbers'
       }
     }
   }

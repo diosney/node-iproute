@@ -6,9 +6,8 @@ import { exec }           from 'child_process';
 import { invisibleKeySuffix }             from '../constants/regexes';
 import { GlobalOptionsSchema, SchemaIds } from '../constants/schemas';
 import { CommandError }                   from '../errors/command';
-import { ParametersError }                from '../errors/parameters';
 import { GlobalOptions }                  from '../interfaces/common';
-import ajv                                from '../validator';
+import { validate }                       from '../misc';
 
 const promisifiedExec = promisify(exec);
 
@@ -32,33 +31,10 @@ export default class Command<T_CommandOptions extends { [index: string]: any; }>
               protected globalOptions: GlobalOptions,
               protected ipCmd: string[]) {
 
-    // TODO: Tried to merge into one generic function but generic types gave me trouble.
-    this.validateOptions();
-    this.validateGlobalOptions();
+    validate<T_CommandOptions>(schemaId, schema, options);
+    validate<GlobalOptions>(SchemaIds.GlobalOptions, GlobalOptionsSchema, globalOptions);
 
     this.buildCmd();
-  }
-
-  private validateOptions() {
-    const validate = ajv.getSchema(this.schemaId)
-                     || ajv.compile(this.schema);
-
-    const isValid = validate(this.options);
-
-    if (!isValid) {
-      throw new ParametersError(ParametersError.message, validate.errors);
-    }
-  }
-
-  private validateGlobalOptions() {
-    const validate = ajv.getSchema(SchemaIds.GlobalOptions)
-                     || ajv.compile(GlobalOptionsSchema);
-
-    const isValid = validate(this.globalOptions);
-
-    if (!isValid) {
-      throw new ParametersError(ParametersError.message, validate.errors);
-    }
   }
 
   protected buildCmd() {
@@ -66,7 +42,7 @@ export default class Command<T_CommandOptions extends { [index: string]: any; }>
                     ? 'sudo'
                     : '';
 
-    let cmd: Array<string | number> = [hasSudo, ...this.ipCmd];
+    let cmd: Array<string | number> = [ hasSudo, ...this.ipCmd ];
 
     // Add specific `ip` options to cmd.
     let ipOptions: Array<string | number> = [];
@@ -114,7 +90,7 @@ export default class Command<T_CommandOptions extends { [index: string]: any; }>
       // Is `false`.
       let invertedKey = (/^no/.test(key))
                         ? key.replace(/^no/, '')
-                        : `no${key}`;
+                        : `no${ key }`;
 
       cmd.push(invertedKey);
       return cmd;

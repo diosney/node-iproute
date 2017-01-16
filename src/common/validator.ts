@@ -10,8 +10,8 @@ import {
   ipWithRequiredMaskAndAllAndDefaultValues,
   slashSeparatedStrings,
   commaSeparatedIpv6Addresses,
-  timeWithUnit, twoColonSeparatedNumbers,
-  ipOrAny
+  timeWithUnit, colonSeparatedNumbers,
+  ipOrAny, slashSeparatedNumbers, mac, hex4Digits
 } from './constants/regexes';
 
 const ajv = new Ajv({
@@ -26,13 +26,14 @@ addFormats(ajv, [
   'ipv6'
 ]);
 
-ajv.addFormat('mac', /^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$/);
-ajv.addFormat('4-hex', /^[0-9a-fA-F]{4}$/);
+ajv.addFormat('mac', mac);
+ajv.addFormat('4-hex', hex4Digits);
 ajv.addFormat('filepath', /^(\/)?([^/\0]+(\/)?)+(\.\w+)?$/);
 ajv.addFormat('slash-separated-strings', slashSeparatedStrings);
+ajv.addFormat('slash-separated-numbers', slashSeparatedNumbers);
 ajv.addFormat('comma-separated-ipv6-addresses', commaSeparatedIpv6Addresses);
 ajv.addFormat('time-with-unit', timeWithUnit);
-ajv.addFormat('two-colon-separated-numbers', twoColonSeparatedNumbers);
+ajv.addFormat('colon-separated-numbers', colonSeparatedNumbers);
 
 // Since `ajv` doesn't support several formats for same property.
 ajv.addFormat('ip', new RegExp(ip, 'i'));
