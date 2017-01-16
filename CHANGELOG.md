@@ -1,5 +1,12 @@
 ## Release notes
 
+### 1.0.0
+
+- (@damoclark) Fix for link devices being deleted in monitor output.
+- As module was very stable, bumped version to `1.0.0` so is marked as
+  **stable** for registries.
+- Added [EditorConfig](http://editorconfig.org/) support.
+
 ### 0.7.2
 
 - (@steirico) Fixed missing declaration.
