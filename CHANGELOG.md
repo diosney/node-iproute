@@ -1,5 +1,9 @@
 ## Release notes
 
+### 1.0.1
+
+- Added simple clarification on README.
+
 ### 1.0.0
 
 - (@damoclark) Fix for link devices being deleted in monitor output.

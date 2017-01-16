@@ -576,6 +576,7 @@ The `data` object will hold the object type and the already parsed data, as it w
 		object: 'link',
 		data: [{
 			index: 1,
+			deleted: false,
 			name: 'eth0',
 			flags: [
 				'NO-CARRIER',
