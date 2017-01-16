@@ -1,5 +1,9 @@
 ## Release notes
 
+### 1.0.2
+
+- Added excluded file to `.gitignore`.
+
 ### 1.0.1
 
 - Added simple clarification on README.
