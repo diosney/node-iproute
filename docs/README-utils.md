@@ -12,13 +12,15 @@ General helpful utils to provide extra handy functionality not present in `iprou
 
 Path to IP forwarding kernel setting file path.
 
-### ip_utils.ip_forward.v{4,6}.enable(cb)
-### ip_utils.ip_forward.v{4,6}.disable(cb)
-### ip_utils.ip_forward.v{4,6}.status(cb)
+### ip_utils.ip_forward.v{4,6}.enable(options, cb)
+For now, the options parameter only accepts {sudo: true or false}.
+Don't worry if you did write your code in a previos version of this module and did informed just cb function, without options. The code will run without problems. 
+### ip_utils.ip_forward.v{4,6}.disable(options, cb)
+### ip_utils.ip_forward.v{4,6}.status(options, cb)
 
-### ip_utils.ip_forward.enable(cb)
-### ip_utils.ip_forward.disable(cb)
-### ip_utils.ip_forward.status(cb)
+### ip_utils.ip_forward.enable(options, cb)
+### ip_utils.ip_forward.disable(options, cb)
+### ip_utils.ip_forward.status(options, cb)
 
 ## ip_utils.routing_tables
 
