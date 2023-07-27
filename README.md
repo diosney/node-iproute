@@ -38,8 +38,12 @@ You can install it in Debian based OSes (if is not already there) by issuing:
 
 	sudo apt-get install iproute
 
+or
+
+	sudo apt-get install iproute2
+
 Other requirement is about permission levels. To properly execute the provided write methods like `.add()`, `.set()`,
-`.delete()`) the application that uses the module must have the proper `sudo` privileges. One way to do it could be by adding
+`.delete()` the application that uses the module must have the proper `sudo` privileges. One way to do it could be by adding
 a custom user to the system:
 
 `sudo adduser --no-create-home iproute`
@@ -599,7 +603,7 @@ The `data` object will hold the object type and the already parsed data, as it w
 
 The MIT License (MIT)
 
-Copyright (c) Diosney Sarmiento
+Copyright (c) 2014-2023 Diosney Sarmiento
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

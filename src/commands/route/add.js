@@ -1,6 +1,6 @@
 var exec = require('child_process').exec;
 
-var ip_route = require('../route/index');
+var ip_route = require('./index');
 
 var route_types = require('./utils').types;
 

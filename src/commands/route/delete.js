@@ -1,11 +1,9 @@
 var exec = require('child_process').exec;
 
-var ip_route = require('../route/index');
-
-var route_types = require('./utils').types;
+var ip_route = require('./index');
 
 /**
- * Change or add a new route.
+ * Delete a route.
  *
  * @param options
  * @param cb
@@ -24,7 +22,7 @@ module.exports = function (options, cb) {
   /*
    * Build cmd to execute.
    */
-  var cmd = [ip_cmd, 'ip', 'route', 'replace'];
+  var cmd = [ip_cmd, 'ip', 'route', 'delete'];
   var args = [];
 
   /*
@@ -35,9 +33,6 @@ module.exports = function (options, cb) {
 
     if (typeof options.type != 'undefined') {
       args = args.concat(options.type);
-    }
-    else {
-      args = args.concat(route_types.unicast);
     }
 
     args = args.concat(options.to);

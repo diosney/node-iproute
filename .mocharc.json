@@ -1,0 +1,8 @@
+{
+  "timeout"  : 10000,
+  "recursive": true,
+  "spec"     : "./__tests__/**/*.ts",
+  "require"  : "ts-node/register",
+  "reporter" : "progress",
+  "sort"     : true
+}

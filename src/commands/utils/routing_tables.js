@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-var ip_route = require('../route/index');
+var ip_route = require('../route');
 
 var tables_path = '/etc/iproute2/rt_tables';
 

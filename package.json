@@ -1,9 +1,14 @@
 {
-	"name"        : "iproute",
-	"version"     : "1.0.2",
-	"description" : "Show and manipulate network devices, addresses, routing, policy routing and tunnels.",
-	"main"        : "index.js",
-	"keywords"    : [
+	"name": "iproute",
+	"version": "1.0.2",
+	"description": "Show and manipulate network devices, addresses, routing, policy routing and tunnels.",
+	"main": "index.js",
+	"scripts": {
+		"build": "npm run clean && npx tsc --project tsconfig.json",
+		"test": "npm run build && npx mocha",
+		"clean": "npx rimraf lib/"
+	},
+	"keywords": [
 		"device",
 		"interface",
 		"address",
@@ -22,22 +27,35 @@
 		"utils"
 	],
 	"dependencies": {
+		"ajv": "^8.12.0",
+		"ajv-formats": "^2.1.1",
 		"async": "*"
 	},
-	"engines"     : {
-		"node": ">=0.8.0"
+	"engines": {
+		"node": ">=18.0.0"
 	},
-	"homepage"    : "https://github.com/diosney/node-iproute",
-	"bugs"        : {
+	"homepage": "https://github.com/diosney/node-iproute",
+	"bugs": {
 		"url": "https://github.com/diosney/node-iproute/issues"
 	},
-	"author"      : {
-		"name" : "Diosney Sarmiento",
+	"author": {
+		"name": "Diosney Sarmiento",
 		"email": "diosney.s@gmail.com"
 	},
-	"license"     : "MIT",
-	"repository"  : {
+	"license": "MIT",
+	"repository": {
 		"type": "git",
-		"url" : "https://github.com/diosney/node-iproute.git"
+		"url": "https://github.com/diosney/node-iproute.git"
+	},
+	"devDependencies": {
+		"@types/ajv": "^1.0.0",
+		"@types/chai": "^4.3.5",
+		"@types/mocha": "^10.0.1",
+		"@types/node": "^20.4.4",
+		"chai": "^4.3.7",
+		"mocha": "^10.2.0",
+		"rimraf": "^5.0.1",
+		"ts-node": "^10.9.1",
+		"typescript": "^5.1.6"
 	}
 }

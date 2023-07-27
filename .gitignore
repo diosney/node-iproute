@@ -1,3 +1,4 @@
-.idea
-node_modules
 .directory
+/.idea
+/node_modules
+/lib

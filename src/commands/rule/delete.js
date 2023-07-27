@@ -1,11 +1,10 @@
 var exec = require('child_process').exec;
 
-var ip_route = require('../route/index');
-
+var ip_route = require('../route');
 var rule_types = require('./utils').types;
 
 /**
- * Insert a new rule.
+ * Delete a rule.
  *
  * @param options
  * @param cb
@@ -24,7 +23,7 @@ module.exports = function (options, cb) {
   /*
    * Build cmd to execute.
    */
-  var cmd = [ip_cmd, 'ip', 'rule', 'add'];
+  var cmd = [ip_cmd, 'ip', 'rule', 'delete'];
   var args = [];
 
   /*
@@ -71,14 +70,6 @@ module.exports = function (options, cb) {
 
   if (typeof options.table != 'undefined') {
     args = args.concat('table', options.table);
-  }
-
-  if (typeof options.suppress_prefixlength != 'undefined') {
-    args = args.concat('suppress_prefixlength', options.suppress_prefixlength);
-  }
-
-  if (typeof options.suppress_ifgroup != 'undefined') {
-    args = args.concat('suppress_ifgroup', options.suppress_ifgroup);
   }
 
   if (typeof options.realms != 'undefined') {

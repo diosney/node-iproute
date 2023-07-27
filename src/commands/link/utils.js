@@ -5,20 +5,6 @@ exports.types = {
   pointopoint: 'ppp'          // Point to Point.
 };
 
-// Virtual link types.
-exports.vl_types = {
-  bridge : 'bridge',   // Ethernet Bridge device.
-  can    : 'can',      // Controller Area Network interface.
-  dummy  : 'dummy',    // Dummy network interface.
-  ifb    : 'ifb',      // Intermediate Functional Block device.
-  ipoib  : 'ipoib',    // IP over Infiniband device.
-  macvlan: 'macvlan',  // Virtual interface base on link layer address (MAC).
-  vcan   : 'vcan',     // Virtual Local CAN interface.
-  veth   : 'veth',     // Virtual ethernet interface.
-  vlan   : 'vlan',     // 802.1q tagged virtual LAN interface.
-  vxlan  : 'vxlan'     // Virtual eXtended LAN.
-};
-
 // Interface flags.
 exports.flags = [
   'UP',
