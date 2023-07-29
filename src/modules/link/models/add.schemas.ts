@@ -1,10 +1,16 @@
 import { JSONSchemaType } from 'ajv';
 
-import { VirtualLinkTypes }       from './add.constants';
-import { SchemaIds }              from '../../../common/constants/schemas';
-import { LinkAddOptions }         from './add.interfaces';
-import { LinkVlanOptionsSchema }  from './virtual-link-types/vlan.schemas';
-import { LinkVxlanOptionsSchema } from './virtual-link-types/vxlan.schemas';
+import { VirtualLinkTypes }                 from './add.constants';
+import { SchemaIds }                        from '../../../common/constants/schemas';
+import { LinkAddOptions }                   from './add.interfaces';
+import { LinkErspanIp6ErspanOptionsSchema } from './virtual-link-types/erspan-ip6erspan.schema';
+import { LinkGreGretapOptionsSchema }       from './virtual-link-types/gre-gretap.schema';
+import { LinkIp6GreIp6GretapOptionsSchema } from './virtual-link-types/ip6gre-ip6gretap.schema';
+import { LinkIpipSipOptionsSchema }         from './virtual-link-types/ipip-sit.schema';
+import { LinkIpoIbOptionsSchema }           from './virtual-link-types/ipoib.schema';
+import { LinkVethVxcanOptionsSchema }       from './virtual-link-types/veth-vxcan.schema';
+import { LinkVlanOptionsSchema }            from './virtual-link-types/vlan.schema';
+import { LinkVxlanOptionsSchema }           from './virtual-link-types/vxlan.schema';
 
 export const LinkAddSchema: JSONSchemaType<LinkAddOptions> = {
   $id       : SchemaIds.LinkAdd,
@@ -72,10 +78,16 @@ export const LinkAddSchema: JSONSchemaType<LinkAddOptions> = {
       enum: Object.values(VirtualLinkTypes) as VirtualLinkTypes[]
     },
     // TODO: How to condition ayOf depending of `type`?
-    type_args   : {
+    type_args: {
       anyOf: [
         LinkVlanOptionsSchema,
-        LinkVxlanOptionsSchema
+        LinkVxlanOptionsSchema,
+        LinkVethVxcanOptionsSchema,
+        LinkIpipSipOptionsSchema,
+        LinkGreGretapOptionsSchema,
+        LinkIp6GreIp6GretapOptionsSchema,
+        LinkIpoIbOptionsSchema,
+        LinkErspanIp6ErspanOptionsSchema
       ]
     }
   }

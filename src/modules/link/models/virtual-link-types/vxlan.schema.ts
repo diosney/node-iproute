@@ -168,10 +168,12 @@ export const LinkVxlanOptionsSchema: JSONSchemaType<LinkVxlanTypeOptions> = {
     },
     gbp             : {
       type    : 'boolean',
+      enum    : [true],
       nullable: true
     },
     gpe             : {
       type    : 'boolean',
+      enum    : [true],
       nullable: true
     }
   }

@@ -1,6 +1,12 @@
-import { VirtualLinkTypes }     from './add.constants';
-import { LinkVlanTypeOptions }  from './virtual-link-types/vlan.interfaces';
-import { LinkVxlanTypeOptions } from './virtual-link-types/vxlan.interfaces';
+import { VirtualLinkTypes }               from './add.constants';
+import { LinkErspanIp6erspanTypeOptions } from './virtual-link-types/erspan-ip6erspan.interfaces';
+import { LinkGreGretapTypeOptions }       from './virtual-link-types/gre-gretap.interfaces';
+import { LinkIp6GreIp6gretapTypeOptions } from './virtual-link-types/ip6gre-ip6gretap.interfaces';
+import { LinkIpipSitTypeOptions }         from './virtual-link-types/ipip-sit.interfaces';
+import { LinkIpoibTypeOptions }           from './virtual-link-types/ipoib.interfaces';
+import { LinkVethVxcanTypeOptions }       from './virtual-link-types/veth-vxcan.interfaces';
+import { LinkVlanTypeOptions }            from './virtual-link-types/vlan.interfaces';
+import { LinkVxlanTypeOptions }           from './virtual-link-types/vxlan.interfaces';
 
 export interface LinkAddOptions {
   /** Specifies the physical device to act operate on. */
@@ -44,5 +50,11 @@ export interface LinkAddOptions {
   type: VirtualLinkTypes;
   /** Specifies the additional arguments related to the specified virtual link type. */
   type_args: LinkVlanTypeOptions
-    | LinkVxlanTypeOptions;
+    | LinkVxlanTypeOptions
+    | LinkVethVxcanTypeOptions
+    | LinkIpipSitTypeOptions
+    | LinkGreGretapTypeOptions
+    | LinkIp6GreIp6gretapTypeOptions
+    | LinkIpoibTypeOptions
+    | LinkErspanIp6erspanTypeOptions;
 }

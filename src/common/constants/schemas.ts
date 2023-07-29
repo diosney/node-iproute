@@ -5,12 +5,18 @@ import { IpCommandTestOptions } from '../interfaces/tests';
 import { TestEnum }             from './tests';
 
 export enum SchemaIds {
-  GlobalOptions        = '#global-options',
-  IpCommandTestOptions = '#ip-command-test-options',
+  GlobalOptions                 = '#global-options',
+  IpCommandTestOptions          = '#ip-command-test-options',
 
-  LinkAdd              = '#link-add',
-  LinkAddVlanOptions   = '#link-add-vlan',
-  LinkAddVxlanOptions  = '#link-add-vxlan'
+  LinkAdd                       = '#link-add',
+  LinkAddVlanOptions            = '#link-add-vlan',
+  LinkAddVxlanOptions           = '#link-add-vxlan',
+  LinkAddVethVxcanOptions       = '#link-add-veth-vxcan',
+  LinkAddIpipSipOptions         = '#link-add-ipip-sip',
+  LinkAddGreGretapOptions       = '#link-add-gre-gretap',
+  LinkAddIp6GreIp6gretapOptions = '#link-add-ip6gre-ip6gretap',
+  LinkAddIpoibOptions           = '#link-add-ipoib',
+  LinkAddErspanIp6erspanOptions = '#link-add-erspan-ip6erspan'
 }
 
 export const GlobalOptionsSchema: JSONSchemaType<GlobalOptions> = {

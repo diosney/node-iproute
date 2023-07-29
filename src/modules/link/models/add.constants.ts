@@ -83,3 +83,48 @@ export enum DontFragmentFlagValues {
   /** Cause the bit to be always set. */
   Set     = 'set'
 }
+
+/**
+ * Specifies type of secondary UDP encapsulation.
+ */
+export enum SecondaryUdpEncapsulations {
+  /** Indicates Foo-Over-UDP. */
+  Fou  = 'fou',
+  /** Indicates Generic UDP Encapsulation. */
+  Gue  = 'gue',
+  None = 'none',
+}
+
+/** Specifies mode in which device should run. */
+// TODO: Separate interfaces?
+export enum IpipSipDeviceModes {
+  /** Indicates IPv6-Over-IPv4 */
+  Ip6ip  = 'ip6ip',
+  /** Indicates "IPv4-Over-IPv4". */
+  Ipip   = 'ipip',
+  /** Indicates MPLS-Over-IPv4. */
+  Mplsip = 'mplsip',
+  /** Indicates IPv6, IPv4 or MPLS Over IPv4. */
+  Any    = 'any',
+}
+
+/** Specifies whether the link should be in datagram mode or connected mode. */
+export enum IpoIbModes {
+  /**
+   * This is the default mode. In datagram mode, packets are sent independently of each other,
+   * without a connection between sender and receiver.
+   * */
+  Datagram  = 'datagram',
+  /**
+   * In connected mode, a reliable connection is established before data is exchanged, which can
+   * offer higher throughput and lower latency in some situations. However, connected mode uses more
+   * resources and may not be supported by all InfiniBand hardware.
+   */
+  Connected = 'connected',
+}
+
+/** Specifies the ERSPAN v2 mirrored traffic's direction. */
+export enum ErspanDirections {
+  Ingress = 'ingress',
+  Egress  = 'egress',
+}

@@ -47,106 +47,78 @@ export interface LinkVxlanTypeOptions {
   /**
    * Specifies if unknown source link layer addresses and IP addresses are
    * entered into the VXLAN device forwarding database.
-   *
-   * @see {@link nolearning}
    */
   learning?: boolean;
-  /**
-   * Specifies if unknown source link layer addresses and IP addresses are
-   * entered into the VXLAN device forwarding database.
-   *
-   * @see {@link learning}
-   */
+  /** @see {@link learning} */
   nolearning?: boolean;
-  /**
-   * Specifies if route short circuit is turned on.
-   * @see {@link norsc}
-   */
+  /** Specifies if route short circuit is turned on. */
   rsc?: boolean;
-  /**
-   * Specifies if route short circuit is turned on.
-   * @see {@link rsc}
-   */
+  /** @see {@link rsc} */
   norsc?: boolean;
-  /**
-   * Specifies if ARP proxy is turned on.
-   * @see {@link noproxy}
-   */
+  /** Specifies if ARP proxy is turned on. */
   proxy?: boolean;
-  /**
-   * Specifies if ARP proxy is turned on.
-   * @see {@link proxy}
-   */
+  /** @see {@link proxy} */
   noproxy?: boolean;
-  /**
-   * Specifies if netlink LLADDR miss notifications are generated.
-   * @see {@link nol2miss}
-   */
+  /** Specifies if netlink LLADDR miss notifications are generated. */
   l2miss?: boolean;
-  /**
-   * Specifies if netlink LLADDR miss notifications are generated.
-   * @see {@link l2miss}
-   */
+  /** @see {@link l2miss} */
   nol2miss?: boolean;
-  /**
-   * Specifies if netlink IP ADDR miss notifications are generated.
-   * @see {@link nol3miss}
-   */
+  /** Specifies if netlink IP ADDR miss notifications are generated. */
   l3miss?: boolean;
-  /**
-   * Specifies if netlink IP ADDR miss notifications are generated.
-   * @see {@link l3miss}
-   */
+  /** @see {@link l3miss} */
   nol3miss?: boolean;
-  /**
-   * Specifies if UDP checksum is calculated for transmitted packets over IPv4.
-   * @see {@link noudpcsum}
-   */
+  /** Specifies if UDP checksum is calculated for transmitted packets over IPv4. */
   udpcsum?: boolean;
-  /**
-   * Specifies if UDP checksum is calculated for transmitted packets over IPv4.
-   * @see {@link udpcsum}
-   */
+  /** @see {@link udpcsum} */
   noudpcsum?: boolean;
-  /**
-   * Skip UDP checksum calculation for transmitted packets over IPv6.
-   * @see {@link noudp6zerocsumtx}
-   */
+  /** Skip UDP checksum calculation for transmitted packets over IPv6. */
   udp6zerocsumtx?: boolean;
-  /**
-   * Skip UDP checksum calculation for transmitted packets over IPv6.
-   * @see {@link udp6zerocsumtx}
-   */
+  /** @see {@link udp6zerocsumtx} */
   noudp6zerocsumtx?: boolean;
-  /**
-   * Allow incoming UDP packets over IPv6 with zero checksum field.
-   * @see {@link noudp6zerocsumrx}
-   */
+  /** Allow incoming UDP packets over IPv6 with zero checksum field. */
   udp6zerocsumrx?: boolean;
-  /**
-   * Allow incoming UDP packets over IPv6 with zero checksum field.
-   * @see {@link udp6zerocsumrx}
-   */
+  /** @see {@link udp6zerocsumrx} */
   noudp6zerocsumrx?: boolean;
   /** Specifies the lifetime in seconds of FDB entries learned by the kernel. */
   ageing?: number;
   /** Specifies the maximum number of FDB entries. */
   maxaddress?: number;
-  /**
-   * Specifies whether an external control plane (e.g., ip route encap) or the internal FDB should be used.
-   * @see {@link noexternal}
-   */
+  /** Specifies whether an external control plane (e.g., ip route encap) or the internal FDB should be used. */
   external?: boolean;
-  /**
-   * Specifies whether an external control plane (e.g., ip route encap) or the internal FDB should be used.
-   * @see {@link external}
-   */
+  /** @see {@link external} */
   noexternal?: boolean;
-  /** Enables the Group Policy extension (VXLAN-GBP). */
-  gbp?: boolean;
+  /**
+   * Enables the Group Policy extension (VXLAN-GBP).
+   *
+   * Allows to transport group policy context across VXLAN network peers.
+   * If enabled, includes the mark of a packet in the VXLAN header for outgoing packets and fills the packet
+   * mark based on the information found in the VXLAN header for incoming packets.
+   *
+   * Format of upper 16 bits of packet mark (flags);
+   *
+   * +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   * |-|-|-|-|-|-|-|-|-|D|-|-|A|-|-|-|
+   * +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   *
+   * D := Don't Learn bit. When set, this bit indicates that the egress
+   * VTEP MUST NOT learn the source address of the encapsulated frame.
+   *
+   * A := Indicates that the group policy has already been applied to this packet.
+   * Policies MUST NOT be applied by devices when the A bit is set.
+   *
+   * Format of lower 16 bits of packet mark (policy ID):
+   *
+   * +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   * |        Group Policy ID        |
+   * +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   *
+   * Example:
+   * iptables -A OUTPUT [...] -j MARK --set-mark 0x800FF
+   */
+  gbp?: true;
   /**
    * Enables the Generic Protocol extension (VXLAN-GPE).
    * Currently, this is only supported together with the external keyword.
    */
-  gpe?: boolean;
+  gpe?: true;
 }
