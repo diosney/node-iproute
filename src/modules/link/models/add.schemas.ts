@@ -3,14 +3,22 @@ import { JSONSchemaType } from 'ajv';
 import { VirtualLinkTypes }                 from './add.constants';
 import { SchemaIds }                        from '../../../common/constants/schemas';
 import { LinkAddOptions }                   from './add.interfaces';
+import { LinkBareudpOptionsSchema }         from './virtual-link-types/bareup.schema';
+import { LinkBridgeOptionsSchema }          from './virtual-link-types/bridge.schema';
 import { LinkErspanIp6ErspanOptionsSchema } from './virtual-link-types/erspan-ip6erspan.schema';
+import { LinkGeneveOptionsSchema }          from './virtual-link-types/geneve.schema';
 import { LinkGreGretapOptionsSchema }       from './virtual-link-types/gre-gretap.schema';
+import { LinkHsrOptionsSchema }             from './virtual-link-types/hsr.schema';
 import { LinkIp6GreIp6GretapOptionsSchema } from './virtual-link-types/ip6gre-ip6gretap.schema';
 import { LinkIpipSipOptionsSchema }         from './virtual-link-types/ipip-sit.schema';
 import { LinkIpoIbOptionsSchema }           from './virtual-link-types/ipoib.schema';
+import { LinkMacvlanMacvtapOptionsSchema }  from './virtual-link-types/macvlan-macvtap.schema';
+import { LinkRmnetOptionsSchema }           from './virtual-link-types/rmnet.schema';
 import { LinkVethVxcanOptionsSchema }       from './virtual-link-types/veth-vxcan.schema';
 import { LinkVlanOptionsSchema }            from './virtual-link-types/vlan.schema';
+import { LinkVrfOptionsSchema }             from './virtual-link-types/vrf.schema';
 import { LinkVxlanOptionsSchema }           from './virtual-link-types/vxlan.schema';
+import { LinkXfrmOptionsSchema }            from './virtual-link-types/xfrm.schema';
 
 export const LinkAddSchema: JSONSchemaType<LinkAddOptions> = {
   $id       : SchemaIds.LinkAdd,
@@ -77,7 +85,7 @@ export const LinkAddSchema: JSONSchemaType<LinkAddOptions> = {
       type: 'string',
       enum: Object.values(VirtualLinkTypes) as VirtualLinkTypes[]
     },
-    // TODO: How to condition ayOf depending of `type`?
+    // TODO: How to condition anyOf depending of `type`?
     type_args: {
       anyOf: [
         LinkVlanOptionsSchema,
@@ -87,7 +95,15 @@ export const LinkAddSchema: JSONSchemaType<LinkAddOptions> = {
         LinkGreGretapOptionsSchema,
         LinkIp6GreIp6GretapOptionsSchema,
         LinkIpoIbOptionsSchema,
-        LinkErspanIp6ErspanOptionsSchema
+        LinkErspanIp6ErspanOptionsSchema,
+        LinkGeneveOptionsSchema,
+        LinkBareudpOptionsSchema,
+        LinkMacvlanMacvtapOptionsSchema,
+        LinkHsrOptionsSchema,
+        LinkVrfOptionsSchema,
+        LinkRmnetOptionsSchema,
+        LinkXfrmOptionsSchema,
+        LinkBridgeOptionsSchema
       ]
     }
   }

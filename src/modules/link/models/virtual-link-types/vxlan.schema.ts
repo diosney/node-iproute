@@ -41,6 +41,7 @@ export const LinkVxlanOptionsSchema: JSONSchemaType<LinkVxlanTypeOptions> = {
     ttl             : {
       type    : 'number',
       minimum : 0,
+      maximum : 255,
       nullable: true
     },
     tos             : {

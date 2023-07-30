@@ -1,4 +1,5 @@
-import { expect } from 'chai';
+import { ErrorObject } from 'ajv';
+import { expect }      from 'chai';
 
 import { add }                   from '../../src/modules/link';
 import { Tests as linkAddTests } from './fixtures/link-add';

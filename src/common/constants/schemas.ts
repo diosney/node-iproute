@@ -16,7 +16,15 @@ export enum SchemaIds {
   LinkAddGreGretapOptions       = '#link-add-gre-gretap',
   LinkAddIp6GreIp6gretapOptions = '#link-add-ip6gre-ip6gretap',
   LinkAddIpoibOptions           = '#link-add-ipoib',
-  LinkAddErspanIp6erspanOptions = '#link-add-erspan-ip6erspan'
+  LinkAddErspanIp6erspanOptions = '#link-add-erspan-ip6erspan',
+  LinkAddGeneveOptions          = '#link-add-geneve',
+  LinkAddBareupOptions          = '#link-add-bareudp',
+  LinkAddMacvlanMacvtapOptions  = '#link-add-macvlan-macvtap',
+  LinkAddHsrOptions             = '#link-add-hsr',
+  LinkAddVrfOptions             = '#link-add-vrf',
+  LinkAddRmnetOptions           = '#link-add-rmnet',
+  LinkAddXfrmOptions            = '#link-add-xfrm',
+  LinkAddBridgeOptions          = '#link-add-bridge'
 }
 
 export const GlobalOptionsSchema: JSONSchemaType<GlobalOptions> = {

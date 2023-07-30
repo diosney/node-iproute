@@ -1,12 +1,20 @@
 import { VirtualLinkTypes }               from './add.constants';
+import { LinkBareudpTypeOptions }         from './virtual-link-types/bareup.interfaces';
+import { LinkBridgeTypeOptions }          from './virtual-link-types/bridge.interfaces';
 import { LinkErspanIp6erspanTypeOptions } from './virtual-link-types/erspan-ip6erspan.interfaces';
+import { LinkGeneveTypeOptions }          from './virtual-link-types/geneve.interfaces';
 import { LinkGreGretapTypeOptions }       from './virtual-link-types/gre-gretap.interfaces';
+import { LinkHsrTypeOptions }             from './virtual-link-types/hsr.interfaces';
 import { LinkIp6GreIp6gretapTypeOptions } from './virtual-link-types/ip6gre-ip6gretap.interfaces';
 import { LinkIpipSitTypeOptions }         from './virtual-link-types/ipip-sit.interfaces';
 import { LinkIpoibTypeOptions }           from './virtual-link-types/ipoib.interfaces';
+import { LinkMacvlanMacvtapTypeOptions }  from './virtual-link-types/macvlan-macvtap.interfaces';
+import { LinkRmnetTypeOptions }           from './virtual-link-types/rmnet.interfaces';
 import { LinkVethVxcanTypeOptions }       from './virtual-link-types/veth-vxcan.interfaces';
 import { LinkVlanTypeOptions }            from './virtual-link-types/vlan.interfaces';
+import { LinkVrfTypeOptions }             from './virtual-link-types/vrf.interfaces';
 import { LinkVxlanTypeOptions }           from './virtual-link-types/vxlan.interfaces';
+import { LinkXfrmTypeOptions }            from './virtual-link-types/xfrm.interfaces';
 
 export interface LinkAddOptions {
   /** Specifies the physical device to act operate on. */
@@ -56,5 +64,13 @@ export interface LinkAddOptions {
     | LinkGreGretapTypeOptions
     | LinkIp6GreIp6gretapTypeOptions
     | LinkIpoibTypeOptions
-    | LinkErspanIp6erspanTypeOptions;
+    | LinkErspanIp6erspanTypeOptions
+    | LinkGeneveTypeOptions
+    | LinkBareudpTypeOptions
+    | LinkMacvlanMacvtapTypeOptions
+    | LinkHsrTypeOptions
+    | LinkVrfTypeOptions
+    | LinkRmnetTypeOptions
+    | LinkXfrmTypeOptions
+    | LinkBridgeTypeOptions;
 }

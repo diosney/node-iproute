@@ -100,6 +100,7 @@ export const LinkGreGretapOptionsSchema: JSONSchemaType<LinkGreGretapTypeOptions
     ttl              : {
       type    : 'number',
       minimum : 0,
+      maximum : 255,
       nullable: true
     },
     pmtudisc         : {

@@ -128,3 +128,122 @@ export enum ErspanDirections {
   Ingress = 'ingress',
   Egress  = 'egress',
 }
+
+export enum TtlSpecialValues {
+  Auto    = 'auto',
+  Inherit = 'inherit',
+}
+
+export enum MacvlanMacvtapModes {
+  /**
+   * Do not allow communication between macvlan instances on the same physical interface,
+   * even if the external switch supports hairpin mode.
+   */
+  Private           = 'private',
+  /**
+   * Virtual Ethernet Port Aggregator mode.
+   *
+   * Data from one macvlan instance to the other on the same physical inter face is
+   * transmitted over the physical interface.
+   *
+   * Either the attached switch needs to support hairpin mode, or there must be a
+   * TCP/IP router forwarding the packets in order to allow communication.
+   *
+   * This is the default mode.
+   */
+  Vepa              = 'vepa',
+  /**
+   * In bridge mode, all endpoints are directly connected to each other, communication
+   * is not redirected through the physical interface's peer.
+   */
+  Bridge            = 'bridge',
+  /**
+   * This mode gives more power to a single endpoint, usually in `macvtap` mode.
+   *
+   * It is not allowed for more than one endpoint on the same physical interface.
+   *
+   * All traffic will be forwarded to this endpoint, allowing virtio guests to change
+   * MAC address or set promiscuous mode in order to bridge the interface or create
+   * vlan interfaces on top of it.
+   *
+   * By default, this mode forces the underlying interface into promiscuous mode.
+   *
+   * Passing the `nopromisc` flag prevents this, so the promisc flag may be controlled
+   * using standard tools.
+   *
+   * @see {@link PassthruNopromisc}
+   */
+  Passthru          = 'passthru',
+  /**  @see {@link Passthru} */
+  PassthruNopromisc = 'passthru nopromisc',
+  /**
+   * Allows one to set a list of allowed mac address, which is used to match against
+   * source mac address from received frames on underlying interface.
+   *
+   * This allows creating mac based VLAN associations, instead of standard port or
+   * tag based.
+   *
+   * The feature is useful to deploy 802.1x mac based behavior, where drivers of underlying
+   * interfaces doesn't allow that.
+   *
+   * By default, packets are also considered (duplicated) for destination-based MACVLAN.
+   *
+   * Passing the `nodst` flag stops matching packets from also going through the destination-based flow.
+   *
+   * @see {@link SourceNodst}
+   */
+  Source            = 'source',
+  /** @see {@link Source} */
+  SourceNodst       = 'source nodst',
+}
+
+/**
+ * Protocol version of the interface.
+ * Defaults to {@link HsrVersions.2010}
+ */
+export enum HsrVersions {
+  v2010 = 0,
+  v2012 = 1
+}
+
+/**
+ * Protocol of the interface.
+ * Defaults to {@link HsrProtocols.HSR}
+ */
+export enum HsrProtocols {
+  /** High-availability Seamless Redundancy. */
+  HSR = 0,
+  /** Parallel Redundancy Protocol. */
+  PRP = 1
+}
+
+export enum MultiCastRouterOptions {
+  /**
+   * The bridge does not act as a multicast router. It will not forward any IP multicast packets
+   * between different interfaces.
+   *
+   * It will forward multicast packets only to ports where multicast listeners are detected.
+   */
+  Disabled           = 0,
+  /**
+   * The bridge acts as a multicast router and will forward all IP multicast packets.
+   *
+   * This is the default setting.
+   */
+  Automatic          = 1,
+  /**
+   *  The bridge uses the multicast router discovery protocol to learn whether it should
+   *  forward multicast packets as a multicast router.
+   */
+  PermanentlyEnabled = 2
+}
+
+export enum IgmpVersions {
+  v2 = 2,
+  v3 = 3
+}
+
+export enum MldVersions {
+  v1 = 1,
+  v2 = 2
+}
