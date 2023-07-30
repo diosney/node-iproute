@@ -1,6 +1,6 @@
 import { IpipSipDeviceModes, SecondaryUdpEncapsulations } from '../add.constants';
 
-export interface LinkIpipSitTypeOptions {
+export interface AddLinkIpipSitTypeArgs {
   /** Specifies the remote address of the tunnel. */
   remote: string;
   /**

@@ -1,7 +1,7 @@
 import { OnOffToggle }   from '../../../../common/constants/attribute-values';
 import { VlanProtocols } from '../add.constants';
 
-export interface LinkVlanTypeOptions {
+export interface AddLinkVlanTypeArgs {
   /** VLAN Protocol. */
   protocol?: VlanProtocols;
   /**

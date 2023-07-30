@@ -2,9 +2,9 @@ import { JSONSchemaType } from 'ajv';
 
 import { SchemaIds }                     from '../../../../common/constants/schemas';
 import { MacvlanMacvtapModes }           from '../add.constants';
-import { LinkMacvlanMacvtapTypeOptions } from './macvlan-macvtap.interfaces';
+import { AddLinkMacvlanMacvtapTypeArgs } from './macvlan-macvtap.interfaces';
 
-export const LinkMacvlanMacvtapOptionsSchema: JSONSchemaType<LinkMacvlanMacvtapTypeOptions> = {
+export const AddLinkMacvlanMacvtapArgsSchema: JSONSchemaType<AddLinkMacvlanMacvtapTypeArgs> = {
   $id                 : SchemaIds.LinkAddMacvlanMacvtapOptions,
   type                : 'object',
   required            : ['mode'],

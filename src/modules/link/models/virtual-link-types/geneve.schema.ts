@@ -2,9 +2,9 @@ import { JSONSchemaType } from 'ajv';
 
 import { SchemaIds }                                from '../../../../common/constants/schemas';
 import { DontFragmentFlagValues, TtlSpecialValues } from '../add.constants';
-import { LinkGeneveTypeOptions }                    from './geneve.interfaces';
+import { AddLinkGeneveTypeArgs }                    from './geneve.interfaces';
 
-export const LinkGeneveOptionsSchema: JSONSchemaType<LinkGeneveTypeOptions> = {
+export const AddLinkGeneveArgsSchema: JSONSchemaType<AddLinkGeneveTypeArgs> = {
   $id                 : SchemaIds.LinkAddGeneveOptions,
   type                : 'object',
   required            : ['id', 'remote'],

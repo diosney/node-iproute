@@ -5,10 +5,10 @@ import { VlanProtocols } from '../add.constants';
 import { SchemaIds }     from '../../../../common/constants/schemas';
 
 import {
-  LinkVlanTypeOptions
+  AddLinkVlanTypeArgs
 } from './vlan.interfaces';
 
-export const LinkVlanOptionsSchema: JSONSchemaType<LinkVlanTypeOptions> = {
+export const AddLinkVlanArgsSchema: JSONSchemaType<AddLinkVlanTypeArgs> = {
   $id                 : SchemaIds.LinkAddVlanOptions,
   type                : 'object',
   required            : ['id'],

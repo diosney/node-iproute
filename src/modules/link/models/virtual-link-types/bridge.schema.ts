@@ -2,15 +2,16 @@ import { JSONSchemaType } from 'ajv';
 
 import { EnableDisableToggle } from '../../../../common/constants/attribute-values';
 import { SchemaIds }           from '../../../../common/constants/schemas';
+
 import {
   IgmpVersions, MldVersions,
   MultiCastRouterOptions,
   VlanProtocols
-}                              from '../add.constants';
+} from '../add.constants';
 
-import { LinkBridgeTypeOptions } from './bridge.interfaces';
+import { AddLinkBridgeTypeArgs } from './bridge.interfaces';
 
-export const LinkBridgeOptionsSchema: JSONSchemaType<LinkBridgeTypeOptions> = {
+export const AddLinkBridgeArgsSchema: JSONSchemaType<AddLinkBridgeTypeArgs> = {
   $id                 : SchemaIds.LinkAddBridgeOptions,
   type                : 'object',
   required            : [],

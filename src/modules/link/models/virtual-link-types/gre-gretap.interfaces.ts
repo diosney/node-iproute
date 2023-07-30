@@ -1,6 +1,6 @@
 import { SecondaryUdpEncapsulations } from '../add.constants';
 
-export interface LinkGreGretapTypeOptions {
+export interface AddLinkGreGretapTypeArgs {
   /** Specifies the remote address of the tunnel. */
   remote: string;
   /**

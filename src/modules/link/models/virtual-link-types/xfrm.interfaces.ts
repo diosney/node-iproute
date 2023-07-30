@@ -1,4 +1,4 @@
-export interface LinkXfrmTypeOptions {
+export interface AddLinkXfrmTypeArgs {
   /** Specifies the underlying physical interface from which transform traffic is sent and received. */
   dev: string;
   /**

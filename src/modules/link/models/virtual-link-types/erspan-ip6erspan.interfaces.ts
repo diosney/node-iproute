@@ -1,6 +1,6 @@
 import { ErspanDirections } from '../add.constants';
 
-export interface LinkErspanIp6erspanTypeOptions {
+export interface AddLinkErspanIp6erspanTypeArgs {
   /** Specifies the remote address of the tunnel. */
   remote: string;
   /**

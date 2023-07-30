@@ -1,5 +1,5 @@
-import { EnableDisableToggle } from '../../../src/common/constants/attribute-values';
-import { TestFixture }         from '../../../src/common/interfaces/tests';
+import { EnableDisableToggle, OnOffToggle } from '../../src/common/constants/attribute-values';
+import { TestFixture }                      from '../../src/common/interfaces/tests';
 import {
   DontFragmentFlagValues,
   ErspanDirections,
@@ -10,8 +10,8 @@ import {
   SecondaryUdpEncapsulations,
   VirtualLinkTypes,
   VlanProtocols
-}                              from '../../../src/modules/link/models/add.constants';
-import { LinkAddOptions }      from '../../../src/modules/link/models/add.interfaces';
+}                                           from '../../src/modules/link/models/add.constants';
+import { LinkAddOptions }                   from '../../src/modules/link/models/add.interfaces';
 
 export const Tests: TestFixture<LinkAddOptions>[] = [
   {
@@ -771,6 +771,41 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       EnableDisableToggle.Disable
     ],
     expectedCmdToExec: ` ip link add link eth0 name br0 type ${VirtualLinkTypes.Bridge} forward_delay 30 hello_time 10 max_age 40 stp_state ${EnableDisableToggle.Enable} priority 32768 mcast_igmp_version ${IgmpVersions.v3} nf_call_iptables ${EnableDisableToggle.Enable} nf_call_ip6tables ${EnableDisableToggle.Enable} nf_call_arptables ${EnableDisableToggle.Disable}`
+  },
+  {
+    description      : 'with `type macsec`',
+    options          : {
+      link     : 'eth0',
+      name     : 'macsec0',
+      type     : VirtualLinkTypes.Macsec,
+      type_args: {
+        encrypt: OnOffToggle.On,
+        sci    : '0102030405060708',
+        cipher : 'gcm-aes-128',
+        icvlen : 16
+      }
+    },
+    expectedCmd      : [
+      '',
+      'ip',
+      'link',
+      'add',
+      'link',
+      'eth0',
+      'name',
+      'macsec0',
+      'type',
+      VirtualLinkTypes.Macsec,
+      'encrypt',
+      OnOffToggle.On,
+      'sci',
+      '0102030405060708',
+      'cipher',
+      'gcm-aes-128',
+      'icvlen',
+      16
+    ],
+    expectedCmdToExec: ` ip link add link eth0 name macsec0 type ${VirtualLinkTypes.Macsec} encrypt on sci 0102030405060708 cipher gcm-aes-128 icvlen 16`
   }
 ];
 

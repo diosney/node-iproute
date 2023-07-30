@@ -24,7 +24,8 @@ export enum SchemaIds {
   LinkAddVrfOptions             = '#link-add-vrf',
   LinkAddRmnetOptions           = '#link-add-rmnet',
   LinkAddXfrmOptions            = '#link-add-xfrm',
-  LinkAddBridgeOptions          = '#link-add-bridge'
+  LinkAddBridgeOptions          = '#link-add-bridge',
+  LinkAddMacsecOptions          = '#link-add-macsec'
 }
 
 export const GlobalOptionsSchema: JSONSchemaType<GlobalOptions> = {

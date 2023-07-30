@@ -1,9 +1,9 @@
 import { JSONSchemaType } from 'ajv';
 
 import { SchemaIds }          from '../../../../common/constants/schemas';
-import { LinkVrfTypeOptions } from './vrf.interfaces';
+import { AddLinkVrfTypeArgs } from './vrf.interfaces';
 
-export const LinkVrfOptionsSchema: JSONSchemaType<LinkVrfTypeOptions> = {
+export const AddLinkVrfArgsSchema: JSONSchemaType<AddLinkVrfTypeArgs> = {
   $id                 : SchemaIds.LinkAddVrfOptions,
   type                : 'object',
   required            : ['table'],

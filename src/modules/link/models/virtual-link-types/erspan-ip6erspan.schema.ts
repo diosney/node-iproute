@@ -2,9 +2,9 @@ import { JSONSchemaType } from 'ajv';
 
 import { SchemaIds }                      from '../../../../common/constants/schemas';
 import { ErspanDirections }               from '../add.constants';
-import { LinkErspanIp6erspanTypeOptions } from './erspan-ip6erspan.interfaces';
+import { AddLinkErspanIp6erspanTypeArgs } from './erspan-ip6erspan.interfaces';
 
-export const LinkErspanIp6ErspanOptionsSchema: JSONSchemaType<LinkErspanIp6erspanTypeOptions> = {
+export const AddLinkErspanIp6ErspanArgsSchema: JSONSchemaType<AddLinkErspanIp6erspanTypeArgs> = {
   $id                 : SchemaIds.LinkAddErspanIp6erspanOptions,
   type                : 'object',
   required            : ['remote', 'local', 'seq', 'key', 'erspan_ver'],

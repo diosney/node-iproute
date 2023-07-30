@@ -1,4 +1,4 @@
-/** Link Virtual Types. */
+/** Virtual Link Types. */
 export enum VirtualLinkTypes {
   /** Ethernet Bridge device. */
   Bridge    = 'bridge',
@@ -84,9 +84,7 @@ export enum DontFragmentFlagValues {
   Set     = 'set'
 }
 
-/**
- * Specifies type of secondary UDP encapsulation.
- */
+/** Specifies type of secondary UDP encapsulation. */
 export enum SecondaryUdpEncapsulations {
   /** Indicates Foo-Over-UDP. */
   Fou  = 'fou',
@@ -227,7 +225,6 @@ export enum MultiCastRouterOptions {
   Disabled           = 0,
   /**
    * The bridge acts as a multicast router and will forward all IP multicast packets.
-   *
    * This is the default setting.
    */
   Automatic          = 1,
@@ -246,4 +243,15 @@ export enum IgmpVersions {
 export enum MldVersions {
   v1 = 1,
   v2 = 2
+}
+
+export enum MacsecValidationModeOptions {
+  Strict   = 'strict',
+  Check    = 'check',
+  Disabled = 'disabled'
+}
+
+export enum SecureAssociationEncodings {
+  Implicit = 0,
+  Explicit = 1
 }

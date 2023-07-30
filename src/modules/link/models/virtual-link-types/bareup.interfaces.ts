@@ -1,4 +1,4 @@
-export interface LinkBareudpTypeOptions {
+export interface AddLinkBareudpTypeArgs {
   /** Specifies the destination port for the UDP tunnel. */
   dstport: number;
   /**

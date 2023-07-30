@@ -1,11 +1,9 @@
 import { JSONSchemaType } from 'ajv';
 
-import { SchemaIds }                                from '../../../../common/constants/schemas';
-import { DontFragmentFlagValues, TtlSpecialValues } from '../add.constants';
-import { LinkBareudpTypeOptions }                   from './bareup.interfaces';
-import { LinkGeneveTypeOptions }                    from './geneve.interfaces';
+import { SchemaIds }              from '../../../../common/constants/schemas';
+import { AddLinkBareudpTypeArgs } from './bareup.interfaces';
 
-export const LinkBareudpOptionsSchema: JSONSchemaType<LinkBareudpTypeOptions> = {
+export const AddLinkBareudpArgsSchema: JSONSchemaType<AddLinkBareudpTypeArgs> = {
   $id                 : SchemaIds.LinkAddBareupOptions,
   type                : 'object',
   required            : ['dstport', 'ethertype'],

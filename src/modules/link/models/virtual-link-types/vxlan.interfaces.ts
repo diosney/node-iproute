@@ -1,6 +1,6 @@
 import { DontFragmentFlagValues } from '../add.constants';
 
-export interface LinkVxlanTypeOptions {
+export interface AddLinkVxlanTypeArgs {
   /** Specifies the VXLAN Network Identifier (or VXLAN Segment Identifier) to use. */
   id: number;
   /** Specifies the physical device to use for tunnel endpoint communication. */

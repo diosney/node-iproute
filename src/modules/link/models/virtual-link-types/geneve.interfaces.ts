@@ -1,6 +1,6 @@
 import { DontFragmentFlagValues } from '../add.constants';
 
-export interface LinkGeneveTypeOptions {
+export interface AddLinkGeneveTypeArgs {
   /** Specifies the Virtual Network Identifier to use. */
   id: number;
   /** Specifies the unicast destination IP address to use in outgoing packets. */

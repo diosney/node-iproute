@@ -1,4 +1,4 @@
-export interface LinkIp6GreIp6gretapTypeOptions {
+export interface AddLinkIp6GreIp6gretapTypeArgs {
   /** Specifies the remote address of the tunnel. */
   remote: string;
   /**

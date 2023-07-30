@@ -1,9 +1,9 @@
 import { JSONSchemaType } from 'ajv';
 
 import { SchemaIds }                from '../../../../common/constants/schemas';
-import { LinkVethVxcanTypeOptions } from './veth-vxcan.interfaces';
+import { AddLinkVethVxcanTypeArgs } from './veth-vxcan.interfaces';
 
-export const LinkVethVxcanOptionsSchema: JSONSchemaType<LinkVethVxcanTypeOptions> = {
+export const AddLinkVethVxcanArgsSchema: JSONSchemaType<AddLinkVethVxcanTypeArgs> = {
   $id                 : SchemaIds.LinkAddVethVxcanOptions,
   type                : 'object',
   required            : [],

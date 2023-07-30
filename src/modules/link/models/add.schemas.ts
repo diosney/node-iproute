@@ -3,22 +3,23 @@ import { JSONSchemaType } from 'ajv';
 import { VirtualLinkTypes }                 from './add.constants';
 import { SchemaIds }                        from '../../../common/constants/schemas';
 import { LinkAddOptions }                   from './add.interfaces';
-import { LinkBareudpOptionsSchema }         from './virtual-link-types/bareup.schema';
-import { LinkBridgeOptionsSchema }          from './virtual-link-types/bridge.schema';
-import { LinkErspanIp6ErspanOptionsSchema } from './virtual-link-types/erspan-ip6erspan.schema';
-import { LinkGeneveOptionsSchema }          from './virtual-link-types/geneve.schema';
-import { LinkGreGretapOptionsSchema }       from './virtual-link-types/gre-gretap.schema';
-import { LinkHsrOptionsSchema }             from './virtual-link-types/hsr.schema';
-import { LinkIp6GreIp6GretapOptionsSchema } from './virtual-link-types/ip6gre-ip6gretap.schema';
-import { LinkIpipSipOptionsSchema }         from './virtual-link-types/ipip-sit.schema';
-import { LinkIpoIbOptionsSchema }           from './virtual-link-types/ipoib.schema';
-import { LinkMacvlanMacvtapOptionsSchema }  from './virtual-link-types/macvlan-macvtap.schema';
-import { LinkRmnetOptionsSchema }           from './virtual-link-types/rmnet.schema';
-import { LinkVethVxcanOptionsSchema }       from './virtual-link-types/veth-vxcan.schema';
-import { LinkVlanOptionsSchema }            from './virtual-link-types/vlan.schema';
-import { LinkVrfOptionsSchema }             from './virtual-link-types/vrf.schema';
-import { LinkVxlanOptionsSchema }           from './virtual-link-types/vxlan.schema';
-import { LinkXfrmOptionsSchema }            from './virtual-link-types/xfrm.schema';
+import { AddLinkBareudpArgsSchema }         from './virtual-link-types/bareup.schema';
+import { AddLinkBridgeArgsSchema }          from './virtual-link-types/bridge.schema';
+import { AddLinkErspanIp6ErspanArgsSchema } from './virtual-link-types/erspan-ip6erspan.schema';
+import { AddLinkGeneveArgsSchema }          from './virtual-link-types/geneve.schema';
+import { AddGreGretapArgsSchema }           from './virtual-link-types/gre-gretap.schema';
+import { AddLinkHsrArgsSchema }             from './virtual-link-types/hsr.schema';
+import { AddLinkIp6GreIp6GretapArgsSchema } from './virtual-link-types/ip6gre-ip6gretap.schema';
+import { AddLinkIpipSipArgsSchema }         from './virtual-link-types/ipip-sit.schema';
+import { AddLinkIpoIbArgsSchema }           from './virtual-link-types/ipoib.schema';
+import { AddLinkMacsecArgsSchema }          from './virtual-link-types/macsec.schema';
+import { AddLinkMacvlanMacvtapArgsSchema }  from './virtual-link-types/macvlan-macvtap.schema';
+import { AddLinkRmnetArgsSchema }           from './virtual-link-types/rmnet.schema';
+import { AddLinkVethVxcanArgsSchema }       from './virtual-link-types/veth-vxcan.schema';
+import { AddLinkVlanArgsSchema }            from './virtual-link-types/vlan.schema';
+import { AddLinkVrfArgsSchema }             from './virtual-link-types/vrf.schema';
+import { AddLinkVxlanArgsSchema }           from './virtual-link-types/vxlan.schema';
+import { AddLinkXfrmArgsSchema }            from './virtual-link-types/xfrm.schema';
 
 export const LinkAddSchema: JSONSchemaType<LinkAddOptions> = {
   $id       : SchemaIds.LinkAdd,
@@ -85,25 +86,26 @@ export const LinkAddSchema: JSONSchemaType<LinkAddOptions> = {
       type: 'string',
       enum: Object.values(VirtualLinkTypes) as VirtualLinkTypes[]
     },
-    // TODO: How to condition anyOf depending of `type`?
+    // TODO: How to condition anyOf depending of `type`? if/then/else?
     type_args: {
       anyOf: [
-        LinkVlanOptionsSchema,
-        LinkVxlanOptionsSchema,
-        LinkVethVxcanOptionsSchema,
-        LinkIpipSipOptionsSchema,
-        LinkGreGretapOptionsSchema,
-        LinkIp6GreIp6GretapOptionsSchema,
-        LinkIpoIbOptionsSchema,
-        LinkErspanIp6ErspanOptionsSchema,
-        LinkGeneveOptionsSchema,
-        LinkBareudpOptionsSchema,
-        LinkMacvlanMacvtapOptionsSchema,
-        LinkHsrOptionsSchema,
-        LinkVrfOptionsSchema,
-        LinkRmnetOptionsSchema,
-        LinkXfrmOptionsSchema,
-        LinkBridgeOptionsSchema
+        AddLinkVlanArgsSchema,
+        AddLinkVxlanArgsSchema,
+        AddLinkVethVxcanArgsSchema,
+        AddLinkIpipSipArgsSchema,
+        AddGreGretapArgsSchema,
+        AddLinkIp6GreIp6GretapArgsSchema,
+        AddLinkIpoIbArgsSchema,
+        AddLinkErspanIp6ErspanArgsSchema,
+        AddLinkGeneveArgsSchema,
+        AddLinkBareudpArgsSchema,
+        AddLinkMacvlanMacvtapArgsSchema,
+        AddLinkHsrArgsSchema,
+        AddLinkVrfArgsSchema,
+        AddLinkRmnetArgsSchema,
+        AddLinkXfrmArgsSchema,
+        AddLinkBridgeArgsSchema,
+        AddLinkMacsecArgsSchema
       ]
     }
   }

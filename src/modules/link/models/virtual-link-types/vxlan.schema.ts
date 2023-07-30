@@ -4,10 +4,10 @@ import { DontFragmentFlagValues } from '../add.constants';
 import { SchemaIds }              from '../../../../common/constants/schemas';
 
 import {
-  LinkVxlanTypeOptions
+  AddLinkVxlanTypeArgs
 } from './vxlan.interfaces';
 
-export const LinkVxlanOptionsSchema: JSONSchemaType<LinkVxlanTypeOptions> = {
+export const AddLinkVxlanArgsSchema: JSONSchemaType<AddLinkVxlanTypeArgs> = {
   $id                 : SchemaIds.LinkAddVxlanOptions,
   type                : 'object',
   required            : ['id'],

@@ -1,10 +1,10 @@
 import { JSONSchemaType } from 'ajv';
 
 import { IpipSipDeviceModes, SecondaryUdpEncapsulations } from '../add.constants';
-import { SchemaIds }                                      from '../../../../common/constants/schemas';
-import { LinkIpipSitTypeOptions }                         from './ipip-sit.interfaces';
+import { SchemaIds }              from '../../../../common/constants/schemas';
+import { AddLinkIpipSitTypeArgs } from './ipip-sit.interfaces';
 
-export const LinkIpipSipOptionsSchema: JSONSchemaType<LinkIpipSitTypeOptions> = {
+export const AddLinkIpipSipArgsSchema: JSONSchemaType<AddLinkIpipSitTypeArgs> = {
   $id                 : SchemaIds.LinkAddIpipSipOptions,
   type                : 'object',
   required            : ['remote', 'local'],

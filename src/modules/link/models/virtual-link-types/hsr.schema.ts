@@ -2,9 +2,9 @@ import { JSONSchemaType } from 'ajv';
 
 import { SchemaIds }                 from '../../../../common/constants/schemas';
 import { HsrProtocols, HsrVersions } from '../add.constants';
-import { LinkHsrTypeOptions }        from './hsr.interfaces';
+import { AddLinkHsrTypeArgs }        from './hsr.interfaces';
 
-export const LinkHsrOptionsSchema: JSONSchemaType<LinkHsrTypeOptions> = {
+export const AddLinkHsrArgsSchema: JSONSchemaType<AddLinkHsrTypeArgs> = {
   $id                 : SchemaIds.LinkAddHsrOptions,
   type                : 'object',
   required            : ['slave1', 'slave2'],

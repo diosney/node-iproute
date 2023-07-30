@@ -1,9 +1,9 @@
 import { JSONSchemaType } from 'ajv';
 
 import { SchemaIds }                      from '../../../../common/constants/schemas';
-import { LinkIp6GreIp6gretapTypeOptions } from './ip6gre-ip6gretap.interfaces';
+import { AddLinkIp6GreIp6gretapTypeArgs } from './ip6gre-ip6gretap.interfaces';
 
-export const LinkIp6GreIp6GretapOptionsSchema: JSONSchemaType<LinkIp6GreIp6gretapTypeOptions> = {
+export const AddLinkIp6GreIp6GretapArgsSchema: JSONSchemaType<AddLinkIp6GreIp6gretapTypeArgs> = {
   $id                 : SchemaIds.LinkAddIp6GreIp6gretapOptions,
   type                : 'object',
   required            : ['remote', 'local'],

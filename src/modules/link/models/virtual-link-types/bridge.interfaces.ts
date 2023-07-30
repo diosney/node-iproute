@@ -7,7 +7,7 @@ import {
   VlanProtocols
 } from '../add.constants';
 
-export interface LinkBridgeTypeOptions {
+export interface AddLinkBridgeTypeArgs {
   /**
    * Configure the bridge's FDB entries ageing time, ie the number of seconds a
    * MAC address will be kept in the FDB after a packet has been received from

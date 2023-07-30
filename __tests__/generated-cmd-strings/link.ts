@@ -2,7 +2,7 @@ import { ErrorObject } from 'ajv';
 import { expect }      from 'chai';
 
 import { add }                   from '../../src/modules/link';
-import { Tests as linkAddTests } from './fixtures/link-add';
+import { Tests as linkAddTests } from '../fixtures/link-add';
 
 describe('link', function () {
   describe('add', function () {

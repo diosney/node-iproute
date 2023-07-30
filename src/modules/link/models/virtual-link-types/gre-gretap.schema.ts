@@ -1,10 +1,10 @@
 import { JSONSchemaType } from 'ajv';
 
 import { SecondaryUdpEncapsulations } from '../add.constants';
-import { SchemaIds }                  from '../../../../common/constants/schemas';
-import { LinkGreGretapTypeOptions }   from './gre-gretap.interfaces';
+import { SchemaIds }                from '../../../../common/constants/schemas';
+import { AddLinkGreGretapTypeArgs } from './gre-gretap.interfaces';
 
-export const LinkGreGretapOptionsSchema: JSONSchemaType<LinkGreGretapTypeOptions> = {
+export const AddGreGretapArgsSchema: JSONSchemaType<AddLinkGreGretapTypeArgs> = {
   $id                 : SchemaIds.LinkAddGreGretapOptions,
   type                : 'object',
   required            : ['remote', 'local'],
