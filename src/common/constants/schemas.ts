@@ -25,7 +25,9 @@ export enum SchemaIds {
   LinkAddRmnetOptions           = '#link-add-rmnet',
   LinkAddXfrmOptions            = '#link-add-xfrm',
   LinkAddBridgeOptions          = '#link-add-bridge',
-  LinkAddMacsecOptions          = '#link-add-macsec'
+  LinkAddMacsecOptions          = '#link-add-macsec',
+
+  LinkDelete                    = '#link-delete',
 }
 
 export const GlobalOptionsSchema: JSONSchemaType<GlobalOptions> = {
@@ -90,6 +92,10 @@ export const IpCommandTestOptionsSchema: JSONSchemaType<IpCommandTestOptions> = 
       type: 'string',
       enum: Object.values(TestEnum) as TestEnum[]
     },
+    type_arg  : {
+      type: 'number',
+      nullable:true
+    },
     type_args: {
       type      : 'object',
       required  : [
@@ -128,6 +134,10 @@ export const IpCommandTestOptionsSchema: JSONSchemaType<IpCommandTestOptions> = 
         },
         noa_flag: {
           type: 'boolean'
+        },
+        type_arg  : {
+          type: 'number',
+          nullable:true
         },
         an_enum : {
           type: 'string',

@@ -20,6 +20,7 @@
 
 - poner en documentacion 
   - q atributos son en el orden sensitive. 
+  - _arg o _args el key no se pone.
 
   - como construir el objeto:
     - atributos con valores string y number con par key-value:

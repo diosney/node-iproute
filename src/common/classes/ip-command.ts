@@ -85,6 +85,10 @@ export default class IpCommand<T_CommandOptions extends { [index: string]: any; 
           }
           return;
         }
+        if (key.search(/_arg$/) !== -1) {
+          cmd.push(...this.getCmdArgsFromOptions('', this.options[key]));
+          return;
+        }
         cmd.push(...this.getCmdArgsFromOptions(key, this.options[key]));
       });
 

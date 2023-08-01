@@ -11,6 +11,7 @@ export interface IpCommandTestArgsOptions {
   a_flag: boolean;
   noa_flag: boolean;
   an_enum: TestEnum;
+  type_arg?: number;
 }
 
 export interface TestFixture<T_CommandOptions> {
