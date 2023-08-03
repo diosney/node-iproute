@@ -2,9 +2,16 @@ import IpCommand             from '../../common/classes/ip-command';
 import { SchemaIds }         from '../../common/constants/schemas';
 import { GlobalOptions }     from '../../common/interfaces/common';
 import { LinkAddOptions }    from './models/add.interfaces';
-import { LinkAddSchema }     from './models/add.schemas';
+import { LinkAddSchema }     from './models/add.schema';
 import { LinkDeleteOptions } from './models/delete.interfaces';
-import { LinkDeleteSchema }  from './models/delete.schemas';
+import { LinkDeleteSchema }  from './models/delete.schema';
+
+import {
+  LinkShowOptions,
+  LinkShowLinkInfo
+} from './models/show.interfaces';
+
+import { LinkShowSchema } from './models/show.schema';
 
 /**
  * Adds a virtual link.
@@ -56,7 +63,40 @@ export async function deleteLink(options: LinkDeleteOptions,
   return linkDelete;
 }
 
+/**
+ * Display device attributes.
+ *
+ * @param options        - Parameters options to be passed down to `ip link show`.
+ * @param globalOptions  - Global parameters options that affects the command execution.
+ *
+ * @throws {@link ParametersError} - Throws when passed parameters are invalid.
+ * @throws {@link CommandError}    - Throws when the executed command fails.
+ */
+export async function show(options: LinkShowOptions,
+                           globalOptions: GlobalOptions = {}): Promise<IpCommand<LinkShowOptions> | LinkShowLinkInfo[]> {
+
+  const cmd = ['ip', 'link', 'show'];
+
+  const linkShow = new IpCommand<LinkShowOptions>(
+    SchemaIds.LinkShow,
+    LinkShowSchema,
+    options,
+    {
+      ...globalOptions,
+      // Overrides for a better show.
+      '-details'   : true,
+      '-statistics': true,
+      '-json'      : true
+    },
+    cmd);
+
+  return await linkShow.execAndReturnData<LinkShowLinkInfo[]>();
+}
+
 export default {
   add,
-  deleteLink
+  deleteLink,
+  show
 };
+
+// TODO: Set

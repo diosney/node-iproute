@@ -1,9 +1,9 @@
-import { expect } from 'chai';
+import { expect }          from 'chai';
 
-import { deleteLink }               from '../../src/modules/link';
-import { add }                      from '../../src/modules/link';
+import { deleteLink, add, show }    from '../../src/modules/link';
 import { Tests as linkAddTests }    from '../fixtures/link-add';
 import { Tests as linkDeleteTests } from '../fixtures/link-delete';
+import { Tests as linkShowTests }   from '../fixtures/link-show';
 
 describe('link', function () {
   describe('add', function () {
@@ -33,6 +33,26 @@ describe('link', function () {
           let ipCommand = await deleteLink(test.options, {
             dryRun: true
           });
+
+          expect(ipCommand.cmd)
+            .to.be.an('array')
+            .and.to.be.deep.eq(test.expectedCmd);
+
+          expect(ipCommand.cmdToExec)
+            .to.be.a('string')
+            .and.to.be.eq(test.expectedCmdToExec);
+        });
+      });
+    });
+  });
+
+  describe('show', function () {
+    linkShowTests.forEach((test) => {
+      describe(test.description, function () {
+        it('should build the proper cmd array & string', async function () {
+          let ipCommand = await show(test.options, {
+            dryRun: true
+          }) as any;
 
           expect(ipCommand.cmd)
             .to.be.an('array')

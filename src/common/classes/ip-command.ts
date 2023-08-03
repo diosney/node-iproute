@@ -60,11 +60,25 @@ export default class IpCommand<T_CommandOptions extends { [index: string]: any; 
   }
 
   private buildCmd() {
-    const hasSudo = (this.options.sudo)
+    const hasSudo = (this.globalOptions.sudo)
                     ? 'sudo'
                     : '';
 
     let cmd: Array<string | number> = [hasSudo, ...this.ipCmd];
+
+    // Add specific `ip` options to cmd.
+    let ipOptions: Array<string | number> = [];
+
+    Object
+      .keys(this.globalOptions)
+      .forEach((key) => {
+        if (key.search(/^-/) === -1) {
+          return;
+        }
+        ipOptions.push(...this.getCmdArgsFromOptions(key, this.globalOptions[key]));
+      });
+
+    cmd.splice(2, 0, ...ipOptions);
 
     // Add regular arguments to cmd.
     Object
@@ -144,6 +158,26 @@ export default class IpCommand<T_CommandOptions extends { [index: string]: any; 
 
     if (!stderr) {
       return this;
+    }
+
+    const message = stderr.replace(/\n/g, '');
+    throw new CommandError(message, cmdToExec);
+  }
+
+  async execAndReturnData<T_ReturnData>(): Promise<this | T_ReturnData> {
+    if (this.globalOptions.dryRun) {
+      return this;
+    }
+
+    let cmdToExec = this._cmd.join(' ');
+
+    const {
+            stderr,
+            stdout
+          } = await promisifiedExec(cmdToExec);
+
+    if (!stderr) {
+      return JSON.parse(stdout);
     }
 
     const message = stderr.replace(/\n/g, '');

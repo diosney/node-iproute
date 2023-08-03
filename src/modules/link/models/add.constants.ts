@@ -1,74 +1,87 @@
 /** Virtual Link Types. */
-export enum VirtualLinkTypes {
+export const VirtualLinkTypes = {
   /** Ethernet Bridge device. */
-  Bridge    = 'bridge',
+  Bridge: 'bridge',
   /** Bonding device. */
-  Bond      = 'bond',
+  Bond: 'bond',
   /** Dummy network interface. */
-  Dummy     = 'dummy',
+  Dummy: 'dummy',
   /** High-availability Seamless Redundancy device. */
-  Hsr       = 'hsr',
+  Hsr: 'hsr',
   /** Intermediate Functional Block device. */
-  Ifb       = 'ifb',
+  Ifb: 'ifb',
   /** IP over Infiniband device. */
-  Ipoib     = 'ipoib',
+  Ipoib: 'ipoib',
   /** Virtual interface base on link layer address (MAC). */
-  Macvlan   = 'macvlan',
+  Macvlan: 'macvlan',
   /** Virtual interface based on link layer address (MAC) and TAP. */
-  Macvtap   = 'macvtap',
+  Macvtap: 'macvtap',
   /** Virtual Controller Area Network interface. */
-  Vcan      = 'vcan',
+  Vcan: 'vcan',
   /** Virtual Controller Area Network tunnel interface. */
-  Vxcan     = 'vxcan',
+  Vxcan: 'vxcan',
   /** Virtual ethernet interface. */
-  Veth      = 'veth',
+  Veth: 'veth',
   /** 802.1q tagged virtual LAN interface. */
-  Vlan      = 'vlan',
+  Vlan: 'vlan',
   /** Virtual eXtended LAN. */
-  Vxlan     = 'vxlan',
+  Vxlan: 'vxlan',
   /** Virtual tunnel interface IPv4|IPv6 over IPv6. */
-  Ip6tnl    = 'ip6tnl',
+  Ip6tnl: 'ip6tnl',
   /** Virtual tunnel interface IPv4 over IPv4. */
-  Ipip      = 'ipip',
+  Ipip: 'ipip',
   /** Virtual tunnel interface IPv6 over IPv4. */
-  Sit       = 'sit',
+  Sit: 'sit',
   /** Virtual tunnel interface GRE over IPv4. */
-  Gre       = 'gre',
+  Gre: 'gre',
   /** Virtual L2 tunnel interface GRE over IPv4. */
-  Gretap    = 'gretap',
+  Gretap: 'gretap',
   /** Encapsulated Remote SPAN over GRE and IPv4. */
-  Erspan    = 'erspan',
+  Erspan: 'erspan',
   /** Virtual tunnel interface GRE over IPv6. */
-  Ip6gre    = 'ip6gre',
+  Ip6gre: 'ip6gre',
   /** Virtual L2 tunnel interface GRE over IPv6. */
-  Ip6gretap = 'ip6gretap',
+  Ip6gretap: 'ip6gretap',
   /** Encapsulated Remote SPAN over GRE and IPv6. */
-  Ip6erspan = 'ip6erspan',
+  Ip6erspan: 'ip6erspan',
   /** Virtual tunnel interface. */
-  Vti       = 'vti',
+  Vti: 'vti',
   /** Netlink monitoring device. */
-  Nlmon     = 'nlmon',
+  Nlmon: 'nlmon',
   /** Interface for L3 (IPv6/IPv4) based VLANs. */
-  Ipvlan    = 'ipvlan',
+  Ipvlan: 'ipvlan',
   /** Interface for L3 (IPv6/IPv4) based VLANs and TAP. */
-  Ipvtap    = 'ipvtap',
+  Ipvtap: 'ipvtap',
   /** Interface for 6LoWPAN (IPv6) over IEEE 802.15.4 Bluetooth. */
-  Lowpan    = 'lowpan',
+  Lowpan: 'lowpan',
   /** GEneric NEtwork Virtualization Encapsulation. */
-  Geneve    = 'geneve',
+  Geneve: 'geneve',
   /** Bare UDP L3 encapsulation support. */
-  Bareudp   = 'bareudp',
+  Bareudp: 'bareudp',
   /** Interface for IEEE 802.1AE MAC Security (MAC‐sec). */
-  Macsec    = 'macsec',
+  Macsec: 'macsec',
   /** Interface for L3 VRF domains. */
-  Vrf       = 'vrf',
+  Vrf: 'vrf',
   /** Interface for netdev API tests. */
-  Netdevsim = 'netdevsim',
+  Netdevsim: 'netdevsim',
   /** Qualcomm rmnet device. */
-  Rmnet     = 'rmnet',
+  Rmnet: 'rmnet',
   /** Virtual xfrm interface. */
-  Xfrm      = 'xfrm',
-}
+  Xfrm: 'xfrm'
+} as const;
+
+// https://stackoverflow.com/questions/62056841/how-to-create-an-super-set-enum-using-existing-enum-in-typescript
+export type VirtualLinkTypes = typeof VirtualLinkTypes[keyof typeof VirtualLinkTypes];
+
+export const ExtendedVirtualLinkTypes = {
+  ...VirtualLinkTypes,
+
+  BridgeSlave: 'bridge_slave',
+  BondSlave  : 'bond_slave'
+} as const;
+
+// https://stackoverflow.com/questions/62056841/how-to-create-an-super-set-enum-using-existing-enum-in-typescript
+export type ExtendedVirtualLinkTypes = typeof ExtendedVirtualLinkTypes[keyof typeof ExtendedVirtualLinkTypes];
 
 export enum VlanProtocols {
   '802.1Q'  = '802.1Q',

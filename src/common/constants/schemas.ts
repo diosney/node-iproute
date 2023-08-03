@@ -1,12 +1,18 @@
 import { JSONSchemaType } from 'ajv';
 
-import { GlobalOptions }        from '../interfaces/common';
-import { IpCommandTestOptions } from '../interfaces/tests';
-import { TestEnum }             from './tests';
+import { GlobalOptions } from '../interfaces/common';
+
+import {
+  ComplexIpCommandTestOptions,
+  EmptyIpCommandTestOptions
+} from '../interfaces/tests';
+
+import { TestEnum } from './tests';
 
 export enum SchemaIds {
   GlobalOptions                 = '#global-options',
-  IpCommandTestOptions          = '#ip-command-test-options',
+  ComplexIpCommandTestOptions   = '#complex-ip-command-test-options',
+  EmptyIpCommandTestOptions     = '#empty-ip-command-test-options',
 
   LinkAdd                       = '#link-add',
   LinkAddVlanOptions            = '#link-add-vlan',
@@ -28,27 +34,50 @@ export enum SchemaIds {
   LinkAddMacsecOptions          = '#link-add-macsec',
 
   LinkDelete                    = '#link-delete',
+  LinkShow                      = '#link-show',
 }
 
 export const GlobalOptionsSchema: JSONSchemaType<GlobalOptions> = {
   $id       : SchemaIds.GlobalOptions,
   type      : 'object',
   properties: {
-    sudo  : {
+    sudo         : {
       type    : 'boolean',
       default : false,
       nullable: true
     },
-    dryRun: {
+    dryRun       : {
       type    : 'boolean',
       default : false,
+      nullable: true
+    },
+    '-details'   : {
+      type    : 'boolean',
+      enum    : [true],
+      nullable: true
+    },
+    '-statistics': {
+      type    : 'boolean',
+      enum    : [true],
+      nullable: true
+    },
+    '-json'      : {
+      type    : 'boolean',
+      enum    : [true],
       nullable: true
     }
   }
 };
 
-export const IpCommandTestOptionsSchema: JSONSchemaType<IpCommandTestOptions> = {
-  $id       : SchemaIds.IpCommandTestOptions,
+export const EmptyIpCommandTestOptionsSchema: JSONSchemaType<EmptyIpCommandTestOptions> = {
+  $id       : SchemaIds.EmptyIpCommandTestOptions,
+  type      : 'object',
+  required  : [],
+  properties: {}
+};
+
+export const IpCommandTestOptionsSchema: JSONSchemaType<ComplexIpCommandTestOptions> = {
+  $id       : SchemaIds.ComplexIpCommandTestOptions,
   type      : 'object',
   required  : [
     'a_string',
@@ -92,9 +121,9 @@ export const IpCommandTestOptionsSchema: JSONSchemaType<IpCommandTestOptions> = 
       type: 'string',
       enum: Object.values(TestEnum) as TestEnum[]
     },
-    type_arg  : {
-      type: 'number',
-      nullable:true
+    type_arg : {
+      type    : 'number',
+      nullable: true
     },
     type_args: {
       type      : 'object',
@@ -135,9 +164,9 @@ export const IpCommandTestOptionsSchema: JSONSchemaType<IpCommandTestOptions> = 
         noa_flag: {
           type: 'boolean'
         },
-        type_arg  : {
-          type: 'number',
-          nullable:true
+        type_arg: {
+          type    : 'number',
+          nullable: true
         },
         an_enum : {
           type: 'string',

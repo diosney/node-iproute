@@ -2,15 +2,84 @@ import { expect } from 'chai';
 import IpCommand  from '../../src/common/classes/ip-command';
 
 import {
+  EmptyIpCommandTestOptionsSchema,
   IpCommandTestOptionsSchema,
   SchemaIds
 } from '../../src/common/constants/schemas';
 
-import { TestEnum }             from '../../src/common/constants/tests';
-import { GlobalOptions }        from '../../src/common/interfaces/common';
-import { IpCommandTestOptions } from '../../src/common/interfaces/tests';
+import { TestEnum }      from '../../src/common/constants/tests';
+import { GlobalOptions } from '../../src/common/interfaces/common';
+
+import {
+  ComplexIpCommandTestOptions,
+  EmptyIpCommandTestOptions
+} from '../../src/common/interfaces/tests';
 
 describe('ip command', function () {
+  describe('when testing a simple command with `sudo` set', function () {
+    it('should build the proper cmd string', async function () {
+      const cmd                          = ['test'];
+      const globalOptions: GlobalOptions = {
+        sudo  : true,
+        dryRun: true
+      };
+
+      const options: EmptyIpCommandTestOptions = {};
+
+      let ipCommand = new IpCommand<EmptyIpCommandTestOptions>(
+        SchemaIds.EmptyIpCommandTestOptions,
+        EmptyIpCommandTestOptionsSchema,
+        options,
+        globalOptions,
+        cmd);
+
+      expect(ipCommand.cmd)
+        .to.be.an('array')
+        .and.to.be.deep.eq([
+          'sudo',
+          'test'
+        ]
+      );
+
+      expect(ipCommand.cmdToExec)
+        .to.be.a('string').and.to.be.eq('sudo test');
+    });
+  });
+
+  describe('when testing a simple command with some `ip` global options set (`-details, -json`)', function () {
+    it('should build the proper cmd string', async function () {
+      const cmd                          = ['test_a', 'test_b'];
+      const globalOptions: GlobalOptions = {
+        dryRun    : true,
+        '-details': true,
+        '-json'   : true
+      };
+
+      const options: EmptyIpCommandTestOptions = {};
+
+      let ipCommand = new IpCommand<EmptyIpCommandTestOptions>(
+        SchemaIds.EmptyIpCommandTestOptions,
+        EmptyIpCommandTestOptionsSchema,
+        options,
+        globalOptions,
+        cmd);
+
+      expect(ipCommand.cmd)
+        .to.be.an('array')
+        .and.to.be.deep.eq([
+          '',
+          'test_a',
+          '-details',
+          '-json',
+          'test_b'
+        ]
+      );
+
+      expect(ipCommand.cmdToExec)
+        .to.be.a('string').and.to.be.eq(' test_a -details -json test_b');
+    });
+  });
+
   describe('when testing a command with all parameter types', function () {
     it('should build the proper cmd string', async function () {
       const cmd                          = ['test'];
@@ -18,7 +87,7 @@ describe('ip command', function () {
         dryRun: true
       };
 
-      const options: IpCommandTestOptions = {
+      const options: ComplexIpCommandTestOptions = {
         a_string : 'a-string',
         a_number : 1,
         a_tuple  : [0, 1],
@@ -36,8 +105,8 @@ describe('ip command', function () {
         }
       };
 
-      let ipCommand = new IpCommand<IpCommandTestOptions>(
-        SchemaIds.IpCommandTestOptions,
+      let ipCommand = new IpCommand<ComplexIpCommandTestOptions>(
+        SchemaIds.ComplexIpCommandTestOptions,
         IpCommandTestOptionsSchema,
         options,
         globalOptions,

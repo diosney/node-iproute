@@ -1,10 +1,13 @@
 import { TestEnum } from '../constants/tests';
 
-export interface IpCommandTestOptions extends IpCommandTestArgsOptions {
-  type_args: IpCommandTestArgsOptions;
+export interface EmptyIpCommandTestOptions {
 }
 
-export interface IpCommandTestArgsOptions {
+export interface ComplexIpCommandTestOptions extends ComplexIpCommandTestArgsOptions {
+  type_args: ComplexIpCommandTestArgsOptions;
+}
+
+export interface ComplexIpCommandTestArgsOptions {
   a_string: string;
   a_number: number;
   a_tuple: [number, number];
