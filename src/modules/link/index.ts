@@ -5,6 +5,8 @@ import { LinkAddOptions }    from './models/add.interfaces';
 import { LinkAddSchema }     from './models/add.schema';
 import { LinkDeleteOptions } from './models/delete.interfaces';
 import { LinkDeleteSchema }  from './models/delete.schema';
+import { LinkSetOptions }    from './models/set.interfaces';
+import { LinkSetSchema }     from './models/set.schema';
 
 import {
   LinkShowOptions,
@@ -16,7 +18,7 @@ import { LinkShowSchema } from './models/show.schema';
 /**
  * Adds a virtual link.
  *
- * @param options        - Parameters options to be passed down to `ip link add`.
+ * @param options        - Parameters options to be passed down to `ip`.
  * @param globalOptions  - Global parameters options that affects the command execution.
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
@@ -27,21 +29,21 @@ export async function add(options: LinkAddOptions,
 
   const cmd = ['ip', 'link', 'add'];
 
-  const linkAdd = new IpCommand<LinkAddOptions>(
+  const ipCmd = new IpCommand<LinkAddOptions>(
     SchemaIds.LinkAdd,
     LinkAddSchema,
     options,
     globalOptions,
     cmd);
 
-  await linkAdd.exec();
-  return linkAdd;
+  await ipCmd.exec();
+  return ipCmd;
 }
 
 /**
  * Deletes a virtual link.
  *
- * @param options        - Parameters options to be passed down to `ip link delete`.
+ * @param options        - Parameters options to be passed down to `ip`.
  * @param globalOptions  - Global parameters options that affects the command execution.
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
@@ -52,21 +54,21 @@ export async function deleteLink(options: LinkDeleteOptions,
 
   const cmd = ['ip', 'link', 'delete'];
 
-  const linkDelete = new IpCommand<LinkDeleteOptions>(
+  const ipCmd = new IpCommand<LinkDeleteOptions>(
     SchemaIds.LinkDelete,
     LinkDeleteSchema,
     options,
     globalOptions,
     cmd);
 
-  await linkDelete.exec();
-  return linkDelete;
+  await ipCmd.exec();
+  return ipCmd;
 }
 
 /**
  * Display device attributes.
  *
- * @param options        - Parameters options to be passed down to `ip link show`.
+ * @param options        - Parameters options to be passed down to `ip`.
  * @param globalOptions  - Global parameters options that affects the command execution.
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
@@ -77,7 +79,7 @@ export async function show(options: LinkShowOptions,
 
   const cmd = ['ip', 'link', 'show'];
 
-  const linkShow = new IpCommand<LinkShowOptions>(
+  const ipCmd = new IpCommand<LinkShowOptions>(
     SchemaIds.LinkShow,
     LinkShowSchema,
     options,
@@ -90,13 +92,55 @@ export async function show(options: LinkShowOptions,
     },
     cmd);
 
-  return await linkShow.execAndReturnData<LinkShowLinkInfo[]>();
+  return await ipCmd.execAndReturnData<LinkShowLinkInfo[]>();
+}
+
+/**
+ * Change device attributes.
+ *
+ * Warning: If multiple parameter changes are requested, `ip` aborts immediately after any
+ * of the changes have failed.
+ *
+ * This is the only case when `ip` can move the system to an
+ * unpredictable state. The solution is to avoid changing several parameters with one `ip link set` call.
+ * The modifier `change` is equivalent to `set`.
+ *
+ * @param options        - Parameters options to be passed down to `ip`.
+ * @param globalOptions  - Global parameters options that affects the command execution.
+ *
+ * @throws {@link ParametersError} - Throws when passed parameters are invalid.
+ * @throws {@link CommandError}    - Throws when the executed command fails.
+ */
+export async function set(options: LinkSetOptions,
+                          globalOptions: GlobalOptions = {}): Promise<IpCommand<LinkSetOptions>> {
+
+  const cmd = ['ip', 'link', 'set'];
+
+  const ipCmd = new IpCommand<LinkSetOptions>(
+    SchemaIds.LinkSet,
+    LinkSetSchema,
+    options,
+    globalOptions,
+    cmd);
+
+  await ipCmd.exec();
+  return ipCmd;
+}
+
+/**
+ * Alias for {@link set}.
+ * @see {@link set}
+ */
+export async function change(options: LinkSetOptions,
+                             globalOptions: GlobalOptions = {}): Promise<IpCommand<LinkSetOptions>> {
+
+  return set(options, globalOptions);
 }
 
 export default {
   add,
   deleteLink,
-  show
+  show,
+  set,
+  change
 };
-
-// TODO: Set

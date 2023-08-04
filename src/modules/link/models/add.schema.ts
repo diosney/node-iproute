@@ -21,6 +21,26 @@ import { AddLinkVrfArgsSchema }             from './virtual-link-types/vrf.schem
 import { AddLinkVxlanArgsSchema }           from './virtual-link-types/vxlan.schema';
 import { AddLinkXfrmArgsSchema }            from './virtual-link-types/xfrm.schema';
 
+export const typeArgsSchemas: any = [
+  AddLinkVlanArgsSchema,
+  AddLinkVxlanArgsSchema,
+  AddLinkVethVxcanArgsSchema,
+  AddLinkIpipSipArgsSchema,
+  AddGreGretapArgsSchema,
+  AddLinkIp6GreIp6GretapArgsSchema,
+  AddLinkIpoIbArgsSchema,
+  AddLinkErspanIp6ErspanArgsSchema,
+  AddLinkGeneveArgsSchema,
+  AddLinkBareudpArgsSchema,
+  AddLinkMacvlanMacvtapArgsSchema,
+  AddLinkHsrArgsSchema,
+  AddLinkVrfArgsSchema,
+  AddLinkRmnetArgsSchema,
+  AddLinkXfrmArgsSchema,
+  AddLinkBridgeArgsSchema,
+  AddLinkMacsecArgsSchema
+];
+
 export const LinkAddSchema: JSONSchemaType<LinkAddOptions> = {
   $id       : SchemaIds.LinkAdd,
   type      : 'object',
@@ -88,25 +108,7 @@ export const LinkAddSchema: JSONSchemaType<LinkAddOptions> = {
     },
     // TODO: How to condition anyOf depending of `type`? if/then/else?
     type_args: {
-      anyOf: [
-        AddLinkVlanArgsSchema,
-        AddLinkVxlanArgsSchema,
-        AddLinkVethVxcanArgsSchema,
-        AddLinkIpipSipArgsSchema,
-        AddGreGretapArgsSchema,
-        AddLinkIp6GreIp6GretapArgsSchema,
-        AddLinkIpoIbArgsSchema,
-        AddLinkErspanIp6ErspanArgsSchema,
-        AddLinkGeneveArgsSchema,
-        AddLinkBareudpArgsSchema,
-        AddLinkMacvlanMacvtapArgsSchema,
-        AddLinkHsrArgsSchema,
-        AddLinkVrfArgsSchema,
-        AddLinkRmnetArgsSchema,
-        AddLinkXfrmArgsSchema,
-        AddLinkBridgeArgsSchema,
-        AddLinkMacsecArgsSchema
-      ]
+      anyOf: typeArgsSchemas
     }
   }
 };

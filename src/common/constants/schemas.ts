@@ -1,4 +1,5 @@
-import { JSONSchemaType } from 'ajv';
+import { JSONSchemaType }           from 'ajv';
+import { SetLinkBondSlaveTypeArgs } from '../../modules/link/models/extended-virtual-link-types/bond-slave.interfaces';
 
 import { GlobalOptions } from '../interfaces/common';
 
@@ -15,6 +16,10 @@ export enum SchemaIds {
   EmptyIpCommandTestOptions     = '#empty-ip-command-test-options',
 
   LinkAdd                       = '#link-add',
+  LinkDelete                    = '#link-delete',
+  LinkShow                      = '#link-show',
+  LinkSet                       = '#link-set',
+
   LinkAddVlanOptions            = '#link-add-vlan',
   LinkAddVxlanOptions           = '#link-add-vxlan',
   LinkAddVethVxcanOptions       = '#link-add-veth-vxcan',
@@ -33,8 +38,9 @@ export enum SchemaIds {
   LinkAddBridgeOptions          = '#link-add-bridge',
   LinkAddMacsecOptions          = '#link-add-macsec',
 
-  LinkDelete                    = '#link-delete',
-  LinkShow                      = '#link-show',
+  LinkSetMacvlanMacvtapOptions  = '#link-set-macvlan-macvtap',
+  LinkSetBondSlaveOptions       = '#link-set-bond-slave',
+  LinkSetBridgeSlaveOptions     = '#link-set-bridge-slave',
 }
 
 export const GlobalOptionsSchema: JSONSchemaType<GlobalOptions> = {

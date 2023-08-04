@@ -31,7 +31,7 @@ interface LinkShowDevOptions extends LinkShowCommonOptions {
   dev?: string;
 }
 
-export type LinkShowOptions = LinkShowGroupOptions | LinkShowDevOptions
+export type LinkShowOptions = LinkShowGroupOptions | LinkShowDevOptions;
 
 // TODO: Need help to build this undocumented & comprehensive interface.
 export interface LinkShowLinkInfo {

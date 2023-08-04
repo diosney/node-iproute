@@ -1,4 +1,6 @@
 import { VirtualLinkTypes }               from './add.constants';
+import { SetLinkBondSlaveTypeArgs }       from './extended-virtual-link-types/bond-slave.interfaces';
+import { SetLinkBridgeSlaveTypeArgs }     from './extended-virtual-link-types/bridge-slave.interfaces';
 import { AddLinkBareudpTypeArgs }         from './virtual-link-types/bareup.interfaces';
 import { AddLinkBridgeTypeArgs }          from './virtual-link-types/bridge.interfaces';
 import { AddLinkErspanIp6erspanTypeArgs } from './virtual-link-types/erspan-ip6erspan.interfaces';
@@ -9,20 +11,25 @@ import { AddLinkIp6GreIp6gretapTypeArgs } from './virtual-link-types/ip6gre-ip6g
 import { AddLinkIpipSitTypeArgs }         from './virtual-link-types/ipip-sit.interfaces';
 import { AddLinkIpoibTypeArgs }           from './virtual-link-types/ipoib.interfaces';
 import { AddLinkMacsecTypeArgs }          from './virtual-link-types/macsec.interfaces';
-import { AddLinkMacvlanMacvtapTypeArgs }  from './virtual-link-types/macvlan-macvtap.interfaces';
-import { AddLinkRmnetTypeArgs }           from './virtual-link-types/rmnet.interfaces';
-import { AddLinkVethVxcanTypeArgs }       from './virtual-link-types/veth-vxcan.interfaces';
-import { AddLinkVlanTypeArgs }            from './virtual-link-types/vlan.interfaces';
-import { AddLinkVrfTypeArgs }             from './virtual-link-types/vrf.interfaces';
-import { AddLinkVxlanTypeArgs }           from './virtual-link-types/vxlan.interfaces';
-import { AddLinkXfrmTypeArgs }            from './virtual-link-types/xfrm.interfaces';
+
+import {
+  AddLinkMacvlanMacvtapTypeArgs,
+  SetLinkMacvlanMacvtapTypeArgs
+} from './virtual-link-types/macvlan-macvtap.interfaces';
+
+import { AddLinkRmnetTypeArgs }     from './virtual-link-types/rmnet.interfaces';
+import { AddLinkVethVxcanTypeArgs } from './virtual-link-types/veth-vxcan.interfaces';
+import { AddLinkVlanTypeArgs }      from './virtual-link-types/vlan.interfaces';
+import { AddLinkVrfTypeArgs }       from './virtual-link-types/vrf.interfaces';
+import { AddLinkVxlanTypeArgs }     from './virtual-link-types/vxlan.interfaces';
+import { AddLinkXfrmTypeArgs }      from './virtual-link-types/xfrm.interfaces';
 
 export interface LinkAddOptions {
   /** Specifies the physical device to act operate on. */
   link?: string;
   /** Specifies the name of the new virtual device. */
   name: string;
-  /** Specifies the type of the new device. */
+  /** Change the transmit queue length of the device. */
   txqueuelen?: number;
   /**
    * Specifies the device Link Layer Address (LLADDR) parameter,
@@ -58,21 +65,27 @@ export interface LinkAddOptions {
   /** Specifies the type of the new device. */
   type: VirtualLinkTypes;
   /** Specifies the additional arguments related to the specified virtual link type. */
-  type_args: AddLinkVlanTypeArgs
-    | AddLinkVxlanTypeArgs
-    | AddLinkVethVxcanTypeArgs
-    | AddLinkIpipSitTypeArgs
-    | AddLinkGreGretapTypeArgs
-    | AddLinkIp6GreIp6gretapTypeArgs
-    | AddLinkIpoibTypeArgs
-    | AddLinkErspanIp6erspanTypeArgs
-    | AddLinkGeneveTypeArgs
-    | AddLinkBareudpTypeArgs
-    | AddLinkMacvlanMacvtapTypeArgs
-    | AddLinkHsrTypeArgs
-    | AddLinkVrfTypeArgs
-    | AddLinkRmnetTypeArgs
-    | AddLinkXfrmTypeArgs
-    | AddLinkBridgeTypeArgs
-    | AddLinkMacsecTypeArgs;
+  type_args: TypeArgs;
 }
+
+export type TypeArgs = AddLinkVlanTypeArgs
+  | AddLinkVxlanTypeArgs
+  | AddLinkVethVxcanTypeArgs
+  | AddLinkIpipSitTypeArgs
+  | AddLinkGreGretapTypeArgs
+  | AddLinkIp6GreIp6gretapTypeArgs
+  | AddLinkIpoibTypeArgs
+  | AddLinkErspanIp6erspanTypeArgs
+  | AddLinkGeneveTypeArgs
+  | AddLinkBareudpTypeArgs
+  | AddLinkMacvlanMacvtapTypeArgs
+  | AddLinkHsrTypeArgs
+  | AddLinkVrfTypeArgs
+  | AddLinkRmnetTypeArgs
+  | AddLinkXfrmTypeArgs
+  | AddLinkBridgeTypeArgs
+  | AddLinkMacsecTypeArgs;
+
+export type ExtendedTypeArgs = SetLinkBridgeSlaveTypeArgs
+  | SetLinkBondSlaveTypeArgs
+  | SetLinkMacvlanMacvtapTypeArgs;

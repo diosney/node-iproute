@@ -36,8 +36,17 @@
       - key: [0, 1]  =>>  ip route ... key 0 1 ...
     - atributos tipo flags enum, con string normal
       - key: 'on'  =>> ip ... key on ...
+    - como modelar?:
+       - [ protodown_reason PREASON { on | off } ]
 
 
 - jsonschema arreglar:
   - flags "key"/"nokey" como ponerlos, ahora mismo se pueden adicionar los 2 al
     - mismo tiempo y deberian ser exclusivos.
+
+- Commands to add:
+  - link
+    - xstats
+    - afstats
+    
+- add global option to disable schema validations? 
