@@ -11,8 +11,8 @@ import ajv                                from '../validator';
 const promisifiedExec = promisify(exec);
 
 export default class IpCommand<T_CommandOptions extends { [index: string]: any; }> {
-  private _cmd: Array<string | number> = [];
-  private _cmdToExec: string           = '';
+  protected _cmd: Array<string | number> = [];
+  protected _cmdToExec: string           = '';
 
   // Useful for testing.
   get cmd(): Array<string | number> {
@@ -24,11 +24,11 @@ export default class IpCommand<T_CommandOptions extends { [index: string]: any; 
     return this._cmdToExec;
   }
 
-  constructor(private schemaId: SchemaIds,
-              private schema: JSONSchemaType<T_CommandOptions>,
-              private options: T_CommandOptions,
-              private globalOptions: GlobalOptions,
-              private ipCmd: string[]) {
+  constructor(protected schemaId: SchemaIds,
+              protected schema: JSONSchemaType<T_CommandOptions>,
+              protected options: T_CommandOptions,
+              protected globalOptions: GlobalOptions,
+              protected ipCmd: string[]) {
 
     // TODO: Tried to merge into one generic function but generic types gave me trouble.
     this.validateOptions();
@@ -37,7 +37,7 @@ export default class IpCommand<T_CommandOptions extends { [index: string]: any; 
     this.buildCmd();
   }
 
-  private validateOptions() {
+  protected validateOptions() {
     const validate = ajv.getSchema(this.schemaId)
                      || ajv.compile(this.schema);
 
@@ -48,7 +48,7 @@ export default class IpCommand<T_CommandOptions extends { [index: string]: any; 
     }
   }
 
-  private validateGlobalOptions() {
+  protected validateGlobalOptions() {
     const validate = ajv.getSchema(SchemaIds.GlobalOptions)
                      || ajv.compile(GlobalOptionsSchema);
 
@@ -59,7 +59,7 @@ export default class IpCommand<T_CommandOptions extends { [index: string]: any; 
     }
   }
 
-  private buildCmd() {
+  protected buildCmd() {
     const hasSudo = (this.globalOptions.sudo)
                     ? 'sudo'
                     : '';
@@ -111,7 +111,7 @@ export default class IpCommand<T_CommandOptions extends { [index: string]: any; 
   }
 
   // TODO: Throw error if value is undefined or null?
-  private getCmdArgsFromOptions(key: string, value: any): Array<string | number> {
+  protected getCmdArgsFromOptions(key: string, value: any): Array<string | number> {
     let result: Array<string | number> = [];
 
     if (Array.isArray(value)) {
@@ -147,40 +147,18 @@ export default class IpCommand<T_CommandOptions extends { [index: string]: any; 
     return result;
   }
 
-  async exec(): Promise<this> {
+  async exec<T_ReturnData = {}>(): Promise<this | T_ReturnData> {
     if (this.globalOptions.dryRun) {
       return this;
     }
 
-    let cmdToExec = this._cmd.join(' ');
-
-    const { stderr } = await promisifiedExec(cmdToExec);
+    const { stderr } = await promisifiedExec(this._cmdToExec);
 
     if (!stderr) {
       return this;
     }
 
     const message = stderr.replace(/\n/g, '');
-    throw new CommandError(message, cmdToExec);
-  }
-
-  async execAndReturnData<T_ReturnData>(): Promise<this | T_ReturnData> {
-    if (this.globalOptions.dryRun) {
-      return this;
-    }
-
-    let cmdToExec = this._cmd.join(' ');
-
-    const {
-            stderr,
-            stdout
-          } = await promisifiedExec(cmdToExec);
-
-    if (!stderr) {
-      return JSON.parse(stdout);
-    }
-
-    const message = stderr.replace(/\n/g, '');
-    throw new CommandError(message, cmdToExec);
+    throw new CommandError(message, this._cmdToExec);
   }
 }

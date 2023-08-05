@@ -1,6 +1,7 @@
-import { TestEnum } from '../constants/tests';
+import { TestEnum }      from '../constants/tests';
+import { GlobalOptions } from './common';
 
-export interface EmptyIpCommandTestOptions {
+export interface Empty {
 }
 
 export interface ComplexIpCommandTestOptions extends ComplexIpCommandTestArgsOptions {
@@ -17,9 +18,10 @@ export interface ComplexIpCommandTestArgsOptions {
   type_arg?: number;
 }
 
-export interface TestFixture<T_CommandOptions> {
+export interface TestFixture<T_Options, T_GlobalOptions = GlobalOptions> {
   description: string;
-  options: T_CommandOptions;
+  options: T_Options;
+  globalOptions?: T_GlobalOptions;
   expectedCmd: Array<number | string>;
   expectedCmdToExec: string;
 }

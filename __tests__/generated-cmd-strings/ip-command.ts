@@ -1,8 +1,8 @@
 import { expect } from 'chai';
-import IpCommand  from '../../src/common/classes/ip-command';
+import IpCommand  from '../../src/common/classes/ip.command';
 
 import {
-  EmptyIpCommandTestOptionsSchema,
+  EmptySchema,
   IpCommandTestOptionsSchema,
   SchemaIds
 } from '../../src/common/constants/schemas';
@@ -12,7 +12,7 @@ import { GlobalOptions } from '../../src/common/interfaces/common';
 
 import {
   ComplexIpCommandTestOptions,
-  EmptyIpCommandTestOptions
+  Empty
 } from '../../src/common/interfaces/tests';
 
 describe('ip command', function () {
@@ -24,11 +24,11 @@ describe('ip command', function () {
         dryRun: true
       };
 
-      const options: EmptyIpCommandTestOptions = {};
+      const options: Empty = {};
 
-      let ipCommand = new IpCommand<EmptyIpCommandTestOptions>(
-        SchemaIds.EmptyIpCommandTestOptions,
-        EmptyIpCommandTestOptionsSchema,
+      let ipCommand = new IpCommand<Empty>(
+        SchemaIds.Empty,
+        EmptySchema,
         options,
         globalOptions,
         cmd);
@@ -55,11 +55,11 @@ describe('ip command', function () {
         '-json'   : true
       };
 
-      const options: EmptyIpCommandTestOptions = {};
+      const options: Empty = {};
 
-      let ipCommand = new IpCommand<EmptyIpCommandTestOptions>(
-        SchemaIds.EmptyIpCommandTestOptions,
-        EmptyIpCommandTestOptionsSchema,
+      let ipCommand = new IpCommand<Empty>(
+        SchemaIds.Empty,
+        EmptySchema,
         options,
         globalOptions,
         cmd);

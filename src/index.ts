@@ -1,9 +1,9 @@
 // Network devices configuration.
 import link from './modules/link';
 
-// // Protocol address management.
-// exports.address = require('./src/address/index');
-//
+// Protocol address management.
+import address from './modules/address';
+
 // // Routing table management.
 // exports.route = require('./src/route/index');
 //
@@ -17,5 +17,6 @@ import link from './modules/link';
 // exports.utils = require('./src/utils/index');
 
 export default {
-  link
+  link,
+  address
 };

@@ -1,4 +1,5 @@
-import IpCommand             from '../../common/classes/ip-command';
+import IpCommandWithReturnedData from '../../common/classes/ip-command-with-returned-data';
+import IpCommand                 from '../../common/classes/ip.command';
 import { SchemaIds }         from '../../common/constants/schemas';
 import { GlobalOptions }     from '../../common/interfaces/common';
 import { LinkAddOptions }    from './models/add.interfaces';
@@ -10,7 +11,7 @@ import { LinkSetSchema }     from './models/set.schema';
 
 import {
   LinkShowOptions,
-  LinkShowLinkInfo
+  LinkInfo
 } from './models/show.interfaces';
 
 import { LinkShowSchema } from './models/show.schema';
@@ -36,8 +37,7 @@ export async function add(options: LinkAddOptions,
     globalOptions,
     cmd);
 
-  await ipCmd.exec();
-  return ipCmd;
+  return await ipCmd.exec();
 }
 
 /**
@@ -49,8 +49,8 @@ export async function add(options: LinkAddOptions,
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
-export async function deleteLink(options: LinkDeleteOptions,
-                                 globalOptions: GlobalOptions = {}): Promise<IpCommand<LinkDeleteOptions>> {
+export async function del(options: LinkDeleteOptions,
+                          globalOptions: GlobalOptions = {}): Promise<IpCommand<LinkDeleteOptions>> {
 
   const cmd = ['ip', 'link', 'delete'];
 
@@ -61,8 +61,7 @@ export async function deleteLink(options: LinkDeleteOptions,
     globalOptions,
     cmd);
 
-  await ipCmd.exec();
-  return ipCmd;
+  return await ipCmd.exec();
 }
 
 /**
@@ -75,11 +74,11 @@ export async function deleteLink(options: LinkDeleteOptions,
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function show(options: LinkShowOptions,
-                           globalOptions: GlobalOptions = {}): Promise<IpCommand<LinkShowOptions> | LinkShowLinkInfo[]> {
+                           globalOptions: GlobalOptions = {}): Promise<IpCommand<LinkShowOptions> | LinkInfo[]> {
 
   const cmd = ['ip', 'link', 'show'];
 
-  const ipCmd = new IpCommand<LinkShowOptions>(
+  const ipCmd = new IpCommandWithReturnedData<LinkShowOptions>(
     SchemaIds.LinkShow,
     LinkShowSchema,
     options,
@@ -92,7 +91,7 @@ export async function show(options: LinkShowOptions,
     },
     cmd);
 
-  return await ipCmd.execAndReturnData<LinkShowLinkInfo[]>();
+  return await ipCmd.exec<LinkInfo[]>();
 }
 
 /**
@@ -123,8 +122,7 @@ export async function set(options: LinkSetOptions,
     globalOptions,
     cmd);
 
-  await ipCmd.exec();
-  return ipCmd;
+  return await ipCmd.exec();
 }
 
 /**
@@ -139,7 +137,7 @@ export async function change(options: LinkSetOptions,
 
 export default {
   add,
-  deleteLink,
+  del,
   show,
   set,
   change

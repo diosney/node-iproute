@@ -34,7 +34,7 @@ interface LinkShowDevOptions extends LinkShowCommonOptions {
 export type LinkShowOptions = LinkShowGroupOptions | LinkShowDevOptions;
 
 // TODO: Need help to build this undocumented & comprehensive interface.
-export interface LinkShowLinkInfo {
+export interface LinkInfo {
   ifindex: number;
   ifname: string;
 
@@ -76,29 +76,32 @@ export interface LinkShowLinkInfo {
 
   stats: {
     rx: {
-      packets: number;
-      compressed: number;
       bytes: number;
-      dropped: number;
+      packets: number;
       errors: number;
+      dropped: number;
       over_errors: number;
-      crc_errors: number;
-      frame_errors: number;
-      fifo_errors: number;
-      missed_errors: number;
       multicast: number;
+
+      compressed?: number;
+      crc_errors?: number;
+      frame_errors?: number;
+      fifo_errors?: number;
+      missed_errors?: number;
     };
     tx: {
-      packets: number;
       bytes: number;
+      packets: number;
+      errors: number;
       dropped: number;
-      aborted_errors: number;
       carrier_errors: number;
-      fifo_errors: number;
-      heartbeat_errors: number;
-      window_errors: number;
-      compressed: number;
       collisions: number;
+
+      aborted_errors?: number;
+      fifo_errors?: number;
+      heartbeat_errors?: number;
+      window_errors?: number;
+      compressed?: number;
     }
   };
 }

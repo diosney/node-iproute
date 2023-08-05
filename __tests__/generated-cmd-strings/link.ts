@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
-import { deleteLink, add, show, set } from '../../src/modules/link';
-import { Tests as linkAddTests }      from '../fixtures/link-add';
+import { del, add, show, set }   from '../../src/modules/link';
+import { Tests as linkAddTests } from '../fixtures/link-add';
 import { Tests as linkDeleteTests }   from '../fixtures/link-delete';
 import { Tests as linkShowTests }     from '../fixtures/link-show';
 import { Tests as linkSetTests }      from '../fixtures/link-set';
@@ -31,7 +31,7 @@ describe('link', function () {
     linkDeleteTests.forEach((test) => {
       describe(test.description, function () {
         it('should build the proper cmd array & string', async function () {
-          let ipCommand = await deleteLink(test.options, {
+          let ipCommand = await del(test.options, {
             dryRun: true
           });
 

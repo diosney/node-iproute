@@ -1,19 +1,20 @@
-import { JSONSchemaType }           from 'ajv';
-import { SetLinkBondSlaveTypeArgs } from '../../modules/link/models/extended-virtual-link-types/bond-slave.interfaces';
+import { JSONSchemaType } from 'ajv';
 
-import { GlobalOptions } from '../interfaces/common';
+import { FilePathRequiredGlobalOption, GlobalOptions } from '../interfaces/common';
 
 import {
   ComplexIpCommandTestOptions,
-  EmptyIpCommandTestOptions
+  Empty
 } from '../interfaces/tests';
 
 import { TestEnum } from './tests';
 
 export enum SchemaIds {
+  Empty                         = '#empty-schema',
+
   GlobalOptions                 = '#global-options',
+  FilePathGlobalOption          = '#global-options-file-path',
   ComplexIpCommandTestOptions   = '#complex-ip-command-test-options',
-  EmptyIpCommandTestOptions     = '#empty-ip-command-test-options',
 
   LinkAdd                       = '#link-add',
   LinkDelete                    = '#link-delete',
@@ -41,6 +42,11 @@ export enum SchemaIds {
   LinkSetMacvlanMacvtapOptions  = '#link-set-macvlan-macvtap',
   LinkSetBondSlaveOptions       = '#link-set-bond-slave',
   LinkSetBridgeSlaveOptions     = '#link-set-bridge-slave',
+
+  AddressAdd                    = '#address-add',
+  AddressDelete                 = '#address-delete',
+  AddressFlush                  = '#address-flush',
+  AddressShow                   = '#address-show',
 }
 
 export const GlobalOptionsSchema: JSONSchemaType<GlobalOptions> = {
@@ -55,6 +61,11 @@ export const GlobalOptionsSchema: JSONSchemaType<GlobalOptions> = {
     dryRun       : {
       type    : 'boolean',
       default : false,
+      nullable: true
+    },
+    filePath     : {
+      type    : 'string',
+      format  : 'filepath',
       nullable: true
     },
     '-details'   : {
@@ -75,11 +86,25 @@ export const GlobalOptionsSchema: JSONSchemaType<GlobalOptions> = {
   }
 };
 
-export const EmptyIpCommandTestOptionsSchema: JSONSchemaType<EmptyIpCommandTestOptions> = {
-  $id       : SchemaIds.EmptyIpCommandTestOptions,
-  type      : 'object',
-  required  : [],
-  properties: {}
+export const FilePathGlobalOptionSchema: JSONSchemaType<FilePathRequiredGlobalOption> = {
+  $id                 : SchemaIds.FilePathGlobalOption,
+  type                : 'object',
+  required            : ['filePath'],
+  additionalProperties: true,
+  properties          : {
+    filePath: {
+      type  : 'string',
+      format: 'filepath'
+    }
+  }
+};
+
+export const EmptySchema: JSONSchemaType<Empty> = {
+  $id                 : SchemaIds.Empty,
+  type                : 'object',
+  required            : [],
+  additionalProperties: false,
+  properties          : {}
 };
 
 export const IpCommandTestOptionsSchema: JSONSchemaType<ComplexIpCommandTestOptions> = {
