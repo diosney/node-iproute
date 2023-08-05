@@ -1,7 +1,7 @@
-import { GlobalOptionsWithRequiredFilePath } from '../../lib/common/interfaces/common';
-import { TestFixture }                       from '../../src/common/interfaces/tests';
-import { AddressScopes }                     from '../../src/modules/address/models/add.constants';
-import { AddressFlushOptions }               from '../../src/modules/address/models/flush.interfaces';
+import { GlobalOptionsWithRequiredFilePath } from '../../src/common/interfaces/common';
+import { TestFixture }         from '../../src/common/interfaces/tests';
+import { AddressScopes }       from '../../src/commands/address/add.constants';
+import { AddressFlushOptions } from '../../src/commands/address/flush.interfaces';
 
 export const Tests: TestFixture<AddressFlushOptions, GlobalOptionsWithRequiredFilePath>[] = [
   {

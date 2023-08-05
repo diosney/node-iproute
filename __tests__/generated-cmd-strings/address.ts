@@ -9,7 +9,7 @@ import {
   save,
   restore,
   show
-} from '../../src/modules/address';
+} from '../../src/commands/address';
 
 import { Tests as addressAddTests }     from '../fixtures/address-add';
 import { Tests as addressChangeTests }  from '../fixtures/address-change';

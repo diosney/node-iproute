@@ -1,8 +1,8 @@
 // Network devices configuration.
-import link from './modules/link';
+import link from './commands/link';
 
 // Protocol address management.
-import address from './modules/address';
+import address from './commands/address';
 
 // // Routing table management.
 // exports.route = require('./src/route/index');

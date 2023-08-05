@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import { del, add, show, set }   from '../../src/modules/link';
+import { del, add, show, set }   from '../../src/commands/link';
 import { Tests as linkAddTests } from '../fixtures/link-add';
 import { Tests as linkDeleteTests }   from '../fixtures/link-delete';
 import { Tests as linkShowTests }     from '../fixtures/link-show';

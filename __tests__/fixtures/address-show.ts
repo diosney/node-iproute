@@ -1,4 +1,4 @@
-import { AddressShowOptions } from '../../lib/modules/address/models/show.interfaces';
+import { AddressShowOptions } from '../../src/commands/address/show.interfaces';
 import { TestFixture }        from '../../src/common/interfaces/tests';
 
 export const Tests: TestFixture<AddressShowOptions>[] = [

@@ -1,6 +1,6 @@
-import { LinkDeleteOptions } from '../../src/modules/link/models/delete.interfaces';
+import { LinkDeleteOptions } from '../../src/commands/link/delete.interfaces';
 import { TestFixture }       from '../../src/common/interfaces/tests';
-import { VirtualLinkTypes }  from '../../src/modules/link/models/add.constants';
+import { VirtualLinkTypes }  from '../../src/commands/link/add.constants';
 
 export const Tests: TestFixture<LinkDeleteOptions>[] = [
   {

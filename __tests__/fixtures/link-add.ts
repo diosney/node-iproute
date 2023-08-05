@@ -10,8 +10,8 @@ import {
   SecondaryUdpEncapsulations,
   VirtualLinkTypes,
   VlanProtocols
-}                                           from '../../src/modules/link/models/add.constants';
-import { LinkAddOptions }                   from '../../src/modules/link/models/add.interfaces';
+}                         from '../../src/commands/link/add.constants';
+import { LinkAddOptions } from '../../src/commands/link/add.interfaces';
 
 export const Tests: TestFixture<LinkAddOptions>[] = [
   {

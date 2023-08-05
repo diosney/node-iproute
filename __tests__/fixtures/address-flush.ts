@@ -1,6 +1,6 @@
 import { TestFixture }         from '../../src/common/interfaces/tests';
-import { AddressScopes }       from '../../src/modules/address/models/add.constants';
-import { AddressFlushOptions } from '../../src/modules/address/models/flush.interfaces';
+import { AddressScopes }       from '../../src/commands/address/add.constants';
+import { AddressFlushOptions } from '../../src/commands/address/flush.interfaces';
 
 export const Tests: TestFixture<AddressFlushOptions>[] = [
   {

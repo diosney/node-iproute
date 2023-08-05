@@ -1,4 +1,4 @@
-import { LinkShowOptions } from '../../src/modules/link/models/show.interfaces';
+import { LinkShowOptions } from '../../src/commands/link/show.interfaces';
 import { TestFixture }     from '../../src/common/interfaces/tests';
 
 export const Tests: TestFixture<LinkShowOptions>[] = [

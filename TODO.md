@@ -48,5 +48,6 @@
   - link
     - xstats
     - afstats
+  - addrlabel
     
 - add global option to disable schema validations? 

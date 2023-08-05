@@ -1,4 +1,4 @@
-import { AddressDeleteOptions } from '../../lib/modules/address/models/delete.interfaces';
+import { AddressDeleteOptions } from '../../src/commands/address/delete.interfaces';
 import { TestFixture }          from '../../src/common/interfaces/tests';
 
 export const Tests: TestFixture<AddressDeleteOptions>[] = [

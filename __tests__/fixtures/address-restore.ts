@@ -1,4 +1,4 @@
-import { GlobalOptionsWithRequiredFilePath } from '../../lib/common/interfaces/common';
+import { GlobalOptionsWithRequiredFilePath } from '../../src/common/interfaces/common';
 import { TestFixture }                       from '../../src/common/interfaces/tests';
 
 export const Tests: TestFixture<{}, GlobalOptionsWithRequiredFilePath>[] = [

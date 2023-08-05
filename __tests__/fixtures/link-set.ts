@@ -1,4 +1,4 @@
-import { LinkSetOptions } from '../../src/modules/link/models/set.interfaces';
+import { LinkSetOptions } from '../../src/commands/link/set.interfaces';
 import { TestFixture }    from '../../src/common/interfaces/tests';
 
 export const Tests: TestFixture<LinkSetOptions>[] = [
