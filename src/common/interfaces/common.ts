@@ -10,5 +10,8 @@ export interface GlobalOptions {
   '-json'?: true;
 }
 
+export interface EmptyOptions {
+}
+
 export type FilePathRequiredGlobalOption = Required<Pick<GlobalOptions, 'filePath'>>;
 export type GlobalOptionsWithRequiredFilePath = GlobalOptions & FilePathRequiredGlobalOption;

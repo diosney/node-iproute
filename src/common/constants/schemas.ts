@@ -47,6 +47,8 @@ export enum SchemaIds {
   AddressDelete                 = '#address-delete',
   AddressFlush                  = '#address-flush',
   AddressShow                   = '#address-show',
+
+  RuleAdd                       = '#rule-add',
 }
 
 export const GlobalOptionsSchema: JSONSchemaType<GlobalOptions> = {

@@ -10,7 +10,7 @@ export const SetLinkBondSlaveArgsSchema: JSONSchemaType<SetLinkBondSlaveTypeArgs
   additionalProperties: false,
   properties          : {
     queue_id: {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       nullable: true
     }

@@ -17,18 +17,18 @@ export const SetLinkBridgeSlaveArgsSchema: JSONSchemaType<SetLinkBridgeSlaveType
       nullable: true
     },
     state           : {
-      type    : 'number',
+      type    : 'integer',
       enum    : Object.values(BridgeSlavePortStates) as BridgeSlavePortStates[],
       nullable: true
     },
     priority        : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       maximum : 63,
       nullable: true
     },
     cost            : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 1,
       maximum : 65535,
       nullable: true
@@ -74,7 +74,7 @@ export const SetLinkBridgeSlaveArgsSchema: JSONSchemaType<SetLinkBridgeSlaveType
       nullable: true
     },
     mcast_router    : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       maximum : 3,
       nullable: true
@@ -95,7 +95,7 @@ export const SetLinkBridgeSlaveArgsSchema: JSONSchemaType<SetLinkBridgeSlaveType
       nullable: true
     },
     group_fwd_mask  : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       nullable: true
     },

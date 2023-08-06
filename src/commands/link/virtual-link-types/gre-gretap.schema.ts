@@ -39,7 +39,7 @@ export const AddGreGretapArgsSchema: JSONSchemaType<AddLinkGreGretapTypeArgs> = 
       nullable: true
     },
     key              : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       maximum : 4294967295,
       nullable: true
@@ -50,7 +50,7 @@ export const AddGreGretapArgsSchema: JSONSchemaType<AddLinkGreGretapTypeArgs> = 
       nullable: true
     },
     ikey             : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       maximum : 4294967295,
       nullable: true
@@ -61,7 +61,7 @@ export const AddGreGretapArgsSchema: JSONSchemaType<AddLinkGreGretapTypeArgs> = 
       nullable: true
     },
     okey             : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       maximum : 4294967295,
       nullable: true
@@ -92,13 +92,13 @@ export const AddGreGretapArgsSchema: JSONSchemaType<AddLinkGreGretapTypeArgs> = 
       nullable: true
     },
     tos              : {
-      type    : 'number',
+      type    : 'integer',
       nullable: true,
       minimum : 0,
       maximum : 255
     },
     ttl              : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       maximum : 255,
       nullable: true
@@ -130,7 +130,7 @@ export const AddGreGretapArgsSchema: JSONSchemaType<AddLinkGreGretapTypeArgs> = 
       nullable: true
     },
     'encap-sport'    : {
-      type    : ['string', 'number'],
+      type    : ['string', 'integer'],
       nullable: true,
       oneOf   : [
         {
@@ -139,7 +139,7 @@ export const AddGreGretapArgsSchema: JSONSchemaType<AddLinkGreGretapTypeArgs> = 
           nullable: true
         },
         {
-          type    : 'number',
+          type    : 'integer',
           minimum : 0,
           maximum : 65535,
           nullable: true

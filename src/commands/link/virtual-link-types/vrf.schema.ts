@@ -10,7 +10,7 @@ export const AddLinkVrfArgsSchema: JSONSchemaType<AddLinkVrfTypeArgs> = {
   additionalProperties: false,
   properties          : {
     table: {
-      type   : 'number',
+      type   : 'integer',
       minimum: 1,
       maximum: 4294967295
     }

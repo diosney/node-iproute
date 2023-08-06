@@ -24,7 +24,7 @@ export const AddLinkIpipSipArgsSchema: JSONSchemaType<AddLinkIpipSitTypeArgs> = 
       nullable: true
     },
     'encap-sport'    : {
-      type    : ['string', 'number'],
+      type    : ['string', 'integer'],
       nullable: true,
       oneOf   : [
         {
@@ -33,7 +33,7 @@ export const AddLinkIpipSipArgsSchema: JSONSchemaType<AddLinkIpipSitTypeArgs> = 
           nullable: true
         },
         {
-          type    : 'number',
+          type    : 'integer',
           minimum : 0,
           maximum : 65535,
           nullable: true

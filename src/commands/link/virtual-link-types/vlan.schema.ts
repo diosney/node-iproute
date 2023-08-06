@@ -20,7 +20,7 @@ export const AddLinkVlanArgsSchema: JSONSchemaType<AddLinkVlanTypeArgs> = {
       nullable: true
     },
     id               : {
-      type   : 'number',
+      type   : 'integer',
       minimum: 0,
       maximum: 4095
     },

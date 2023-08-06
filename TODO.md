@@ -51,3 +51,7 @@
   - addrlabel
     
 - add global option to disable schema validations? 
+
+- poner en doc q despues de agregar una rule tiene q hacer: `ip route flush cache` o `ip route flush table cache`
+
+- rellenar los return interfaces de los "show".

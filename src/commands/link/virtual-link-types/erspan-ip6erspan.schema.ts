@@ -23,17 +23,17 @@ export const AddLinkErspanIp6ErspanArgsSchema: JSONSchemaType<AddLinkErspanIp6er
       enum: [true]
     },
     key                  : {
-      type   : 'number',
+      type   : 'integer',
       minimum: 0,
       maximum: 4294967295
     },
     erspan_ver           : {
-      type   : 'number',
+      type   : 'integer',
       minimum: 0,
       maximum: 2
     },
     erspan               : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       maximum : 1048576,
       nullable: true
@@ -44,7 +44,7 @@ export const AddLinkErspanIp6ErspanArgsSchema: JSONSchemaType<AddLinkErspanIp6er
       nullable: true
     },
     erspan_hwid          : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       maximum : 63,
       nullable: true

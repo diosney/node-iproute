@@ -10,7 +10,7 @@ export const AddLinkRmnetArgsSchema: JSONSchemaType<AddLinkRmnetTypeArgs> = {
   additionalProperties: false,
   properties          : {
     mux_id: {
-      type   : 'number',
+      type   : 'integer',
       minimum: 1,
       maximum: 254
     }

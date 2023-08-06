@@ -19,7 +19,7 @@ export const AddLinkMacvlanMacvtapArgsSchema: JSONSchemaType<AddLinkMacvlanMacvt
       enum: Object.values(MacvlanMacvtapModes) as MacvlanMacvtapModes[]
     },
     bcqueuelen: {
-      type    : 'number',
+      type    : 'integer',
       nullable: true,
       minimum : 1,
       maximum : 4294967295
@@ -59,7 +59,7 @@ export const SetLinkMacvlanMacvtapArgsSchema: JSONSchemaType<SetLinkMacvlanMacvt
       nullable: true
     },
     bcqueuelen: {
-      type    : 'number',
+      type    : 'integer',
       nullable: true,
       minimum : 1,
       maximum : 4294967295

@@ -14,7 +14,7 @@ export const AddLinkXfrmArgsSchema: JSONSchemaType<AddLinkXfrmTypeArgs> = {
       minLength: 1
     },
     if_id: {
-      type    : 'number',
+      type    : 'integer',
       minimum : 1,
       maximum : 4294967295,
       nullable: true

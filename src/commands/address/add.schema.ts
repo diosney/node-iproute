@@ -35,7 +35,7 @@ export const AddressAddSchema: JSONSchemaType<AddressAddOptions> = {
       nullable : true
     },
     scope        : {
-      type    : ['string', 'number'],
+      type    : ['string', 'integer'],
       nullable: true,
       oneOf   : [
         {
@@ -44,19 +44,19 @@ export const AddressAddSchema: JSONSchemaType<AddressAddOptions> = {
           nullable: true
         },
         {
-          type    : 'number',
+          type    : 'integer',
           minimum : 0,
           nullable: true
         }
       ]
     },
     metric       : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       nullable: true
     },
     valid_lft    : {
-      type    : ['string', 'number'],
+      type    : ['string', 'integer'],
       nullable: true,
       oneOf   : [
         {
@@ -65,14 +65,14 @@ export const AddressAddSchema: JSONSchemaType<AddressAddOptions> = {
           nullable: true
         },
         {
-          type    : 'number',
+          type    : 'integer',
           minimum : 0,
           nullable: true
         }
       ]
     },
     preferred_lft: {
-      type    : ['string', 'number'],
+      type    : ['string', 'integer'],
       nullable: true,
       oneOf   : [
         {
@@ -81,7 +81,7 @@ export const AddressAddSchema: JSONSchemaType<AddressAddOptions> = {
           nullable: true
         },
         {
-          type    : 'number',
+          type    : 'integer',
           minimum : 0,
           nullable: true
         }

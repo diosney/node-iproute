@@ -6,7 +6,7 @@ import { EmptySchema, SchemaIds }        from '../common/constants/schemas';
 
 import {
   GlobalOptionsWithRequiredFilePath,
-  GlobalOptions
+  GlobalOptions, EmptyOptions
 } from '../common/interfaces/common';
 
 import { AddressAddOptions }               from './address/add.interfaces';
@@ -179,13 +179,13 @@ export async function save(options: AddressFlushOptions,
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
-export async function restore(options: {} = {},
-                              globalOptions: GlobalOptionsWithRequiredFilePath): Promise<IpCommand<{}>> {
+export async function restore(options: EmptyOptions = {},
+                              globalOptions: GlobalOptionsWithRequiredFilePath): Promise<IpCommand<EmptyOptions>> {
 
   const cmd = ['ip', 'address', 'restore'];
 
-  const ipCmd = new IpCommandWithRedirectFromFilepath<{}>(
-    SchemaIds.AddressFlush,
+  const ipCmd = new IpCommandWithRedirectFromFilepath<EmptyOptions>(
+    SchemaIds.Empty,
     EmptySchema,
     options,
     globalOptions,

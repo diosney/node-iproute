@@ -20,7 +20,7 @@ export const LinkSetSchema: JSONSchemaType<LinkSetOptions> = {
       nullable : true
     },
     group         : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       nullable: true
     },
@@ -70,12 +70,12 @@ export const LinkSetSchema: JSONSchemaType<LinkSetOptions> = {
       nullable: true
     },
     txqueuelen    : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 1,
       nullable: true
     },
     txqlen        : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 1,
       nullable: true
     },
@@ -105,12 +105,12 @@ export const LinkSetSchema: JSONSchemaType<LinkSetOptions> = {
       nullable: true
     },
     mtu           : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 1,
       nullable: true
     },
     netns         : {
-      type    : ['string', 'number'],
+      type    : ['string', 'integer'],
       nullable: true,
       oneOf   : [
         {
@@ -119,14 +119,14 @@ export const LinkSetSchema: JSONSchemaType<LinkSetOptions> = {
           nullable : true
         },
         {
-          type    : 'number',
+          type    : 'integer',
           minimum : 0,
           nullable: true
         }
       ]
     },
     'link-netnsid': {
-      type    : 'number',
+      type    : 'integer',
       minimum : 1,
       nullable: true
     },
@@ -136,7 +136,7 @@ export const LinkSetSchema: JSONSchemaType<LinkSetOptions> = {
       nullable : true
     },
     vf            : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       nullable: true
     },
@@ -146,13 +146,13 @@ export const LinkSetSchema: JSONSchemaType<LinkSetOptions> = {
       nullable: true
     },
     vlan          : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       maximum : 4095,
       nullable: true
     },
     qos           : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       nullable: true
     },
@@ -167,17 +167,17 @@ export const LinkSetSchema: JSONSchemaType<LinkSetOptions> = {
       nullable: true
     },
     rate          : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       nullable: true
     },
     max_tx_rate   : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       nullable: true
     },
     min_tx_rate   : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       nullable: true
     },
@@ -202,12 +202,12 @@ export const LinkSetSchema: JSONSchemaType<LinkSetOptions> = {
       nullable: true
     },
     node_guid     : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       nullable: true
     },
     port_guid     : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       nullable: true
     },

@@ -19,18 +19,18 @@ export const AddLinkHsrArgsSchema: JSONSchemaType<AddLinkHsrTypeArgs> = {
       minLength: 1
     },
     supervision: {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       maximum : 255,
       nullable: true
     },
     version    : {
-      type    : 'number',
+      type    : 'integer',
       enum    : Object.values(HsrVersions) as HsrVersions[],
       nullable: true
     },
     proto      : {
-      type    : 'number',
+      type    : 'integer',
       enum    : Object.values(HsrProtocols) as HsrProtocols[],
       nullable: true
     }

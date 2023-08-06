@@ -14,7 +14,7 @@ export const AddLinkVxlanArgsSchema: JSONSchemaType<AddLinkVxlanTypeArgs> = {
   additionalProperties: false,
   properties          : {
     id              : {
-      type   : 'number',
+      type   : 'integer',
       minimum: 1,
       maximum: 16777215
     },
@@ -39,13 +39,13 @@ export const AddLinkVxlanArgsSchema: JSONSchemaType<AddLinkVxlanTypeArgs> = {
       nullable: true
     },
     ttl             : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       maximum : 255,
       nullable: true
     },
     tos             : {
-      type    : 'number',
+      type    : 'integer',
       nullable: true,
       minimum : 0,
       maximum : 255
@@ -56,13 +56,13 @@ export const AddLinkVxlanArgsSchema: JSONSchemaType<AddLinkVxlanTypeArgs> = {
       nullable: true
     },
     flowlabel       : {
-      type    : 'number',
+      type    : 'integer',
       nullable: true,
       minimum : 0,
       maximum : 1048575
     },
     dstport         : {
-      type    : 'number',
+      type    : 'integer',
       nullable: true,
       minimum : 1,
       maximum : 65535
@@ -72,12 +72,12 @@ export const AddLinkVxlanArgsSchema: JSONSchemaType<AddLinkVxlanTypeArgs> = {
       nullable: true,
       items   : [
         {
-          type   : 'number',
+          type   : 'integer',
           minimum: 1,
           maximum: 65535
         },
         {
-          type   : 'number',
+          type   : 'integer',
           minimum: 1,
           maximum: 65535
         }
@@ -150,12 +150,12 @@ export const AddLinkVxlanArgsSchema: JSONSchemaType<AddLinkVxlanTypeArgs> = {
       nullable: true
     },
     ageing          : {
-      type    : 'number',
+      type    : 'integer',
       nullable: true,
       minimum : 0
     },
     maxaddress      : {
-      type    : 'number',
+      type    : 'integer',
       nullable: true,
       minimum : 0
     },

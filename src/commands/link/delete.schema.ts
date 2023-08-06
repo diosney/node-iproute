@@ -28,7 +28,7 @@ export const LinkDeleteSchema: JSONSchemaType<LinkDeleteOptions> = {
       required  : ['group'],
       properties: {
         group: {
-          type   : 'number',
+          type   : 'integer',
           minimum: 0
         },
         type : {

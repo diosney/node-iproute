@@ -16,7 +16,7 @@ export const LinkShowSchema: JSONSchemaType<LinkShowOptions> = {
       nullable : true
     },
     group : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       nullable: true
     },

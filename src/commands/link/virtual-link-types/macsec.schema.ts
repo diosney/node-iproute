@@ -21,7 +21,7 @@ export const AddLinkMacsecArgsSchema: JSONSchemaType<AddLinkMacsecTypeArgs> = {
       nullable: true
     },
     port       : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 1,
       maximum : 65535,
       nullable: true
@@ -37,7 +37,7 @@ export const AddLinkMacsecArgsSchema: JSONSchemaType<AddLinkMacsecTypeArgs> = {
       nullable : true
     },
     icvlen     : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 1,
       maximum : 16,
       nullable: true
@@ -73,7 +73,7 @@ export const AddLinkMacsecArgsSchema: JSONSchemaType<AddLinkMacsecTypeArgs> = {
       nullable: true
     },
     window     : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       nullable: true
     },
@@ -83,7 +83,7 @@ export const AddLinkMacsecArgsSchema: JSONSchemaType<AddLinkMacsecTypeArgs> = {
       nullable: true
     },
     encodingsa : {
-      type    : 'number',
+      type    : 'integer',
       enum    : Object.values(SecureAssociationEncodings) as SecureAssociationEncodings[],
       nullable: true
     }

@@ -58,7 +58,7 @@ export const LinkAddSchema: JSONSchemaType<LinkAddOptions> = {
       maxLength: 15
     },
     txqueuelen  : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 1,
       nullable: true
     },
@@ -73,32 +73,32 @@ export const LinkAddSchema: JSONSchemaType<LinkAddOptions> = {
       nullable: true
     },
     mtu         : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 1,
       nullable: true
     },
     index       : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 1,
       nullable: true
     },
     numtxqueues : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 1,
       nullable: true
     },
     numrxqueues : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 1,
       nullable: true
     },
     gso_max_size: {
-      type    : 'number',
+      type    : 'integer',
       minimum : 1,
       nullable: true
     },
     gso_max_segs: {
-      type    : 'number',
+      type    : 'integer',
       minimum : 1,
       nullable: true
     },

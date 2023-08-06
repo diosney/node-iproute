@@ -11,7 +11,7 @@ export const AddLinkGeneveArgsSchema: JSONSchemaType<AddLinkGeneveTypeArgs> = {
   additionalProperties: false,
   properties          : {
     id              : {
-      type   : 'number',
+      type   : 'integer',
       minimum: 0,
       maximum: 16777215
     },
@@ -20,7 +20,7 @@ export const AddLinkGeneveArgsSchema: JSONSchemaType<AddLinkGeneveTypeArgs> = {
       format: 'ip'
     },
     ttl             : {
-      type    : ['string', 'number'],
+      type    : ['string', 'integer'],
       nullable: true,
       oneOf   : [
         {
@@ -29,7 +29,7 @@ export const AddLinkGeneveArgsSchema: JSONSchemaType<AddLinkGeneveTypeArgs> = {
           nullable: true
         },
         {
-          type    : 'number',
+          type    : 'integer',
           minimum : 0,
           maximum : 255,
           nullable: true
@@ -37,7 +37,7 @@ export const AddLinkGeneveArgsSchema: JSONSchemaType<AddLinkGeneveTypeArgs> = {
       ]
     },
     tos             : {
-      type    : 'number',
+      type    : 'integer',
       nullable: true,
       minimum : 0,
       maximum : 63
@@ -48,13 +48,13 @@ export const AddLinkGeneveArgsSchema: JSONSchemaType<AddLinkGeneveTypeArgs> = {
       nullable: true
     },
     flowlabel       : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       maximum : 1048575,
       nullable: true
     },
     dstport         : {
-      type    : 'number',
+      type    : 'integer',
       nullable: true,
       minimum : 1,
       maximum : 65535

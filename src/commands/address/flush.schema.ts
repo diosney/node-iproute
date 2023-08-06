@@ -16,7 +16,7 @@ export const AddressFlushSchema: JSONSchemaType<AddressFlushOptions> = {
       nullable : true
     },
     scope        : {
-      type    : ['string', 'number'],
+      type    : ['string', 'integer'],
       nullable: true,
       oneOf   : [
         {
@@ -25,14 +25,14 @@ export const AddressFlushSchema: JSONSchemaType<AddressFlushOptions> = {
           nullable: true
         },
         {
-          type    : 'number',
+          type    : 'integer',
           minimum : 0,
           nullable: true
         }
       ]
     },
     metric       : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       nullable: true
     },

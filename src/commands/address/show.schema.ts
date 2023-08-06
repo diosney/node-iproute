@@ -17,7 +17,7 @@ export const AddressShowSchema: JSONSchemaType<AddressShowOptions> = {
       nullable : true
     },
     scope        : {
-      type    : ['string', 'number'],
+      type    : ['string', 'integer'],
       nullable: true,
       oneOf   : [
         {
@@ -26,7 +26,7 @@ export const AddressShowSchema: JSONSchemaType<AddressShowOptions> = {
           nullable: true
         },
         {
-          type    : 'number',
+          type    : 'integer',
           minimum : 0,
           nullable: true
         }

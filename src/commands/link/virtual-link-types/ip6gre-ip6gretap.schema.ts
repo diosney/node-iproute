@@ -38,7 +38,7 @@ export const AddLinkIp6GreIp6GretapArgsSchema: JSONSchemaType<AddLinkIp6GreIp6gr
       nullable: true
     },
     key                  : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       maximum : 4294967295,
       nullable: true
@@ -49,7 +49,7 @@ export const AddLinkIp6GreIp6GretapArgsSchema: JSONSchemaType<AddLinkIp6GreIp6gr
       nullable: true
     },
     ikey                 : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       maximum : 4294967295,
       nullable: true
@@ -60,7 +60,7 @@ export const AddLinkIp6GreIp6GretapArgsSchema: JSONSchemaType<AddLinkIp6GreIp6gr
       nullable: true
     },
     okey                 : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       maximum : 4294967295,
       nullable: true
@@ -91,13 +91,13 @@ export const AddLinkIp6GreIp6GretapArgsSchema: JSONSchemaType<AddLinkIp6GreIp6gr
       nullable: true
     },
     hoplimit             : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 1,
       maximum : 255,
       nullable: true
     },
     encaplimit           : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       maximum : 255,
       nullable: true
@@ -108,7 +108,7 @@ export const AddLinkIp6GreIp6GretapArgsSchema: JSONSchemaType<AddLinkIp6GreIp6gr
       nullable : true
     },
     flowlabel            : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       maximum : 1048575,
       nullable: true

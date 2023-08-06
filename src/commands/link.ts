@@ -1,13 +1,13 @@
 import IpCommandWithReturnedData from '../common/classes/ip-command-with-returned-data';
 import IpCommand                 from '../common/classes/ip.command';
 import { SchemaIds }             from '../common/constants/schemas';
-import { GlobalOptions }     from '../common/interfaces/common';
-import { LinkAddOptions }    from './link/add.interfaces';
-import { LinkAddSchema }     from './link/add.schema';
-import { LinkDeleteOptions } from './link/delete.interfaces';
-import { LinkDeleteSchema }  from './link/delete.schema';
-import { LinkSetOptions }    from './link/set.interfaces';
-import { LinkSetSchema }     from './link/set.schema';
+import { GlobalOptions }         from '../common/interfaces/common';
+import { LinkAddOptions }        from './link/add.interfaces';
+import { LinkAddSchema }         from './link/add.schema';
+import { LinkDeleteOptions }     from './link/delete.interfaces';
+import { LinkDeleteSchema }      from './link/delete.schema';
+import { LinkSetOptions }        from './link/set.interfaces';
+import { LinkSetSchema }         from './link/set.schema';
 
 import {
   LinkShowOptions,
@@ -125,20 +125,10 @@ export async function set(options: LinkSetOptions,
   return await ipCmd.exec();
 }
 
-/**
- * Alias for {@link set}.
- * @see {@link set}
- */
-export async function change(options: LinkSetOptions,
-                             globalOptions: GlobalOptions = {}): Promise<IpCommand<LinkSetOptions>> {
-
-  return set(options, globalOptions);
-}
-
 export default {
   add,
   del,
   show,
   set,
-  change
+  change: set
 };

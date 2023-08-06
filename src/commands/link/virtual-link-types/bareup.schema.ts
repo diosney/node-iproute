@@ -10,25 +10,25 @@ export const AddLinkBareudpArgsSchema: JSONSchemaType<AddLinkBareudpTypeArgs> = 
   additionalProperties: false,
   properties          : {
     dstport     : {
-      type   : 'number',
+      type   : 'integer',
       minimum: 1,
       maximum: 65535
     },
     ethertype   : {
-      type : ['string', 'number'],
+      type : ['string', 'integer'],
       oneOf: [
         {
           type: 'string'
         },
         {
-          type   : 'number',
+          type   : 'integer',
           minimum: 0,
           maximum: 255
         }
       ]
     },
     srcportmin  : {
-      type    : 'number',
+      type    : 'integer',
       nullable: true,
       minimum : 1,
       maximum : 65535
