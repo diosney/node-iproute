@@ -1,4 +1,12 @@
-import { JSONSchemaType } from 'ajv';
+import { JSONSchemaType }            from 'ajv';
+import { AddRouteBpfEncapArgs }      from '../../commands/route/encap-types/bpf.interfaces';
+import { RouteIoam6EncapArgsSchema } from '../../commands/route/encap-types/ioam6.schema';
+import { RouteSeg6EncapArgsSchema }  from '../../commands/route/encap-types/seg6.schema';
+import {
+  EndB6Seg6LocalEncapArgs,
+  EndDt6Seg6LocalEncapArgs,
+  EndXSeg6LocalEncapArgs
+}                                    from '../../commands/route/encap-types/seg6local.interfaces';
 
 import { FilePathRequiredGlobalOption, GlobalOptions } from '../interfaces/common';
 
@@ -10,45 +18,59 @@ import {
 import { TestEnum } from './tests';
 
 export enum SchemaIds {
-  Empty                         = '#empty-schema',
+  Empty                            = '#empty-schema',
 
-  GlobalOptions                 = '#global-options',
-  FilePathGlobalOption          = '#global-options-file-path',
-  ComplexIpCommandTestOptions   = '#complex-ip-command-test-options',
+  GlobalOptions                    = '#global-options',
+  FilePathGlobalOption             = '#global-options-file-path',
+  ComplexIpCommandTestOptions      = '#complex-ip-command-test-options',
 
-  LinkAdd                       = '#link-add',
-  LinkDelete                    = '#link-delete',
-  LinkShow                      = '#link-show',
-  LinkSet                       = '#link-set',
+  LinkAdd                          = '#link-add',
+  LinkDelete                       = '#link-delete',
+  LinkShow                         = '#link-show',
+  LinkSet                          = '#link-set',
 
-  LinkAddVlanOptions            = '#link-add-vlan',
-  LinkAddVxlanOptions           = '#link-add-vxlan',
-  LinkAddVethVxcanOptions       = '#link-add-veth-vxcan',
-  LinkAddIpipSipOptions         = '#link-add-ipip-sip',
-  LinkAddGreGretapOptions       = '#link-add-gre-gretap',
-  LinkAddIp6GreIp6gretapOptions = '#link-add-ip6gre-ip6gretap',
-  LinkAddIpoibOptions           = '#link-add-ipoib',
-  LinkAddErspanIp6erspanOptions = '#link-add-erspan-ip6erspan',
-  LinkAddGeneveOptions          = '#link-add-geneve',
-  LinkAddBareupOptions          = '#link-add-bareudp',
-  LinkAddMacvlanMacvtapOptions  = '#link-add-macvlan-macvtap',
-  LinkAddHsrOptions             = '#link-add-hsr',
-  LinkAddVrfOptions             = '#link-add-vrf',
-  LinkAddRmnetOptions           = '#link-add-rmnet',
-  LinkAddXfrmOptions            = '#link-add-xfrm',
-  LinkAddBridgeOptions          = '#link-add-bridge',
-  LinkAddMacsecOptions          = '#link-add-macsec',
+  LinkAddVlanOptions               = '#link-add-vlan',
+  LinkAddVxlanOptions              = '#link-add-vxlan',
+  LinkAddVethVxcanOptions          = '#link-add-veth-vxcan',
+  LinkAddIpipSipOptions            = '#link-add-ipip-sip',
+  LinkAddGreGretapOptions          = '#link-add-gre-gretap',
+  LinkAddIp6GreIp6gretapOptions    = '#link-add-ip6gre-ip6gretap',
+  LinkAddIpoibOptions              = '#link-add-ipoib',
+  LinkAddErspanIp6erspanOptions    = '#link-add-erspan-ip6erspan',
+  LinkAddGeneveOptions             = '#link-add-geneve',
+  LinkAddBareupOptions             = '#link-add-bareudp',
+  LinkAddMacvlanMacvtapOptions     = '#link-add-macvlan-macvtap',
+  LinkAddHsrOptions                = '#link-add-hsr',
+  LinkAddVrfOptions                = '#link-add-vrf',
+  LinkAddRmnetOptions              = '#link-add-rmnet',
+  LinkAddXfrmOptions               = '#link-add-xfrm',
+  LinkAddBridgeOptions             = '#link-add-bridge',
+  LinkAddMacsecOptions             = '#link-add-macsec',
 
-  LinkSetMacvlanMacvtapOptions  = '#link-set-macvlan-macvtap',
-  LinkSetBondSlaveOptions       = '#link-set-bond-slave',
-  LinkSetBridgeSlaveOptions     = '#link-set-bridge-slave',
+  LinkSetMacvlanMacvtapOptions     = '#link-set-macvlan-macvtap',
+  LinkSetBondSlaveOptions          = '#link-set-bond-slave',
+  LinkSetBridgeSlaveOptions        = '#link-set-bridge-slave',
 
-  AddressAdd                    = '#address-add',
-  AddressDelete                 = '#address-delete',
-  AddressFlush                  = '#address-flush',
-  AddressShow                   = '#address-show',
+  AddressAdd                       = '#address-add',
+  AddressDelete                    = '#address-delete',
+  AddressFlush                     = '#address-flush',
+  AddressShow                      = '#address-show',
 
-  RuleAdd                       = '#rule-add',
+  RuleAdd                          = '#rule-add',
+
+  RouteShow                        = '#route-show',
+  RouteGet                         = '#route-get',
+  RouteAdd                         = '#route-add',
+
+  RouteAddBpfEncapArgs             = '#route-add-bpf-encap',
+  RouteAddIoam6EncapArgs           = '#route-add-ioam6-encap',
+  RouteAddIpEncapArgs              = '#route-add-ip-encap',
+  RouteAddMplsEncapArgs            = '#route-add-mpls-encap',
+  RouteAddSeg6EncapArgs            = '#route-add-seg6-encap',
+  RouteAddSeg6LocalEncapArgs       = '#route-add-seg6local-encap',
+  RouteAddEndXSeg6LocalEncapArgs   = '#route-add-seg6local-encap-endx',
+  RouteAddEndDt6Seg6LocalEncapArgs = '#route-add-seg6local-encap-end-dt6',
+  RouteAddEndB6Seg6LocalEncapArgs  = '#route-add-seg6local-encap-end-b6',
 }
 
 export const GlobalOptionsSchema: JSONSchemaType<GlobalOptions> = {

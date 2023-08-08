@@ -1,4 +1,4 @@
-import { RoutingTables, RuleTypes } from './add.constants';
+import { RuleRoutingTables, RuleTypes } from './add.constants';
 
 export interface RuleAddOptions {
   /** The type of this rule. */
@@ -64,8 +64,8 @@ export interface RuleAddOptions {
    * The routing table identifier to lookup if the rule selector matches.
    * It is also possible to use lookup instead of table.
    */
-  table?: number | RoutingTables;
-  lookup?: number | RoutingTables;
+  table?: number | RuleRoutingTables;
+  lookup?: number | RuleRoutingTables;
   /**
    * The routing protocol who installed the rule in question.
    * As an example when zebra installs a rule it would get RTPROT_ZEBRA as the installing protocol.

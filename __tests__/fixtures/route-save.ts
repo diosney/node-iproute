@@ -12,12 +12,12 @@ export const Tests: TestFixture<EmptyOptions, GlobalOptionsWithRequiredFilePath>
     expectedCmd      : [
       '',
       'ip',
-      'rule',
+      'route',
       'save',
       '>',
       './test-dump-file.binary'
     ],
-    expectedCmdToExec: ` ip rule save > ./test-dump-file.binary`
+    expectedCmdToExec: ` ip route save > ./test-dump-file.binary`
   }
 ];
 

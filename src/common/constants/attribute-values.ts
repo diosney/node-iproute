@@ -8,6 +8,11 @@ export enum EnableDisableToggle {
   Disable = 0
 }
 
+export enum EnableDisableAsStringToggle {
+  Enable  = 'enable',
+  Disable = 'disable'
+}
+
 export enum EnableDisableAutoToggle {
   Enable  = 'enable',
   Disable = 'disable',

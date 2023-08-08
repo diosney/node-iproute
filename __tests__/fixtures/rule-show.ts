@@ -1,5 +1,5 @@
-import { RoutingTables }  from '../../lib/commands/rule/add.constants';
-import { RuleAddOptions } from '../../lib/commands/rule/add.interfaces';
+import { RuleRoutingTables }  from '../../src/commands/rule/add.constants';
+import { RuleAddOptions } from '../../src/commands/rule/add.interfaces';
 import { TestFixture }    from '../../src/common/interfaces/tests';
 
 export const Tests: TestFixture<RuleAddOptions>[] = [
@@ -20,7 +20,7 @@ export const Tests: TestFixture<RuleAddOptions>[] = [
   {
     description      : 'with `table = main`',
     options          : {
-      table: RoutingTables.Main
+      table: RuleRoutingTables.Main
     },
     expectedCmd      : [
       '',
@@ -31,9 +31,9 @@ export const Tests: TestFixture<RuleAddOptions>[] = [
       'rule',
       'show',
       'table',
-      RoutingTables.Main
+      RuleRoutingTables.Main
     ],
-    expectedCmdToExec: ` ip -details -statistics -json rule show table ${RoutingTables.Main}`
+    expectedCmdToExec: ` ip -details -statistics -json rule show table ${RuleRoutingTables.Main}`
   },
   {
     description      : 'shows IPv4 and IPv6 addresses assigned to network interface `eth0`',

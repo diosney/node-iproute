@@ -1,10 +1,10 @@
 import { expect } from 'chai';
 
-import { del, add, show, set }   from '../../src/commands/link';
-import { Tests as linkAddTests } from '../fixtures/link-add';
-import { Tests as linkDeleteTests }   from '../fixtures/link-delete';
-import { Tests as linkShowTests }     from '../fixtures/link-show';
-import { Tests as linkSetTests }      from '../fixtures/link-set';
+import { del, add, show, set }      from '../src/commands/link';
+import { Tests as linkAddTests }    from './fixtures/link-add';
+import { Tests as linkDeleteTests } from './fixtures/link-delete';
+import { Tests as linkShowTests }   from './fixtures/link-show';
+import { Tests as linkSetTests }    from './fixtures/link-set';
 
 describe('link', function () {
   describe('add', function () {
@@ -73,7 +73,7 @@ describe('link', function () {
         it('should build the proper cmd array & string', async function () {
           let ipCommand = await set(test.options, {
             dryRun: true
-          }) as any;
+          });
 
           expect(ipCommand.cmd)
             .to.be.an('array')

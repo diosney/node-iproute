@@ -13,3 +13,11 @@ export enum AddressScopes {
   /** The address is valid only inside this host. */
   Host   = 'host',
 }
+
+export enum AddressFamilies {
+  Inet   = 'inet',
+  Inet6  = 'inet6',
+  Mpls   = 'mpls',
+  Bridge = 'bridge',
+  Link   = 'link',
+}

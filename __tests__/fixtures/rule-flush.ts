@@ -1,4 +1,4 @@
-import { EmptyOptions } from '../../lib/common/interfaces/common';
+import { EmptyOptions } from '../../src/common/interfaces/common';
 import { TestFixture }  from '../../src/common/interfaces/tests';
 
 export const Tests: TestFixture<EmptyOptions>[] = [

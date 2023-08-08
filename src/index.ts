@@ -4,12 +4,12 @@ import link from './commands/link';
 // Protocol address management.
 import address from './commands/address';
 
-// // Routing table management.
-// exports.route = require('./src/route/index');
-//
-// // Routing policy database (RPDB) management.
-// exports.rule = require('./src/rule/index');
-//
+// Routing table management.
+import route from './commands/route';
+
+// Routing policy database (RPDB) management.
+import rule from './commands/rule';
+
 // // State monitoring.
 // exports.monitor = require('./src/monitor/index');
 //
@@ -18,5 +18,7 @@ import address from './commands/address';
 
 export default {
   link,
-  address
+  address,
+  rule,
+  route
 };

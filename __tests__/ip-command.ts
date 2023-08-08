@@ -1,19 +1,19 @@
 import { expect } from 'chai';
-import IpCommand  from '../../src/common/classes/ip.command';
+import IpCommand  from '../src/common/classes/ip.command';
 
 import {
   EmptySchema,
   IpCommandTestOptionsSchema,
   SchemaIds
-} from '../../src/common/constants/schemas';
+} from '../src/common/constants/schemas';
 
-import { TestEnum }      from '../../src/common/constants/tests';
-import { GlobalOptions } from '../../src/common/interfaces/common';
+import { TestEnum }      from '../src/common/constants/tests';
+import { GlobalOptions } from '../src/common/interfaces/common';
 
 import {
   ComplexIpCommandTestOptions,
   Empty
-} from '../../src/common/interfaces/tests';
+} from '../src/common/interfaces/tests';
 
 describe('ip command', function () {
   describe('when testing a simple command with `sudo` set', function () {

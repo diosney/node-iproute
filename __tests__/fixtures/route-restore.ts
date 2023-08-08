@@ -4,7 +4,7 @@ import { TestFixture }                       from '../../src/common/interfaces/t
 
 export const Tests: TestFixture<EmptyOptions, GlobalOptionsWithRequiredFilePath>[] = [
   {
-    description      : 'with no params',
+    description      : 'with `filePath` set',
     options          : {},
     globalOptions    : {
       filePath: './test-dump-file.binary'
@@ -12,12 +12,12 @@ export const Tests: TestFixture<EmptyOptions, GlobalOptionsWithRequiredFilePath>
     expectedCmd      : [
       '',
       'ip',
-      'rule',
-      'save',
-      '>',
+      'route',
+      'restore',
+      '<',
       './test-dump-file.binary'
     ],
-    expectedCmdToExec: ` ip rule save > ./test-dump-file.binary`
+    expectedCmdToExec: ` ip route restore < ./test-dump-file.binary`
   }
 ];
 

@@ -9,16 +9,16 @@ import {
   save,
   restore,
   show
-} from '../../src/commands/address';
+} from '../src/commands/address';
 
-import { Tests as addressAddTests }     from '../fixtures/address-add';
-import { Tests as addressChangeTests }  from '../fixtures/address-change';
-import { Tests as addressReplaceTests } from '../fixtures/address-replace';
-import { Tests as addressDeleteTests }  from '../fixtures/address-delete';
-import { Tests as addressFlushTests }   from '../fixtures/address-flush';
-import { Tests as addressSaveTests }    from '../fixtures/address-save';
-import { Tests as addressRestoreTests } from '../fixtures/address-restore';
-import { Tests as addressShowTests }    from '../fixtures/address-show';
+import { Tests as addressAddTests }     from './fixtures/address-add';
+import { Tests as addressChangeTests }  from './fixtures/address-change';
+import { Tests as addressReplaceTests } from './fixtures/address-replace';
+import { Tests as addressDeleteTests }  from './fixtures/address-delete';
+import { Tests as addressFlushTests }   from './fixtures/address-flush';
+import { Tests as addressSaveTests }    from './fixtures/address-save';
+import { Tests as addressRestoreTests } from './fixtures/address-restore';
+import { Tests as addressShowTests }    from './fixtures/address-show';
 
 describe('address', function () {
   describe('add', function () {

@@ -1,9 +1,9 @@
-import { RoutingTables } from './add.constants';
+import { RuleRoutingTables } from './add.constants';
 
 // TODO: Need help to build this undocumented & comprehensive interface.
 export interface RuleInfo {
   priority: number;
   src: string;
-  table: RoutingTables | number;
+  table: RuleRoutingTables | number;
   protocol: string | number;
 }

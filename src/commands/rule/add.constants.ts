@@ -1,4 +1,4 @@
-export enum RoutingTables {
+export enum RuleRoutingTables {
   /**
    * The `local` table is a special routing table containing high priority control routes for local
    * and broadcast addresses.

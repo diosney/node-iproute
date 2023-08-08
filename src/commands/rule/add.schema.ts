@@ -1,8 +1,8 @@
 import { JSONSchemaType } from 'ajv';
 
-import { SchemaIds }                from '../../common/constants/schemas';
-import { RoutingTables, RuleTypes } from './add.constants';
-import { RuleAddOptions }           from './add.interfaces';
+import { SchemaIds }                    from '../../common/constants/schemas';
+import { RuleRoutingTables, RuleTypes } from './add.constants';
+import { RuleAddOptions }               from './add.interfaces';
 
 export const RuleAddSchema: JSONSchemaType<RuleAddOptions> = {
   $id       : SchemaIds.RuleAdd,
@@ -138,7 +138,7 @@ export const RuleAddSchema: JSONSchemaType<RuleAddOptions> = {
       oneOf   : [
         {
           type    : 'string',
-          enum    : Object.values(RoutingTables) as RoutingTables[],
+          enum    : Object.values(RuleRoutingTables) as RuleRoutingTables[],
           nullable: true
         },
         {
@@ -154,7 +154,7 @@ export const RuleAddSchema: JSONSchemaType<RuleAddOptions> = {
       oneOf   : [
         {
           type    : 'string',
-          enum    : Object.values(RoutingTables) as RoutingTables[],
+          enum    : Object.values(RuleRoutingTables) as RuleRoutingTables[],
           nullable: true
         },
         {

@@ -1,4 +1,4 @@
-import { RuleAddOptions } from '../../lib/commands/rule/add.interfaces';
+import { RuleAddOptions } from '../../src/commands/rule/add.interfaces';
 import { TestFixture }    from '../../src/common/interfaces/tests';
 
 export const Tests: TestFixture<RuleAddOptions>[] = [

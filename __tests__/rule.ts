@@ -7,14 +7,14 @@ import {
   restore,
   flush,
   show
-} from '../../src/commands/rule';
+} from '../src/commands/rule';
 
-import { Tests as ruleAddTests }     from '../fixtures/rule-add';
-import { Tests as ruleDeleteTests }  from '../fixtures/rule-delete';
-import { Tests as ruleSaveTests }    from '../fixtures/rule-save';
-import { Tests as ruleRestoreTests } from '../fixtures/rule-restore';
-import { Tests as ruleFlushTests }   from '../fixtures/rule-flush';
-import { Tests as ruleShowTests }    from '../fixtures/rule-show';
+import { Tests as ruleAddTests }     from './fixtures/rule-add';
+import { Tests as ruleDeleteTests }  from './fixtures/rule-delete';
+import { Tests as ruleSaveTests }    from './fixtures/rule-save';
+import { Tests as ruleRestoreTests } from './fixtures/rule-restore';
+import { Tests as ruleFlushTests }   from './fixtures/rule-flush';
+import { Tests as ruleShowTests }    from './fixtures/rule-show';
 
 describe('rule', function () {
   describe('add', function () {
