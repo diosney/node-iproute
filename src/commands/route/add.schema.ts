@@ -21,15 +21,15 @@ import {
 export const RouteAddSchema: JSONSchemaType<RouteAddOptions> = {
   $id       : SchemaIds.RouteAdd,
   type      : 'object',
-  required  : ['to_arg'],
+  required  : ['to_'],
   properties: {
-    type_arg          : {
+    type_          : {
       type    : 'string',
       enum    : Object.values(RoutingTableTypes) as RoutingTableTypes[],
       default : RoutingTableTypes.Unicast,
       nullable: true
     },
-    to_arg            : {
+    to_            : {
       type  : 'string',
       format: 'ip-with-optional-mask-and-all-and-default-values'
     },
@@ -323,7 +323,7 @@ export const RouteAddSchema: JSONSchemaType<RouteAddOptions> = {
       type    : 'boolean',
       nullable: true
     },
-    nexthops_args     : {
+    nexthops_     : {
       type    : 'array',
       nullable: true,
       minItems: 1,

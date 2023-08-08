@@ -282,7 +282,7 @@ export const LinkSetSchema: JSONSchemaType<LinkSetOptions> = {
       nullable: true
     },
     // TODO: How to condition anyOf depending of `type`? if/then/else?
-    type_args: {
+    type_: {
       type    : 'object',
       nullable: true,
       anyOf   : [

@@ -5,17 +5,25 @@ export interface Empty {
 }
 
 export interface ComplexIpCommandTestOptions extends ComplexIpCommandTestArgsOptions {
-  type_args: ComplexIpCommandTestArgsOptions;
+  nestedInvisibleKey_: ComplexIpCommandTestArgsOptions;
 }
 
 export interface ComplexIpCommandTestArgsOptions {
-  a_string: string;
-  a_number: number;
-  a_tuple: [number, number];
-  a_flag: boolean;
-  noa_flag: boolean;
-  an_enum: TestEnum;
-  type_arg?: number;
+  aString: string;
+  aNumber: number;
+  anEnum: TestEnum;
+
+  aFlag: boolean;
+  noaFlag: boolean;
+
+  number_?: number;
+
+  aTuple: [number, number];
+
+  anArray: Array<{
+    aNumber: number;
+    aStringWithDefaultValue?: string;
+  }>;
 }
 
 export interface TestFixture<T_Options, T_GlobalOptions = GlobalOptions> {

@@ -22,7 +22,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       address  : '00:11:22:33:44:55',
       mtu      : 1500,
       type     : VirtualLinkTypes.Vlan,
-      type_args: {
+      type_: {
         id      : 100,
         protocol: VlanProtocols['802.1Q']
       }
@@ -55,7 +55,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'vxlan0',
       type     : VirtualLinkTypes.Vxlan,
-      type_args: {
+      type_: {
         id     : 100,
         dev    : 'eth0',
         group  : '239.1.1.1',
@@ -96,7 +96,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'veth0',
       type     : VirtualLinkTypes.Veth,
-      type_args: {
+      type_: {
         'peer name': 'veth1'
       }
     },
@@ -122,7 +122,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'vxcan0',
       type     : VirtualLinkTypes.Vxcan,
-      type_args: {
+      type_: {
         'peer name': 'vxcan1'
       }
     },
@@ -148,7 +148,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'ipiptun0',
       type     : VirtualLinkTypes.Ipip,
-      type_args: {
+      type_: {
         local        : '192.168.1.10',
         remote       : '203.0.113.10',
         'encap-sport': 5000,
@@ -182,7 +182,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'sit0',
       type     : VirtualLinkTypes.Sit,
-      type_args: {
+      type_: {
         local : '203.0.113.10',
         remote: '198.51.100.10',
         encap : SecondaryUdpEncapsulations.Fou,
@@ -217,7 +217,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'gre1',
       type     : VirtualLinkTypes.Gre,
-      type_args: {
+      type_: {
         local : '192.168.1.10',
         remote: '203.0.113.10',
         key   : 56789,
@@ -252,7 +252,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'gretap1',
       type     : VirtualLinkTypes.Gretap,
-      type_args: {
+      type_: {
         local : '192.168.1.10',
         remote: '203.0.113.10',
         key   : 1234,
@@ -290,7 +290,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'gre1',
       type     : VirtualLinkTypes.Ip6gre,
-      type_args: {
+      type_: {
         local     : '2001:db8::1',
         remote    : '2001:db8::2',
         hoplimit  : 64,
@@ -334,7 +334,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'gre1',
       type     : VirtualLinkTypes.Ip6gretap,
-      type_args: {
+      type_: {
         local     : '2001:db8::1',
         remote    : '2001:db8::2',
         hoplimit  : 64,
@@ -378,7 +378,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'ib0',
       name     : 'ib0.8001',
       type     : VirtualLinkTypes.Ipoib,
-      type_args: {
+      type_: {
         pkey: 'B001',
         mode: IpoIbModes.Connected
       }
@@ -407,7 +407,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'erspan1',
       type     : VirtualLinkTypes.Erspan,
-      type_args: {
+      type_: {
         local      : '10.0.0.1',
         remote     : '10.0.0.2',
         seq        : true,
@@ -447,7 +447,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'ip6erspan1',
       type     : VirtualLinkTypes.Ip6erspan,
-      type_args: {
+      type_: {
         local      : '2001:db8::1',
         remote     : '2001:db8::2',
         seq        : true,
@@ -490,7 +490,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'geneve0',
       type     : VirtualLinkTypes.Geneve,
-      type_args: {
+      type_: {
         id     : 1234,
         remote : '192.0.2.1',
         dstport: 6081,
@@ -531,7 +531,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'bareudp0',
       type     : VirtualLinkTypes.Bareudp,
-      type_args: {
+      type_: {
         dstport   : 5000,
         ethertype : 800,
         srcportmin: 4000
@@ -563,7 +563,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'macvlan0',
       type     : VirtualLinkTypes.Macvlan,
-      type_args: {
+      type_: {
         mode      : MacvlanMacvtapModes.Bridge,
         bcqueuelen: 800
       }
@@ -592,7 +592,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'macvlan0',
       type     : VirtualLinkTypes.Macvtap,
-      type_args: {
+      type_: {
         mode: MacvlanMacvtapModes.Vepa
       }
     },
@@ -618,7 +618,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'hsr0',
       type     : VirtualLinkTypes.Hsr,
-      type_args: {
+      type_: {
         slave1: 'eth0',
         slave2: 'eth1'
       }
@@ -647,7 +647,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'vrf0',
       type     : VirtualLinkTypes.Vrf,
-      type_args: {
+      type_: {
         table: 1000
       }
     },
@@ -673,7 +673,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'rmnet0',
       type     : VirtualLinkTypes.Rmnet,
-      type_args: {
+      type_: {
         mux_id: 200
       }
     },
@@ -699,7 +699,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'xfrm0',
       type     : VirtualLinkTypes.Xfrm,
-      type_args: {
+      type_: {
         dev  : 'eth0',
         if_id: 100
       }
@@ -728,7 +728,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'br0',
       type     : VirtualLinkTypes.Bridge,
-      type_args: {
+      type_: {
         forward_delay     : 30,
         hello_time        : 10,
         max_age           : 40,
@@ -778,7 +778,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       link     : 'eth0',
       name     : 'macsec0',
       type     : VirtualLinkTypes.Macsec,
-      type_args: {
+      type_: {
         encrypt: OnOffToggle.On,
         sci    : '0102030405060708',
         cipher : 'gcm-aes-128',

@@ -8,7 +8,7 @@ export interface AddRouteSeg6LocalEncapArgs {
   /** Operation to perform on matching packets. */
   action: EncapSeg6LocalActions;
   /** Operation arguments. */
-  action_args?: EndXSeg6LocalEncapArgs
+  action_?: EndXSeg6LocalEncapArgs
     | EndDt6Seg6LocalEncapArgs
     | EndB6Seg6LocalEncapArgs;
   /**

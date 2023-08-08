@@ -5,7 +5,7 @@ export const Tests: TestFixture<RouteAddOptions>[] = [
   {
     description      : 'with `local` and `dev`',
     options          : {
-      to_arg: 'default',
+      to_: 'default',
       via   : {
         address: '192.168.1.1'
       },

@@ -1,5 +1,6 @@
 import { expect } from 'chai';
-import IpCommand  from '../src/common/classes/ip.command';
+
+import IpCommand from '../src/common/classes/ip.command';
 
 import {
   EmptySchema,
@@ -88,20 +89,38 @@ describe('ip command', function () {
       };
 
       const options: ComplexIpCommandTestOptions = {
-        a_string : 'a-string',
-        a_number : 1,
-        a_tuple  : [0, 1],
-        a_flag   : true,
-        noa_flag : true,
-        an_enum  : TestEnum.ValueA,
-        type_arg : 2,
-        type_args: {
-          a_string: 'b-string',
-          a_number: 2,
-          a_tuple : [2, 3],
-          a_flag  : false,
-          noa_flag: false,
-          an_enum : TestEnum.ValueB
+        aString: 'a-string',
+        aNumber: 1,
+        anEnum : TestEnum.ValueA,
+
+        aFlag  : true,
+        noaFlag: true,
+
+        number_: 2,
+
+        aTuple : [0, 1],
+        anArray: [
+          {
+            aNumber: 25
+          }
+        ],
+
+        nestedInvisibleKey_: {
+          aString: 'b-string',
+          aNumber: 2,
+          anEnum : TestEnum.ValueB,
+
+          aFlag  : false,
+          noaFlag: false,
+
+          aTuple: [2, 3],
+
+          anArray: [
+            {
+              aNumber                : 15,
+              aStringWithDefaultValue: 'c-string'
+            }
+          ]
         }
       };
 
@@ -119,38 +138,47 @@ describe('ip command', function () {
           '',
           // Made up command.
           'test',
-          'a_string',
+          'aString',
           'a-string',
-          'a_number',
+          'aNumber',
           1,
-          'a_tuple',
+          'anEnum',
+          'value-a',
+          'aFlag',
+          'noaFlag',
+          2,
+          'aTuple',
           0,
           1,
-          'a_flag',
-          'noa_flag',
-          'an_enum',
-          'value-a',
-          '',
-          2,
-          // `type_args` now.
-          'a_string',
+          'anArray',
+          'aNumber',
+          25,
+          'aStringWithDefaultValue',
+          'default-value',
+          // `type_` now.
+          'aString',
           'b-string',
-          'a_number',
+          'aNumber',
           2,
-          'a_tuple',
+          'anEnum',
+          'value-b',
+          'noaFlag',
+          'aFlag',
+          'aTuple',
           2,
           3,
-          'noa_flag',
-          'a_flag',
-          'an_enum',
-          'value-b'
+          'anArray',
+          'aNumber',
+          15,
+          'aStringWithDefaultValue',
+          'c-string'
         ]
       );
 
       expect(ipCommand.cmdToExec)
         .to.be.a('string')
         .and.to.be.eq(
-        ' test a_string a-string a_number 1 a_tuple 0 1 a_flag noa_flag an_enum value-a  2 a_string b-string a_number 2 a_tuple 2 3 noa_flag a_flag an_enum value-b');
+        ' test aString a-string aNumber 1 anEnum value-a aFlag noaFlag 2 aTuple 0 1 anArray aNumber 25 aStringWithDefaultValue default-value aString b-string aNumber 2 anEnum value-b noaFlag aFlag aTuple 2 3 anArray aNumber 15 aStringWithDefaultValue c-string');
     });
   });
 });

@@ -184,7 +184,7 @@ export const RouteSeg6LocalEncapArgsSchema: JSONSchemaType<AddRouteSeg6LocalEnca
       type: 'string',
       enum: Object.values(EncapSeg6LocalActions) as EncapSeg6LocalActions[]
     },
-    action_args: {
+    action_: {
       type    : 'object',
       nullable: true,
       oneOf   : [

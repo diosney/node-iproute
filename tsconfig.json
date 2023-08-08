@@ -6,6 +6,7 @@
     "outDir": "./lib",
     "strict": true,
     "strictNullChecks": true,
+    "esModuleInterop": true,
     "types": [
       "node",
       "mocha",

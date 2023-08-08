@@ -20,7 +20,7 @@
 
 - poner en documentacion 
   - q atributos son en el orden sensitive. 
-  - _arg o _args el key no se pone.
+  - terminado en `_` el key no se pone. ex: `type_`.
 
   - como construir el objeto:
     - atributos con valores string y number con par key-value:
@@ -40,22 +40,15 @@
        - [ protodown_reason PREASON { on | off } ]
 
 
-- jsonschema arreglar:
-  - flags "key"/"nokey" como ponerlos, ahora mismo se pueden adicionar los 2 al
-    - mismo tiempo y deberian ser exclusivos.
-
 - Commands to add:
   - link
     - xstats
     - afstats
-  - addrlabel
     
 - add global option to disable schema validations? 
+- add global option to `ensureOrder` by using the schemas?
 
 - poner en doc q despues de agregar una rule tiene q hacer: `ip route flush cache` o `ip route flush table cache`
 
 - rellenar los return interfaces de los "show".
 - usar el JSON schema para garantizar el orden de los parametros de entrada?
-- adicionar un parser para comandos?
-- revisar - _args en nombre de variables, ver en q dejarlo al final.
-- agregar tipo de argumento anidado, objeto.

@@ -23,9 +23,9 @@ export interface RouteAddOptions {
    *
    * There is also a special PREFIX `default` - which is equivalent to IP `0/0` or to IPv6 `::/0`.
    */
-  type_arg?: RoutingTableTypes;
+  type_?: RoutingTableTypes;
   /** The destination address. */
-  to_arg: string;
+  to_: string;
   /**
    *  The Type Of Service (TOS) key. This key has no associated mask and the longest match is
    *  understood as: First, compare the TOS of the route and of the packet.
@@ -212,7 +212,7 @@ export interface RouteAddOptions {
    *
    * NEXTHOP is a complex value with its own syntax similar to the top level argument lists.
    */
-  nexthops_args?: Array<{
+  nexthops_?: Array<{
     nexthop?: true;
   } & NhArgs>;
 }

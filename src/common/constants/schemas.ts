@@ -1,14 +1,9 @@
-import { JSONSchemaType }            from 'ajv';
-import { AddRouteBpfEncapArgs }      from '../../commands/route/encap-types/bpf.interfaces';
-import { RouteIoam6EncapArgsSchema } from '../../commands/route/encap-types/ioam6.schema';
-import { RouteSeg6EncapArgsSchema }  from '../../commands/route/encap-types/seg6.schema';
-import {
-  EndB6Seg6LocalEncapArgs,
-  EndDt6Seg6LocalEncapArgs,
-  EndXSeg6LocalEncapArgs
-}                                    from '../../commands/route/encap-types/seg6local.interfaces';
+import { JSONSchemaType } from 'ajv';
 
-import { FilePathRequiredGlobalOption, GlobalOptions } from '../interfaces/common';
+import {
+  FilePathRequiredGlobalOption,
+  GlobalOptions
+} from '../interfaces/common';
 
 import {
   ComplexIpCommandTestOptions,
@@ -135,23 +130,41 @@ export const IpCommandTestOptionsSchema: JSONSchemaType<ComplexIpCommandTestOpti
   $id       : SchemaIds.ComplexIpCommandTestOptions,
   type      : 'object',
   required  : [
-    'a_string',
-    'a_number',
-    'a_tuple',
-    'a_flag',
-    'noa_flag',
-    'an_enum',
-    'type_args'
+    'aString',
+    'aNumber',
+    'anEnum',
+
+    'aFlag',
+    'noaFlag',
+
+    'aTuple',
+    'anArray',
+
+    'nestedInvisibleKey_'
   ],
   properties: {
-    a_string : {
+    aString                : {
       type: 'string'
     },
-    a_number : {
+    aNumber                : {
       type   : 'number',
       minimum: 0
     },
-    a_tuple  : {
+    anEnum                 : {
+      type: 'string',
+      enum: Object.values(TestEnum) as TestEnum[]
+    },
+    aFlag                  : {
+      type: 'boolean'
+    },
+    noaFlag                : {
+      type: 'boolean'
+    },
+    number_             : {
+      type    : 'number',
+      nullable: true
+    },
+    aTuple                 : {
       type    : 'array',
       items   : [
         {
@@ -166,39 +179,59 @@ export const IpCommandTestOptionsSchema: JSONSchemaType<ComplexIpCommandTestOpti
       minItems: 2,
       maxItems: 2
     },
-    a_flag   : {
-      type: 'boolean'
+    anArray                : {
+      type : 'array',
+      items: {
+        type      : 'object',
+        required  : ['aNumber'],
+        properties: {
+          aNumber                : {
+            type: 'number'
+          },
+          aStringWithDefaultValue: {
+            type    : 'string',
+            default : 'default-value',
+            nullable: true
+          }
+        }
+      }
     },
-    noa_flag : {
-      type: 'boolean'
-    },
-    an_enum  : {
-      type: 'string',
-      enum: Object.values(TestEnum) as TestEnum[]
-    },
-    type_arg : {
-      type    : 'number',
-      nullable: true
-    },
-    type_args: {
+    nestedInvisibleKey_: {
       type      : 'object',
       required  : [
-        'a_string',
-        'a_number',
-        'a_tuple',
-        'a_flag',
-        'noa_flag',
-        'an_enum'
+        'aString',
+        'aNumber',
+        'anEnum',
+
+        'aFlag',
+        'noaFlag',
+
+        'aTuple',
+        'anArray'
       ],
       properties: {
-        a_string: {
+        aString   : {
           type: 'string'
         },
-        a_number: {
+        aNumber   : {
           type   : 'number',
           minimum: 0
         },
-        a_tuple : {
+        anEnum    : {
+          type: 'string',
+          enum: Object.values(TestEnum) as TestEnum[]
+        },
+        aFlag     : {
+          type: 'boolean'
+        },
+        noaFlag   : {
+          type: 'boolean'
+        },
+        number_: {
+          type    : 'number',
+          nullable: true
+        },
+        aTuple    : {
           type    : 'array',
           items   : [
             {
@@ -213,19 +246,22 @@ export const IpCommandTestOptionsSchema: JSONSchemaType<ComplexIpCommandTestOpti
           minItems: 2,
           maxItems: 2
         },
-        a_flag  : {
-          type: 'boolean'
-        },
-        noa_flag: {
-          type: 'boolean'
-        },
-        type_arg: {
-          type    : 'number',
-          nullable: true
-        },
-        an_enum : {
-          type: 'string',
-          enum: Object.values(TestEnum) as TestEnum[]
+        anArray   : {
+          type : 'array',
+          items: {
+            type      : 'object',
+            required  : ['aNumber'],
+            properties: {
+              aNumber                : {
+                type: 'number'
+              },
+              aStringWithDefaultValue: {
+                type    : 'string',
+                default : 'default-value',
+                nullable: true
+              }
+            }
+          }
         }
       }
     }

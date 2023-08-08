@@ -44,7 +44,7 @@ export const typeArgsSchemas: any = [
 export const LinkAddSchema: JSONSchemaType<LinkAddOptions> = {
   $id       : SchemaIds.LinkAdd,
   type      : 'object',
-  required  : ['name', 'type', 'type_args'],
+  required  : ['name', 'type', 'type_'],
   properties: {
     link        : {
       type     : 'string',
@@ -107,7 +107,7 @@ export const LinkAddSchema: JSONSchemaType<LinkAddOptions> = {
       enum: Object.values(VirtualLinkTypes) as VirtualLinkTypes[]
     },
     // TODO: How to condition anyOf depending of `type`? if/then/else?
-    type_args: {
+    type_: {
       anyOf: typeArgsSchemas
     }
   }

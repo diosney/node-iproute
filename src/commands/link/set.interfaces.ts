@@ -17,11 +17,11 @@ interface LinkSetCommonOptions {
   /** Change the state of the device to DOWN. */
   down?: true;
   /**
-   * Change type-specific settings. For a list of supported types and arguments refer to {@link LinkAddOptions.type_args}.
-   * In addition to that, it is possible to manipulate settings to slave devices {@link type_args}.
+   * Change type-specific settings. For a list of supported types and arguments refer to {@link LinkAddOptions.type_}.
+   * In addition to that, it is possible to manipulate settings to slave devices {@link type_}.
    */
   type?: ExtendedVirtualLinkTypes;
-  type_args?: ExtendedTypeArgs;
+  type_?: ExtendedTypeArgs;
   /** Change the NOARP flag on the device. */
   arp?: OnOffToggle;
   /**
