@@ -1,37 +1,35 @@
-import { JSONSchemaType } from 'ajv';
+import {JSONSchemaType} from 'ajv';
 
-import { SchemaIds }            from '../../../common/constants/schemas';
-import { AddRouteBpfEncapArgs } from './bpf.interfaces';
+import {SchemaIds} from '../../../common/constants/schemas';
+import {AddRouteBpfEncapArgs} from './bpf.interfaces';
 
 export const RouteBpfEncapArgsSchema: JSONSchemaType<AddRouteBpfEncapArgs> = {
-  $id       : SchemaIds.RouteAddBpfEncapArgs,
-  type      : 'object',
-  required  : [],
+  $id: SchemaIds.RouteAddBpfEncapArgs,
+  type: 'object',
+  required: ['bpf'],
   properties: {
-    bpf     : {
-      type    : 'boolean',
-      enum    : [true],
-      default : true,
+    bpf: {
+      type: 'boolean',
+      enum: [true],
+    },
+    in: {
+      type: 'string',
+      minLength: 1,
       nullable: true
     },
-    in      : {
-      type     : 'string',
+    out: {
+      type: 'string',
       minLength: 1,
-      nullable : true
+      nullable: true
     },
-    out     : {
-      type     : 'string',
+    xmit: {
+      type: 'string',
       minLength: 1,
-      nullable : true
-    },
-    xmit    : {
-      type     : 'string',
-      minLength: 1,
-      nullable : true
+      nullable: true
     },
     headroom: {
-      type    : 'integer',
-      minimum : 1,
+      type: 'integer',
+      minimum: 1,
       nullable: true
     }
   }

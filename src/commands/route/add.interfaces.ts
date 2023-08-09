@@ -17,7 +17,7 @@ import {
 export interface RouteAddOptions {
   /**
    * The destination prefix of the route.
-   * If TYPE is omitted, `ip` assumes type {@link RoutingTableTypes.unicast}.
+   * If TYPE is omitted, `ip` assumes type {@link RoutingTableTypes.Unicast}.
    * PREFIX is an IP or IPv6 address optionally followed by a slash and the prefix length.
    * If the length of the prefix is missing, `ip` assumes a full-length host route.
    *
@@ -92,7 +92,7 @@ export interface RouteAddOptions {
    */
   via?: {
     family?: AddressFamilies;
-    address: string;
+    address_: string;
   };
   /** The output device name. */
   dev?: string;
@@ -213,7 +213,7 @@ export interface RouteAddOptions {
    * NEXTHOP is a complex value with its own syntax similar to the top level argument lists.
    */
   nexthops_?: Array<{
-    nexthop?: true;
+    nexthop: true;
   } & NhArgs>;
 }
 

@@ -1,10 +1,10 @@
 export interface AddRouteIoam6EncapArgs {
   /** XXX */
-  ioam6?: true;
+  ioam6: true;
   /** XXX */
-  trace?: true;
+  trace: true;
   /** XXX */
-  prealloc?: true;
+  prealloc: true;
   /**  List of IOAM data required in the trace, represented by a bitfield (24 bits). */
   type: number;
   /**

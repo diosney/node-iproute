@@ -1,7 +1,7 @@
 export interface AddRouteSeg6EncapArgs {
   /** XXX */
-  seg6?: true;
-  mode?: true;
+  seg6: true;
+  mode: true;
   /** Encapsulate packet in an outer IPv6 header with SR. */
   encap?: true;
   /** Directly insert Segment Routing Header after IPv6 header. */

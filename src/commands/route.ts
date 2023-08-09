@@ -1,8 +1,8 @@
 import IpCommandWithRedirectFromFilepath from '../common/classes/ip-command-with-redirect-from-filepath';
-import IpCommandWithRedirectToFilepath   from '../common/classes/ip-command-with-redirect-to-filepath';
-import IpCommandWithReturnedData         from '../common/classes/ip-command-with-returned-data';
-import IpCommand                         from '../common/classes/ip.command';
-import { EmptySchema, SchemaIds }        from '../common/constants/schemas';
+import IpCommandWithRedirectToFilepath from '../common/classes/ip-command-with-redirect-to-filepath';
+import IpCommandWithReturnedData from '../common/classes/ip-command-with-returned-data';
+import IpCommand from '../common/classes/ip.command';
+import {EmptySchema, SchemaIds} from '../common/constants/schemas';
 
 import {
   EmptyOptions,
@@ -10,10 +10,12 @@ import {
   GlobalOptionsWithRequiredFilePath
 } from '../common/interfaces/common';
 
-import { RouteGetOptions }             from './route/get.interfaces';
-import { RouteGetSchema }              from './route/get.schema';
-import { RouteInfo, RouteShowOptions } from './route/show.interfaces';
-import { RouteShowSchema }             from './route/show.schema';
+import {RouteGetOptions} from './route/get.interfaces';
+import {RouteGetSchema} from './route/get.schema';
+import {RouteInfo, RouteShowOptions} from './route/show.interfaces';
+import {RouteShowSchema} from './route/show.schema';
+import {RouteAddOptions} from "./route/add.interfaces";
+import {RouteAddSchema} from "./route/add.schema";
 
 /**
  * List routes.
@@ -41,9 +43,9 @@ export async function show(options: RouteShowOptions,
     {
       ...globalOptions,
       // Overrides for a better show.
-      '-details'   : true,
+      '-details': true,
       '-statistics': true,
-      '-json'      : true
+      '-json': true
     },
     cmd);
 
@@ -74,9 +76,9 @@ export async function flush(options: RouteShowOptions,
     {
       ...globalOptions,
       // Overrides for a better show.
-      '-details'   : true,
+      '-details': true,
       '-statistics': true,
-      '-json'      : true
+      '-json': true
     },
     cmd);
 
@@ -154,13 +156,133 @@ export async function get(options: RouteGetOptions,
     {
       ...globalOptions,
       // Overrides for a better show.
-      '-details'   : true,
+      '-details': true,
       '-statistics': true,
-      '-json'      : true
+      '-json': true
     },
     cmd);
 
   return await ipCmd.exec<RouteInfo[]>();
+}
+
+/**
+ * Add new route.
+ *
+ * @param options        - Parameters options to be passed down to `ip`.
+ * @param globalOptions  - Global parameters options that affects the command execution.
+ *
+ * @throws {@link ParametersError} - Throws when passed parameters are invalid.
+ * @throws {@link CommandError}    - Throws when the executed command fails.
+ */
+export async function add(options: RouteAddOptions,
+                          globalOptions: GlobalOptions = {}): Promise<IpCommand<RouteAddOptions>> {
+
+  const cmd = ['ip', 'route', 'add'];
+
+  const ipCmd = new IpCommand<RouteAddOptions>(
+    SchemaIds.RouteAdd,
+    RouteAddSchema,
+    options,
+    globalOptions,
+    cmd);
+
+  return await ipCmd.exec();
+}
+
+/**
+ * Delete route.
+ *
+ * @param options        - Parameters options to be passed down to `ip`.
+ * @param globalOptions  - Global parameters options that affects the command execution.
+ *
+ * @throws {@link ParametersError} - Throws when passed parameters are invalid.
+ * @throws {@link CommandError}    - Throws when the executed command fails.
+ */
+export async function del(options: RouteAddOptions,
+                          globalOptions: GlobalOptions = {}): Promise<IpCommand<RouteAddOptions>> {
+
+  const cmd = ['ip', 'route', 'delete'];
+
+  const ipCmd = new IpCommand<RouteAddOptions>(
+    SchemaIds.RouteAdd,
+    RouteAddSchema,
+    options,
+    globalOptions,
+    cmd);
+
+  return await ipCmd.exec();
+}
+
+/**
+ * Change route.
+ *
+ * @param options        - Parameters options to be passed down to `ip`.
+ * @param globalOptions  - Global parameters options that affects the command execution.
+ *
+ * @throws {@link ParametersError} - Throws when passed parameters are invalid.
+ * @throws {@link CommandError}    - Throws when the executed command fails.
+ */
+export async function change(options: RouteAddOptions,
+                             globalOptions: GlobalOptions = {}): Promise<IpCommand<RouteAddOptions>> {
+
+  const cmd = ['ip', 'route', 'change'];
+
+  const ipCmd = new IpCommand<RouteAddOptions>(
+    SchemaIds.RouteAdd,
+    RouteAddSchema,
+    options,
+    globalOptions,
+    cmd);
+
+  return await ipCmd.exec();
+}
+
+/**
+ * Append route.
+ *
+ * @param options        - Parameters options to be passed down to `ip`.
+ * @param globalOptions  - Global parameters options that affects the command execution.
+ *
+ * @throws {@link ParametersError} - Throws when passed parameters are invalid.
+ * @throws {@link CommandError}    - Throws when the executed command fails.
+ */
+export async function append(options: RouteAddOptions,
+                             globalOptions: GlobalOptions = {}): Promise<IpCommand<RouteAddOptions>> {
+
+  const cmd = ['ip', 'route', 'append'];
+
+  const ipCmd = new IpCommand<RouteAddOptions>(
+    SchemaIds.RouteAdd,
+    RouteAddSchema,
+    options,
+    globalOptions,
+    cmd);
+
+  return await ipCmd.exec();
+}
+
+/**
+ * Change or add new one.
+ *
+ * @param options        - Parameters options to be passed down to `ip`.
+ * @param globalOptions  - Global parameters options that affects the command execution.
+ *
+ * @throws {@link ParametersError} - Throws when passed parameters are invalid.
+ * @throws {@link CommandError}    - Throws when the executed command fails.
+ */
+export async function replace(options: RouteAddOptions,
+                              globalOptions: GlobalOptions = {}): Promise<IpCommand<RouteAddOptions>> {
+
+  const cmd = ['ip', 'route', 'replace'];
+
+  const ipCmd = new IpCommand<RouteAddOptions>(
+    SchemaIds.RouteAdd,
+    RouteAddSchema,
+    options,
+    globalOptions,
+    cmd);
+
+  return await ipCmd.exec();
 }
 
 export default {
@@ -168,5 +290,10 @@ export default {
   flush,
   save,
   restore,
-  get
+  get,
+  add,
+  del,
+  change,
+  append,
+  replace
 };

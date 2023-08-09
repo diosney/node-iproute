@@ -4,11 +4,11 @@ import { RouteRoutingTables }    from '../show.constants';
 
 export interface AddRouteSeg6LocalEncapArgs {
   /** XXX */
-  seg6local?: true;
+  seg6local: true;
   /** Operation to perform on matching packets. */
   action: EncapSeg6LocalActions;
   /** Operation arguments. */
-  action_?: EndXSeg6LocalEncapArgs
+  actionArgs_?: EndXSeg6LocalEncapArgs
     | EndDt6Seg6LocalEncapArgs
     | EndB6Seg6LocalEncapArgs;
   /**
@@ -25,7 +25,7 @@ export interface AddRouteSeg6LocalEncapArgs {
 }
 
 export interface EndXSeg6LocalEncapArgs extends NhArgs {
-  nh6?: true;
+  nh6: true;
 }
 
 export interface EndDt6Seg6LocalEncapArgs extends NhArgs {
@@ -34,7 +34,7 @@ export interface EndDt6Seg6LocalEncapArgs extends NhArgs {
 }
 
 export interface EndB6Seg6LocalEncapArgs extends NhArgs {
-  srh?: true;
+  srh: true;
   /** List of comma separated IPv6 addresses. */
   segs: string;
   /**

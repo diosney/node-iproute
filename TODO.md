@@ -51,4 +51,3 @@
 - poner en doc q despues de agregar una rule tiene q hacer: `ip route flush cache` o `ip route flush table cache`
 
 - rellenar los return interfaces de los "show".
-- usar el JSON schema para garantizar el orden de los parametros de entrada?

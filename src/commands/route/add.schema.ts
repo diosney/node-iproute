@@ -1,16 +1,16 @@
-import { JSONSchemaType } from 'ajv';
+import {JSONSchemaType} from 'ajv';
 
-import { EnableDisableAsStringToggle }    from '../../common/constants/attribute-values';
-import { SchemaIds }                      from '../../common/constants/schemas';
-import { AddressFamilies, AddressScopes } from '../address/add.constants';
-import { RoutePreferences }               from './add.constants';
-import { RouteAddOptions }                from './add.interfaces';
-import { RouteBpfEncapArgsSchema }        from './encap-types/bpf.schema';
-import { RouteIoam6EncapArgsSchema }      from './encap-types/ioam6.schema';
-import { RouteIpEncapArgsSchema }         from './encap-types/ip.schema';
-import { RouteMplsEncapArgsSchema }       from './encap-types/mpls.schema';
-import { RouteSeg6EncapArgsSchema }       from './encap-types/seg6.schema';
-import { RouteSeg6LocalEncapArgsSchema }  from './encap-types/seg6local.schema';
+import {EnableDisableAsStringToggle} from '../../common/constants/attribute-values';
+import {SchemaIds} from '../../common/constants/schemas';
+import {AddressFamilies, AddressScopes} from '../address/add.constants';
+import {RoutePreferences} from './add.constants';
+import {RouteAddOptions} from './add.interfaces';
+import {RouteBpfEncapArgsSchema} from './encap-types/bpf.schema';
+import {RouteIoam6EncapArgsSchema} from './encap-types/ioam6.schema';
+import {RouteIpEncapArgsSchema} from './encap-types/ip.schema';
+import {RouteMplsEncapArgsSchema} from './encap-types/mpls.schema';
+import {RouteSeg6EncapArgsSchema} from './encap-types/seg6.schema';
+import {RouteSeg6LocalEncapArgsSchema} from './encap-types/seg6local.schema';
 
 import {
   RouteRoutingTables,
@@ -19,117 +19,116 @@ import {
 } from './show.constants';
 
 export const RouteAddSchema: JSONSchemaType<RouteAddOptions> = {
-  $id       : SchemaIds.RouteAdd,
-  type      : 'object',
-  required  : ['to_'],
+  $id: SchemaIds.RouteAdd,
+  type: 'object',
+  required: ['to_'],
   properties: {
-    type_          : {
-      type    : 'string',
-      enum    : Object.values(RoutingTableTypes) as RoutingTableTypes[],
-      default : RoutingTableTypes.Unicast,
+    type_: {
+      type: 'string',
+      enum: Object.values(RoutingTableTypes) as RoutingTableTypes[],
       nullable: true
     },
-    to_            : {
-      type  : 'string',
+    to_: {
+      type: 'string',
       format: 'ip-with-optional-mask-and-all-and-default-values'
     },
-    tos               : {
-      type    : 'integer',
+    tos: {
+      type: 'integer',
       nullable: true,
-      minimum : 0,
-      maximum : 255
+      minimum: 0,
+      maximum: 255
     },
-    dsfield           : {
-      type    : 'integer',
+    dsfield: {
+      type: 'integer',
       nullable: true,
-      minimum : 0,
-      maximum : 255
+      minimum: 0,
+      maximum: 255
     },
-    table             : {
-      type    : ['string', 'integer'],
+    table: {
+      type: ['string', 'integer'],
       nullable: true,
-      oneOf   : [
+      oneOf: [
         {
-          type    : 'string',
-          enum    : Object.values(RouteRoutingTables) as RouteRoutingTables[],
+          type: 'string',
+          enum: Object.values(RouteRoutingTables) as RouteRoutingTables[],
           nullable: true
         },
         {
-          type    : 'integer',
-          minimum : 0,
+          type: 'integer',
+          minimum: 0,
           nullable: true
         }
       ]
     },
-    proto             : {
-      type    : ['string', 'integer'],
+    proto: {
+      type: ['string', 'integer'],
       nullable: true,
-      oneOf   : [
+      oneOf: [
         {
-          type     : 'string',
-          enum     : Object.values(RoutingTableProtocols) as RoutingTableProtocols[],
+          type: 'string',
+          enum: Object.values(RoutingTableProtocols) as RoutingTableProtocols[],
           minLength: 1,
-          nullable : true
+          nullable: true
         },
         {
-          type    : 'integer',
-          minimum : 0,
+          type: 'integer',
+          minimum: 0,
           nullable: true
         }
       ]
     },
-    protocol          : {
-      type    : ['string', 'integer'],
+    protocol: {
+      type: ['string', 'integer'],
       nullable: true,
-      oneOf   : [
+      oneOf: [
         {
-          type     : 'string',
-          enum     : Object.values(RoutingTableProtocols) as RoutingTableProtocols[],
+          type: 'string',
+          enum: Object.values(RoutingTableProtocols) as RoutingTableProtocols[],
           minLength: 1,
-          nullable : true
+          nullable: true
         },
         {
-          type    : 'integer',
-          minimum : 0,
+          type: 'integer',
+          minimum: 0,
           nullable: true
         }
       ]
     },
-    scope             : {
-      type    : ['string', 'integer'],
+    scope: {
+      type: ['string', 'integer'],
       nullable: true,
-      oneOf   : [
+      oneOf: [
         {
-          type    : 'string',
-          enum    : Object.values(AddressScopes) as AddressScopes[],
+          type: 'string',
+          enum: Object.values(AddressScopes) as AddressScopes[],
           nullable: true
         },
         {
-          type    : 'integer',
-          minimum : 0,
+          type: 'integer',
+          minimum: 0,
           nullable: true
         }
       ]
     },
-    metric            : {
-      type    : 'integer',
-      minimum : 0,
+    metric: {
+      type: 'integer',
+      minimum: 0,
       nullable: true
     },
-    preference        : {
-      type    : 'integer',
-      minimum : 0,
+    preference: {
+      type: 'integer',
+      minimum: 0,
       nullable: true
     },
-    'ttl-propagate'   : {
-      type    : 'string',
-      enum    : Object.values(EnableDisableAsStringToggle) as EnableDisableAsStringToggle[],
+    'ttl-propagate': {
+      type: 'string',
+      enum: Object.values(EnableDisableAsStringToggle) as EnableDisableAsStringToggle[],
       nullable: true
     },
-    encap             : {
-      type    : 'object',
+    encap: {
+      type: 'object',
       nullable: true,
-      oneOf   : [
+      oneOf: [
         RouteBpfEncapArgsSchema,
         RouteIoam6EncapArgsSchema,
         RouteIpEncapArgsSchema,
@@ -138,160 +137,160 @@ export const RouteAddSchema: JSONSchemaType<RouteAddOptions> = {
         RouteSeg6LocalEncapArgsSchema
       ]
     },
-    via               : {
-      type      : 'object',
-      required  : ['address'],
-      nullable  : true,
+    via: {
+      type: 'object',
+      required: ['address_'],
+      nullable: true,
       properties: {
-        family : {
-          type    : 'string',
-          enum    : Object.values(AddressFamilies) as AddressFamilies[],
+        family: {
+          type: 'string',
+          enum: Object.values(AddressFamilies) as AddressFamilies[],
           nullable: true
         },
-        address: {
-          type  : 'string',
+        address_: {
+          type: 'string',
           format: 'ip-with-optional-mask'
         }
       }
     },
-    dev               : {
-      type     : 'string',
+    dev: {
+      type: 'string',
       minLength: 1,
-      nullable : true
-    },
-    weight            : {
-      type    : 'number',
-      minimum : 1,
       nullable: true
     },
-    onlink            : {
-      type    : 'boolean',
-      enum    : [true],
+    weight: {
+      type: 'number',
+      minimum: 1,
       nullable: true
     },
-    pervasive         : {
-      type    : 'boolean',
-      enum    : [true],
+    onlink: {
+      type: 'boolean',
+      enum: [true],
       nullable: true
     },
-    nhid              : {
-      type    : 'integer',
-      minimum : 0,
+    pervasive: {
+      type: 'boolean',
+      enum: [true],
       nullable: true
     },
-    mtu               : {
-      type    : 'integer',
-      minimum : 1,
+    nhid: {
+      type: 'integer',
+      minimum: 0,
       nullable: true
     },
-    advmss            : {
-      type    : 'integer',
-      minimum : 1,
+    mtu: {
+      type: 'integer',
+      minimum: 1,
       nullable: true
     },
-    as                : {
-      type      : 'object',
-      required  : ['address'],
-      nullable  : true,
+    advmss: {
+      type: 'integer',
+      minimum: 1,
+      nullable: true
+    },
+    as: {
+      type: 'object',
+      required: ['address'],
+      nullable: true,
       properties: {
-        to     : {
-          type    : 'boolean',
-          enum    : [true],
+        to: {
+          type: 'boolean',
+          enum: [true],
           nullable: true
         },
         address: {
-          type  : 'string',
+          type: 'string',
           format: 'ip'
         }
       }
     },
-    rtt               : {
-      type    : ['string', 'integer'],
+    rtt: {
+      type: ['string', 'integer'],
       nullable: true,
-      oneOf   : [
+      oneOf: [
         {
-          type    : 'string',
-          format  : 'time-with-unit',
+          type: 'string',
+          format: 'time-with-unit',
           nullable: true
         },
         {
-          type    : 'integer',
-          minimum : 0,
+          type: 'integer',
+          minimum: 0,
           nullable: true
         }
       ]
     },
-    rttvar            : {
-      type    : ['string', 'integer'],
+    rttvar: {
+      type: ['string', 'integer'],
       nullable: true,
-      oneOf   : [
+      oneOf: [
         {
-          type    : 'string',
-          format  : 'time-with-unit',
+          type: 'string',
+          format: 'time-with-unit',
           nullable: true
         },
         {
-          type    : 'integer',
-          minimum : 0,
+          type: 'integer',
+          minimum: 0,
           nullable: true
         }
       ]
     },
-    reordering        : {
-      type    : 'integer',
-      minimum : 0,
+    reordering: {
+      type: 'integer',
+      minimum: 0,
       nullable: true
     },
-    window            : {
-      type    : 'integer',
-      minimum : 0,
+    window: {
+      type: 'integer',
+      minimum: 0,
       nullable: true
     },
-    cwnd              : {
-      type    : 'integer',
-      minimum : 0,
+    cwnd: {
+      type: 'integer',
+      minimum: 0,
       nullable: true
     },
-    ssthresh          : {
-      type    : 'integer',
-      minimum : 0,
+    ssthresh: {
+      type: 'integer',
+      minimum: 0,
       nullable: true
     },
-    realms            : {
-      type     : 'string',
+    realms: {
+      type: 'string',
       minLength: 1,
-      nullable : true
+      nullable: true
     },
-    rto_min           : {
-      type    : ['string', 'integer'],
+    rto_min: {
+      type: ['string', 'integer'],
       nullable: true,
-      oneOf   : [
+      oneOf: [
         {
-          type    : 'string',
-          format  : 'time-with-unit',
+          type: 'string',
+          format: 'time-with-unit',
           nullable: true
         },
         {
-          type    : 'integer',
-          minimum : 0,
+          type: 'integer',
+          minimum: 0,
           nullable: true
         }
       ]
     },
-    initcwnd          : {
-      type    : 'integer',
-      minimum : 0,
+    initcwnd: {
+      type: 'integer',
+      minimum: 0,
       nullable: true
     },
-    initrwnd          : {
-      type    : 'integer',
-      minimum : 0,
+    initrwnd: {
+      type: 'integer',
+      minimum: 0,
       nullable: true
     },
-    features          : {
-      type      : 'object',
-      required  : ['ecn'],
-      nullable  : true,
+    features: {
+      type: 'object',
+      required: ['ecn'],
+      nullable: true,
       properties: {
         ecn: {
           type: 'boolean',
@@ -299,73 +298,70 @@ export const RouteAddSchema: JSONSchemaType<RouteAddOptions> = {
         }
       }
     },
-    quickack          : {
-      type    : 'boolean',
-      enum    : [true],
+    quickack: {
+      type: 'boolean',
+      enum: [true],
       nullable: true
     },
-    congctl           : {
-      type     : 'string',
+    congctl: {
+      type: 'string',
       minLength: 1,
-      nullable : true
-    },
-    pref              : {
-      type    : 'string',
-      enum    : Object.values(RoutePreferences) as RoutePreferences[],
       nullable: true
     },
-    expires           : {
-      type    : 'integer',
-      minimum : 0,
+    pref: {
+      type: 'string',
+      enum: Object.values(RoutePreferences) as RoutePreferences[],
+      nullable: true
+    },
+    expires: {
+      type: 'integer',
+      minimum: 0,
       nullable: true
     },
     fastopen_no_cookie: {
-      type    : 'boolean',
+      type: 'boolean',
       nullable: true
     },
-    nexthops_     : {
-      type    : 'array',
+    nexthops_: {
+      type: 'array',
       nullable: true,
       minItems: 1,
-      items   : {
-        type      : 'object',
+      items: {
+        type: 'object',
+        required: ['nexthop'],
         properties: {
           nexthop: {
-            type    : 'boolean',
-            enum    : [true],
-            default : true,
-            nullable: true
+            type: 'boolean',
+            enum: [true],
           },
-          via    : {
-            type      : 'object',
-            required  : ['address'],
-            nullable  : true,
+          via: {
+            type: 'object',
+            required: ['address'],
+            nullable: true,
             properties: {
-              family : {
-                type    : 'string',
-                enum    : Object.values(AddressFamilies) as AddressFamilies[],
+              family: {
+                type: 'string',
+                enum: Object.values(AddressFamilies) as AddressFamilies[],
                 nullable: true
               },
               address: {
-                type  : 'string',
+                type: 'string',
                 format: 'ip-with-optional-mask'
               }
             }
           },
-          dev    : {
-            type     : 'string',
+          dev: {
+            type: 'string',
             minLength: 1,
-            nullable : true
+            nullable: true
           },
-          weight : {
-            type    : 'number',
-            minimum : 1,
+          weight: {
+            type: 'number',
+            minimum: 1,
             nullable: true
           }
         }
       }
     }
-  },
-  // TODO: Due `JSONSchema` bug. See https://github.com/ajv-validator/ajv/issues/2317
-  anyOf: []
+  }
 };

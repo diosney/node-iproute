@@ -1,3 +1,4 @@
+import {describe, it} from "mocha";
 import { expect } from 'chai';
 
 import { del, add, show, set }      from '../src/commands/link';
