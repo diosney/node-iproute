@@ -1,7 +1,7 @@
 import {JSONSchemaType} from 'ajv';
 
-import {SchemaIds} from '../../../common/constants/schemas';
-import {TtlSpecialValues} from '../../link/add.constants';
+import {SchemaIds}             from '../../../common/constants/schemas';
+import {TtlSpecialValues}      from '../../link.constants';
 import {AddRouteMplsEncapArgs} from './mpls.interfaces';
 
 export const RouteMplsEncapArgsSchema: JSONSchemaType<AddRouteMplsEncapArgs> = {

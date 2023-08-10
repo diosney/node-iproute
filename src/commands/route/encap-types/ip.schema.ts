@@ -1,7 +1,7 @@
 import {JSONSchemaType} from 'ajv';
 
-import {SchemaIds} from '../../../common/constants/schemas';
-import {TtlSpecialValues} from '../../link/add.constants';
+import {SchemaIds}           from '../../../common/constants/schemas';
+import {TtlSpecialValues}    from '../../link.constants';
 import {AddRouteIpEncapArgs} from './ip.interfaces';
 
 export const RouteIpEncapArgsSchema: JSONSchemaType<AddRouteIpEncapArgs> = {
@@ -14,7 +14,7 @@ export const RouteIpEncapArgsSchema: JSONSchemaType<AddRouteIpEncapArgs> = {
       enum: [true],
     },
     id: {
-      type: 'number',
+      type: 'integer',
       minimum: 1
     },
     dst: {

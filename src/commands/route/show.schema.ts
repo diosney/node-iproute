@@ -1,7 +1,7 @@
 import { JSONSchemaType } from 'ajv';
 
 import { SchemaIds }     from '../../common/constants/schemas';
-import { AddressScopes } from '../address/add.constants';
+import { AddressScopes } from '../address.constants';
 
 import {
   RouteRoutingTables,

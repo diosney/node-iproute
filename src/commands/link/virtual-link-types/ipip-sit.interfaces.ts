@@ -1,4 +1,4 @@
-import { IpipSipDeviceModes, SecondaryUdpEncapsulations } from '../add.constants';
+import { IpipSipDeviceModes, SecondaryUdpEncapsulations } from '../../link.constants';
 
 export interface AddLinkIpipSitTypeArgs {
   /** Specifies the remote address of the tunnel. */
@@ -18,6 +18,8 @@ export interface AddLinkIpipSitTypeArgs {
    * hash of the encapsulated packet).
    */
   'encap-sport'?: number | 'auto';
+  /** TODO: No doc in man. */
+  'encap-dport'?: number ;
   /** Specifies if UDP checksums are enabled in the secondary encapsulation. */
   'encap-csum'?: boolean;
   /** @see {@link 'encap-csum'} */
@@ -40,7 +42,7 @@ export interface AddLinkIpipSitTypeArgs {
    * Supported for SIT where the default is "ip6ip" and IPIP where the default is "ipip".
    * IPv6-Over-IPv4 is not supported for IPIP.
    */
-  // TODO: Separate interfaces and validations? They don't support the same types.
+  // TODO: Separate interfaces and validations between IPIP & SIT? They don't support the same types.
   mode?: IpipSipDeviceModes;
   /** Make this tunnel externally controlled (e.g. ip route encap). */
   external?: true;

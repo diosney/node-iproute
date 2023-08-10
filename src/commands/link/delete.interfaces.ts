@@ -1,4 +1,4 @@
-import { VirtualLinkTypes } from './add.constants';
+import { VirtualLinkTypes } from '../link.constants';
 
 interface LinkDeleteCommonOptions {
   /** Specifies the type of the device. */
@@ -15,7 +15,7 @@ interface LinkDeleteGroupOptions extends LinkDeleteCommonOptions {
 
 interface LinkDeleteDevOptions extends LinkDeleteCommonOptions {
   /** Specifies the virtual device to act operate on. */
-  dev: string;
+  dev_: string;
 }
 
 export type LinkDeleteOptions = LinkDeleteGroupOptions | LinkDeleteDevOptions

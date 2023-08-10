@@ -1,6 +1,6 @@
 import { JSONSchemaType } from 'ajv';
 
-import { VirtualLinkTypes }                 from './add.constants';
+import { VirtualLinkTypes }                 from '../link.constants';
 import { SchemaIds }                        from '../../common/constants/schemas';
 import { LinkAddOptions }                   from './add.interfaces';
 import { AddLinkBareudpArgsSchema }         from './virtual-link-types/bareup.schema';
@@ -42,72 +42,71 @@ export const typeArgsSchemas: any = [
 ];
 
 export const LinkAddSchema: JSONSchemaType<LinkAddOptions> = {
-  $id       : SchemaIds.LinkAdd,
-  type      : 'object',
-  required  : ['name', 'type', 'type_'],
+  $id:        SchemaIds.LinkAdd,
+  type:       'object',
+  required:   [ 'name', 'type', 'type_' ],
   properties: {
-    link        : {
-      type     : 'string',
+    link:         {
+      type:      'string',
       minLength: 1,
       maxLength: 15,
-      nullable : true
+      nullable:  true
     },
-    name        : {
-      type     : 'string',
+    name:         {
+      type:      'string',
       minLength: 1,
       maxLength: 15
     },
-    txqueuelen  : {
-      type    : 'integer',
-      minimum : 1,
+    txqueuelen:   {
+      type:     'integer',
+      minimum:  1,
       nullable: true
     },
-    address     : {
-      type    : 'string',
-      format  : 'mac',
+    address:      {
+      type:     'string',
+      format:   'mac',
       nullable: true
     },
-    broadcast   : {
-      type    : 'string',
-      format  : 'mac',
+    broadcast:    {
+      type:     'string',
+      format:   'mac',
       nullable: true
     },
-    mtu         : {
-      type    : 'integer',
-      minimum : 1,
+    mtu:          {
+      type:     'integer',
+      minimum:  1,
       nullable: true
     },
-    index       : {
-      type    : 'integer',
-      minimum : 1,
+    index:        {
+      type:     'integer',
+      minimum:  1,
       nullable: true
     },
-    numtxqueues : {
-      type    : 'integer',
-      minimum : 1,
+    numtxqueues:  {
+      type:     'integer',
+      minimum:  1,
       nullable: true
     },
-    numrxqueues : {
-      type    : 'integer',
-      minimum : 1,
+    numrxqueues:  {
+      type:     'integer',
+      minimum:  1,
       nullable: true
     },
     gso_max_size: {
-      type    : 'integer',
-      minimum : 1,
+      type:     'integer',
+      minimum:  1,
       nullable: true
     },
     gso_max_segs: {
-      type    : 'integer',
-      minimum : 1,
+      type:     'integer',
+      minimum:  1,
       nullable: true
     },
-    type        : {
+    type:         {
       type: 'string',
       enum: Object.values(VirtualLinkTypes) as VirtualLinkTypes[]
     },
-    // TODO: How to condition anyOf depending of `type`? if/then/else?
-    type_: {
+    type_:        {
       anyOf: typeArgsSchemas
     }
   }

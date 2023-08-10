@@ -1,4 +1,4 @@
-import { ErspanDirections } from '../add.constants';
+import { ErspanDirections } from '../../link.constants';
 
 export interface AddLinkErspanIp6erspanTypeArgs {
   /** Specifies the remote address of the tunnel. */
@@ -16,6 +16,8 @@ export interface AddLinkErspanIp6erspanTypeArgs {
   /** A 32-bit key to identify the GRE tunnel. */
   key: number;
   /**
+   * TODO: Add an enum for validator?
+   *
    * Specifies the ERSPAN version number.
    * `version` indicates the ERSPAN version to be created:
    *

@@ -1,6 +1,6 @@
-import { VirtualLinkTypes } from '../link/add.constants';
+import { VirtualLinkTypes } from '../link.constants';
 import { LinkInfo }         from '../link/show.interfaces';
-import { AddressScopes }    from './add.constants';
+import { AddressScopes }    from '../address.constants';
 
 export interface AddressShowOptions {
   /** The name of the device to filter and show its addresses. */
@@ -95,34 +95,59 @@ export interface AddressShowOptions {
   up?: true;
 }
 
-// TODO: Need help to build this undocumented & comprehensive interface.
+// TODO: Need help to build this partially compiled interface.
 export interface AddressInfo extends LinkInfo {
   addr_info: Array<{
+    /** @see {@link AddressFamilies } */
     family: string;
+    /** @see {@link AddressAddOptions.local } */
     local: string;
+    /** @see {@link AddressAddOptions.broadcast } */
     broadcast?: string;
     prefixlen: number;
+    /** @see {@link AddressShowOptions.scope } */
     scope: AddressScopes | number;
+    /** @see {@link AddressShowOptions.label } */
     label: string;
+    /** @see {@link AddressFlushOptions.metric } */
     metric?: number;
 
+    // Lifetime.
+    /** @see {@link AddressAddOptions.valid_lft } */
     valid_life_time: number;
+    /** @see {@link AddressAddOptions.preferred_lft } */
     preferred_life_time: number;
 
+    // Flags.
+    /** @see {@link AddressShowOptions.permanent } */
     permanent?: true;
+    /** @see {@link AddressShowOptions.dynamic } */
     dynamic?: true;
+    /** @see {@link AddressShowOptions.secondary } */
     secondary?: true;
+    /** @see {@link AddressShowOptions.primary } */
     primary?: true;
+    /** @see {@link AddressShowOptions.tentative } */
     tentative?: true;
+    /** @see {@link AddressShowOptions.deprecated } */
     deprecated?: true;
+    /** @see {@link AddressShowOptions.dadfailed } */
     dadfailed?: true;
+    /** @see {@link AddressShowOptions.temporary } */
     temporary?: true;
 
+    // ConFlags.
+    /** @see {@link AddressShowOptions.home } */
     home?: true;
+    /** @see {@link AddressShowOptions.mngtmpaddr } */
     mngtmpaddr?: true;
+    /** @see {@link AddressShowOptions.nodad } */
     nodad?: true;
+    /** @see {@link AddressShowOptions.optimistic } */
     optimistic?: true;
+    /** @see {@link AddressShowOptions.noprefixroute } */
     noprefixroute?: true;
+    /** @see {@link AddressShowOptions.autojoin } */
     autojoin?: true;
   }>;
 }

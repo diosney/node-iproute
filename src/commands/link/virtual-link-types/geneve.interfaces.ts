@@ -1,4 +1,4 @@
-import { DontFragmentFlagValues } from '../add.constants';
+import { DontFragmentFlagValues } from '../../link.constants';
 
 export interface AddLinkGeneveTypeArgs {
   /** Specifies the Virtual Network Identifier to use. */

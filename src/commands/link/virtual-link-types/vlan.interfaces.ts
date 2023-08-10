@@ -1,5 +1,5 @@
 import { OnOffToggle }   from '../../../common/constants/attribute-values';
-import { VlanProtocols } from '../add.constants';
+import { VlanProtocols } from '../../link.constants';
 
 export interface AddLinkVlanTypeArgs {
   /** VLAN Protocol. */
@@ -24,10 +24,10 @@ export interface AddLinkVlanTypeArgs {
    * Defines a mapping of VLAN header prio field to the Linux internal packet priority on incoming frames.
    * The format is FROM:TO with multiple mappings separated by spaces.
    */
-  'ingress-qos-map'?: string;
+  'ingress-qos-map'?: string[];
   /**
    * Defines a mapping of Linux internal packet priority to VLAN header prio field but for outgoing frames.
    * The format is the same as for {@link ingress-qos-map}.
    */
-  'egress-qos-map'?: string;
+  'egress-qos-map'?: string[];
 }

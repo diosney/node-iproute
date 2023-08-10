@@ -1,6 +1,6 @@
 import { JSONSchemaType } from 'ajv';
 
-import { DontFragmentFlagValues } from '../add.constants';
+import { DontFragmentFlagValues } from '../../link.constants';
 import { SchemaIds }              from '../../../common/constants/schemas';
 
 import {
@@ -8,76 +8,76 @@ import {
 } from './vxlan.interfaces';
 
 export const AddLinkVxlanArgsSchema: JSONSchemaType<AddLinkVxlanTypeArgs> = {
-  $id                 : SchemaIds.LinkAddVxlanOptions,
-  type                : 'object',
-  required            : ['id'],
+  $id:                  SchemaIds.LinkAddVxlanOptions,
+  type:                 'object',
+  required:             [ 'id' ],
   additionalProperties: false,
-  properties          : {
-    id              : {
-      type   : 'integer',
+  properties:           {
+    id:               {
+      type:    'integer',
       minimum: 1,
       maximum: 16777215
     },
-    dev             : {
-      type     : 'string',
+    dev:              {
+      type:      'string',
       minLength: 1,
-      nullable : true
+      nullable:  true
     },
-    group           : {
-      type    : 'string',
-      format  : 'ip',
+    group:            {
+      type:     'string',
+      format:   'ip',
       nullable: true
     },
-    remote          : {
-      type    : 'string',
-      format  : 'ip',
+    remote:           {
+      type:     'string',
+      format:   'ip',
       nullable: true
     },
-    local           : {
-      type    : 'string',
-      format  : 'ip',
+    local:            {
+      type:     'string',
+      format:   'ip-or-any',
       nullable: true
     },
-    ttl             : {
-      type    : 'integer',
-      minimum : 0,
-      maximum : 255,
+    ttl:              {
+      type:     'integer',
+      minimum:  0,
+      maximum:  255,
       nullable: true
     },
-    tos             : {
-      type    : 'integer',
+    tos:              {
+      type:     'integer',
       nullable: true,
-      minimum : 0,
-      maximum : 255
+      minimum:  0,
+      maximum:  255
     },
-    df              : {
-      type    : 'string',
-      enum    : Object.values(DontFragmentFlagValues) as DontFragmentFlagValues[],
+    df:               {
+      type:     'string',
+      enum:     Object.values(DontFragmentFlagValues) as DontFragmentFlagValues[],
       nullable: true
     },
-    flowlabel       : {
-      type    : 'integer',
+    flowlabel:        {
+      type:     'integer',
       nullable: true,
-      minimum : 0,
-      maximum : 1048575
+      minimum:  0,
+      maximum:  1048575
     },
-    dstport         : {
-      type    : 'integer',
+    dstport:          {
+      type:     'integer',
       nullable: true,
-      minimum : 1,
-      maximum : 65535
+      minimum:  1,
+      maximum:  65535
     },
-    srcport         : {
-      type    : 'array',
+    srcport:          {
+      type:     'array',
       nullable: true,
-      items   : [
+      items:    [
         {
-          type   : 'integer',
+          type:    'integer',
           minimum: 1,
           maximum: 65535
         },
         {
-          type   : 'integer',
+          type:    'integer',
           minimum: 1,
           maximum: 65535
         }
@@ -85,96 +85,96 @@ export const AddLinkVxlanArgsSchema: JSONSchemaType<AddLinkVxlanTypeArgs> = {
       minItems: 2,
       maxItems: 2
     },
-    learning        : {
-      type    : 'boolean',
+    learning:         {
+      type:     'boolean',
       nullable: true
     },
-    nolearning      : {
-      type    : 'boolean',
+    nolearning:       {
+      type:     'boolean',
       nullable: true
     },
-    rsc             : {
-      type    : 'boolean',
+    proxy:            {
+      type:     'boolean',
       nullable: true
     },
-    norsc           : {
-      type    : 'boolean',
+    noproxy:          {
+      type:     'boolean',
       nullable: true
     },
-    proxy           : {
-      type    : 'boolean',
+    rsc:              {
+      type:     'boolean',
       nullable: true
     },
-    noproxy         : {
-      type    : 'boolean',
+    norsc:            {
+      type:     'boolean',
       nullable: true
     },
-    l2miss          : {
-      type    : 'boolean',
+    l2miss:           {
+      type:     'boolean',
       nullable: true
     },
-    nol2miss        : {
-      type    : 'boolean',
+    nol2miss:         {
+      type:     'boolean',
       nullable: true
     },
-    l3miss          : {
-      type    : 'boolean',
+    l3miss:           {
+      type:     'boolean',
       nullable: true
     },
-    nol3miss        : {
-      type    : 'boolean',
+    nol3miss:         {
+      type:     'boolean',
       nullable: true
     },
-    udpcsum         : {
-      type    : 'boolean',
+    udpcsum:          {
+      type:     'boolean',
       nullable: true
     },
-    noudpcsum       : {
-      type    : 'boolean',
+    noudpcsum:        {
+      type:     'boolean',
       nullable: true
     },
-    udp6zerocsumtx  : {
-      type    : 'boolean',
+    udp6zerocsumtx:   {
+      type:     'boolean',
       nullable: true
     },
     noudp6zerocsumtx: {
-      type    : 'boolean',
+      type:     'boolean',
       nullable: true
     },
-    udp6zerocsumrx  : {
-      type    : 'boolean',
+    udp6zerocsumrx:   {
+      type:     'boolean',
       nullable: true
     },
     noudp6zerocsumrx: {
-      type    : 'boolean',
+      type:     'boolean',
       nullable: true
     },
-    ageing          : {
-      type    : 'integer',
+    ageing:           {
+      type:     'integer',
       nullable: true,
-      minimum : 0
+      minimum:  0
     },
-    maxaddress      : {
-      type    : 'integer',
+    maxaddress:       {
+      type:     'integer',
       nullable: true,
-      minimum : 0
+      minimum:  0
     },
-    external        : {
-      type    : 'boolean',
+    external:         {
+      type:     'boolean',
       nullable: true
     },
-    noexternal      : {
-      type    : 'boolean',
+    noexternal:       {
+      type:     'boolean',
       nullable: true
     },
-    gbp             : {
-      type    : 'boolean',
-      enum    : [true],
+    gbp:              {
+      type:     'boolean',
+      enum:     [ true ],
       nullable: true
     },
-    gpe             : {
-      type    : 'boolean',
-      enum    : [true],
+    gpe:              {
+      type:     'boolean',
+      enum:     [ true ],
       nullable: true
     }
   }

@@ -1,7 +1,7 @@
 import { JSONSchemaType } from 'ajv';
 
 import { SchemaIds }           from '../../common/constants/schemas';
-import { AddressScopes }       from './add.constants';
+import { AddressScopes }       from '../address.constants';
 import { AddressFlushOptions } from './flush.interfaces';
 
 export const AddressFlushSchema: JSONSchemaType<AddressFlushOptions> = {

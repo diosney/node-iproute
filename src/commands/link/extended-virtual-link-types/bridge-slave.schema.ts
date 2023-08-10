@@ -2,8 +2,8 @@ import { JSONSchemaType } from 'ajv';
 import { OnOffToggle }    from '../../../common/constants/attribute-values';
 
 import { SchemaIds }                  from '../../../common/constants/schemas';
-import { BridgeSlavePortStates }      from '../set.constants';
 import { SetLinkBridgeSlaveTypeArgs } from './bridge-slave.interfaces';
+import { BridgeSlavePortStates }      from '../../link.constants';
 
 export const SetLinkBridgeSlaveArgsSchema: JSONSchemaType<SetLinkBridgeSlaveTypeArgs> = {
   $id                 : SchemaIds.LinkSetBridgeSlaveOptions,

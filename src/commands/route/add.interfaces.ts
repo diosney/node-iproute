@@ -1,6 +1,6 @@
 import { EnableDisableAsStringToggle }    from '../../common/constants/attribute-values';
-import { AddressFamilies, AddressScopes } from '../address/add.constants';
-import { RoutePreferences }               from './add.constants';
+import { AddressFamilies, AddressScopes } from '../address.constants';
+import { RoutePreferences }               from '../route.constants';
 import { AddRouteBpfEncapArgs }           from './encap-types/bpf.interfaces';
 import { AddRouteIoam6EncapArgs }         from './encap-types/ioam6.interfaces';
 import { AddRouteIpEncapArgs }            from './encap-types/ip.interfaces';

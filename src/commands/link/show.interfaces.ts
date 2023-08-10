@@ -1,4 +1,4 @@
-import { ExtendedVirtualLinkTypes } from './add.constants';
+import { ExtendedVirtualLinkTypes } from '../link.constants';
 
 interface LinkShowCommonOptions {
   /** Only display running interfaces. */

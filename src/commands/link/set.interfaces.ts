@@ -4,12 +4,15 @@ import {
 } from '../../common/constants/attribute-values';
 
 import {
+  AddrGenMode,
   ExtendedVirtualLinkTypes,
   VlanProtocols
-} from './add.constants';
+} from '../link.constants';
 
-import { ExtendedTypeArgs } from './add.interfaces';
-import { AddrGenMode }      from './set.constants';
+import { ExtendedTypeArgs }        from './add.interfaces';
+import { LinkSetXdpObjectOptions } from './xdp-options/object.interfaces';
+import { LinkSetXdpPinnedOptions } from './xdp-options/pinned.interfaces';
+import { LinkSetXdpOffOptions }    from './xdp-options/off.interfaces';
 
 interface LinkSetCommonOptions {
   /** Change the state of the device to UP. */
@@ -47,23 +50,20 @@ interface LinkSetCommonOptions {
    * Switch drivers can react to this error by doing a phys down on the switch port.
    */
   protodown?: OnOffToggle;
-  // /**
-  //  * Set PROTODOWN reasons on the device. protodown reason bit names can be enumerated under
-  //  * `/etc/iproute2/protodown_reasons.d/`.
-  //  *
-  //  * Possible reasons bits 0-31.
-  //  *
-  //  * TODO: See how to model it: `[ protodown_reason PREASON { on | off } ]`
-  //  */
-  // // protodown_reason?: OnOffToggle;
+  /**
+   * Set PROTODOWN reasons on the device. protodown reason bit names can be enumerated under
+   * `/etc/iproute2/protodown_reasons.d/`.
+   *
+   * Possible reasons bits 0-31.
+   */
+  protodown_reason?: {
+    name_: number;
+    enable_: OnOffToggle;
+  };
   /** Change the NOTRAILERS flag on the device, NOT used by the Linux and exists for BSD compatibility. */
   trailers?: OnOffToggle;
-
   /** Change the transmit queue length of the device. */
   txqueuelen?: number;
-  /** Change the transmit queue length of the device. */
-  txqlen?: number;
-
   /**
    * Change the name of the device.
    * This operation is not recommended if the device is running or has some addresses already configured.
@@ -71,12 +71,8 @@ interface LinkSetCommonOptions {
   name?: string;
   /** Change the station address of the interface. */
   address?: string;
-
   /** Change the link layer broadcast address or the peer address when the interface is POINTOPOINT. */
   broadcast?: string;
-  brd?: string;
-  peer?: string;
-
   /** Change the MTU of the device. */
   mtu?: number;
   /**
@@ -97,95 +93,97 @@ interface LinkSetCommonOptions {
   'link-netnsid'?: number;
   /** Give the device a symbolic name for easy reference. */
   alias?: string;
-
   /**
    * Specify a Virtual Function device to be configured.
    * The associated PF device must be specified using the {@link dev} parameter.
    */
   vf?: number;
-  /**
-   * Change the station address for the specified VF.
-   * The {@link vf} parameter must be specified.
-   */
-  mac?: string;
-  /**
-   * Change the assigned VLAN for the specified VF.
-   *
-   * When specified, all traffic sent from the VF will be tagged with the specified VLAN ID.
-   * Incoming traffic will be filtered for the specified VLAN ID, and will have all VLAN tags
-   * stripped before being passed to the VF.
-   *
-   * Setting this parameter to `0` disables VLAN tagging and filtering.
-   * The {@link vf} parameter must be specified.
-   */
-  vlan?: number;
-  /**
-   * Assign VLAN QOS (priority) bits for the VLAN tag.
-   *
-   * When specified, all VLAN tags transmitted by the VF will include the specified priority bits in the VLAN tag.
-   *
-   * If not specified, the value is assumed to be `0`.
-   * Both the {@link vf} and {@link vlan} parameters must be specified.
-   * Setting both {@link vlan} and {@link qos} as `0` disables VLAN tagging and filtering for the VF.
-   */
-  qos?: number;
-  /**
-   * Assign VLAN PROTOCOL for the VLAN tag, either `802.1Q` or `802.1ad`.
-   *
-   * Setting to `802.1ad`, all traffic sent from the VF will be tagged with VLAN S-Tag.
-   * Incoming traffic will have VLAN S-Tags stripped before being passed to the VF.
-   * Setting to `802.1ad` also enables an option to concatenate another VLAN tag, so both S-TAG and C-TAG will
-   * be inserted/stripped for outgoing/incoming traffic, respectively.
-   *
-   * If not specified, the value is assumed to be `802.1Q`.
-   * Both the {@link vf} and {@link vlan} parameters must be specified.
-   */
-  proto?: VlanProtocols;
-  /**
-   * Change the allowed transmit bandwidth, in Mbps, for the specified VF.
-   * Setting this parameter to `0` disables rate limiting.
-   * {@link vf} parameter must be specified.
-   * Please use new API {@link max_tx_rate} option instead.
-   */
-  rate?: number;
-  /**
-   * Change the allowed maximum transmit bandwidth, in Mbps, for the specified VF.
-   * Setting this parameter to `0` disables rate limiting.
-   * {@link vf} parameter must be specified.
-   */
-  max_tx_rate?: number;
-  /**
-   * Change the allowed minimum transmit bandwidth, in Mbps, for the specified VF.
-   * Minimum TXRATE should be always <= Maximum TXRATE.
-   * Setting this parameter to `0` disables rate limiting.
-   * {@link vf} parameter must be specified.
-   */
-  min_tx_rate?: number;
-  /** Turn packet spoof checking on or off for the specified VF. */
-  spoofchk?: OnOffToggle;
-  /**
-   * Toggle the ability of querying the RSS configuration of a specific VF.
-   * VF RSS information like RSS hash key may be considered sensitive on some devices where this information
-   * is shared between VF and PF and thus its querying may be prohibited by default.
-   */
-  query_rss?: OnOffToggle;
-  /**
-   * Set the virtual link state as seen by the specified VF.
-   * Setting to auto means a reflection of the PF link state, enable lets the VF to communicate with other
-   * VFs on this host even if the PF link state is down, disable causes the HW to drop any packets sent by the VF.
-   */
-  state?: EnableDisableAutoToggle;
-  /**
-   * Trust the specified VF user.
-   * This enables that VF user can set a specific feature which may impact security and/or performance.
-   * (e.g. VF multicast promiscuous mode)
-   */
-  trust?: OnOffToggle;
-  /** Configure node GUID for Infiniband VFs. */
-  node_guid?: number;
-  /** Configure port GUID for Infiniband VFs. */
-  port_guid?: number;
-
+  vf_?: {
+    /**
+     * Change the station address for the specified VF.
+     * The {@link vf} parameter must be specified.
+     */
+    mac?: string;
+    vlan_list_?: Array<{
+      /**
+       * Change the assigned VLAN for the specified VF.
+       *
+       * When specified, all traffic sent from the VF will be tagged with the specified VLAN ID.
+       * Incoming traffic will be filtered for the specified VLAN ID, and will have all VLAN tags
+       * stripped before being passed to the VF.
+       *
+       * Setting this parameter to `0` disables VLAN tagging and filtering.
+       * The {@link vf} parameter must be specified.
+       */
+      vlan: number;
+      /**
+       * Assign VLAN QOS (priority) bits for the VLAN tag.
+       *
+       * When specified, all VLAN tags transmitted by the VF will include the specified priority bits in the VLAN tag.
+       *
+       * If not specified, the value is assumed to be `0`.
+       * Both the {@link vf} and {@link vlan} parameters must be specified.
+       * Setting both {@link vlan} and {@link qos} as `0` disables VLAN tagging and filtering for the VF.
+       */
+      qos?: number;
+      /**
+       * Assign VLAN PROTOCOL for the VLAN tag, either `802.1Q` or `802.1ad`.
+       *
+       * Setting to `802.1ad`, all traffic sent from the VF will be tagged with VLAN S-Tag.
+       * Incoming traffic will have VLAN S-Tags stripped before being passed to the VF.
+       * Setting to `802.1ad` also enables an option to concatenate another VLAN tag, so both S-TAG and C-TAG will
+       * be inserted/stripped for outgoing/incoming traffic, respectively.
+       *
+       * If not specified, the value is assumed to be `802.1Q`.
+       * Both the {@link vf} and {@link vlan} parameters must be specified.
+       */
+      proto?: VlanProtocols;
+    }>;
+    /**
+     * Change the allowed transmit bandwidth, in Mbps, for the specified VF.
+     * Setting this parameter to `0` disables rate limiting.
+     * {@link vf} parameter must be specified.
+     * Please use new API {@link max_tx_rate} option instead.
+     */
+    rate?: number;
+    /**
+     * Change the allowed maximum transmit bandwidth, in Mbps, for the specified VF.
+     * Setting this parameter to `0` disables rate limiting.
+     * {@link vf} parameter must be specified.
+     */
+    max_tx_rate?: number;
+    /**
+     * Change the allowed minimum transmit bandwidth, in Mbps, for the specified VF.
+     * Minimum TXRATE should be always <= Maximum TXRATE.
+     * Setting this parameter to `0` disables rate limiting.
+     * {@link vf} parameter must be specified.
+     */
+    min_tx_rate?: number;
+    /** Turn packet spoof checking on or off for the specified VF. */
+    spoofchk?: OnOffToggle;
+    /**
+     * Toggle the ability of querying the RSS configuration of a specific VF.
+     * VF RSS information like RSS hash key may be considered sensitive on some devices where this information
+     * is shared between VF and PF and thus its querying may be prohibited by default.
+     */
+    query_rss?: OnOffToggle;
+    /**
+     * Set the virtual link state as seen by the specified VF.
+     * Setting to auto means a reflection of the PF link state, enable lets the VF to communicate with other
+     * VFs on this host even if the PF link state is down, disable causes the HW to drop any packets sent by the VF.
+     */
+    state?: EnableDisableAutoToggle;
+    /**
+     * Trust the specified VF user.
+     * This enables that VF user can set a specific feature which may impact security and/or performance.
+     * (e.g. VF multicast promiscuous mode)
+     */
+    trust?: OnOffToggle;
+    /** Configure node GUID for Infiniband VFs. */
+    node_guid?: number;
+    /** Configure port GUID for Infiniband VFs. */
+    port_guid?: number;
+  };
   /**
    * Set (or unset) a XDP ("eXpress Data Path") BPF program to run on every packet at driver level.
    *
@@ -204,55 +202,13 @@ interface LinkSetCommonOptions {
    * used to request the "offload" mode, much like {@link xdpgeneric} it forces program to be installed specifically in
    * HW/FW of the apater.
    */
-  xdp?: true;
+  xdp?: XdpOptions;
   /** @see {@link xdp} */
-  xdpgeneric?: true;
+  xdpgeneric?: XdpOptions;
   /** @see {@link xdp} */
-  xdpdrv?: true;
+  xdpdrv?: XdpOptions;
   /** @see {@link xdp} */
-  xdpoffload?: true;
-  /** Detaches any currently attached XDP/BPF program from the given device. */
-  off?: true;
-  /**
-   * Attaches a XDP/BPF program to the given device.
-   *
-   * The FILE points to a BPF ELF file (f.e. generated by LLVM) that contains the BPF program code, map specifications,
-   * etc. If a XDP/BPF program is already attached to the given device, an error will be thrown.
-   *
-   * If no XDP/BPF program is currently attached, the device supports XDP and the program from the BPF ELF file passes
-   * the kernel verifier, then it will be attached to the device.
-   *
-   * If the option -force is passed to `ip` then any prior attached XDP/BPF program will be atomically overridden
-   * and no error will be thrown in this case.
-   *
-   * If no section option is passed, then the default section name ("prog") will be assumed, otherwise the provided
-   * section name will be used.
-   *
-   * If no verbose option is passed, then a verifier log will only be dumped on load error.
-   * See also EXAMPLES section for usage examples.
-   */
-  object?: string;
-  obj?: string;
-  /**
-   * Specifies a section name that contains the BPF program code.
-   * If no section name is specified, the default one ("prog") will be used.
-   * This option is to be passed with the object option.
-   */
-  section?: string;
-  sec?: string;
-  /**
-   * Act in verbose mode. For example, even in case of success, this will print the verifier log in case a program was
-   * loaded from a BPF ELF file.
-   */
-  verbose?: true;
-  /**
-   * Attaches a XDP/BPF program to the given device.
-   * The FILE points to an already pinned BPF program in the BPF file system.
-   * The option section doesn't apply here, but otherwise semantics are the same as with the option object described
-   * already.
-   */
-  pinned?: string;
-
+  xdpoffload?: XdpOptions;
   /** Set master device of the device (enslave device). */
   master?: string;
   /** Unset master device of the device (release device). */
@@ -260,6 +216,10 @@ interface LinkSetCommonOptions {
   /** Set the IPv6 address generation mode. */
   addrgenmode?: AddrGenMode;
 }
+
+export type XdpOptions = LinkSetXdpObjectOptions
+  | LinkSetXdpPinnedOptions
+  | LinkSetXdpOffOptions;
 
 interface LinkSetGroupOptions extends LinkSetCommonOptions {
   /**
@@ -276,7 +236,7 @@ interface LinkSetDevOptions extends LinkSetCommonOptions {
    * When configuring SR-IOV Virtual Function (VF) devices, this keyword should
    * specify the associated Physical Function (PF) device.
    */
-  dev?: string;
+  dev_?: string;
 }
 
 export type LinkSetOptions = LinkSetGroupOptions | LinkSetDevOptions;

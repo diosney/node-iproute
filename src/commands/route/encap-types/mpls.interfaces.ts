@@ -1,4 +1,4 @@
-import { TtlSpecialValues } from '../../link/add.constants';
+import { TtlSpecialValues } from '../../link.constants';
 
 export interface AddRouteMplsEncapArgs {
   /** Mpls label stack with labels separated by /. */

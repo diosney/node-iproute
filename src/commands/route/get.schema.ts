@@ -68,12 +68,12 @@ export const RouteGetSchema: JSONSchemaType<RouteGetOptions> = {
       ]
     },
     sport    : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       nullable: true
     },
     dport    : {
-      type    : 'number',
+      type    : 'integer',
       minimum : 0,
       nullable: true
     },

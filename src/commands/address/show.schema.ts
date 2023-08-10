@@ -1,8 +1,8 @@
 import { JSONSchemaType } from 'ajv';
 
 import { SchemaIds }        from '../../common/constants/schemas';
-import { VirtualLinkTypes } from '../link/add.constants';
-import { AddressScopes }    from './add.constants';
+import { VirtualLinkTypes } from '../link.constants';
+import { AddressScopes }    from '../address.constants';
 import { AddressShowOptions } from './show.interfaces';
 
 export const AddressShowSchema: JSONSchemaType<AddressShowOptions> = {

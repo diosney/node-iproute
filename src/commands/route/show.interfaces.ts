@@ -1,4 +1,4 @@
-import { AddressScopes } from '../address/add.constants';
+import { AddressScopes } from '../address.constants';
 
 import {
   RouteRoutingTables,

@@ -1,7 +1,7 @@
 import { JSONSchemaType } from 'ajv';
 
 import { SchemaIds }                                from '../../../common/constants/schemas';
-import { DontFragmentFlagValues, TtlSpecialValues } from '../add.constants';
+import { DontFragmentFlagValues, TtlSpecialValues } from '../../link.constants';
 import { AddLinkGeneveTypeArgs }                    from './geneve.interfaces';
 
 export const AddLinkGeneveArgsSchema: JSONSchemaType<AddLinkGeneveTypeArgs> = {

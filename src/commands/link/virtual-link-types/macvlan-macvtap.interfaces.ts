@@ -1,4 +1,4 @@
-import { MacvlanMacvtapModes } from '../add.constants';
+import { MacvlanMacvtapModes } from '../../link.constants';
 
 export interface AddLinkMacvlanMacvtapTypeArgs {
   /**

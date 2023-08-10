@@ -7,7 +7,7 @@ import {
   IgmpVersions, MldVersions,
   MultiCastRouterOptions,
   VlanProtocols
-} from '../add.constants';
+} from '../../link.constants';
 
 import { AddLinkBridgeTypeArgs } from './bridge.interfaces';
 
@@ -125,17 +125,12 @@ export const AddLinkBridgeArgsSchema: JSONSchemaType<AddLinkBridgeTypeArgs> = {
       minimum : 1,
       nullable: true
     },
-    mcast_last_member_interval   : {
-      type    : 'integer',
-      minimum : 1,
-      nullable: true
-    },
     mcast_startup_query_count    : {
       type    : 'integer',
       minimum : 1,
       nullable: true
     },
-    mcast_startup_query_interval : {
+    mcast_last_member_interval   : {
       type    : 'integer',
       minimum : 1,
       nullable: true
@@ -156,6 +151,11 @@ export const AddLinkBridgeArgsSchema: JSONSchemaType<AddLinkBridgeTypeArgs> = {
       nullable: true
     },
     mcast_query_response_interval: {
+      type    : 'integer',
+      minimum : 1,
+      nullable: true
+    },
+    mcast_startup_query_interval : {
       type    : 'integer',
       minimum : 1,
       nullable: true

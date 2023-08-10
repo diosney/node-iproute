@@ -1,7 +1,7 @@
 import { JSONSchemaType } from 'ajv';
 
 import { SchemaIds }           from '../../../common/constants/schemas';
-import { MacvlanMacvtapModes } from '../add.constants';
+import { MacvlanMacvtapModes } from '../../link.constants';
 
 import {
   AddLinkMacvlanMacvtapTypeArgs,

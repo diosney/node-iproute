@@ -21,11 +21,11 @@ export const RouteIoam6EncapArgsSchema: JSONSchemaType<AddRouteIoam6EncapArgs> =
       enum: [true],
     },
     type: {
-      type: 'number',
+      type: 'integer',
       minimum: 0
     },
     ns: {
-      type: 'number',
+      type: 'integer',
       minimum: 1
     },
     size: {

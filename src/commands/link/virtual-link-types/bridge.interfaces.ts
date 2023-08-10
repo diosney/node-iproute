@@ -5,7 +5,7 @@ import {
   MldVersions,
   MultiCastRouterOptions,
   VlanProtocols
-} from '../add.constants';
+} from '../../link.constants';
 
 export interface AddLinkBridgeTypeArgs {
   /**
@@ -111,12 +111,10 @@ export interface AddLinkBridgeTypeArgs {
    * forwarding a multicast group after a "leave" message has been received (defaults to 2).
    */
   mcast_last_member_count?: number;
-  /** Interval between queries to find remaining members of a group, after a "leave" message is received. */
-  mcast_last_member_interval?: number;
   /** Set the number of IGMP queries to send during startup phase (defaults to 2). */
   mcast_startup_query_count?: number;
-  /** Interval between queries in the startup phase. */
-  mcast_startup_query_interval?: number;
+  /** Interval between queries to find remaining members of a group, after a "leave" message is received. */
+  mcast_last_member_interval?: number;
   /** Delay after which the bridge will leave a group, if no membership reports for this group are received. */
   mcast_membership_interval?: number;
   /**
@@ -128,6 +126,8 @@ export interface AddLinkBridgeTypeArgs {
   mcast_query_interval?: number;
   /** Set the Max Response Time/Maximum Response Delay for IGMP/MLD queries sent by the bridge. */
   mcast_query_response_interval?: number;
+  /** Interval between queries in the startup phase. */
+  mcast_startup_query_interval?: number;
   /** Enable  (MCAST_STATS_ENABLED > 0) or disable (MCAST_STATS_ENABLED == 0) multicast (IGMP/MLD) stats accounting. */
   mcast_stats_enabled?: EnableDisableToggle;
   /** Set the IGMP version. */

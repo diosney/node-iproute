@@ -1,10 +1,10 @@
 import {JSONSchemaType} from 'ajv';
 
 import {EnableDisableAsStringToggle} from '../../common/constants/attribute-values';
-import {SchemaIds} from '../../common/constants/schemas';
-import {AddressFamilies, AddressScopes} from '../address/add.constants';
-import {RoutePreferences} from './add.constants';
-import {RouteAddOptions} from './add.interfaces';
+import {SchemaIds}                      from '../../common/constants/schemas';
+import {AddressFamilies, AddressScopes} from '../address.constants';
+import {RoutePreferences}               from '../route.constants';
+import {RouteAddOptions}                from './add.interfaces';
 import {RouteBpfEncapArgsSchema} from './encap-types/bpf.schema';
 import {RouteIoam6EncapArgsSchema} from './encap-types/ioam6.schema';
 import {RouteIpEncapArgsSchema} from './encap-types/ip.schema';
@@ -159,7 +159,7 @@ export const RouteAddSchema: JSONSchemaType<RouteAddOptions> = {
       nullable: true
     },
     weight: {
-      type: 'number',
+      type: 'integer',
       minimum: 1,
       nullable: true
     },
@@ -356,7 +356,7 @@ export const RouteAddSchema: JSONSchemaType<RouteAddOptions> = {
             nullable: true
           },
           weight: {
-            type: 'number',
+            type: 'integer',
             minimum: 1,
             nullable: true
           }

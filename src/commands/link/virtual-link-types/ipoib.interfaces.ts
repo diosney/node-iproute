@@ -1,4 +1,4 @@
-import { IpoIbModes } from '../add.constants';
+import { IpoIbModes } from '../../link.constants';
 
 export interface AddLinkIpoibTypeArgs {
   /** Specifies the IB P-Key to use. */

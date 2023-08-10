@@ -1,7 +1,7 @@
 import { JSONSchemaType } from 'ajv';
 
 import { SchemaIds }            from '../../../common/constants/schemas';
-import { IpoIbModes }           from '../add.constants';
+import { IpoIbModes }           from '../../link.constants';
 import { AddLinkIpoibTypeArgs } from './ipoib.interfaces';
 
 export const AddLinkIpoIbArgsSchema: JSONSchemaType<AddLinkIpoibTypeArgs> = {

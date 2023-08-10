@@ -16,17 +16,16 @@ export interface AddLinkIp6GreIp6gretapTypeArgs {
   oseq?: boolean;
   /** @see {@link seq} */
   nooseq?: boolean;
-  // TODO: Actual definition is `[ [i|o]key KEY | no[i|o]key ]`, see better way to constrain type.
   /** @see {@link LinkGreGretapTypeOptions.key} */
-  key?: number;
+  key?: number | string;
   /** @see {@link key} */
   nokey?: true;
   /** @see {@link key} */
-  ikey?: number;
+  ikey?:  number | string;
   /** @see {@link key} */
   noikey?: true;
   /** @see {@link key} */
-  okey?: number;
+  okey?: number | string;
   /** @see {@link key} */
   nookey?: true;
   /** @see {@link LinkGreGretapTypeOptions.csum} */
@@ -44,6 +43,8 @@ export interface AddLinkIp6GreIp6gretapTypeArgs {
   /** Specifies a fixed encapsulation limit. Default is 4. */
   encaplimit?: number;
   /**
+   * TODO: Add a more suitable validator?
+   *
    * Specifies the traffic class field on tunneled packets, which can be specified as
    * either a two-digit hex value (e.g. `c0`) or a predefined string (e.g. `internet`).
    *
@@ -57,8 +58,8 @@ export interface AddLinkIp6GreIp6gretapTypeArgs {
   tclass?: string;
   /** Specifies a fixed flowlabel. */
   flowlabel?: number;
-  // TODO: Is in params but there have no docs.
-  // 'dscp inherit'?: true;
+  // TODO: No docs in man.
+  'dscp inherit'?: true;
   /** Specifies whether to allow remote endpoint to have an address configured on local host. */
   'allow-localremote'?: boolean;
   /** @see {@link 'allow-localremote'} */

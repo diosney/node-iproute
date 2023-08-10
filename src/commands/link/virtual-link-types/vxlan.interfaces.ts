@@ -1,4 +1,4 @@
-import { DontFragmentFlagValues } from '../add.constants';
+import { DontFragmentFlagValues } from '../../link.constants';
 
 export interface AddLinkVxlanTypeArgs {
   /** Specifies the VXLAN Network Identifier (or VXLAN Segment Identifier) to use. */
@@ -51,14 +51,14 @@ export interface AddLinkVxlanTypeArgs {
   learning?: boolean;
   /** @see {@link learning} */
   nolearning?: boolean;
-  /** Specifies if route short circuit is turned on. */
-  rsc?: boolean;
-  /** @see {@link rsc} */
-  norsc?: boolean;
   /** Specifies if ARP proxy is turned on. */
   proxy?: boolean;
   /** @see {@link proxy} */
   noproxy?: boolean;
+  /** Specifies if route short circuit is turned on. */
+  rsc?: boolean;
+  /** @see {@link rsc} */
+  norsc?: boolean;
   /** Specifies if netlink LLADDR miss notifications are generated. */
   l2miss?: boolean;
   /** @see {@link l2miss} */

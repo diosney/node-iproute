@@ -12,9 +12,10 @@ import {
 import { set }            from './link';
 import { LinkSetOptions } from './link/set.interfaces';
 
-import { RuleAddOptions } from './rule/add.interfaces';
-import { RuleAddSchema }  from './rule/add.schema';
-import { RuleInfo }       from './rule/show.interfaces';
+import { RuleAddOptions }            from './rule/add.interfaces';
+import { RuleAddSchema }             from './rule/add.schema';
+import { RuleInfo, RuleShowOptions } from './rule/show.interfaces';
+import { RuleShowSchema }            from './rule/show.schema';
 
 /**
  * Insert a new rule.
@@ -32,7 +33,7 @@ import { RuleInfo }       from './rule/show.interfaces';
 export async function add(options: RuleAddOptions,
                           globalOptions: GlobalOptions = {}): Promise<IpCommand<RuleAddOptions>> {
 
-  const cmd = ['ip', 'rule', 'add'];
+  const cmd = [ 'ip', 'rule', 'add' ];
 
   const ipCmd = new IpCommand<RuleAddOptions>(
     SchemaIds.RuleAdd,
@@ -56,7 +57,7 @@ export async function add(options: RuleAddOptions,
 export async function del(options: RuleAddOptions,
                           globalOptions: GlobalOptions = {}): Promise<IpCommand<RuleAddOptions>> {
 
-  const cmd = ['ip', 'rule', 'delete'];
+  const cmd = [ 'ip', 'rule', 'delete' ];
 
   const ipCmd = new IpCommand<RuleAddOptions>(
     SchemaIds.RuleAdd,
@@ -80,7 +81,7 @@ export async function del(options: RuleAddOptions,
 export async function save(options: EmptyOptions = {},
                            globalOptions: GlobalOptionsWithRequiredFilePath): Promise<IpCommand<EmptyOptions>> {
 
-  const cmd = ['ip', 'rule', 'save'];
+  const cmd = [ 'ip', 'rule', 'save' ];
 
   const ipCmd = new IpCommandWithRedirectToFilepath<EmptyOptions>(
     SchemaIds.Empty,
@@ -104,7 +105,7 @@ export async function save(options: EmptyOptions = {},
 export async function restore(options: EmptyOptions = {},
                               globalOptions: GlobalOptionsWithRequiredFilePath): Promise<IpCommand<EmptyOptions>> {
 
-  const cmd = ['ip', 'rule', 'restore'];
+  const cmd = [ 'ip', 'rule', 'restore' ];
 
   const ipCmd = new IpCommandWithRedirectFromFilepath<EmptyOptions>(
     SchemaIds.Empty,
@@ -132,7 +133,7 @@ export async function restore(options: EmptyOptions = {},
 export async function flush(options: EmptyOptions,
                             globalOptions: GlobalOptions = {}): Promise<IpCommand<EmptyOptions>> {
 
-  const cmd = ['ip', 'rule', 'flush'];
+  const cmd = [ 'ip', 'rule', 'flush' ];
 
   const ipCmd = new IpCommand<EmptyOptions>(
     SchemaIds.Empty,
@@ -153,21 +154,21 @@ export async function flush(options: EmptyOptions,
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
-export async function show(options: RuleAddOptions,
-                           globalOptions: GlobalOptions = {}): Promise<IpCommand<RuleAddOptions> | RuleInfo[]> {
+export async function show(options: RuleShowOptions,
+                           globalOptions: GlobalOptions = {}): Promise<IpCommand<RuleShowOptions> | RuleInfo[]> {
 
-  const cmd = ['ip', 'rule', 'show'];
+  const cmd = [ 'ip', 'rule', 'show' ];
 
-  const ipCmd = new IpCommandWithReturnedData<RuleAddOptions>(
-    SchemaIds.RuleAdd,
-    RuleAddSchema,
+  const ipCmd = new IpCommandWithReturnedData<RuleShowOptions>(
+    SchemaIds.RuleShow,
+    RuleShowSchema,
     options,
     {
       ...globalOptions,
       // Overrides for a better show.
-      '-details'   : true,
+      '-details':    true,
       '-statistics': true,
-      '-json'      : true
+      '-json':       true
     },
     cmd);
 

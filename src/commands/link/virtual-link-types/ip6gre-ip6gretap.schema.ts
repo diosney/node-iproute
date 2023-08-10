@@ -4,131 +4,168 @@ import { SchemaIds }                      from '../../../common/constants/schema
 import { AddLinkIp6GreIp6gretapTypeArgs } from './ip6gre-ip6gretap.interfaces';
 
 export const AddLinkIp6GreIp6GretapArgsSchema: JSONSchemaType<AddLinkIp6GreIp6gretapTypeArgs> = {
-  $id                 : SchemaIds.LinkAddIp6GreIp6gretapOptions,
-  type                : 'object',
-  required            : ['remote', 'local'],
+  $id:                  SchemaIds.LinkAddIp6GreIp6gretapOptions,
+  type:                 'object',
+  required:             [ 'remote', 'local' ],
   additionalProperties: false,
-  properties          : {
-    remote               : {
-      type  : 'string',
-      format: 'ip'
+  properties:           {
+    remote:                {
+      type:   'string',
+      format: 'ipv6'
     },
-    local                : {
-      type  : 'string',
-      format: 'ip'
+    local:                 {
+      type:   'string',
+      format: 'ipv6'
     },
-    seq                  : {
-      type    : 'boolean',
+    seq:                   {
+      type:     'boolean',
       nullable: true
     },
-    iseq                 : {
-      type    : 'boolean',
+    iseq:                  {
+      type:     'boolean',
       nullable: true
     },
-    noiseq               : {
-      type    : 'boolean',
+    noiseq:                {
+      type:     'boolean',
       nullable: true
     },
-    oseq                 : {
-      type    : 'boolean',
+    oseq:                  {
+      type:     'boolean',
       nullable: true
     },
-    nooseq               : {
-      type    : 'boolean',
+    nooseq:                {
+      type:     'boolean',
       nullable: true
     },
-    key                  : {
-      type    : 'integer',
-      minimum : 0,
-      maximum : 4294967295,
+    key:                   {
+      type:     [ 'string', 'integer' ],
+      nullable: true,
+      oneOf:    [
+        {
+          type:     'string',
+          format:   'ipv4',
+          nullable: true
+        },
+        {
+          type:     'integer',
+          minimum:  0,
+          maximum:  4294967295,
+          nullable: true
+        }
+      ]
+    },
+    nokey:                 {
+      type:     'boolean',
+      enum:     [ true ],
       nullable: true
     },
-    nokey                : {
-      type    : 'boolean',
-      enum    : [true],
+    ikey:                  {
+      type:     [ 'string', 'integer' ],
+      nullable: true,
+      oneOf:    [
+        {
+          type:     'string',
+          format:   'ipv4',
+          nullable: true
+        },
+        {
+          type:     'integer',
+          minimum:  0,
+          maximum:  4294967295,
+          nullable: true
+        }
+      ]
+    },
+    noikey:                {
+      type:     'boolean',
+      enum:     [ true ],
       nullable: true
     },
-    ikey                 : {
-      type    : 'integer',
-      minimum : 0,
-      maximum : 4294967295,
+    okey:                  {
+      type:     [ 'string', 'integer' ],
+      nullable: true,
+      oneOf:    [
+        {
+          type:     'string',
+          format:   'ipv4',
+          nullable: true
+        },
+        {
+          type:     'integer',
+          minimum:  0,
+          maximum:  4294967295,
+          nullable: true
+        }
+      ]
+    },
+    nookey:                {
+      type:     'boolean',
+      enum:     [ true ],
       nullable: true
     },
-    noikey               : {
-      type    : 'boolean',
-      enum    : [true],
+    csum:                  {
+      type:     'boolean',
       nullable: true
     },
-    okey                 : {
-      type    : 'integer',
-      minimum : 0,
-      maximum : 4294967295,
+    icsum:                 {
+      type:     'boolean',
       nullable: true
     },
-    nookey               : {
-      type    : 'boolean',
-      enum    : [true],
+    noicsum:               {
+      type:     'boolean',
       nullable: true
     },
-    csum                 : {
-      type    : 'boolean',
+    ocsum:                 {
+      type:     'boolean',
       nullable: true
     },
-    icsum                : {
-      type    : 'boolean',
+    noocsum:               {
+      type:     'boolean',
       nullable: true
     },
-    noicsum              : {
-      type    : 'boolean',
+    hoplimit:              {
+      type:     'integer',
+      minimum:  1,
+      maximum:  255,
       nullable: true
     },
-    ocsum                : {
-      type    : 'boolean',
+    encaplimit:            {
+      type:     'integer',
+      minimum:  0,
+      maximum:  255,
       nullable: true
     },
-    noocsum              : {
-      type    : 'boolean',
-      nullable: true
-    },
-    hoplimit             : {
-      type    : 'integer',
-      minimum : 1,
-      maximum : 255,
-      nullable: true
-    },
-    encaplimit           : {
-      type    : 'integer',
-      minimum : 0,
-      maximum : 255,
-      nullable: true
-    },
-    tclass               : {
-      type     : 'string',
+    tclass:                {
+      type:      'string',
       minLength: 2,
-      nullable : true
+      nullable:  true
     },
-    flowlabel            : {
-      type    : 'integer',
-      minimum : 0,
-      maximum : 1048575,
+    flowlabel:             {
+      type:     'integer',
+      minimum:  0,
+      maximum:  1048575,
       nullable: true
     },
-    'allow-localremote'  : {
-      type    : 'boolean',
+    'dscp inherit':        {
+      type:     'boolean',
+      nullable: true
+    },
+    'allow-localremote':   {
+      type:     'boolean',
       nullable: true
     },
     'noallow-localremote': {
-      type    : 'boolean',
+      type:     'boolean',
       nullable: true
     },
-    dev                  : {
-      type     : 'string',
+    dev:                   {
+      type:      'string',
       minLength: 1,
-      nullable : true
+      nullable:  true
     },
-    external             : {
-      type    : 'boolean',
-      enum    : [true],
+    external:              {
+      type:     'boolean',
+      enum:     [ true ],
       nullable: true
     }
   }

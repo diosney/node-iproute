@@ -1,9 +1,9 @@
 import {JSONSchemaType} from 'ajv';
 
-import {SchemaIds} from '../../../common/constants/schemas';
-import {AddressFamilies} from '../../address/add.constants';
-import {EncapSeg6LocalActions} from '../add.constants';
-import {RouteRoutingTables} from '../show.constants';
+import {SchemaIds}             from '../../../common/constants/schemas';
+import {AddressFamilies}       from '../../address.constants';
+import {EncapSeg6LocalActions} from '../../route.constants';
+import {RouteRoutingTables}    from '../show.constants';
 
 import {
   AddRouteSeg6LocalEncapArgs,
@@ -43,7 +43,7 @@ export const EndXSeg6LocalEncapArgsSchema: JSONSchemaType<EndXSeg6LocalEncapArgs
       nullable: true
     },
     weight: {
-      type: 'number',
+      type: 'integer',
       minimum: 1,
       nullable: true
     }
@@ -109,7 +109,7 @@ export const EndDt6Seg6LocalEncapArgsSchema: JSONSchemaType<EndDt6Seg6LocalEncap
       nullable: true
     },
     weight: {
-      type: 'number',
+      type: 'integer',
       minimum: 1,
       nullable: true
     }
@@ -156,7 +156,7 @@ export const EndB6Seg6LocalEncapArgsSchema: JSONSchemaType<EndB6Seg6LocalEncapAr
       nullable: true
     },
     weight: {
-      type: 'number',
+      type: 'integer',
       minimum: 1,
       nullable: true
     }

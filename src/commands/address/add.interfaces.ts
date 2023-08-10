@@ -1,4 +1,4 @@
-import { AddressScopes } from './add.constants';
+import { AddressScopes } from '../address.constants';
 
 export interface AddressAddOptions {
   /**
@@ -8,8 +8,6 @@ export interface AddressAddOptions {
    *  The ADDRESS may be followed by a slash and a decimal number which encodes the network prefix length.
    */
   local: string;
-  /** The name of the device to add the address to. */
-  dev: string;
   /**
    * The address of the remote endpoint for pointopoint interfaces.
    *
@@ -25,6 +23,8 @@ export interface AddressAddOptions {
    * In this case, the broadcast address is derived by setting/resetting the host bits of the interface prefix.
    */
   broadcast?: '+' | '-' | string;
+  /** TODO: Missing from manpage. */
+  anycast?: string;
   /**
    * Each address may be tagged with a label string.
    * In order to preserve compatibility with Linux-2.0 net aliases, this string must coincide with the
@@ -37,8 +37,8 @@ export interface AddressAddOptions {
    * The available scopes are listed in file `/etc/iproute2/rt_scopes`.
    */
   scope?: AddressScopes | number;
-  /** Priority of prefix route associated with address. */
-  metric?: number;
+  /** The name of the device to add the address to. */
+  dev: string;
   /**
    * The valid lifetime of this address; see section 5.5.4 of RFC 4862.
    * When it expires, the address is removed by the kernel.

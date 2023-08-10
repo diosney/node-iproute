@@ -1,4 +1,4 @@
-import { VirtualLinkTypes }               from './add.constants';
+import { VirtualLinkTypes }               from '../link.constants';
 import { SetLinkBondSlaveTypeArgs }       from './extended-virtual-link-types/bond-slave.interfaces';
 import { SetLinkBridgeSlaveTypeArgs }     from './extended-virtual-link-types/bridge-slave.interfaces';
 import { AddLinkBareudpTypeArgs }         from './virtual-link-types/bareup.interfaces';
@@ -29,7 +29,7 @@ export interface LinkAddOptions {
   link?: string;
   /** Specifies the name of the new virtual device. */
   name: string;
-  /** Change the transmit queue length of the device. */
+  /** The transmit queue length of the device. */
   txqueuelen?: number;
   /**
    * Specifies the device Link Layer Address (LLADDR) parameter,
@@ -88,4 +88,5 @@ export type TypeArgs = AddLinkVlanTypeArgs
 
 export type ExtendedTypeArgs = SetLinkBridgeSlaveTypeArgs
   | SetLinkBondSlaveTypeArgs
-  | SetLinkMacvlanMacvtapTypeArgs;
+  | SetLinkMacvlanMacvtapTypeArgs
+  | TypeArgs;

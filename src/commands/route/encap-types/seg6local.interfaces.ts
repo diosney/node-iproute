@@ -1,4 +1,4 @@
-import { EncapSeg6LocalActions } from '../add.constants';
+import { EncapSeg6LocalActions } from '../../route.constants';
 import { NhArgs }                from '../add.interfaces';
 import { RouteRoutingTables }    from '../show.constants';
 

@@ -42,8 +42,11 @@
 
 - Commands to add:
   - link
-    - xstats
-    - afstats
+    - set
+      - `macaddr` set of options
+  - xstats
+  - afstats
+  - property
     
 - add global option to disable schema validations? 
 - add global option to `ensureOrder` by using the schemas?
@@ -51,3 +54,5 @@
 - poner en doc q despues de agregar una rule tiene q hacer: `ip route flush cache` o `ip route flush table cache`
 
 - rellenar los return interfaces de los "show".
+- como condensar las clases IpCommand, template method?
+- - change all "pattern" into "format"?

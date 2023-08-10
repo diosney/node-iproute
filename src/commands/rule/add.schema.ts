@@ -1,8 +1,8 @@
 import { JSONSchemaType } from 'ajv';
 
-import { SchemaIds }                    from '../../common/constants/schemas';
-import { RuleRoutingTables, RuleTypes } from './add.constants';
-import { RuleAddOptions }               from './add.interfaces';
+import { SchemaIds }                from '../../common/constants/schemas';
+import { RoutingTables, RuleTypes } from '../rule.constants';
+import { RuleAddOptions }           from './add.interfaces';
 
 export const RuleAddSchema: JSONSchemaType<RuleAddOptions> = {
   $id       : SchemaIds.RuleAdd,
@@ -30,12 +30,6 @@ export const RuleAddSchema: JSONSchemaType<RuleAddOptions> = {
       nullable: true
     },
     tos                  : {
-      type    : 'integer',
-      nullable: true,
-      minimum : 0,
-      maximum : 255
-    },
-    dsfield              : {
       type    : 'integer',
       nullable: true,
       minimum : 0,
@@ -117,12 +111,7 @@ export const RuleAddSchema: JSONSchemaType<RuleAddOptions> = {
         }
       ]
     },
-    priority             : {
-      type    : 'integer',
-      minimum : 0,
-      nullable: true
-    },
-    pref                 : {
+    preference                 : {
       type    : 'integer',
       minimum : 0,
       nullable: true
@@ -138,23 +127,7 @@ export const RuleAddSchema: JSONSchemaType<RuleAddOptions> = {
       oneOf   : [
         {
           type    : 'string',
-          enum    : Object.values(RuleRoutingTables) as RuleRoutingTables[],
-          nullable: true
-        },
-        {
-          type    : 'integer',
-          minimum : 0,
-          nullable: true
-        }
-      ]
-    },
-    lookup               : {
-      type    : ['string', 'integer'],
-      nullable: true,
-      oneOf   : [
-        {
-          type    : 'string',
-          enum    : Object.values(RuleRoutingTables) as RuleRoutingTables[],
+          enum    : Object.values(RoutingTables) as RoutingTables[],
           nullable: true
         },
         {
@@ -181,11 +154,6 @@ export const RuleAddSchema: JSONSchemaType<RuleAddOptions> = {
       ]
     },
     nat                  : {
-      type    : 'string',
-      format  : 'ip',
-      nullable: true
-    },
-    'map-to'             : {
       type    : 'string',
       format  : 'ip',
       nullable: true

@@ -1,4 +1,4 @@
-import { SecondaryUdpEncapsulations } from '../add.constants';
+import { SecondaryUdpEncapsulations } from '../../link.constants';
 
 export interface AddLinkGreGretapTypeArgs {
   /** Specifies the remote address of the tunnel. */
@@ -32,15 +32,15 @@ export interface AddLinkGreGretapTypeArgs {
    * The {@link key} parameter specifies the same key to use in both directions.
    * The {@link ikey} and {@link okey} parameters specify different keys for input and output.
    */
-  key?: number;
+  key?: number | string;
   /** @see {@link key} */
   nokey?: true;
   /** @see {@link key} */
-  ikey?: number;
+  ikey?:  number | string;
   /** @see {@link key} */
   noikey?: true;
   /** @see {@link key} */
-  okey?: number;
+  okey?: number | string;
   /** @see {@link key} */
   nookey?: true;
   /**
@@ -59,10 +59,10 @@ export interface AddLinkGreGretapTypeArgs {
   ocsum?: boolean;
   /** @see {@link csum} */
   noocsum?: boolean;
-  /** Specifies the TOS value to use in outgoing packets. */
-  tos?: number;
   /** Specifies the TTL value to use in outgoing packets. */
   ttl?: number;
+  /** Specifies the TOS value to use in outgoing packets. */
+  tos?: number;
   /**
    * Enables/disables Path MTU Discovery on this tunnel. It is enabled by default.
    * Note that a fixed {@link ttl} is incompatible with this option:
@@ -86,8 +86,8 @@ export interface AddLinkGreGretapTypeArgs {
   encap?: SecondaryUdpEncapsulations;
   /** @see {@link LinkIpipSitTypeOption['encap-sport'] } */
   'encap-sport'?: number | 'auto';
-  // TODO: There is an option but no description.
-  // 'encap-dport'?: number;
+  /** TODO: No doc in man. */
+  'encap-dport'?: number ;
   /** Specifies if UDP checksums are enabled in the secondary encapsulation. */
   'encap-csum'?: boolean;
   /** @see {@link['encap-csum']} */

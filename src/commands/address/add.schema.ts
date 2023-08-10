@@ -1,7 +1,7 @@
 import { JSONSchemaType } from 'ajv';
 
 import { SchemaIds }         from '../../common/constants/schemas';
-import { AddressScopes }     from './add.constants';
+import { AddressScopes }     from '../address.constants';
 import { AddressAddOptions } from './add.interfaces';
 
 export const AddressAddSchema: JSONSchemaType<AddressAddOptions> = {
@@ -9,51 +9,51 @@ export const AddressAddSchema: JSONSchemaType<AddressAddOptions> = {
   type      : 'object',
   required  : ['local', 'dev'],
   properties: {
-    local        : {
-      type  : 'string',
+    local:     {
+      type:   'string',
       format: 'ip-with-optional-mask'
     },
-    dev          : {
-      type     : 'string',
-      minLength: 1,
-      maxLength: 15
-    },
-    peer         : {
-      type    : 'string',
-      format  : 'ip-with-optional-mask',
+    peer:      {
+      type:     'string',
+      format:   'ip-with-optional-mask',
       nullable: true
     },
-    broadcast    : {
-      type    : 'string',
-      format  : 'ip-with-optional-mask',
+    broadcast: {
+      type:     'string',
+      format:   'ip-with-optional-mask',
       nullable: true
     },
-    label        : {
-      type     : 'string',
+    anycast:   {
+      type:     'string',
+      format:   'ip-with-optional-mask',
+      nullable: true
+    },
+    label:     {
+      type:      'string',
       minLength: 1,
       maxLength: 15,
-      nullable : true
+      nullable:  true
     },
-    scope        : {
-      type    : ['string', 'integer'],
+    scope:     {
+      type:     [ 'string', 'integer' ],
       nullable: true,
-      oneOf   : [
+      oneOf:    [
         {
-          type    : 'string',
-          enum    : Object.values(AddressScopes) as AddressScopes[],
+          type:     'string',
+          enum:     Object.values(AddressScopes) as AddressScopes[],
           nullable: true
         },
         {
-          type    : 'integer',
-          minimum : 0,
+          type:     'integer',
+          minimum:  0,
           nullable: true
         }
       ]
     },
-    metric       : {
-      type    : 'integer',
-      minimum : 0,
-      nullable: true
+    dev:       {
+      type:      'string',
+      minLength: 1,
+      maxLength: 15
     },
     valid_lft    : {
       type    : ['string', 'integer'],

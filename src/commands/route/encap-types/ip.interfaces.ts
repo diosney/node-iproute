@@ -1,4 +1,4 @@
-import { TtlSpecialValues } from '../../link/add.constants';
+import { TtlSpecialValues } from '../../link.constants';
 
 export interface AddRouteIpEncapArgs {
   /** XXX */

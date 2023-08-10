@@ -1,4 +1,4 @@
-import { AddressScopes } from './add.constants';
+import { AddressScopes } from '../address.constants';
 
 export interface AddressFlushOptions {
   /** The name of the device to match the address from. */
@@ -32,7 +32,8 @@ export interface AddressFlushOptions {
    * @see {@link primary}
    */
   '-secondary'?: true;
-  /** List only primary addresses, in IPv6 exclude temporary ones.
+  /**
+   * List only primary addresses, in IPv6 exclude temporary ones.
    * This flag is the inverse of {@link temporary} and {@link secondary}.
    */
   primary?: true;
@@ -75,7 +76,10 @@ export interface AddressFlushOptions {
   noprefixroute?: true;
   /** @see {@link AddressAddOptions.autojoin} */
   autojoin?: true;
-  /** @see {@link AddressAddOptions.label} */
+  /**
+   * Only list addresses with labels matching the PATTERN.
+   * PATTERN is a usual shell style pattern.
+   */
   label?: string;
   /** Matches addresses of running interfaces. */
   up?: true;
