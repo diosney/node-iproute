@@ -1,8 +1,8 @@
-import IpCommandWithRedirectFromFilepath from '../common/classes/ip-command-with-redirect-from-filepath';
-import IpCommandWithRedirectToFilepath   from '../common/classes/ip-command-with-redirect-to-filepath';
-import IpCommandWithReturnedData         from '../common/classes/ip-command-with-returned-data';
-import IpCommand                         from '../common/classes/ip.command';
-import { EmptySchema, SchemaIds }        from '../common/constants/schemas';
+import CommandWithRedirectFromFilepath from '../common/classes/command-with-redirect-from-filepath';
+import CommandWithRedirectToFilepath from '../common/classes/command-with-redirect-to-filepath';
+import CommandWithReturnedData       from '../common/classes/command-with-returned-data';
+import Command                       from '../common/classes/command';
+import { EmptySchema, SchemaIds } from '../common/constants/schemas';
 
 import {
   GlobalOptionsWithRequiredFilePath,
@@ -18,7 +18,7 @@ import { AddressFlushSchema }              from './address/flush.schema';
 import { AddressInfo, AddressShowOptions } from './address/show.interfaces';
 import { AddressShowSchema }               from './address/show.schema';
 
-import IpCommandWithRedirectFromFilepathAndReturnedData from '../common/classes/ip-command-with-redirect-from-filepath-and-returned-data';
+import CommandWithRedirectFromFilepathAndReturnedData from '../common/classes/command-with-redirect-from-filepath-and-returned-data';
 
 /**
  * Add new protocol address.
@@ -30,11 +30,11 @@ import IpCommandWithRedirectFromFilepathAndReturnedData from '../common/classes/
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function add(options: AddressAddOptions,
-                          globalOptions: GlobalOptions = {}): Promise<IpCommand<AddressAddOptions>> {
+                          globalOptions: GlobalOptions = {}): Promise<Command<AddressAddOptions>> {
 
   const cmd = [ 'ip', 'address', 'add' ];
 
-  const ipCmd = new IpCommand<AddressAddOptions>(
+  const ipCmd = new Command<AddressAddOptions>(
     SchemaIds.AddressAdd,
     AddressAddSchema,
     options,
@@ -54,11 +54,11 @@ export async function add(options: AddressAddOptions,
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function change(options: AddressAddOptions,
-                             globalOptions: GlobalOptions = {}): Promise<IpCommand<AddressAddOptions>> {
+                             globalOptions: GlobalOptions = {}): Promise<Command<AddressAddOptions>> {
 
   const cmd = [ 'ip', 'address', 'change' ];
 
-  const ipCmd = new IpCommand<AddressAddOptions>(
+  const ipCmd = new Command<AddressAddOptions>(
     SchemaIds.AddressAdd,
     AddressAddSchema,
     options,
@@ -78,11 +78,11 @@ export async function change(options: AddressAddOptions,
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function replace(options: AddressAddOptions,
-                              globalOptions: GlobalOptions = {}): Promise<IpCommand<AddressAddOptions>> {
+                              globalOptions: GlobalOptions = {}): Promise<Command<AddressAddOptions>> {
 
   const cmd = [ 'ip', 'address', 'replace' ];
 
-  const ipCmd = new IpCommand<AddressAddOptions>(
+  const ipCmd = new Command<AddressAddOptions>(
     SchemaIds.AddressAdd,
     AddressAddSchema,
     options,
@@ -102,11 +102,11 @@ export async function replace(options: AddressAddOptions,
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function del(options: AddressDeleteOptions,
-                          globalOptions: GlobalOptions = {}): Promise<IpCommand<AddressDeleteOptions>> {
+                          globalOptions: GlobalOptions = {}): Promise<Command<AddressDeleteOptions>> {
 
   const cmd = [ 'ip', 'address', 'delete' ];
 
-  const ipCmd = new IpCommand<AddressDeleteOptions>(
+  const ipCmd = new Command<AddressDeleteOptions>(
     SchemaIds.AddressDelete,
     AddressDeleteSchema,
     options,
@@ -134,11 +134,11 @@ export async function del(options: AddressDeleteOptions,
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function flush(options: AddressFlushOptions,
-                            globalOptions: GlobalOptions = {}): Promise<IpCommand<AddressFlushOptions>> {
+                            globalOptions: GlobalOptions = {}): Promise<Command<AddressFlushOptions>> {
 
   const cmd = [ 'ip', 'address', 'flush' ];
 
-  const ipCmd = new IpCommand<AddressFlushOptions>(
+  const ipCmd = new Command<AddressFlushOptions>(
     SchemaIds.AddressFlush,
     AddressFlushSchema,
     options,
@@ -158,11 +158,11 @@ export async function flush(options: AddressFlushOptions,
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function save(options: AddressFlushOptions,
-                           globalOptions: GlobalOptionsWithRequiredFilePath): Promise<IpCommand<AddressFlushOptions>> {
+                           globalOptions: GlobalOptionsWithRequiredFilePath): Promise<Command<AddressFlushOptions>> {
 
   const cmd = [ 'ip', 'address', 'save' ];
 
-  const ipCmd = new IpCommandWithRedirectToFilepath<AddressFlushOptions>(
+  const ipCmd = new CommandWithRedirectToFilepath<AddressFlushOptions>(
     SchemaIds.AddressFlush,
     AddressFlushSchema,
     options,
@@ -182,11 +182,11 @@ export async function save(options: AddressFlushOptions,
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function restore(options: EmptyOptions = {},
-                              globalOptions: GlobalOptionsWithRequiredFilePath): Promise<IpCommand<EmptyOptions>> {
+                              globalOptions: GlobalOptionsWithRequiredFilePath): Promise<Command<EmptyOptions>> {
 
   const cmd = [ 'ip', 'address', 'restore' ];
 
-  const ipCmd = new IpCommandWithRedirectFromFilepath<EmptyOptions>(
+  const ipCmd = new CommandWithRedirectFromFilepath<EmptyOptions>(
     SchemaIds.Empty,
     EmptySchema,
     options,
@@ -206,11 +206,11 @@ export async function restore(options: EmptyOptions = {},
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function showdump(options: EmptyOptions = {},
-                               globalOptions: GlobalOptionsWithRequiredFilePath): Promise<IpCommand<EmptyOptions> | AddressInfo[]> {
+                               globalOptions: GlobalOptionsWithRequiredFilePath): Promise<Command<EmptyOptions> | AddressInfo[]> {
 
   const cmd = [ 'ip', 'address', 'showdump' ];
 
-  const ipCmd = new IpCommandWithRedirectFromFilepathAndReturnedData<EmptyOptions>(
+  const ipCmd = new CommandWithRedirectFromFilepathAndReturnedData<EmptyOptions>(
     SchemaIds.Empty,
     EmptySchema,
     options,
@@ -236,11 +236,11 @@ export async function showdump(options: EmptyOptions = {},
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function show(options: AddressShowOptions,
-                           globalOptions: GlobalOptions = {}): Promise<IpCommand<AddressShowOptions> | AddressInfo[]> {
+                           globalOptions: GlobalOptions = {}): Promise<Command<AddressShowOptions> | AddressInfo[]> {
 
   const cmd = [ 'ip', 'address', 'show' ];
 
-  const ipCmd = new IpCommandWithReturnedData<AddressShowOptions>(
+  const ipCmd = new CommandWithReturnedData<AddressShowOptions>(
     SchemaIds.AddressShow,
     AddressShowSchema,
     options,

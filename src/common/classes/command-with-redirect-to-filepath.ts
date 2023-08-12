@@ -6,12 +6,12 @@ import { FilePathGlobalOptionSchema, SchemaIds } from '../constants/schemas';
 import { CommandError }                          from '../errors/command';
 import { ParametersError }                       from '../errors/parameters';
 import { GlobalOptionsWithRequiredFilePath }     from '../interfaces/common';
-import ajv                                       from '../validator';
-import IpCommand                                 from './ip.command';
+import ajv     from '../validator';
+import Command from './command';
 
 const promisifiedExec = promisify(exec);
 
-export default class IpCommandWithRedirectToFilepath<T_CommandOptions extends { [index: string]: any; }> extends IpCommand<T_CommandOptions> {
+export default class CommandWithRedirectToFilepath<T_CommandOptions extends { [index: string]: any; }> extends Command<T_CommandOptions> {
   constructor(protected schemaId: SchemaIds,
               protected schema: JSONSchemaType<T_CommandOptions>,
               protected options: T_CommandOptions,

@@ -3,7 +3,7 @@
  */
 export class CommandError extends Error {
   /** Code to identify the error easily in `catch` clauses. */
-  code = 'ERR_IPROUTE_COMMAND_ERRORED';
+  code = 'ERR_COMMAND_ERRORED';
 
   /** Command line that triggered the command error. */
   cmd: string;

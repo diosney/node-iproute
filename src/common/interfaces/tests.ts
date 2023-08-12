@@ -1,5 +1,6 @@
-import { TestEnum }      from '../constants/tests';
-import { GlobalOptions } from './common';
+import { TestEnum }           from '../constants/tests';
+import { GlobalOptions }      from './common';
+import { AddressShowOptions } from '../../commands/address/show.interfaces';
 
 export interface Empty {
 }
@@ -18,7 +19,7 @@ export interface ComplexIpCommandTestArgsOptions {
 
   number_?: number;
 
-  aTuple: [number, number];
+  aTuple: [ number, number ];
 
   anArray: Array<{
     aNumber: number;
@@ -32,4 +33,12 @@ export interface TestFixture<T_Options, T_GlobalOptions = GlobalOptions> {
   globalOptions?: T_GlobalOptions;
   expectedCmd: Array<number | string>;
   expectedCmdToExec: string;
+}
+
+export interface TestDefinition {
+  [index: string]: Array<{
+    operator: string;
+    testBattery: TestFixture<any>[];
+    method: Function;
+  }>;
 }

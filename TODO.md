@@ -56,3 +56,6 @@
 - rellenar los return interfaces de los "show".
 - como condensar las clases IpCommand, template method?
 - - change all "pattern" into "format"?
+- dynamize test fixtures to dynamically discover and import from folder instead of big index?
+- monitor
+  - parse output to json?

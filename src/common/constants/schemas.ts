@@ -10,8 +10,7 @@ import {
   Empty
 } from '../interfaces/tests';
 
-import { TestEnum }                      from './tests';
-import { LinkSetXdpObjectOptionsSchema } from '../../commands/link/xdp-options/object.schema';
+import { TestEnum } from './tests';
 
 export enum SchemaIds {
   Empty                            = '#empty-schema',
@@ -19,6 +18,8 @@ export enum SchemaIds {
   GlobalOptions                    = '#global-options',
   FilePathGlobalOption             = '#global-options-file-path',
   ComplexIpCommandTestOptions      = '#complex-ip-command-test-options',
+
+  RoutingTablesOptions             = '#routing-tables-options',
 
   LinkAdd                          = '#link-add',
   LinkDelete                       = '#link-delete',
@@ -73,6 +74,8 @@ export enum SchemaIds {
   RouteAddEndXSeg6LocalEncapArgs   = '#route-add-seg6local-encap-endx',
   RouteAddEndDt6Seg6LocalEncapArgs = '#route-add-seg6local-encap-end-dt6',
   RouteAddEndB6Seg6LocalEncapArgs  = '#route-add-seg6local-encap-end-b6',
+
+  Monitor                          = '#monitor',
 }
 
 export const GlobalOptionsSchema: JSONSchemaType<GlobalOptions> = {

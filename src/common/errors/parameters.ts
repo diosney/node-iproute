@@ -5,7 +5,7 @@ import { ErrorObject } from 'ajv';
  */
 export class ParametersError extends Error {
   /** Code to identify the error easily in `catch` clauses. */
-  code = 'ERR_IPROUTE_INVALID_PARAMETERS';
+  code = 'ERR_INVALID_PARAMETERS';
 
   /**
    * Detailed introspection on the encountered errors, useful to know exactly

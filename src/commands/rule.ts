@@ -1,8 +1,8 @@
-import IpCommandWithRedirectFromFilepath from '../common/classes/ip-command-with-redirect-from-filepath';
-import IpCommandWithRedirectToFilepath   from '../common/classes/ip-command-with-redirect-to-filepath';
-import IpCommandWithReturnedData         from '../common/classes/ip-command-with-returned-data';
-import IpCommand                         from '../common/classes/ip.command';
-import { EmptySchema, SchemaIds }        from '../common/constants/schemas';
+import CommandWithRedirectFromFilepath from '../common/classes/command-with-redirect-from-filepath';
+import CommandWithRedirectToFilepath from '../common/classes/command-with-redirect-to-filepath';
+import CommandWithReturnedData       from '../common/classes/command-with-returned-data';
+import Command                       from '../common/classes/command';
+import { EmptySchema, SchemaIds } from '../common/constants/schemas';
 
 import {
   EmptyOptions,
@@ -31,11 +31,11 @@ import { RuleShowSchema }            from './rule/show.schema';
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function add(options: RuleAddOptions,
-                          globalOptions: GlobalOptions = {}): Promise<IpCommand<RuleAddOptions>> {
+                          globalOptions: GlobalOptions = {}): Promise<Command<RuleAddOptions>> {
 
   const cmd = [ 'ip', 'rule', 'add' ];
 
-  const ipCmd = new IpCommand<RuleAddOptions>(
+  const ipCmd = new Command<RuleAddOptions>(
     SchemaIds.RuleAdd,
     RuleAddSchema,
     options,
@@ -55,11 +55,11 @@ export async function add(options: RuleAddOptions,
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function del(options: RuleAddOptions,
-                          globalOptions: GlobalOptions = {}): Promise<IpCommand<RuleAddOptions>> {
+                          globalOptions: GlobalOptions = {}): Promise<Command<RuleAddOptions>> {
 
   const cmd = [ 'ip', 'rule', 'delete' ];
 
-  const ipCmd = new IpCommand<RuleAddOptions>(
+  const ipCmd = new Command<RuleAddOptions>(
     SchemaIds.RuleAdd,
     RuleAddSchema,
     options,
@@ -79,11 +79,11 @@ export async function del(options: RuleAddOptions,
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function save(options: EmptyOptions = {},
-                           globalOptions: GlobalOptionsWithRequiredFilePath): Promise<IpCommand<EmptyOptions>> {
+                           globalOptions: GlobalOptionsWithRequiredFilePath): Promise<Command<EmptyOptions>> {
 
   const cmd = [ 'ip', 'rule', 'save' ];
 
-  const ipCmd = new IpCommandWithRedirectToFilepath<EmptyOptions>(
+  const ipCmd = new CommandWithRedirectToFilepath<EmptyOptions>(
     SchemaIds.Empty,
     EmptySchema,
     options,
@@ -103,11 +103,11 @@ export async function save(options: EmptyOptions = {},
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function restore(options: EmptyOptions = {},
-                              globalOptions: GlobalOptionsWithRequiredFilePath): Promise<IpCommand<EmptyOptions>> {
+                              globalOptions: GlobalOptionsWithRequiredFilePath): Promise<Command<EmptyOptions>> {
 
   const cmd = [ 'ip', 'rule', 'restore' ];
 
-  const ipCmd = new IpCommandWithRedirectFromFilepath<EmptyOptions>(
+  const ipCmd = new CommandWithRedirectFromFilepath<EmptyOptions>(
     SchemaIds.Empty,
     EmptySchema,
     options,
@@ -131,11 +131,11 @@ export async function restore(options: EmptyOptions = {},
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function flush(options: EmptyOptions,
-                            globalOptions: GlobalOptions = {}): Promise<IpCommand<EmptyOptions>> {
+                            globalOptions: GlobalOptions = {}): Promise<Command<EmptyOptions>> {
 
   const cmd = [ 'ip', 'rule', 'flush' ];
 
-  const ipCmd = new IpCommand<EmptyOptions>(
+  const ipCmd = new Command<EmptyOptions>(
     SchemaIds.Empty,
     EmptySchema,
     options,
@@ -155,11 +155,11 @@ export async function flush(options: EmptyOptions,
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function show(options: RuleShowOptions,
-                           globalOptions: GlobalOptions = {}): Promise<IpCommand<RuleShowOptions> | RuleInfo[]> {
+                           globalOptions: GlobalOptions = {}): Promise<Command<RuleShowOptions> | RuleInfo[]> {
 
   const cmd = [ 'ip', 'rule', 'show' ];
 
-  const ipCmd = new IpCommandWithReturnedData<RuleShowOptions>(
+  const ipCmd = new CommandWithReturnedData<RuleShowOptions>(
     SchemaIds.RuleShow,
     RuleShowSchema,
     options,

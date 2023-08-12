@@ -2,21 +2,18 @@ import { JSONSchemaType } from 'ajv';
 import { promisify }      from 'util';
 import { exec }           from 'child_process';
 
-import { SchemaIds }                         from '../constants/schemas';
-import { CommandError }                      from '../errors/command';
-import { GlobalOptionsWithRequiredFilePath } from '../interfaces/common';
-import IpCommandWithRedirectFromFilepath     from './ip-command-with-redirect-from-filepath';
+import { SchemaIds }     from '../constants/schemas';
+import { CommandError }  from '../errors/command';
+import { GlobalOptions } from '../interfaces/common';
+import Command           from './command';
 
 const promisifiedExec = promisify(exec);
 
-export default class IpCommandWithRedirectFromFilepathAndReturnedData<T_CommandOptions extends {
-  [index: string]: any;
-}> extends IpCommandWithRedirectFromFilepath<T_CommandOptions> {
-
+export default class CommandWithReturnedData<T_CommandOptions extends { [index: string]: any; }> extends Command<T_CommandOptions> {
   constructor(protected schemaId: SchemaIds,
               protected schema: JSONSchemaType<T_CommandOptions>,
               protected options: T_CommandOptions,
-              protected globalOptions: GlobalOptionsWithRequiredFilePath,
+              protected globalOptions: GlobalOptions,
               protected ipCmd: string[]) {
 
     super(schemaId,

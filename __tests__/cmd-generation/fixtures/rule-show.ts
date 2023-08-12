@@ -1,6 +1,6 @@
 import { RoutingTables }  from '../../../src/commands/rule.constants';
 import { RuleAddOptions } from '../../../src/commands/rule/add.interfaces';
-import { TestFixture }       from '../../../src/common/interfaces/tests';
+import { TestFixture }    from '../../../src/common/interfaces/tests';
 
 export const Tests: TestFixture<RuleAddOptions>[] = [
   {

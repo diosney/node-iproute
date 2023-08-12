@@ -10,15 +10,18 @@ import route from './commands/route';
 // Routing policy database (RPDB) management.
 import rule from './commands/rule';
 
-// // State monitoring.
-// exports.monitor = require('./src/monitor/index');
-//
-// // General utilities functions to provide extra handy functionality not present in iproute.
-// exports.utils = require('./src/utils/index');
+// State monitoring.
+import monitor from './commands/monitor';
+
+// General utilities functions to provide extra handy functionality not present in iproute.
+import utils from './utils';
 
 export default {
   link,
   address,
   rule,
-  route
+  route,
+  monitor,
+  // Extras.
+  utils
 };

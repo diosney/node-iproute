@@ -1,7 +1,7 @@
 import {describe, it} from "mocha";
 import { expect } from 'chai';
 
-import IpCommand from '../../src/common/classes/ip.command';
+import Command from '../../src/common/classes/command';
 
 import {
   EmptySchema,
@@ -28,7 +28,7 @@ describe('ip command', function () {
 
       const options: Empty = {};
 
-      let ipCommand = new IpCommand<Empty>(
+      let ipCommand = new Command<Empty>(
         SchemaIds.Empty,
         EmptySchema,
         options,
@@ -59,7 +59,7 @@ describe('ip command', function () {
 
       const options: Empty = {};
 
-      let ipCommand = new IpCommand<Empty>(
+      let ipCommand = new Command<Empty>(
         SchemaIds.Empty,
         EmptySchema,
         options,
@@ -125,7 +125,7 @@ describe('ip command', function () {
         }
       };
 
-      let ipCommand = new IpCommand<ComplexIpCommandTestOptions>(
+      let ipCommand = new Command<ComplexIpCommandTestOptions>(
         SchemaIds.ComplexIpCommandTestOptions,
         IpCommandTestOptionsSchema,
         options,

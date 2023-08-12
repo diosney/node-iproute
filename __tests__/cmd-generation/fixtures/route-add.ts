@@ -1,5 +1,5 @@
-import {RouteAddOptions}       from '../../../lib/commands/route/add.interfaces';
-import {TestFixture}           from '../../../src/common/interfaces/tests';
+import {RouteAddOptions}         from '../../../lib/commands/route/add.interfaces';
+import {TestFixture}             from '../../../src/common/interfaces/tests';
 import { EncapSeg6LocalActions } from '../../../lib/commands/route.constants';
 
 export const Tests: TestFixture<RouteAddOptions>[] = [

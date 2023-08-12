@@ -1,8 +1,8 @@
-import IpCommandWithRedirectFromFilepath from '../common/classes/ip-command-with-redirect-from-filepath';
-import IpCommandWithRedirectToFilepath from '../common/classes/ip-command-with-redirect-to-filepath';
-import IpCommandWithReturnedData from '../common/classes/ip-command-with-returned-data';
-import IpCommand from '../common/classes/ip.command';
-import {EmptySchema, SchemaIds} from '../common/constants/schemas';
+import CommandWithRedirectFromFilepath from '../common/classes/command-with-redirect-from-filepath';
+import CommandWithRedirectToFilepath from '../common/classes/command-with-redirect-to-filepath';
+import CommandWithReturnedData       from '../common/classes/command-with-returned-data';
+import Command                       from '../common/classes/command';
+import {EmptySchema, SchemaIds}  from '../common/constants/schemas';
 
 import {
   EmptyOptions,
@@ -32,11 +32,11 @@ import {RouteAddSchema} from "./route/add.schema";
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function show(options: RouteShowOptions,
-                           globalOptions: GlobalOptions = {}): Promise<IpCommand<RouteShowOptions> | RouteInfo[]> {
+                           globalOptions: GlobalOptions = {}): Promise<Command<RouteShowOptions> | RouteInfo[]> {
 
   const cmd = ['ip', 'route', 'show'];
 
-  const ipCmd = new IpCommandWithReturnedData<RouteShowOptions>(
+  const ipCmd = new CommandWithReturnedData<RouteShowOptions>(
     SchemaIds.RouteShow,
     RouteShowSchema,
     options,
@@ -65,11 +65,11 @@ export async function show(options: RouteShowOptions,
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function flush(options: RouteShowOptions,
-                            globalOptions: GlobalOptions = {}): Promise<IpCommand<RouteShowOptions>> {
+                            globalOptions: GlobalOptions = {}): Promise<Command<RouteShowOptions>> {
 
   const cmd = ['ip', 'route', 'flush'];
 
-  const ipCmd = new IpCommand<RouteShowOptions>(
+  const ipCmd = new Command<RouteShowOptions>(
     SchemaIds.RouteShow,
     RouteShowSchema,
     options,
@@ -95,11 +95,11 @@ export async function flush(options: RouteShowOptions,
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function save(options: RouteShowOptions,
-                           globalOptions: GlobalOptionsWithRequiredFilePath): Promise<IpCommand<RouteShowOptions>> {
+                           globalOptions: GlobalOptionsWithRequiredFilePath): Promise<Command<RouteShowOptions>> {
 
   const cmd = ['ip', 'route', 'save'];
 
-  const ipCmd = new IpCommandWithRedirectToFilepath<RouteShowOptions>(
+  const ipCmd = new CommandWithRedirectToFilepath<RouteShowOptions>(
     SchemaIds.RouteShow,
     RouteShowSchema,
     options,
@@ -119,11 +119,11 @@ export async function save(options: RouteShowOptions,
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function restore(options: EmptyOptions = {},
-                              globalOptions: GlobalOptionsWithRequiredFilePath): Promise<IpCommand<EmptyOptions>> {
+                              globalOptions: GlobalOptionsWithRequiredFilePath): Promise<Command<EmptyOptions>> {
 
   const cmd = ['ip', 'route', 'restore'];
 
-  const ipCmd = new IpCommandWithRedirectFromFilepath<EmptyOptions>(
+  const ipCmd = new CommandWithRedirectFromFilepath<EmptyOptions>(
     SchemaIds.Empty,
     EmptySchema,
     options,
@@ -145,11 +145,11 @@ export async function restore(options: EmptyOptions = {},
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function get(options: RouteGetOptions,
-                          globalOptions: GlobalOptions = {}): Promise<IpCommand<RouteGetOptions> | RouteInfo[]> {
+                          globalOptions: GlobalOptions = {}): Promise<Command<RouteGetOptions> | RouteInfo[]> {
 
   const cmd = ['ip', 'route', 'get'];
 
-  const ipCmd = new IpCommandWithReturnedData<RouteGetOptions>(
+  const ipCmd = new CommandWithReturnedData<RouteGetOptions>(
     SchemaIds.RouteShow,
     RouteGetSchema,
     options,
@@ -175,11 +175,11 @@ export async function get(options: RouteGetOptions,
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function add(options: RouteAddOptions,
-                          globalOptions: GlobalOptions = {}): Promise<IpCommand<RouteAddOptions>> {
+                          globalOptions: GlobalOptions = {}): Promise<Command<RouteAddOptions>> {
 
   const cmd = ['ip', 'route', 'add'];
 
-  const ipCmd = new IpCommand<RouteAddOptions>(
+  const ipCmd = new Command<RouteAddOptions>(
     SchemaIds.RouteAdd,
     RouteAddSchema,
     options,
@@ -199,11 +199,11 @@ export async function add(options: RouteAddOptions,
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function del(options: RouteAddOptions,
-                          globalOptions: GlobalOptions = {}): Promise<IpCommand<RouteAddOptions>> {
+                          globalOptions: GlobalOptions = {}): Promise<Command<RouteAddOptions>> {
 
   const cmd = ['ip', 'route', 'delete'];
 
-  const ipCmd = new IpCommand<RouteAddOptions>(
+  const ipCmd = new Command<RouteAddOptions>(
     SchemaIds.RouteAdd,
     RouteAddSchema,
     options,
@@ -223,11 +223,11 @@ export async function del(options: RouteAddOptions,
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function change(options: RouteAddOptions,
-                             globalOptions: GlobalOptions = {}): Promise<IpCommand<RouteAddOptions>> {
+                             globalOptions: GlobalOptions = {}): Promise<Command<RouteAddOptions>> {
 
   const cmd = ['ip', 'route', 'change'];
 
-  const ipCmd = new IpCommand<RouteAddOptions>(
+  const ipCmd = new Command<RouteAddOptions>(
     SchemaIds.RouteAdd,
     RouteAddSchema,
     options,
@@ -247,11 +247,11 @@ export async function change(options: RouteAddOptions,
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function append(options: RouteAddOptions,
-                             globalOptions: GlobalOptions = {}): Promise<IpCommand<RouteAddOptions>> {
+                             globalOptions: GlobalOptions = {}): Promise<Command<RouteAddOptions>> {
 
   const cmd = ['ip', 'route', 'append'];
 
-  const ipCmd = new IpCommand<RouteAddOptions>(
+  const ipCmd = new Command<RouteAddOptions>(
     SchemaIds.RouteAdd,
     RouteAddSchema,
     options,
@@ -271,11 +271,11 @@ export async function append(options: RouteAddOptions,
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
 export async function replace(options: RouteAddOptions,
-                              globalOptions: GlobalOptions = {}): Promise<IpCommand<RouteAddOptions>> {
+                              globalOptions: GlobalOptions = {}): Promise<Command<RouteAddOptions>> {
 
   const cmd = ['ip', 'route', 'replace'];
 
-  const ipCmd = new IpCommand<RouteAddOptions>(
+  const ipCmd = new Command<RouteAddOptions>(
     SchemaIds.RouteAdd,
     RouteAddSchema,
     options,

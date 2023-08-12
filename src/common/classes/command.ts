@@ -12,7 +12,7 @@ import ajv                                from '../validator';
 
 const promisifiedExec = promisify(exec);
 
-export default class IpCommand<T_CommandOptions extends { [index: string]: any; }> {
+export default class Command<T_CommandOptions extends { [index: string]: any; }> {
   protected _cmd: Array<string | number> = [];
   protected _cmdToExec: string           = '';
 

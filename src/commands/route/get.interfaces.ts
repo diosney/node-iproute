@@ -2,7 +2,7 @@ export interface RouteGetOptions {
   /**
    * Return full `fib` lookup matched route.
    * Default is to return the resolved `dst` entry.
-   * */
+   */
   fibmatch?: true;
   /** The destination address. */
   to?: string;
