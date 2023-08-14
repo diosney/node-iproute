@@ -12,6 +12,8 @@ export function validate<T_Options>(schemaId: SchemaIds,
   const isValid     = ajvValidate(options);
 
   if (!isValid) {
+    console.log(ajvValidate.errors)
+
     throw new ParametersError(ParametersError.message, ajvValidate.errors);
   }
 }

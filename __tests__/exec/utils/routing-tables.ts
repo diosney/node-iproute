@@ -2,8 +2,8 @@ import { after, before, describe, it } from 'mocha';
 import { expect }                      from 'chai';
 
 import { show, add, del, clear } from '../../../src/utils/routing-tables';
-import { RoutingTables }         from '../../../lib/commands/rule.constants';
-import { RoutingTable }          from '../../../lib/utils/routing-tables.interfaces';
+import { RoutingTables }         from '../../../src/commands/rule.constants';
+import { RoutingTable }          from '../../../src/utils/routing-tables.interfaces';
 
 describe('utils', () => {
   describe('routing tables', () => {

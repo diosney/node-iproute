@@ -11,13 +11,12 @@ import {
 export const AddLinkVlanArgsSchema: JSONSchemaType<AddLinkVlanTypeArgs> = {
   $id:                  SchemaIds.LinkAddVlanOptions,
   type:                 'object',
-  required:             [ 'id' ],
+  required:             [ 'protocol', 'id' ],
   additionalProperties: false,
   properties:           {
     protocol:          {
-      type:     'string',
-      enum:     Object.values(VlanProtocols) as VlanProtocols[],
-      nullable: true
+      type: 'string',
+      enum: Object.values(VlanProtocols) as VlanProtocols[]
     },
     id:                {
       type:    'integer',

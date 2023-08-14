@@ -131,12 +131,14 @@ export const fixtures: TestDefinition = {
     {
       operator:    'restore',
       testBattery: addressRestoreTests,
-      method:      addressRestore
+      method:      addressRestore,
+      skipOptions: true
     },
     {
       operator:    'showdump',
       testBattery: addressShowdumpTests,
-      method:      addressShowdump
+      method:      addressShowdump,
+      skipOptions: true
     },
     {
       operator:    'show',
@@ -163,7 +165,8 @@ export const fixtures: TestDefinition = {
     {
       operator:    'restore',
       testBattery: routeRestoreTests,
-      method:      routeRestore
+      method:      routeRestore,
+      skipOptions: true
     },
     {
       operator:    'get',
@@ -215,17 +218,20 @@ export const fixtures: TestDefinition = {
     {
       operator:    'save',
       testBattery: ruleSaveTests,
-      method:      ruleSave
+      method:      ruleSave,
+      skipOptions: true
     },
     {
       operator:    'restore',
       testBattery: ruleRestoreTests,
-      method:      ruleRestore
+      method:      ruleRestore,
+      skipOptions: true
     },
     {
       operator:    'flush',
       testBattery: ruleFlushTests,
-      method:      ruleFlush
+      method:      ruleFlush,
+      skipOptions: true
     },
     {
       operator:    'show',

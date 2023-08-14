@@ -44,7 +44,7 @@ export const typeArgsSchemas: any = [
 export const LinkAddSchema: JSONSchemaType<LinkAddOptions> = {
   $id:        SchemaIds.LinkAdd,
   type:       'object',
-  required:   [ 'name', 'type', 'type_' ],
+  required:   [ 'name', 'type' ],
   properties: {
     link:         {
       type:      'string',
@@ -107,7 +107,9 @@ export const LinkAddSchema: JSONSchemaType<LinkAddOptions> = {
       enum: Object.values(VirtualLinkTypes) as VirtualLinkTypes[]
     },
     type_:        {
-      anyOf: typeArgsSchemas
+      type:     'object',
+      nullable: true,
+      anyOf:    typeArgsSchemas
     }
   }
 };

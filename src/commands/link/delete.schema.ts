@@ -3,40 +3,31 @@ import { JSONSchemaType } from 'ajv';
 import { VirtualLinkTypes }  from '../link.constants';
 import { SchemaIds }         from '../../common/constants/schemas';
 import { LinkDeleteOptions } from './delete.interfaces';
+import { typeArgsSchemas }   from './add.schema';
 
 export const LinkDeleteSchema: JSONSchemaType<LinkDeleteOptions> = {
-  $id:   SchemaIds.LinkDelete,
-  type:  'object',
-  oneOf: [
-    {
-      type:       'object',
-      required:   [ 'dev_' ],
-      properties: {
-        dev_: {
-          type:      'string',
-          minLength: 1
-        },
-        type: {
-          type:     'string',
-          enum:     Object.values(VirtualLinkTypes) as VirtualLinkTypes[],
-          nullable: true
-        }
-      }
+  $id:        SchemaIds.LinkDelete,
+  type:       'object',
+  required:   [ 'type' ],
+  properties: {
+    dev_:  {
+      type:      'string',
+      minLength: 1,
+      nullable:  true
     },
-    {
-      type:       'object',
-      required:   [ 'group' ],
-      properties: {
-        group: {
-          type:    'integer',
-          minimum: 0
-        },
-        type:  {
-          type:     'string',
-          enum:     Object.values(VirtualLinkTypes) as VirtualLinkTypes[],
-          nullable: true
-        }
-      }
+    group: {
+      type:     'integer',
+      minimum:  0,
+      nullable: true
+    },
+    type:  {
+      type: 'string',
+      enum: Object.values(VirtualLinkTypes) as VirtualLinkTypes[]
+    },
+    type_: {
+      type:     'object',
+      nullable: true,
+      anyOf:    typeArgsSchemas
     }
-  ]
+  }
 };

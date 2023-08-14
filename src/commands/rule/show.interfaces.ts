@@ -64,6 +64,6 @@ export interface RuleShowOptions {
 export interface RuleInfo {
   priority: number;
   src: string;
-  table: RoutingTables | number;
+  table: RoutingTables | string;
   protocol: string | number;
 }

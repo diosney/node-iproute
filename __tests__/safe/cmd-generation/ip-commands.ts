@@ -7,7 +7,7 @@ Object
   .keys(fixtures)
   .forEach((key) => {
     describe(key, function () {
-      fixtures[key].forEach(({ operator, testBattery, method }) => {
+      fixtures[key].forEach(({ operator, testBattery, method, skipOptions }) => {
 
         describe(operator, function () {
           testBattery.forEach((test) => {
@@ -20,7 +20,9 @@ Object
                       dryRun: true
                     });
 
-                let ipCommand = await method(test.options as any, globalOptions) as any;
+                let ipCommand = (skipOptions)
+                                ? await method(globalOptions) as any
+                                : await method(test.options as any, globalOptions) as any;
 
                 expect(ipCommand.cmd)
                   .to.be.an('array')

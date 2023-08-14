@@ -3,7 +3,7 @@ import { VlanProtocols } from '../../link.constants';
 
 export interface AddLinkVlanTypeArgs {
   /** VLAN Protocol. */
-  protocol?: VlanProtocols;
+  protocol: VlanProtocols;
   /**
    * Specifies the VLAN Identifier to use.
    * Note that numbers with a leading " 0 " or " 0x " are interpreted as octal

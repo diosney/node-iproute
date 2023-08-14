@@ -2,13 +2,16 @@ import { JSONSchemaType }                        from 'ajv';
 import { ChildProcessWithoutNullStreams, spawn } from 'child_process';
 import { EventEmitter }                          from 'events';
 
-import { SchemaIds }     from '../constants/schemas';
-import { GlobalOptions } from '../interfaces/common';
-import Command           from './command';
+import { SchemaIds }          from '../constants/schemas';
+import { GlobalOptions }      from '../interfaces/common';
+import Command                from './command';
+import { MonitorObjects }     from '../../commands/monitor.constants';
+import { MonitorEmittedData } from '../interfaces/monitor';
 
 export default class MonitorCommand<T_CommandOptions extends {
   [index: string]: any;
 }> extends Command<T_CommandOptions> {
+
   emitter = new EventEmitter();
   spawnedProcess: ChildProcessWithoutNullStreams | undefined;
 
@@ -25,12 +28,14 @@ export default class MonitorCommand<T_CommandOptions extends {
       ipCmd);
   }
 
-  override async exec<EventEmitter>(): Promise<this | EventEmitter> {
+  override async exec(): Promise<this> {
     if (this.globalOptions.dryRun) {
       return this;
     }
 
-    this.spawnedProcess = spawn(this._cmdToExec);
+    let [ command, ...args ] = this._cmdToExec.trim().split(' ');
+
+    this.spawnedProcess = spawn(command as string, args);
 
     this.spawnedProcess.stdout.setEncoding('utf8');
     this.spawnedProcess.stdout.on('data', (data) => {
@@ -48,24 +53,23 @@ export default class MonitorCommand<T_CommandOptions extends {
           .split(']')[0]
           .toLowerCase();
 
-        dataLines.push(output[line].split(sectionPattern)[1]);
+        dataLines.push(output[line].split(sectionPattern)[1].trim());
 
         for (let line2 = line + 1; line2 < outputLength; line2++) {
           if (output[line2].search(sectionPattern) !== -1) {
             break;
           }
-          dataLines.push(output[line2]);
+          dataLines.push(output[line2].trim());
         }
 
-        let toEmit = {
+        let toEmit: MonitorEmittedData = {
           object: objectId.toLowerCase(),
-          data:   dataLines
+          lines:  dataLines
         };
 
-        if (this.options.object === 'all') {
-          this.emitter.emit('all', toEmit);
-        }
-        else {
+        this.emitter.emit(MonitorObjects.All, toEmit);
+
+        if (this.options.object !== MonitorObjects.All) {
           this.emitter.emit(this.options.object, toEmit);
         }
       }
@@ -77,12 +81,13 @@ export default class MonitorCommand<T_CommandOptions extends {
       this.close();
     });
 
-    return this.emitter as EventEmitter;
+    return this;
   }
 
   close() {
     if (this.spawnedProcess) {
       this.spawnedProcess.kill();
     }
+    this.emitter.removeAllListeners();
   }
 }

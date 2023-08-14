@@ -1,6 +1,5 @@
 import { TestEnum }           from '../constants/tests';
 import { GlobalOptions }      from './common';
-import { AddressShowOptions } from '../../commands/address/show.interfaces';
 
 export interface Empty {
 }
@@ -40,5 +39,6 @@ export interface TestDefinition {
     operator: string;
     testBattery: TestFixture<any>[];
     method: Function;
+    skipOptions?: boolean;
   }>;
 }

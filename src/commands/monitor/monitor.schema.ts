@@ -7,13 +7,13 @@ import { MonitorObjects } from '../monitor.constants';
 export const MonitorSchema: JSONSchemaType<MonitorOptions> = {
   $id:        SchemaIds.Monitor,
   type:       'object',
-  required:   [ 'object' ],
+  required:   [ 'object_' ],
   properties: {
-    object: {
+    object_: {
       type: 'string',
       enum: Object.values(MonitorObjects) as MonitorObjects[]
     },
-    dev:    {
+    dev:     {
       type:      'string',
       minLength: 1,
       nullable:  true

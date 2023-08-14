@@ -6,16 +6,19 @@ export const Tests: TestFixture<LinkDeleteOptions>[] = [
   {
     description:       'with `type vlan` and only `dev`',
     options:           {
-      dev_: 'vlan100'
+      dev_: 'vlan100',
+      type: VirtualLinkTypes.Vlan
     },
     expectedCmd:       [
       '',
       'ip',
       'link',
       'delete',
-      'vlan100'
+      'vlan100',
+      'type',
+      VirtualLinkTypes.Vlan
     ],
-    expectedCmdToExec: ` ip link delete vlan100`
+    expectedCmdToExec: ` ip link delete vlan100 type ${VirtualLinkTypes.Vlan}`
   },
   {
     description:       'with `type vlan` and `dev` with type',

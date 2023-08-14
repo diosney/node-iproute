@@ -65,7 +65,7 @@ export interface LinkAddOptions {
   /** Specifies the type of the new device. */
   type: VirtualLinkTypes;
   /** Specifies the additional arguments related to the specified virtual link type. */
-  type_: TypeArgs;
+  type_?: TypeArgs;
 }
 
 export type TypeArgs = AddLinkVlanTypeArgs

@@ -1,13 +1,13 @@
 import CommandWithReturnedData from '../common/classes/command-with-returned-data';
 import Command                 from '../common/classes/command';
-import { SchemaIds }             from '../common/constants/schemas';
-import { GlobalOptions }         from '../common/interfaces/common';
-import { LinkAddOptions }        from './link/add.interfaces';
-import { LinkAddSchema }         from './link/add.schema';
-import { LinkDeleteOptions }     from './link/delete.interfaces';
-import { LinkDeleteSchema }      from './link/delete.schema';
-import { LinkSetOptions }        from './link/set.interfaces';
-import { LinkSetSchema }         from './link/set.schema';
+import { SchemaIds }           from '../common/constants/schemas';
+import { GlobalOptions }       from '../common/interfaces/common';
+import { LinkAddOptions }      from './link/add.interfaces';
+import { LinkAddSchema }       from './link/add.schema';
+import { LinkDeleteOptions }   from './link/delete.interfaces';
+import { LinkDeleteSchema }    from './link/delete.schema';
+import { LinkSetOptions }      from './link/set.interfaces';
+import { LinkSetSchema }       from './link/set.schema';
 
 import {
   LinkShowOptions,
@@ -28,7 +28,7 @@ import { LinkShowSchema } from './link/show.schema';
 export async function add(options: LinkAddOptions,
                           globalOptions: GlobalOptions = {}): Promise<Command<LinkAddOptions>> {
 
-  const cmd = ['ip', 'link', 'add'];
+  const cmd = [ 'ip', 'link', 'add' ];
 
   const ipCmd = new Command<LinkAddOptions>(
     SchemaIds.LinkAdd,
@@ -52,7 +52,7 @@ export async function add(options: LinkAddOptions,
 export async function del(options: LinkDeleteOptions,
                           globalOptions: GlobalOptions = {}): Promise<Command<LinkDeleteOptions>> {
 
-  const cmd = ['ip', 'link', 'delete'];
+  const cmd = [ 'ip', 'link', 'delete' ];
 
   const ipCmd = new Command<LinkDeleteOptions>(
     SchemaIds.LinkDelete,
@@ -73,10 +73,10 @@ export async function del(options: LinkDeleteOptions,
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
-export async function show(options: LinkShowOptions,
+export async function show(options: LinkShowOptions     = {},
                            globalOptions: GlobalOptions = {}): Promise<Command<LinkShowOptions> | LinkInfo[]> {
 
-  const cmd = ['ip', 'link', 'show'];
+  const cmd = [ 'ip', 'link', 'show' ];
 
   const ipCmd = new CommandWithReturnedData<LinkShowOptions>(
     SchemaIds.LinkShow,
@@ -85,9 +85,9 @@ export async function show(options: LinkShowOptions,
     {
       ...globalOptions,
       // Overrides for a better show.
-      '-details'   : true,
+      '-details':    true,
       '-statistics': true,
-      '-json'      : true
+      '-json':       true
     },
     cmd);
 
@@ -113,7 +113,7 @@ export async function show(options: LinkShowOptions,
 export async function set(options: LinkSetOptions,
                           globalOptions: GlobalOptions = {}): Promise<Command<LinkSetOptions>> {
 
-  const cmd = ['ip', 'link', 'set'];
+  const cmd = [ 'ip', 'link', 'set' ];
 
   const ipCmd = new Command<LinkSetOptions>(
     SchemaIds.LinkSet,

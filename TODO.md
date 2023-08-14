@@ -59,3 +59,5 @@
 - dynamize test fixtures to dynamically discover and import from folder instead of big index?
 - monitor
   - parse output to json?
+  - parse object in response to one of the enums, at least the ones that the library supports.
+- cambiar los `args_` a un map q lo haga automaticamente.

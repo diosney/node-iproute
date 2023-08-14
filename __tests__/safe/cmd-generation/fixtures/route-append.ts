@@ -1,4 +1,4 @@
-import {RouteAddOptions} from '../../../../lib/commands/route/add.interfaces';
+import {RouteAddOptions} from '../../../../src/commands/route/add.interfaces';
 import {TestFixture}     from '../../../../src/common/interfaces/tests';
 
 export const Tests: TestFixture<RouteAddOptions>[] = [
