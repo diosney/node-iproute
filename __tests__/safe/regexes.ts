@@ -57,110 +57,111 @@ describe('regular expressions', () => {
   });
 
   it('`invisibleKeySuffix`', () => {
-    expect('key_').to.match(invisibleKeySuffix);
-    expect('key').to.not.match(invisibleKeySuffix);
+    expect(invisibleKeySuffix.test('key_')).to.be.true;
+    expect(invisibleKeySuffix.test(' key')).to.be.false;
   });
 
   it('`ipv4`', () => {
-    expect('192.168.1.1').to.match(ipv4);
+    expect(ipv4.test('192.168.1.1')).to.be.true;
 
-    expect('256.0.0.1').to.not.match(ipv4);
-    expect('252.0.0.1.5').to.not.match(ipv4);
+    expect(ipv4.test('256.0.0.1')).to.be.false;
+    expect(ipv4.test('252.0.0.1.5')).to.be.false;
   });
 
   it('`ipv6`', () => {
-    expect('2001:0db8:85a3:0000:0000:8a2e:0370:7334').to.match(ipv6);
-    expect('invalid_ipv6').to.not.match(ipv6);
+    expect(ipv6.test('2001:0db8:85a3:0000:0000:8a2e:0370:7334')).to.be.true;
+    expect(ipv6.test('invalid_ipv6')).to.be.false;
   });
 
   it('`ip`', () => {
-    expect('192.168.1.1').to.match(ip);
-    expect('2001:0db8:85a3:0000:0000:8a2e:0370:7334').to.match(ip);
-    expect('invalid_ip').to.not.match(ip);
+    expect(ip.test('192.168.1.1')).to.be.true;
+    expect(ip.test('2001:0db8:85a3:0000:0000:8a2e:0370:7334')).to.be.true;
+
+    expect(ip.test('invalid_ip')).to.be.false;
   });
 
   it('`ipWithOptionalMask`', () => {
-    expect('192.168.1.1').to.match(ipWithOptionalMask);
-    expect('192.168.1.1/24').to.match(ipWithOptionalMask);
-    expect('::1').to.match(ipWithOptionalMask);
-    expect('::1/64').to.match(ipWithOptionalMask);
-    expect('2001:0db8:85a3:0000:0000:8a2e:0370:7334/64').to.match(ipWithOptionalMask);
+    expect(ipWithOptionalMask.test('192.168.1.1')).to.be.true;
+    expect(ipWithOptionalMask.test('192.168.1.1/24')).to.be.true;
+    expect(ipWithOptionalMask.test('::1')).to.be.true;
+    expect(ipWithOptionalMask.test('::1/64')).to.be.true;
+    expect(ipWithOptionalMask.test('2001:0db8:85a3:0000:0000:8a2e:0370:7334/64')).to.be.true;
 
-    expect('192.168.1.1/48').to.not.match(ipWithOptionalMask);
-    expect('192.168.256.1').not.to.match(ipWithOptionalMask);
-    expect('2001:0db8:0000:0042:0000:8a2e:0370:G733').not.to.match(ipWithOptionalMask);
+    expect(ipWithOptionalMask.test('192.168.1.1/48')).to.be.false;
+    expect(ipWithOptionalMask.test('192.168.256.1')).to.be.false;
+    expect(ipWithOptionalMask.test('2001:0db8:0000:0042:0000:8a2e:0370:G733')).to.be.false;
   });
 
   it('`ipWithRequiredMask`', () => {
-    expect('192.168.1.1/24').to.match(ipWithRequiredMask);
-    expect('::1/64').to.match(ipWithRequiredMask);
-    expect('2001:0db8:0000:0042:0000:8a2e:0370:7334/56').to.match(ipWithRequiredMask);
+    expect(ipWithRequiredMask.test('192.168.1.1/24')).to.be.true;
+    expect(ipWithRequiredMask.test('::1/64')).to.be.true;
+    expect(ipWithRequiredMask.test('2001:0db8:0000:0042:0000:8a2e:0370:7334/56')).to.be.true;
 
-    expect('192.168.1.1').to.not.match(ipWithRequiredMask);
-    expect('::1').to.not.match(ipWithRequiredMask);
-    expect('192.168.256.1/32').to.not.match(ipWithRequiredMask);
-    expect('2001:0db8:0000:0042:0000:8a2e:0370:G733/64').to.not.match(ipWithRequiredMask);
+    expect(ipWithRequiredMask.test('192.168.1.1')).to.be.false;
+    expect(ipWithRequiredMask.test('::1')).to.be.false;
+    expect(ipWithRequiredMask.test('192.168.256.1/32')).to.be.false;
+    expect(ipWithRequiredMask.test('2001:0db8:0000:0042:0000:8a2e:0370:G733/64')).to.be.false;
   });
 
   it('`ipOrAny`', () => {
-    expect('any').to.match(ipOrAny);
-    expect('192.168.1.1').to.match(ipOrAny);
-    expect('10.0.0.1').to.match(ipOrAny);
-    expect('0.0.0.0').to.match(ipOrAny);
-    expect('::1').to.match(ipOrAny);
-    expect('2001:0db8:0000:0042:0000:8a2e:0370:7334').to.match(ipOrAny);
-    expect('fe80::1ff:fe23:4567:890a').to.match(ipOrAny);
+    expect(ipOrAny.test('any')).to.be.true;
+    expect(ipOrAny.test('192.168.1.1')).to.be.true;
+    expect(ipOrAny.test('10.0.0.1')).to.be.true;
+    expect(ipOrAny.test('0.0.0.0')).to.be.true;
+    expect(ipOrAny.test('::1')).to.be.true;
+    expect(ipOrAny.test('2001:0db8:0000:0042:0000:8a2e:0370:7334')).to.be.true;
+    expect(ipOrAny.test('fe80::1ff:fe23:4567:890a')).to.be.true;
 
-    expect('any1').to.not.match(ipOrAny);
-    expect('192.168.256.1').to.not.match(ipOrAny);
-    expect('::G').to.not.match(ipOrAny);
-    expect('2001:0db8:0000:0042:0000:8a2e:0370:G733').to.not.match(ipOrAny);
+    expect(ipOrAny.test('any1')).to.be.false;
+    expect(ipOrAny.test('192.168.256.1')).to.be.false;
+    expect(ipOrAny.test('::G')).to.be.false;
+    expect(ipOrAny.test('2001:0db8:0000:0042:0000:8a2e:0370:G733')).to.be.false;
   });
 
   it('`ipWithOptionalMaskAndAllAndDefaultValues`', () => {
-    expect('all').to.match(ipWithOptionalMaskAndAllAndDefaultValues);
-    expect('default').to.match(ipWithOptionalMaskAndAllAndDefaultValues);
-    expect('192.168.1.1').to.match(ipWithOptionalMaskAndAllAndDefaultValues);
-    expect('10.0.0.1/24').to.match(ipWithOptionalMaskAndAllAndDefaultValues);
-    expect('2001:0db8:85a3:0000:0000:8a2e:0370:7334').to.match(ipWithOptionalMaskAndAllAndDefaultValues);
-    expect('2001:db8::ff00:42:8329/64').to.match(ipWithOptionalMaskAndAllAndDefaultValues);
+    expect(ipWithOptionalMaskAndAllAndDefaultValues.test('all')).to.be.true;
+    expect(ipWithOptionalMaskAndAllAndDefaultValues.test('default')).to.be.true;
+    expect(ipWithOptionalMaskAndAllAndDefaultValues.test('192.168.1.1')).to.be.true;
+    expect(ipWithOptionalMaskAndAllAndDefaultValues.test('10.0.0.1/24')).to.be.true;
+    expect(ipWithOptionalMaskAndAllAndDefaultValues.test('2001:0db8:85a3:0000:0000:8a2e:0370:7334')).to.be.true;
+    expect(ipWithOptionalMaskAndAllAndDefaultValues.test('2001:db8::ff00:42:8329/64')).to.be.true;
 
-    expect('256.256.256.256').to.not.match(ipWithOptionalMaskAndAllAndDefaultValues);
-    expect('2001:0db8:85a3::8a2e:0370:7334:abcz').to.not.match(ipWithOptionalMaskAndAllAndDefaultValues);
-    expect('hello').to.not.match(ipWithOptionalMaskAndAllAndDefaultValues);
+    expect(ipWithOptionalMaskAndAllAndDefaultValues.test('256.256.256.256')).to.be.false;
+    expect(ipWithOptionalMaskAndAllAndDefaultValues.test('2001:0db8:85a3::8a2e:0370:7334:abcz')).to.be.false;
+    expect(ipWithOptionalMaskAndAllAndDefaultValues.test('hello')).to.be.false;
   });
 
   it('`ipWithRequiredMaskAndAllAndDefaultValues`', () => {
-    expect('all').to.match(ipWithRequiredMaskAndAllAndDefaultValues);
-    expect('default').to.match(ipWithRequiredMaskAndAllAndDefaultValues);
-    expect('192.168.1.1/24').to.match(ipWithRequiredMaskAndAllAndDefaultValues);
-    expect('10.0.0.1/16').to.match(ipWithRequiredMaskAndAllAndDefaultValues);
-    expect('2001:0db8:85a3:0000:0000:8a2e:0370:7334/64').to.match(ipWithRequiredMaskAndAllAndDefaultValues);
-    expect('2001:db8::ff00:42:8329/128').to.match(ipWithRequiredMaskAndAllAndDefaultValues);
+    expect(ipWithRequiredMaskAndAllAndDefaultValues.test('all')).to.be.true;
+    expect(ipWithRequiredMaskAndAllAndDefaultValues.test('default')).to.be.true;
+    expect(ipWithRequiredMaskAndAllAndDefaultValues.test('192.168.1.1/24')).to.be.true;
+    expect(ipWithRequiredMaskAndAllAndDefaultValues.test('10.0.0.1/16')).to.be.true;
+    expect(ipWithRequiredMaskAndAllAndDefaultValues.test('2001:0db8:85a3:0000:0000:8a2e:0370:7334/64')).to.be.true;
+    expect(ipWithRequiredMaskAndAllAndDefaultValues.test('2001:db8::ff00:42:8329/128')).to.be.true;
 
-    expect('192.168.1.1').to.not.match(ipWithRequiredMaskAndAllAndDefaultValues);
-    expect('2001:0db8:85a3:0000:0000:8a2e:0370:7334').to.not.match(ipWithRequiredMaskAndAllAndDefaultValues);
-    expect('256.256.256.256/24').to.not.match(ipWithRequiredMaskAndAllAndDefaultValues);
-    expect('2001:0db8:85a3::8a2e:0370:7334:abcd').to.not.match(ipWithRequiredMaskAndAllAndDefaultValues);
-    expect('hello').to.not.match(ipWithRequiredMaskAndAllAndDefaultValues);
+    expect(ipWithRequiredMaskAndAllAndDefaultValues.test('192.168.1.1')).to.be.false;
+    expect(ipWithRequiredMaskAndAllAndDefaultValues.test('2001:0db8:85a3:0000:0000:8a2e:0370:7334')).to.be.false;
+    expect(ipWithRequiredMaskAndAllAndDefaultValues.test('256.256.256.256/24')).to.be.false;
+    expect(ipWithRequiredMaskAndAllAndDefaultValues.test('2001:0db8:85a3::8a2e:0370:7334:abcd')).to.be.false;
+    expect(ipWithRequiredMaskAndAllAndDefaultValues.test('hello')).to.be.false;
   });
 
   it('`ipWithOptionalFamilyPrefix`', () => {
-    expect('192.168.1.1').to.match(ipWithOptionalFamilyPrefix);
-    expect('10.0.0.1').to.match(ipWithOptionalFamilyPrefix);
-    expect('inet 192.168.1.1').to.match(ipWithOptionalFamilyPrefix);
-    expect('inet 10.0.0.1').to.match(ipWithOptionalFamilyPrefix);
-    expect('2001:0db8:85a3:0000:0000:8a2e:0370:7334').to.match(ipWithOptionalFamilyPrefix);
-    expect('2001:db8::ff00:42:8329').to.match(ipWithOptionalFamilyPrefix);
-    expect('inet6 2001:0db8:85a3:0000:0000:8a2e:0370:7334').to.match(ipWithOptionalFamilyPrefix);
-    expect('inet6 2001:db8::ff00:42:8329').to.match(ipWithOptionalFamilyPrefix);
-    expect('mpls 192.168.1.1').to.match(ipWithOptionalFamilyPrefix);
-    expect('bridge 10.0.0.1').to.match(ipWithOptionalFamilyPrefix);
-    expect('link 2001:db8::ff00:42:8329').to.match(ipWithOptionalFamilyPrefix);
+    expect(ipWithOptionalFamilyPrefix.test('192.168.1.1')).to.be.true;
+    expect(ipWithOptionalFamilyPrefix.test('10.0.0.1')).to.be.true;
+    expect(ipWithOptionalFamilyPrefix.test('inet 192.168.1.1')).to.be.true;
+    expect(ipWithOptionalFamilyPrefix.test('inet 10.0.0.1')).to.be.true;
+    expect(ipWithOptionalFamilyPrefix.test('2001:0db8:85a3:0000:0000:8a2e:0370:7334')).to.be.true;
+    expect(ipWithOptionalFamilyPrefix.test('2001:db8::ff00:42:8329')).to.be.true;
+    expect(ipWithOptionalFamilyPrefix.test('inet6 2001:0db8:85a3:0000:0000:8a2e:0370:7334')).to.be.true;
+    expect(ipWithOptionalFamilyPrefix.test('inet6 2001:db8::ff00:42:8329')).to.be.true;
+    expect(ipWithOptionalFamilyPrefix.test('mpls 192.168.1.1')).to.be.true;
+    expect(ipWithOptionalFamilyPrefix.test('bridge 10.0.0.1')).to.be.true;
+    expect(ipWithOptionalFamilyPrefix.test('link 2001:db8::ff00:42:8329')).to.be.true;
 
-    expect('256.256.256.256').to.not.match(ipWithOptionalFamilyPrefix);
-    expect('2001:0db8:85a3::8a2e:0370:7334:abcg').to.not.match(ipWithOptionalFamilyPrefix);
-    expect('hello').to.not.match(ipWithOptionalFamilyPrefix);
+    expect(ipWithOptionalFamilyPrefix.test('256.256.256.256')).to.be.false;
+    expect(ipWithOptionalFamilyPrefix.test('2001:0db8:85a3::8a2e:0370:7334:abcg')).to.be.false;
+    expect(ipWithOptionalFamilyPrefix.test('hello')).to.be.false;
   });
 
   describe('`slashSeparatedStrings`', () => {
