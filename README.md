@@ -1,69 +1,74 @@
 # node-iproute
 
-Show and manipulate network devices, routing, policy routing and tunnels.
+Show and manipulate network devices, addresses, routing, policy routing and tunnels.
 
-Wrapper around native **iproute** suite to port its functionality to be used in Node.js space.
+Wrapper around native **iproute** suite to allow its functionality to be used in Node.js space.
 
 ## Installation
 
 	$ npm install iproute
 
-## Supported functionality
+## Supported Functionality
 
-- `ip-link`	Network devices configuration.
-- `ip-address` Protocol address management.
-- `ip-route`   Routing table management.
-- `ip-rule`	Routing policy database (RPDB) management.
-- `ip-monitor` State monitoring.
-- `ip-utils`   Custom utility library that complements `iproute` suite.
+| Command      | Description                                              |
+|--------------|----------------------------------------------------------|
+| `ip-link`    | Network devices configuration.                           |
+| `ip-address` | Protocol address management.                             |
+| `ip-route`   | Routing table management.                                |
+| `ip-rule`    | Routing policy database (RPDB) management.               |
+| `ip-monitor` | State monitoring.                                        |
+| `ip-utils`   | Custom utility library that complements `iproute` suite. |
 
 ## Motivation
 
-As the current Node.js version all the network related functionality that the built-in modules provide is quite limited,
-and mostly only gives read-only information through `os.networkInterfaces()` method, despite the fact that Unix/Linux
-networking related functions are awesome.
+Given the current Node.js version (v20.5.1), the network-related functionality provided by the built-in modules is 
+somewhat limited. These modules mainly offer read-only information through the `os.networkInterfaces()` method. This 
+design ensures consistency across the various operating systems that Node.js supports. However, it restricts us from 
+performing common networking operations, such as adding, editing, or deleting links, addresses, or routes.
 
-This module appeal that issue in the Unix/Linux platform by providing methods wrapping the **iproute** user-space suite.
+This module bridges this gap for the Unix/Linux platform by introducing methods that wrap the **iproute** user-space suite.
 
-With this module you will be able to interact with the **iproute** commands without have to care about executing directly
-any command or so, and will give you several handy utilities that will parse shown information for you.
+With this module, you can:
 
-By using it you will save a lot of boilerplate code that the module do for you and are shared among all commands.
+- Interact seamlessly with **iproute** commands, without the need to directly execute commands or verify option validations.
+- Access numerous utilities to modify routing tables and manage forwarding capabilities.
+- Eliminate the redundancy of boilerplate code, as the module handles these shared operations across all commands for you.
 
 ## Requirements
 
-Basically the only system requirement is that the **iproute** utility have to be present in your system.
+### Having **iproute** available in the system
 
-You can install it in Debian based OSes (if is not already there) by issuing:
+The primary requirement is the presence of the  **iproute** utility on the system.
 
-	sudo apt-get install iproute
+On Debian-based OSes, if it's not already installed, you can install it using:
 
-or
+	sudo apt-get install iproute     # Or `iproute2`
 
-	sudo apt-get install iproute2
+Regarding the **iproute** version, the `-json` option is utilized for display operations and was introduced in `v4.10.0`.<br>
+Ensure that your system has at least this **iproute** version installed.
 
-Other requirement is about permission levels. To properly execute the provided write methods like `.add()`, `.set()`,
-`.delete()` the application that uses the module must have the proper `sudo` privileges. One way to do it could be by adding
-a custom user to the system:
+### Permission Level
+
+Another requirement concerns permission levels. 
+For the successful execution of write methods such as `.add()`, `.set()`, and `.delete()`, the application using the 
+module must have the appropriate `sudo` privileges. 
+
+One approach to achieve this is by adding a custom user to the system:
 
 `sudo adduser --no-create-home iproute`
 
-then add its permissions at `/etc/sudoers` file:
+then add its permissions in the `/etc/sudoers` file:
 
 `iproute ALL=NOPASSWD: /sbin/ip`
 
+> **Note:** Modifying the `/etc/sudoers` file directly can be risky. It's generally recommended to use the `visudo`
+> command when editing this file to prevent syntax errors, which could lock you out of `sudo` capabilities.
+
 and then execute the commands with `sudo: true`:
 
-	ip_link.show({
-			sudo: true
-		}, function (error, links) {
-		if (error) {
-			console.log(error);
-		}
-		else {
-			console.log(links);
-		}
-	});
+	link.show({
+    sudo: true
+  });
 
 ## Issues
 

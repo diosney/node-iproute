@@ -1,4 +1,16 @@
-## Release notes
+## Release Notes
+
+### 2.0.0-beta
+
+- Refactored project to typescript.
+- Added full documented interfaces and constants.
+- Added almost all the operations (with some minor exceptions like `link {xstats|afstats|property}`) and all 
+  the missing options for the already supported commands from version 1.0.0. 
+- Added tests checking the `cmd` generation and the real command execution.
+
+#### Breaking Changes
+
+- Treat this version as a new library altogether.
 
 ### 1.0.2
 

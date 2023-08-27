@@ -1,13 +1,32 @@
+## TODO
+
+### Commands
+
+- Add the left out operations or options to be implemented:
+  - link
+    - set
+      - `macaddr` set of options
+    - xstats
+    - afstats
+    - property
+
+### Tests
+
+- Add code coverage.
+- Add unit tests to cover +90% aof code. 
+
+
+
+
+
+
+================================================================================
+
+
 
 * En Readme, poner otra forma de adicionarle sudo a iproute,,, ej:
   * adduser --system
 
-
-
-* coverage
-* tests
-  * unit
-  * acceptance
 
 
 
@@ -40,13 +59,6 @@
        - [ protodown_reason PREASON { on | off } ]
 
 
-- Commands to add:
-  - link
-    - set
-      - `macaddr` set of options
-  - xstats
-  - afstats
-  - property
     
 - add global option to disable schema validations? 
 - add global option to `ensureOrder` by using the schemas?

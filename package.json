@@ -1,14 +1,16 @@
 {
 	"name": "iproute",
-	"version": "1.0.2",
+	"version": "2.0.0-beta",
 	"description": "Show and manipulate network devices, addresses, routing, policy routing and tunnels.",
-	"main": "index.js",
+	"main": "./lib/index.js",
+	"types": "./lib/index.d.ts",
 	"scripts": {
 		"build": "npm run clean && npx tsc --project tsconfig.json",
-		"test": "npm run build && npx mocha --spec=./__tests__/**/*.ts",
+		"clean": "npx rimraf ./lib",
+		"test": "npm run test:safe",
+		"test:all": "npm run build && npx mocha --spec=./__tests__/**/*.ts",
 		"test:safe": "npm run build && npx mocha --spec=./__tests__/safe/**/*.ts",
-		"test:exec": "npm run build && npx mocha --spec=./__tests__/exec/**/*.ts",
-		"clean": "npx rimraf lib/"
+		"test:exec": "npm run build && npx mocha --spec=./__tests__/exec/**/*.ts"
 	},
 	"keywords": [
 		"device",
@@ -24,8 +26,11 @@
 		"link",
 		"vlan",
 		"rule",
-		"RPDB",
+		"rpdb",
 		"table",
+		"monitor",
+		"network",
+		"networking",
 		"utils"
 	],
 	"dependencies": {
@@ -34,7 +39,7 @@
 		"lodash.isplainobject": "^4.0.6"
 	},
 	"engines": {
-		"node": ">=18.0.0"
+		"node": ">=16.0.0"
 	},
 	"homepage": "https://github.com/diosney/node-iproute",
 	"bugs": {
