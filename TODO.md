@@ -1,75 +1,39 @@
 ## TODO
 
+### General
+
+- Should contribute `@types/iproute`?
+
+- Some useful global options to add:
+    - `ensureOrder` flag by using the schemas to ensure proper options order?
+
+- Cleaning:
+    - Change all remaining `pattern` into `format`. Add respective tests.
+    - Should condense `IpCommand` classes by using template method or any other pattern? Or by subclassing is OK?
+    - Should add a map to know that options are keyless to remove the `args_` pattern?
+
 ### Commands
 
-- Add the left out operations or options to be implemented:
-  - link
-    - set
+- Implement the remaining operations or options that were left out:
+  - `link`
+    - `set`
       - `macaddr` set of options
-    - xstats
-    - afstats
-    - property
+    - `xstats`
+    - `afstats`
+    - `property`
+    
+- `routingTables.{add|del}`
+  - Add support for an array of tables?
+ 
+- `monitor`
+  - Should parse output to `json` or wait for `iproute` team to add a `-json` option?
+  - Parse object in response to one of the enums, at least the ones that the library supports.
+
+- The interfaces of the `show` methods needs to be completed. 
+  Those interfaces are: `RuleInfo`, `RouteInfo`, `LinkInfo`, `LinkWithAddressInfo`.
 
 ### Tests
 
 - Add code coverage.
-- Add unit tests to cover +90% aof code. 
-
-
-
-
-
-
-================================================================================
-
-
-
-* En Readme, poner otra forma de adicionarle sudo a iproute,,, ej:
-  * adduser --system
-
-
-
-
-- BREAKING CHANGES
-  - la version de node, npm
-  - npm link ahora usa --json
-  - ver el cambio de atributos, q si camelCase o no
-  - explanation de pq cambiar el estilo de codigo, y eso, y es q el ultimo update
-    - fuede hace 6 an`os, cuando snake_case erea el standard mas difundido
-
-- poner en documentacion 
-  - q atributos son en el orden sensitive. 
-  - terminado en `_` el key no se pone. ex: `type_`.
-
-  - como construir el objeto:
-    - atributos con valores string y number con par key-value:
-      - key: value   =>>  ip route ... key value ...
-    - atributos tipo flags, estan o no estan, con booleanos:
-      - key: true  =>> ip route ... key ...
-      - key: false =>> 
-        - si tiene prefijo "no":  ip route ... key ...
-        - si no tiene prefijo "no", se le pone el prefijo: 
-          - ip route ... nokey ...
-        - si es al reves, pues es al reves, ej: si es nokey: true etc.
-    - atributos con array como valores arrays, se tratan tipo tuplas:
-      - key: [0, 1]  =>>  ip route ... key 0 1 ...
-    - atributos tipo flags enum, con string normal
-      - key: 'on'  =>> ip ... key on ...
-    - como modelar?:
-       - [ protodown_reason PREASON { on | off } ]
-
-
-    
-- add global option to disable schema validations? 
-- add global option to `ensureOrder` by using the schemas?
-
-- poner en doc q despues de agregar una rule tiene q hacer: `ip route flush cache` o `ip route flush table cache`
-
-- rellenar los return interfaces de los "show".
-- como condensar las clases IpCommand, template method?
-- - change all "pattern" into "format"?
-- dynamize test fixtures to dynamically discover and import from folder instead of big index?
-- monitor
-  - parse output to json?
-  - parse object in response to one of the enums, at least the ones that the library supports.
-- cambiar los `args_` a un map q lo haga automaticamente.
+- Add more unit tests. 
+- Add Docker to automatize `test:all`.

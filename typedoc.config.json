@@ -1,0 +1,32 @@
+{
+  "entryPoints": [
+    "./src/index.ts"
+  ],
+  "out": "./docs",
+  "entryPointStrategy": "resolve",
+  "name": "node-iproute",
+  "includeVersion": true,
+  "theme": "default",
+  "cacheBust": true,
+  "hideParameterTypesInTitle": false,
+  "searchInComments": true,
+  "cleanOutputDir": true,
+  "navigationLinks": {
+    "npm": "http://npmjs.com/iproute",
+    "Github": "https://github.com/diosney/node-iproute"
+  },
+  "sidebarLinks": {
+    "Home": "/",
+    "Examples": "https://github.com/diosney/node-iproute/blob/master/README-examples.md"
+  },
+  "navigation": {
+    "includeCategories": false,
+    "includeGroups": false
+  },
+  "visibilityFilters": {
+    "protected": true,
+    "private": true,
+    "inherited": true,
+    "external": true
+  }
+}

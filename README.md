@@ -6,22 +6,24 @@ Wrapper around native **iproute** suite to allow its functionality to be used in
 
 ## Installation
 
-	$ npm install iproute
+	$ npm install iproute --save
 
 ## Supported Functionality
 
-| Command      | Description                                              |
-|--------------|----------------------------------------------------------|
-| `ip-link`    | Network devices configuration.                           |
-| `ip-address` | Protocol address management.                             |
-| `ip-route`   | Routing table management.                                |
-| `ip-rule`    | Routing policy database (RPDB) management.               |
-| `ip-monitor` | State monitoring.                                        |
-| `ip-utils`   | Custom utility library that complements `iproute` suite. |
+| Command                | Description                                              | Operations                                                                                  |
+|------------------------|----------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `ip-link`              | Network devices configuration.                           | `add`, `del`, `show`, `set`, `change`                                                       |
+| `ip-address`           | Protocol address management.                             | `add`, `change`, `replace`, `del`, `flush`, `save`, `restore`, `showdump`, `show`           |
+| `ip-route`             | Routing table management.                                | `show`, `flush`, `save`, `restore`, `get`, `add`, `del`, `change`, `append`, `replace`      |
+| `ip-rule`              | Routing policy database (RPDB) management.               | `add`, `del`, `save`, `restore`, `flush`, `show`, `list`                                    |
+| `ip-monitor`           | State monitoring.                                        | -                                                                                           |
+| `utils`                | Custom utility library that complements `iproute` suite. | -                                                                                           |
+| `utils.ipForwarding`   | Manipulates IP forwarding.                               | `enable`, `disable`, `status`, `v{4\|6}.enable()`, `v{4\|6}.disable()`, `v{4\|6}.status()`  |
+| `utils.routingTables`  | Manipulates routing tables.                              | `show`, `add`, `del`, `clear`                                                               |
 
 ## Motivation
 
-Given the current Node.js version (v20.5.1), the network-related functionality provided by the built-in modules is 
+Given the current Node.js version (`v20.5.1`), the network-related functionality provided by the built-in modules is 
 somewhat limited. These modules mainly offer read-only information through the `os.networkInterfaces()` method. This 
 design ensures consistency across the various operating systems that Node.js supports. However, it restricts us from 
 performing common networking operations, such as adding, editing, or deleting links, addresses, or routes.
@@ -44,7 +46,8 @@ On Debian-based OSes, if it's not already installed, you can install it using:
 
 	sudo apt-get install iproute     # Or `iproute2`
 
-Regarding the **iproute** version, the `-json` option is utilized for display operations and was introduced in `v4.10.0`.<br>
+Regarding the **iproute** version, the `-json` option is utilized for display operations and was introduced in `v4.10.0`.
+<br>
 Ensure that your system has at least this **iproute** version installed.
 
 ### Permission Level
@@ -53,556 +56,137 @@ Another requirement concerns permission levels.
 For the successful execution of write methods such as `.add()`, `.set()`, and `.delete()`, the application using the 
 module must have the appropriate `sudo` privileges. 
 
-One approach to achieve this is by adding a custom user to the system:
+One approach to achieve this is by adding a custom user to the system (you can also add the flag):
 
-`sudo adduser --no-create-home iproute`
+`sudo adduser --system --no-create-home iproute` 
 
 then add its permissions in the `/etc/sudoers` file:
 
-`iproute ALL=NOPASSWD: /sbin/ip`
+`iproute ALL=NOPASSWD: /sbin/ip, /sbin/sysctl`
 
 > **Note:** Modifying the `/etc/sudoers` file directly can be risky. It's generally recommended to use the `visudo`
 > command when editing this file to prevent syntax errors, which could lock you out of `sudo` capabilities.
 
 and then execute the commands with `sudo: true`:
 
-	link.show({
-    sudo: true
-  });
+	link.show({}, {
+      sudo: true
+    });
+
+    ipForwarding.v4.enable({
+      sudo: true
+    });
 
 ## Issues
 
-The source is available for download from [GitHub](https://github.com/diosney/node-router)
-and there is a [issue tracker](https://github.com/diosney/node-iproute/issues) so you can report bugs there.
+The source code can be accessed on [GitHub](https://github.com/diosney/node-iproute).
+If you encounter any bugs or need a new feature, please report them on the
+[issue tracker](https://github.com/diosney/node-iproute/issues).
 
 ## Usage
 
-As a general rule of thumb, all the module identifiers are the same that `iproute` provides, so you can easily use
-the module with basic `iproute` knowledge.
+As a general guideline, the module identifiers and options match those provided by iproute. This means you can easily use 
+the module with a basic understanding of iproute.
 
-### utils - General helpful utils to provide extra handy functionality not present in `iproute`.
+There are two specific details that you must be aware of though:
 
-	var ip_utils = require('iproute').utils;
+1. All the options are order sensitive, which means they are parsed in the sequence they appear in the
+   provided `options` object, therefore, it's essential to ensure they are in the correct order. To achieve this, 
+   you can refer to the man page sequence or the order listed in the interface documentation at TODO:TsDoc.
 
-Since this module is to provide extra functionality, is described in another readme file to make this one compact.
-Check [README-utils.md](https://github.com/diosney/node-iproute/blob/master/docs/README-utils.md) in the project root directory for information about it.
+2. Some options in the `ip` command definition don't have related key in the respective command line. In the library, 
+   these are identified with a trailing underscore `_`, such as `types_`. 
+   For autocompletion, you can rely on the definitions supplied with the library or refer to the interface documentation
+   at TODO:TsDoc.
 
-### ip link - Network devices configuration.
+### How to Import
 
-	var ip_link = require('iproute').link;
+If you are using javascript, you can import using the regular CommonJS `require` as follows:
 
-#### `iproute` **official manual**: [http://stuff.onse.fi/man?program=ip-link](http://stuff.onse.fi/man?program=ip-link&section=)
+    const { link } = require('iproute').default;
+    const { link } = require('iproute');
+    const iproute  = require('iproute');
 
-#### ip_link.show([options,] cb)
+If you are using typescript, you can use the aforementioned `require` calls, or just Ecmascript modules import:
 
-**Examples:**
+    import { link } from 'iproute';
+    import iproute, { link } from 'iproute';
+    import * as iproute from 'iproute';
 
-*Show link information about the `eth0` device*
+### How to Use
 
-	ip_link.show({
-		dev: 'eth0'
-	}, function (error, links) {
-		if (error) {
-			console.log(error);
-		}
-		else {
-			console.log(links);
-		}
-	});
+All method return Promises, so you can use them directly with `.then().catch()` or you can use `async/await`.
+Both of these calls are valid:
 
-*Shortcut to show all links*
+    const { utils } = require('iproute');
+    
+    // Using Promises.
+    utils
+      .ipForwarding
+      .enable({ sudo: true })
+      .then(() => {
+        // Do something;
+      })
+      .catch(() => {
+        // Do something;
+      });
 
-	ip_link.show(function (error, links) {
-		if (error) {
-			console.log(error);
-		}
-		else {
-			console.log(links);
-		}
-	});
+    // Using async/await.
+    await utils.ipForwarding.enable({ sudo: true });
 
-*The same as can be accomplished by passing an empty object as the first parameter*
+### Some Important Notes
 
-	ip_link.show({}, function (error, links) {
-		if (error) {
-			console.log(error);
-		}
-		else {
-			console.log(links);
-		}
-	});
+- All `show` operations use the native `iproute` `-json` flag, which prevents many errors with the parsing but also
+  means the output interface is different that the one provided by `v1.0.0`.
 
-*The `links` output is an array of links with the expected following structure*
+- Now you will have to call `ip route flush table cache` by yourself after modifying the rules or the routing tables.
+  This is so you could do several operations before making the changes active. You can do it by adding the following code:
 
-	[{
-		index: 1,
-		name: 'eth0',
-		flags: [
-			'NO-CARRIER',
-			'BROADCAST',
-			'MULTICAST',
-			'UP'
-		],
-		type: 'ether',
-		mac: '00:24:d6:1c:2f:a6',
-		brd: 'ff:ff:ff:ff:ff:ff',
-		mtu: 1500,
-		qdisc: 'pfifo_fast',
-		state: 'DOWN',
-		mode: 'DEFAULT',
-		qlen: 1000
-	}]
+      import { route } from 'iproute';
 
-*This is a `links` example in case of a VLAN virtual link*
+      await route.flush({
+        table: RouteRoutingTables.Cache   // 'cache'
+      });
 
-	[{
-		index: 2,
-		name: 'eth0.1',
-		flags: [
-			'NO-CARRIER',
-			'BROADCAST',
-			'MULTICAST',
-			'UP'
-		],
-		type: 'ether',
-		vl_type: 'vlan',
-		mac: '00:24:d6:1c:2f:a6',
-		brd: 'ff:ff:ff:ff:ff:ff',
-		mtu: 1500,
-		qdisc: 'noqueue',
-		state: 'LOWERLAYERDOWN',
-		mode: 'DEFAULT'
-	}]
+- Need help to complete the interfaces `RuleInfo`, `RouteInfo`, `LinkInfo`, `LinkWithAddressInfo`. A PR is more than
+  welcome.
 
-#### ip_link.delete(options, cb)
+## Documentation
 
-**Example:**
+The documentation is divided in several places to improve organization:
 
-	ip_link.delete({
-		dev: 'eth0.1@eth0'
-	}, function (error) {
-		if (error) {
-			console.log(error);
-		}
-	});
+- [README.md](https://github.com/diosney/node-iproute/blob/master/README.md) for the main documentation entry point,
+- [README-examples.md](https://github.com/diosney/node-iproute/blob/master/README-examples.md) for several code samples
+  showcasing how to use the library.
+- TODO:TypeDoc generated site, which provides a comprehensive index of the library interfaces, constants, enums, and classes.
 
-#### ip_link.add(options, cb)
+## Contributing
 
-**Example:**
+If you want to contribute just follow the project organization and code style and submit a PR.
+<br>
+If you want to be an official maintainer or contributor just say so.
 
-	ip_link.add({
-		link:	   'eth0',
-		name:	   'eth0.1',
-		type:	   'vlan',
-		type_args:  [{
-			id: 1
-		}],
-	}, function (error) {
-		if (error) {
-			console.log(error);
-		}
-	});
+For potential features to contribute to, please refer to the [TODO.md](https://github.com/diosney/node-iproute/blob/master/TODO.md) in the project root directory.
+This can be especially helpful if you're unsure of what to contribute if the [issues](https://github.com/diosney/node-iproute/issues) board is empty.
 
-#### ip_link.set(options, cb)
+## Tests
 
-**Example:**
+**tldr;**
+<br>
+You can run `npm test`, which is safe to execute since as it is explained below, it doesn't execute any real commands.
 
-	ip_link.set({
-		dev:	'eth0',
-		state:  'down'
-	}, function (error) {
-		if (error) {
-			console.log(error);
-		}
-	});
+**Long Explanation**
+<br>
+Since the nature of `iproute` can let your box without access to the Internet, the tests are divided in three:
 
-### ip address - Protocol address management.
+- `test:safe`, which are safe to execute even in your regular computer and don't execute any real `iproute` commands,
+- `test:exec`, which do execute real commands and can leave the box in an unexpected state, in which case a simple reboot
+          should be enough to restore the default interfaces and route information.
+- `test:all`, which as implies, executes both the `test:safe` and the `test:exec` tests.
 
-	var ip_address = require('iproute').address;
+For that reason, the default set of tests that are called by `npm test` are the `safe` ones.
 
-#### `iproute` **official manual**: [http://stuff.onse.fi/man?program=ip-address](http://stuff.onse.fi/man?program=ip-address&section=)
-
-#### ip_address.show([options,] cb)
-
-**Examples:**
-
-*Show only the `eth0` device addresses*
-
-	ip_address.show({
-		dev: 'eth0'
-	}, function (error, addresses) {
-		if (error) {
-			console.log(error);
-		}
-		else {
-			console.log(addresses);
-		}
-	});
-
-*Shortcut to show all links with its addresses*
-
-	ip_address.show(function (error, addresses) {
-		if (error) {
-			console.log(error);
-		}
-		else {
-			console.log(addresses);
-		}
-	});
-
-*The same as can be accomplished by passing an empty object as the first parameter*
-
-	ip_address.show({}, function (error, addresses) {
-		if (error) {
-			console.log(error);
-		}
-		else {
-			console.log(addresses);
-		}
-	});
-
-*The `addresses` output is a collection of links with the expected following structure*
-
-	{
-		eth0: [{
-			type:   'ether',
-			mac:	'00:24:be:42:3c:f5',
-			brd :   'ff:ff:ff:ff:ff:ff'
-		}, {
-			type:   'inet',
-			address:'10.10.10.10/8',
-			scope:  'host'
-		}]
-	}
-
-#### ip_address.flush(options, cb)
-
-**Examples:**
-
-	ip_address.flush({
-		dev: 'eth0'
-	}, function (error) {
-		if (error) {
-			console.log(error);
-		}
-	});
-
-#### ip_address.add(options, cb)
-
-**Examples:**
-
-	ip_address.add({
-		dev:	 'eth0',
-		scope:   'host',
-		local:   '10.3.15.3/24'
-	}, function (error) {
-		if (error) {
-			console.log(error);
-		}
-	});
-
-#### ip_address.delete(options, cb)
-
-**Examples:**
-
-	ip_address.delete({
-		address: '10.3.15.3/24'
-		dev:	 'eth0'
-	}, function (error) {
-		if (error) {
-			console.log(error);
-		}
-	});
-
-### ip route - Routing table management.
-
-	var ip_route = require('iproute').route;
-
-#### `iproute` **official manual**: [http://stuff.onse.fi/man?program=ip-route](http://stuff.onse.fi/man?program=ip-route)
-
-#### ip_route.show([options,] cb)
-
-**Example:**
-
-	ip_route.show({
-			table:'all'
-		},function (error, routes) {
-		if (error) {
-			console.log(error);
-		}
-		else {
-			console.log(routes);
-		}
-	});
-
-*The `routes` output is an array of routes with the expected following structure*
-
-	[{
-		type: 'unicast',
-		to: '127.0.0.0/24',
-		via: '127.0.0.1',
-		dev: 'lo'
-	},
-	{
-		type: 'broadcast',
-		to: '127.0.0.0',
-		dev: 'lo',
-		table: 'local',
-		proto: 'kernel',
-		scope: 'link',
-		src: '127.0.0.1'
-	},
-	{
-		type: 'local',
-		to: '127.0.0.0/8',
-		dev: 'lo',
-		table: 'local',
-		proto: 'kernel',
-		scope: 'host',
-		src: '127.0.0.1'
-	}]
-
-#### ip_route.flush(options, cb)
-
-**Examples:**
-
-	ip_route.flush({
-		table: 'cache'
-	}, function (error) {
-		if (error) {
-			console.log(error);
-		}
-	});
-
-#### ip_route.add(options, cb)
-#### ip_route.replace(options, cb)
-
-**Examples:**
-
-*Unicast type route (the default if not specified)*
-
-	ip_route.add({
-		to:	   '10.0.0.0/24',
-		via:	  '192.168.56.1'
-	}, function (error) {
-		if (error) {
-			console.log(error);
-		}
-	});
-
-*Multipath route with load balance between devices*
-
-	ip_route.add({
-		to:	   'default',
-		scope:	'global',
-		nexthop:  [{
-			dev: 'ppp0'
-		},
-		{
-			dev: 'ppp1'
-		}]
-	}, function (error) {
-		if (error) {
-			console.log(error);
-		}
-	});
-
-*A NAT route*
-
-	ip_route.add({
-		to:	   '10.0.0.0/24',
-		type:	 'nat',
-		via:	  '192.168.56.1',
-		table:	'natted_routes'
-	}, function (error) {
-		if (error) {
-			console.log(error);
-		}
-	});
-
-#### ip_route.delete(options, cb)
-
-**Examples:**
-
-*Delete multipath route with load balance between devices*
-
-	ip_route.delete({
-		to:	   'default',
-		scope:	'global',
-		nexthop:  [{
-			dev: 'ppp0'
-		},
-		{
-			dev: 'ppp1'
-		}]
-	}, function (error) {
-		if (error) {
-			console.log(error);
-		}
-	});
-
-### ip rule - Routing policy database (RPDB) management.
-
-	var ip_rule = require('iproute').rule;
-
-#### `iproute` **official manual**: [http://stuff.onse.fi/man?program=ip-rule&section=8](http://stuff.onse.fi/man?program=ip-rule&section=8)
-
-#### ip_rule.add(options, cb)
-
-**Examples:**
-
-*Unicast type rule (the default if not specified)*
-
-	ip_rule.add({
-		from:	   '192.203.80.0/24',
-		table:	  'inr.ruhep',
-		priority:   '220'
-	}, function (error) {
-		if (error) {
-			console.log(error);
-		}
-	});
-
-*NAT type rule*
-
-	ip_rule.add({
-		from:	   '193.233.7.83',
-		nat:		'192.203.80.144',
-		table:	  '1',
-		priority:   '320'
-	}, function (error) {
-		if (error) {
-			console.log(error);
-		}
-	});
-
-#### ip_rule.delete(options, cb)
-
-**Examples:**
-
-*Delete the unused default rule*
-
-	ip_rule.delete({
-		priority: '32767'
-	}, function (error) {
-		if (error) {
-			console.log(error);
-		}
-	});
-
-#### ip_rule.flush([options,] cb)
-
-**Example:**
-
-	ip_rule.flush(function (error) {
-		if (error) {
-			console.log(error);
-		}
-	});
-
-#### ip_rule.show([options,] cb)
-
-**Example:**
-
-	ip_rule.show(function (error, rules) {
-		if (error) {
-			console.log(error);
-		}
-		else {
-			console.log(rules);
-		}
-	});
-
-*The `rules` output is an array of rules with the expected following structure*
-
-	[
-		{
-			priority: '0',
-			type	: 'unicast',
-			from	: 'all',
-			lookup  : 'local'
-		},
-		{
-			priority: '320',
-			type	: 'masquerade',
-			from	: '192.233.7.83',
-			lookup  : 'default'
-		},
-		{
-			priority: '32763',
-			type	: 'prohibit',
-			from	: '192.169.16.0/24',
-			lookup  : 'default'
-		},
-		{
-			priority: '32764',
-			type	: 'unreachable',
-			from	: '192.169.16.0/24',
-			lookup  : 'default'
-		},
-		{
-			priority: '32766',
-			type	: 'unicast',
-			from	: 'all',
-			lookup  : 'main'
-		},
-		{
-			priority: '32767',
-			type	: 'unicast',
-			from	: 'all',
-			lookup  : 'default'
-		}
-	]
-
-### ip monitor - State monitoring.
-
-	var ip_monitor = require('iproute').monitor();
-
-#### `iproute` **official manual**: [http://stuff.onse.fi/man?program=ip-monitor&section=8](http://stuff.onse.fi/man?program=ip-monitor&section=8)
-
-#### ip_monitor()
-
-**Examples:**
-
-*Monitor all objects state changes*
-
-	ip_monitor();
-
-*After starting the monitor, you can start watching for changes:*
-
-	ip_monitor.on('all',function(data){
-		console.log(data);
-	});
-
-	ip_monitor.on('link',function(data){
-		console.log(data);
-	});
-
-The `data` object will hold the object type and the already parsed data, as it will be returned by any of the previous
-`.show()` methods. For instance, if the object is a link, the `data` object could be:
-
-	{
-		object: 'link',
-		data: [{
-			index: 1,
-			deleted: false,
-			name: 'eth0',
-			flags: [
-				'NO-CARRIER',
-				'BROADCAST',
-				'MULTICAST',
-				'UP'
-			],
-			type: 'ether',
-			mac: '00:24:d6:1c:2f:a6',
-			brd: 'ff:ff:ff:ff:ff:ff',
-			mtu: 1500,
-			qdisc: 'pfifo_fast',
-			state: 'DOWN',
-			mode: 'DEFAULT',
-			qlen: 1000
-		}]
-	}
+If you want to execute all the tests, you can set up a virtual machine and execute `npm run test:all` there.
 
 ## License
 

@@ -28,6 +28,13 @@ describe('utils', () => {
         expect(tables).to.be.an('array').of.length(1);
         expect(tables).to.deep.equal([ { id: 253, name: 'default' } ]);
       });
+
+      it('should return empty if filtering table but didn\'t found one', async () => {
+        const tables = await show({
+          name: Math.random.toString()
+        });
+        expect(tables).to.be.an('array').of.length(0);
+      });
     });
 
     describe('add', () => {
@@ -50,7 +57,7 @@ describe('utils', () => {
         });
       });
 
-      it('should add a new table', async () => {
+      it('should add the table', async () => {
         await add(newTable, {
           sudo: true
         });

@@ -1,7 +1,7 @@
 {
 	"name": "iproute",
 	"version": "2.0.0-beta",
-	"description": "Show and manipulate network devices, addresses, routing, policy routing and tunnels.",
+	"description": "Show and manipulate network devices, addresses, routing, policy routing, tunnels, and IP forwarding.",
 	"main": "./lib/index.js",
 	"types": "./lib/index.d.ts",
 	"scripts": {
@@ -11,7 +11,8 @@
 		"test": "npm run test:safe",
 		"test:all": "npm run build && npx mocha --spec=./__tests__/**/*.ts",
 		"test:safe": "npm run build && npx mocha --spec=./__tests__/safe/**/*.ts",
-		"test:exec": "npm run build && npx mocha --spec=./__tests__/exec/**/*.ts"
+		"test:exec": "npm run build && npx mocha --spec=./__tests__/exec/**/*.ts",
+		"docs": "npx typedoc --options typedoc.config.json"
 	},
 	"keywords": [
 		"device",
@@ -32,7 +33,8 @@
 		"monitor",
 		"network",
 		"networking",
-		"utils"
+		"utils",
+    "forwarding"
 	],
 	"dependencies": {
 		"ajv": "^8.12.0",
@@ -66,6 +68,7 @@
 		"rimraf": "^5.0.1",
 		"source-map-support": "^0.5.21",
 		"ts-node": "^10.9.1",
+		"typedoc": "^0.25.0",
 		"typescript": "^5.1.6"
 	}
 }

@@ -4,13 +4,26 @@
 
 - Refactored project to typescript.
 - Added full documented interfaces and constants.
+- Added input options validations with `ajv`. 
 - Added almost all the operations (with some minor exceptions like `link {xstats|afstats|property}`) and all 
-  the missing options for the already supported commands from version 1.0.0. 
+  the missing options for the already supported commands from version `1.0.0`. 
 - Added tests checking the `cmd` generation and the real command execution.
+- Now all `show` commands use the native `iproute` `-json` flag, which prevents many parsing errors.
 
 #### Breaking Changes
 
-- Treat this version as a new library altogether.
+- Treat this version as a new library, though I will document several changes you need to take into account.
+- After modifying the routing tables by using the module `utils`, you need now to flush the routing table cache by yourself:
+    
+      import { route } from 'iproute';
+
+      await route.flush({
+        table: RouteRoutingTables.Cache   // 'cache'
+      });
+
+- Some methods were renamed, fi, `delete` to `del`, `utils.routingTables.flush` to `utils.routingTables.clear`.
+- Since now all `show` commands use the native `iproute` `-json` flag, the output interface is different that the one
+  provided by `v1.0.0`
 
 ### 1.0.2
 
