@@ -1,5 +1,9 @@
 import { SecondaryUdpEncapsulations } from '../../link.constants';
 
+/**
+ * Add link gre & gretap type arguments.
+ * @category Interfaces
+ */
 export interface AddLinkGreGretapTypeArgs {
   /** Specifies the remote address of the tunnel. */
   remote: string;
@@ -78,13 +82,13 @@ export interface AddLinkGreGretapTypeArgs {
    * Enabling this attribute causes the DF flag to be ignored.
    */
   'ignore-df'?: boolean;
-  /** @see {@link see['ignore-df']} */
+  /** @see {@link['ignore-df']} */
   'noignore-df'?: boolean;
   /** Specifies the physical device to use for tunnel endpoint communication. */
   dev?: string;
   /** @see SecondaryUdpEncapsulations */
   encap?: SecondaryUdpEncapsulations;
-  /** @see {@link LinkIpipSitTypeOption['encap-sport'] } */
+  /** @see {@link AddLinkIpipSitTypeArgs['encap-sport'] } */
   'encap-sport'?: number | 'auto';
   /** TODO: No doc in man. */
   'encap-dport'?: number ;

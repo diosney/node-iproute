@@ -1,5 +1,9 @@
 import { RoutingTables, RuleTypes } from '../rule.constants';
 
+/**
+ * Rule show options.
+ * @category Interfaces
+ */
 export interface RuleShowOptions {
   /** The type of this rule. */
   type?: RuleTypes;
@@ -60,7 +64,12 @@ export interface RuleShowOptions {
   tun_id?: number;
 }
 
-// TODO: Need help to build this undocumented & comprehensive interface.
+/**
+ * Rule info.
+ * TODO: Need help to build this undocumented & comprehensive interface.
+ *
+ * @category Interfaces
+ */
 export interface RuleInfo {
   priority: number;
   src: string;

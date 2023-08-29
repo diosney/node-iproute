@@ -1,9 +1,6 @@
 import { TestEnum }           from '../constants/tests';
 import { GlobalOptions }      from './common';
 
-export interface Empty {
-}
-
 export interface ComplexIpCommandTestOptions extends ComplexIpCommandTestArgsOptions {
   nestedInvisibleKey_: ComplexIpCommandTestArgsOptions;
 }

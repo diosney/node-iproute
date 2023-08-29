@@ -6,7 +6,7 @@ import { EmptySchema, SchemaIds }      from '../common/constants/schemas';
 
 import {
   GlobalOptionsWithRequiredFilePath,
-  GlobalOptions, EmptyOptions
+  GlobalOptions, Empty
 } from '../common/interfaces/common';
 
 import { AddressAddOptions }    from './address/add.interfaces';
@@ -23,7 +23,6 @@ import {
 } from './address/show.interfaces';
 
 import { AddressShowSchema } from './address/show.schema';
-
 import CommandWithRedirectFromFilepathAndReturnedData from '../common/classes/command-with-redirect-from-filepath-and-returned-data';
 
 /**
@@ -186,10 +185,10 @@ export async function save(options: AddressFlushOptions,
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
-export async function restore(globalOptions: GlobalOptionsWithRequiredFilePath): Promise<Command<EmptyOptions>> {
+export async function restore(globalOptions: GlobalOptionsWithRequiredFilePath): Promise<Command<Empty>> {
   const cmd = [ 'ip', 'address', 'restore' ];
 
-  const ipCmd = new CommandWithRedirectFromFilepath<EmptyOptions>(
+  const ipCmd = new CommandWithRedirectFromFilepath<Empty>(
     SchemaIds.Empty,
     EmptySchema,
     {},
@@ -207,10 +206,10 @@ export async function restore(globalOptions: GlobalOptionsWithRequiredFilePath):
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
-export async function showdump(globalOptions: GlobalOptionsWithRequiredFilePath): Promise<Command<EmptyOptions> | OnlyWithAddressInfo[]> {
+export async function showdump(globalOptions: GlobalOptionsWithRequiredFilePath): Promise<Command<Empty> | OnlyWithAddressInfo[]> {
   const cmd = [ 'ip', 'address', 'showdump' ];
 
-  const ipCmd = new CommandWithRedirectFromFilepathAndReturnedData<EmptyOptions>(
+  const ipCmd = new CommandWithRedirectFromFilepathAndReturnedData<Empty>(
     SchemaIds.Empty,
     EmptySchema,
     {},

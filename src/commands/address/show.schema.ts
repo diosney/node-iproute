@@ -1,7 +1,7 @@
 import { JSONSchemaType } from 'ajv';
 
 import { SchemaIds }        from '../../common/constants/schemas';
-import { VirtualLinkTypes } from '../link.constants';
+import { LinkTypes } from '../link.constants';
 import { AddressScopes }    from '../address.constants';
 import { AddressShowOptions } from './show.interfaces';
 
@@ -159,7 +159,7 @@ export const AddressShowSchema: JSONSchemaType<AddressShowOptions> = {
     },
     type         : {
       type    : 'string',
-      enum    : Object.values(VirtualLinkTypes) as VirtualLinkTypes[],
+      enum    : Object.values(LinkTypes) as LinkTypes[],
       nullable: true
     },
     vrf          : {

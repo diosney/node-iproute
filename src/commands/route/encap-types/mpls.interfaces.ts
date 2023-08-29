@@ -1,5 +1,9 @@
 import { TtlSpecialValues } from '../../link.constants';
 
+/**
+ * Add route mpls encap arguments.
+ * @category Interfaces
+ */
 export interface AddRouteMplsEncapArgs {
   /** Mpls label stack with labels separated by /. */
   mpls: true | string;

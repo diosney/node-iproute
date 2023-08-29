@@ -1,5 +1,9 @@
 import { ErspanDirections } from '../../link.constants';
 
+/**
+ * Add link erspan & IP6 erspan type arguments.
+ * @category Interfaces
+ */
 export interface AddLinkErspanIp6erspanTypeArgs {
   /** Specifies the remote address of the tunnel. */
   remote: string;
@@ -42,7 +46,7 @@ export interface AddLinkErspanIp6erspanTypeArgs {
   erspan_hwid?: number;
   /** Specifies whether to allow remote endpoint to have an address configured on local host. */
   'allow-localremote'?: boolean;
-  /** @see {@link 'allow-localremote'} */
+  /** @see {@link['allow-localremote']} */
   'noallow-localremote'?: boolean;
   /**
    * Make this tunnel externally controlled (or not, which is the default).

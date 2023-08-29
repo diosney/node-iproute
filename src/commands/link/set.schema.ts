@@ -1,7 +1,7 @@
 import { JSONSchemaType } from 'ajv';
 
 import { EnableDisableAutoToggle, OnOffToggle }                 from '../../common/constants/attribute-values';
-import { AddrGenMode, ExtendedVirtualLinkTypes, VlanProtocols } from '../link.constants';
+import { AddrGenMode, ExtendedLinkTypes, VlanProtocols } from '../link.constants';
 import { SchemaIds }                                            from '../../common/constants/schemas';
 import { SetLinkBondSlaveArgsSchema }                           from './extended-virtual-link-types/bond-slave.schema';
 import { SetLinkBridgeSlaveArgsSchema }                         from './extended-virtual-link-types/bridge-slave.schema';
@@ -45,7 +45,7 @@ export const LinkSetSchema: JSONSchemaType<LinkSetOptions> = {
     },
     type:             {
       type:     'string',
-      enum:     Object.values(ExtendedVirtualLinkTypes) as ExtendedVirtualLinkTypes[],
+      enum:     Object.values(ExtendedLinkTypes) as ExtendedLinkTypes[],
       nullable: true
     },
     type_:            {

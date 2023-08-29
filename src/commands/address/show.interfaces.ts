@@ -1,7 +1,11 @@
-import { VirtualLinkTypes } from '../link.constants';
+import { LinkTypes } from '../link.constants';
 import { LinkInfo }         from '../link/show.interfaces';
 import { AddressScopes }    from '../address.constants';
 
+/**
+ * Address show options.
+ * @category Interfaces
+ */
 export interface AddressShowOptions {
   /** The name of the device to filter and show its addresses. */
   dev?: string;
@@ -88,22 +92,35 @@ export interface AddressShowOptions {
    *
    * Therefore any string is accepted, but may lead to empty output.
    */
-  type?: VirtualLinkTypes;
+  type?: LinkTypes;
   /** Only list interfaces enslaved to this `vrf`. */
   vrf?: string;
   /** Only list running interfaces. */
   up?: true;
 }
 
-// TODO: Need help to build this partially compiled interface.
+/**
+ * Link with address info.
+ * TODO: Need help to build this partially compiled interface.
+ *
+ * @category Interfaces
+ */
 export interface LinkWithAddressInfo extends LinkInfo {
   addr_info: AddressInfo[];
 }
 
+/**
+ * Only with address info.
+ * @category Interfaces
+ */
 export interface OnlyWithAddressInfo {
   addr_info: AddressInfo[];
 }
 
+/**
+ * Address info.
+ * @category Interfaces
+ */
 export interface AddressInfo {
   /** @see {@link AddressFamilies } */
   family: string;

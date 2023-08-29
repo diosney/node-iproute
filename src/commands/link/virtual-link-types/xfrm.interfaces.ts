@@ -1,3 +1,7 @@
+/**
+ * Add link xfrm type arguments.
+ * @category Interfaces
+ */
 export interface AddLinkXfrmTypeArgs {
   /** Specifies the underlying physical interface from which transform traffic is sent and received. */
   dev: string;

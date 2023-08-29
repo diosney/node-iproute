@@ -1,6 +1,10 @@
 import { RoutingTables } from '../rule.constants';
-import { RuleShowOptions }          from './show.interfaces';
+import { RuleShowOptions } from './show.interfaces';
 
+/**
+ * Rule add options.
+ * @category Interfaces
+ */
 export interface RuleAddOptions extends RuleShowOptions {
   /**
    * The routing table identifier to lookup if the rule selector matches.

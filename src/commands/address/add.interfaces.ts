@@ -1,5 +1,9 @@
 import { AddressScopes } from '../address.constants';
 
+/**
+ * Address add options.
+ * @category Interfaces
+ */
 export interface AddressAddOptions {
   /**
    *  The address of the interface. The format of the address depends on the protocol.

@@ -1,10 +1,14 @@
 import { MacvlanMacvtapModes } from '../../link.constants';
 
+/**
+ * Add link macvlan & macvtap type arguments.
+ * @category Interfaces
+ */
 export interface AddLinkMacvlanMacvtapTypeArgs {
   /**
    * Specifies the mode.
    *
-   * @see {@Link MacvlanMacvtapModes}
+   * @see {@link MacvlanMacvtapModes}
    */
   mode: MacvlanMacvtapModes;
   /**
@@ -24,6 +28,10 @@ export interface AddLinkMacvlanMacvtapTypeArgs {
   bcqueuelen?: number;
 }
 
+/**
+ * Set link macvlan & macvtap type arguments.
+ * @category Interfaces
+ */
 export interface SetLinkMacvlanMacvtapTypeArgs {
   /** Modify list of allowed {@link macaddr} for link in source mode. */
   macaddr?: true;
@@ -46,8 +54,8 @@ export interface SetLinkMacvlanMacvtapTypeArgs {
    * The parameter here is a request, the actual queue length used will be the maximum length
    * that any macvlan interface has requested.
    *
-   * When listing device parameters both the {@lLink bcqueuelen} parameter as well as the actual used
-   * {@lLink bcqueuelen} are listed to better help the user understand the setting.
+   * When listing device parameters both the {@link bcqueuelen} parameter as well as the actual used
+   * {@link bcqueuelen} are listed to better help the user understand the setting.
    */
   bcqueuelen?: number;
 }

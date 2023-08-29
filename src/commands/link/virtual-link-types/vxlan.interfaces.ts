@@ -1,5 +1,9 @@
 import { DontFragmentFlagValues } from '../../link.constants';
 
+/**
+ * Add link vxlan type arguments.
+ * @category Interfaces
+ */
 export interface AddLinkVxlanTypeArgs {
   /** Specifies the VXLAN Network Identifier (or VXLAN Segment Identifier) to use. */
   id: number;

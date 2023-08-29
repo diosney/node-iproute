@@ -1,3 +1,7 @@
+/**
+ * Link set xdp object options.
+ * @category Interfaces
+ */
 export interface LinkSetXdpObjectOptions {
   /**
    * Attaches a XDP/BPF program to the given device.

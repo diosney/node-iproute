@@ -1,3 +1,7 @@
+/**
+ * Add route ioam6 encap arguments.
+ * @category Interfaces
+ */
 export interface AddRouteIoam6EncapArgs {
   /** XXX */
   ioam6: true;

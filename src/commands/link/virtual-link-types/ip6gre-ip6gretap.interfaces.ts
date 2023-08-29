@@ -1,3 +1,7 @@
+/**
+ * Add link IP6gre & greIp6tap type arguments.
+ * @category Interfaces
+ */
 export interface AddLinkIp6GreIp6gretapTypeArgs {
   /** Specifies the remote address of the tunnel. */
   remote: string;
@@ -6,7 +10,7 @@ export interface AddLinkIp6GreIp6gretapTypeArgs {
    * It must be an address on another interface on this host.
    */
   local: string;
-  /** @see {@link LinkGreGretapTypeOptions.seq} */
+  /** @see {@link AddLinkGreGretapTypeArgs.seq} */
   seq?: boolean;
   /** @see {@link seq} */
   iseq?: boolean;
@@ -16,7 +20,7 @@ export interface AddLinkIp6GreIp6gretapTypeArgs {
   oseq?: boolean;
   /** @see {@link seq} */
   nooseq?: boolean;
-  /** @see {@link LinkGreGretapTypeOptions.key} */
+  /** @see {@link AddLinkGreGretapTypeArgs.key} */
   key?: number | string;
   /** @see {@link key} */
   nokey?: true;
@@ -28,7 +32,7 @@ export interface AddLinkIp6GreIp6gretapTypeArgs {
   okey?: number | string;
   /** @see {@link key} */
   nookey?: true;
-  /** @see {@link LinkGreGretapTypeOptions.csum} */
+  /** @see {@link AddLinkGreGretapTypeArgs.csum} */
   csum?: boolean;
   /** @see {@link csum} */
   icsum?: boolean;
@@ -62,7 +66,7 @@ export interface AddLinkIp6GreIp6gretapTypeArgs {
   'dscp inherit'?: true;
   /** Specifies whether to allow remote endpoint to have an address configured on local host. */
   'allow-localremote'?: boolean;
-  /** @see {@link 'allow-localremote'} */
+  /** @see {@link['allow-localremote']} */
   'noallow-localremote'?: boolean;
   /** Specifies the physical device to use for tunnel endpoint communication. */
   dev?: string;

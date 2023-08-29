@@ -14,6 +14,10 @@ import {
   RoutingTableTypes
 } from './show.constants';
 
+/**
+ * Route add options.
+ * @category Interfaces
+ */
 export interface RouteAddOptions {
   /**
    * The destination prefix of the route.
@@ -217,6 +221,10 @@ export interface RouteAddOptions {
   } & NhArgs>;
 }
 
+/**
+ * Encap arguments.
+ * @category Interfaces
+ */
 export type EncapArgs = AddRouteMplsEncapArgs
   | AddRouteIpEncapArgs
   | AddRouteBpfEncapArgs
@@ -224,6 +232,10 @@ export type EncapArgs = AddRouteMplsEncapArgs
   | AddRouteSeg6LocalEncapArgs
   | AddRouteIoam6EncapArgs;
 
+/**
+ * NH arguments.
+ * @category Interfaces
+ */
 export interface NhArgs {
   via?: {
     family?: AddressFamilies;

@@ -1,4 +1,4 @@
-import { VirtualLinkTypes }               from '../link.constants';
+import { LinkTypes }               from '../link.constants';
 import { SetLinkBondSlaveTypeArgs }       from './extended-virtual-link-types/bond-slave.interfaces';
 import { SetLinkBridgeSlaveTypeArgs }     from './extended-virtual-link-types/bridge-slave.interfaces';
 import { AddLinkBareudpTypeArgs }         from './virtual-link-types/bareup.interfaces';
@@ -24,6 +24,10 @@ import { AddLinkVrfTypeArgs }       from './virtual-link-types/vrf.interfaces';
 import { AddLinkVxlanTypeArgs }     from './virtual-link-types/vxlan.interfaces';
 import { AddLinkXfrmTypeArgs }      from './virtual-link-types/xfrm.interfaces';
 
+/**
+ * Link add options.
+ * @category Interfaces
+ */
 export interface LinkAddOptions {
   /** Specifies the physical device to act operate on. */
   link?: string;
@@ -63,11 +67,15 @@ export interface LinkAddOptions {
    */
   gso_max_segs?: number;
   /** Specifies the type of the new device. */
-  type: VirtualLinkTypes;
+  type: LinkTypes;
   /** Specifies the additional arguments related to the specified virtual link type. */
   type_?: TypeArgs;
 }
 
+/**
+ * Type args.
+ * @category Interfaces
+ */
 export type TypeArgs = AddLinkVlanTypeArgs
   | AddLinkVxlanTypeArgs
   | AddLinkVethVxcanTypeArgs
@@ -86,6 +94,10 @@ export type TypeArgs = AddLinkVlanTypeArgs
   | AddLinkBridgeTypeArgs
   | AddLinkMacsecTypeArgs;
 
+/**
+ * Extended Type args.
+ * @category Interfaces
+ */
 export type ExtendedTypeArgs = SetLinkBridgeSlaveTypeArgs
   | SetLinkBondSlaveTypeArgs
   | SetLinkMacvlanMacvtapTypeArgs

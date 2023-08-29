@@ -5,13 +5,16 @@ import {
   GlobalOptions
 } from '../interfaces/common';
 
-import {
-  ComplexIpCommandTestOptions,
-  Empty
-} from '../interfaces/tests';
+import { ComplexIpCommandTestOptions } from '../interfaces/tests';
+import { TestEnum }                    from './tests';
+import { Empty }                       from '../interfaces/common';
 
-import { TestEnum } from './tests';
-
+/**
+ * Schema ids.
+ *
+ * @category Constants
+ * @internal
+ */
 export enum SchemaIds {
   Empty                            = '#empty-schema',
 

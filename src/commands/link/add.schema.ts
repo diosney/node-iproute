@@ -1,6 +1,6 @@
 import { JSONSchemaType } from 'ajv';
 
-import { VirtualLinkTypes }                 from '../link.constants';
+import { LinkTypes }                 from '../link.constants';
 import { SchemaIds }                        from '../../common/constants/schemas';
 import { LinkAddOptions }                   from './add.interfaces';
 import { AddLinkBareudpArgsSchema }         from './virtual-link-types/bareup.schema';
@@ -104,7 +104,7 @@ export const LinkAddSchema: JSONSchemaType<LinkAddOptions> = {
     },
     type:         {
       type: 'string',
-      enum: Object.values(VirtualLinkTypes) as VirtualLinkTypes[]
+      enum: Object.values(LinkTypes) as LinkTypes[]
     },
     type_:        {
       type:     'object',

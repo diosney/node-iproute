@@ -1,5 +1,8 @@
-/** Virtual Link Types. */
-export const VirtualLinkTypes = {
+/**
+ * Link Types.
+ * @category Constants
+ */
+export const LinkTypes = {
   /** Ethernet Bridge device. */
   Bridge: 'bridge',
   /** Bonding device. */
@@ -70,24 +73,46 @@ export const VirtualLinkTypes = {
   Xfrm: 'xfrm'
 } as const;
 
+/**
+ * Link Types.
+ * @category Constants
+ */
 // https://stackoverflow.com/questions/62056841/how-to-create-an-super-set-enum-using-existing-enum-in-typescript
-export type VirtualLinkTypes = typeof VirtualLinkTypes[keyof typeof VirtualLinkTypes];
+export type LinkTypes = typeof LinkTypes[keyof typeof LinkTypes];
 
-export const ExtendedVirtualLinkTypes = {
-  ...VirtualLinkTypes,
+/**
+ * Extended Link Types.
+ * @category Constants
+ */
+export const ExtendedLinkTypes = {
+  ...LinkTypes,
 
+  /** Bridge slave interface. */
   BridgeSlave: 'bridge_slave',
-  BondSlave:   'bond_slave'
+  /** Bond slave interface. */
+  BondSlave: 'bond_slave'
 } as const;
 
+/**
+ * Extended Link Types.
+ * @category Constants
+ */
 // https://stackoverflow.com/questions/62056841/how-to-create-an-super-set-enum-using-existing-enum-in-typescript
-export type ExtendedVirtualLinkTypes = typeof ExtendedVirtualLinkTypes[keyof typeof ExtendedVirtualLinkTypes];
+export type ExtendedLinkTypes = typeof ExtendedLinkTypes[keyof typeof ExtendedLinkTypes];
 
+/**
+ * VLAN protocols.
+ * @category Constants
+ */
 export enum VlanProtocols {
   '802.1Q'  = '802.1Q',
   '802.1ad' = '802.1ad'
 }
 
+/**
+ * Dont fragment flag values.
+ * @category Constants
+ */
 export enum DontFragmentFlagValues {
   /** Causes the bit to be copied from the original IP header. */
   Inherit = 'inherit',
@@ -97,7 +122,10 @@ export enum DontFragmentFlagValues {
   Set     = 'set'
 }
 
-/** Specifies type of secondary UDP encapsulation. */
+/**
+ * Specifies type of secondary UDP encapsulation.
+ * @category Constants
+ */
 export enum SecondaryUdpEncapsulations {
   /** Indicates Foo-Over-UDP. */
   Fou  = 'fou',
@@ -106,7 +134,10 @@ export enum SecondaryUdpEncapsulations {
   None = 'none',
 }
 
-/** Specifies mode in which device should run. */
+/**
+ * Specifies mode in which device should run.
+ * @category Constants
+ */
 export enum IpipSipDeviceModes {
   /** Indicates IPv6-Over-IPv4 */
   Ip6ip  = 'ip6ip',
@@ -118,7 +149,10 @@ export enum IpipSipDeviceModes {
   Any    = 'any',
 }
 
-/** Specifies whether the link should be in datagram mode or connected mode. */
+/**
+ * Specifies whether the link should be in datagram mode or connected mode.
+ * @category Constants
+ */
 export enum IpoIbModes {
   /**
    * This is the default mode. In datagram mode, packets are sent independently of each other,
@@ -133,17 +167,28 @@ export enum IpoIbModes {
   Connected = 'connected',
 }
 
-/** Specifies the ERSPAN v2 mirrored traffic's direction. */
+/**
+ * Specifies the ERSPAN v2 mirrored traffic's direction.
+ * @category Constants
+ */
 export enum ErspanDirections {
   Ingress = 'ingress',
   Egress  = 'egress',
 }
 
+/**
+ * TTL special values.
+ * @category Constants
+ */
 export enum TtlSpecialValues {
   Auto    = 'auto',
   Inherit = 'inherit',
 }
 
+/**
+ * Modes for macvlan and macvtap interfaces.
+ * @category Constants
+ */
 export enum MacvlanMacvtapModes {
   /**
    * Do not allow communication between macvlan instances on the same physical interface,
@@ -209,7 +254,9 @@ export enum MacvlanMacvtapModes {
 
 /**
  * Protocol version of the interface.
- * Defaults to {@link HsrVersions.2010}
+ * Defaults to {@link HsrVersions.v2010}
+ *
+ * @category Constants
  */
 export enum HsrVersions {
   v2010 = 0,
@@ -219,6 +266,8 @@ export enum HsrVersions {
 /**
  * Protocol of the interface.
  * Defaults to {@link HsrProtocols.HSR}
+ *
+ * @category Constants
  */
 export enum HsrProtocols {
   /** High-availability Seamless Redundancy. */
@@ -227,6 +276,10 @@ export enum HsrProtocols {
   PRP = 1
 }
 
+/**
+ * Multicast router options.
+ * @category Constants
+ */
 export enum MultiCastRouterOptions {
   /**
    * The bridge does not act as a multicast router. It will not forward any IP multicast packets
@@ -247,28 +300,47 @@ export enum MultiCastRouterOptions {
   PermanentlyEnabled = 2
 }
 
+/**
+ * IGMP protocol versions.
+ * @category Constants
+ */
 export enum IgmpVersions {
   v2 = 2,
   v3 = 3
 }
 
+/**
+ * Mld versions.
+ * @category Constants
+ */
 export enum MldVersions {
   v1 = 1,
   v2 = 2
 }
 
+/**
+ * Macsec validation mode options.
+ * @category Constants
+ */
 export enum MacsecValidationModeOptions {
   Strict   = 'strict',
   Check    = 'check',
   Disabled = 'disabled'
 }
 
+/**
+ * Secure association encodings.
+ * @category Constants
+ */
 export enum SecureAssociationEncodings {
   Implicit = 0,
   Explicit = 1
 }
 
-/** Is used to configure IPv6 address generation mode for a given interface. */
+/**
+ * Is used to configure IPv6 address generation mode for a given interface.
+ * @category Constants
+ */
 export enum AddrGenMode {
   /** Use a Modified EUI-64 format interface identifier. */
   Eui64        = 'eui64',
@@ -283,6 +355,10 @@ export enum AddrGenMode {
   Random       = 'random'
 }
 
+/**
+ * Bridge slave port states.
+ * @category Constants
+ */
 export enum BridgeSlavePortStates {
   Disabled   = 0,
   Listening  = 1,

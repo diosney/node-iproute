@@ -1,3 +1,7 @@
+/**
+ * Add link bare UDP type arguments.
+ * @category Interfaces
+ */
 export interface AddLinkBareudpTypeArgs {
   /** Specifies the destination port for the UDP tunnel. */
   dstport: number;

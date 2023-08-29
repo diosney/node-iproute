@@ -1,8 +1,8 @@
-import { EmptyOptions }                      from '../../../../src/common/interfaces/common';
+import { Empty }                             from '../../../../src/common/interfaces/common';
 import { GlobalOptionsWithRequiredFilePath } from '../../../../src/common/interfaces/common';
 import { TestFixture }                       from '../../../../src/common/interfaces/tests';
 
-export const Tests: TestFixture<EmptyOptions, GlobalOptionsWithRequiredFilePath>[] = [
+export const Tests: TestFixture<Empty, GlobalOptionsWithRequiredFilePath>[] = [
   {
     description      : 'with `filePath` set',
     options          : {},

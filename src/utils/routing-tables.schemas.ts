@@ -1,9 +1,9 @@
 import { JSONSchemaType } from 'ajv';
 
-import { SchemaIds }            from '../common/constants/schemas';
-import { RoutingTablesOptions } from './routing-tables.interfaces';
+import { SchemaIds } from '../common/constants/schemas';
+import { RoutingTableOptions } from './routing-tables.interfaces';
 
-export const RoutingTablesOptionsSchema: JSONSchemaType<RoutingTablesOptions> = {
+export const RoutingTableOptionsSchema: JSONSchemaType<RoutingTableOptions> = {
   $id:        SchemaIds.RoutingTablesOptions,
   type:       'object',
   required:   [],

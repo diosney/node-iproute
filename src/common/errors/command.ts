@@ -1,8 +1,9 @@
 /**
- * Error class to be used when the command threw an error.
+ * Error class to be used when the command throws an error.
+ * @category Errors
  */
 export class CommandError extends Error {
-  /** Code to identify the error easily in `catch` clauses. */
+  /** Code to identify the error in `catch` clauses. */
   code = 'ERR_COMMAND_ERRORED';
 
   /** Command line that triggered the command error. */

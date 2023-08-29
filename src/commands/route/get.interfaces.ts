@@ -1,3 +1,7 @@
+/**
+ * Route get options.
+ * @category Interfaces
+ */
 export interface RouteGetOptions {
   /**
    * Return full `fib` lookup matched route.

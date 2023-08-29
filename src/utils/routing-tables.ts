@@ -5,11 +5,11 @@ import { GlobalOptions } from '../common/interfaces/common';
 
 import {
   RoutingTable,
-  RoutingTablesOptions
+  RoutingTableOptions
 }                                         from './routing-tables.interfaces';
 import { validate }                       from '../common/misc';
 import { GlobalOptionsSchema, SchemaIds } from '../common/constants/schemas';
-import { RoutingTablesOptionsSchema }     from './routing-tables.schemas';
+import { RoutingTableOptionsSchema }     from './routing-tables.schemas';
 
 function parseTables(rawData: string): RoutingTable[] {
   if (!rawData) {
@@ -39,8 +39,8 @@ function parseTables(rawData: string): RoutingTable[] {
  * @param options        - Parameters options to be passed down to `ip`.
  * @param globalOptions  - Global parameters options that affects the command execution.
  */
-export async function show(options: RoutingTablesOptions = {}, globalOptions: GlobalOptions = {}): Promise<RoutingTable[]> {
-  validate<RoutingTablesOptions>(SchemaIds.RoutingTablesOptions, RoutingTablesOptionsSchema, options);
+export async function show(options: RoutingTableOptions = {}, globalOptions: GlobalOptions = {}): Promise<RoutingTable[]> {
+  validate<RoutingTableOptions>(SchemaIds.RoutingTablesOptions, RoutingTableOptionsSchema, options);
   validate<GlobalOptions>(SchemaIds.GlobalOptions, GlobalOptionsSchema, globalOptions);
 
   const fileContent = await fs.readFile(tablesPath, { encoding: 'utf8' });
@@ -63,8 +63,8 @@ export async function show(options: RoutingTablesOptions = {}, globalOptions: Gl
  * @param options        - Parameters options to be passed down to `ip`.
  * @param globalOptions  - Global parameters options that affects the command execution.
  */
-export async function add(options: RoutingTablesOptions, globalOptions: GlobalOptions = {}): Promise<void> {
-  validate<RoutingTablesOptions>(SchemaIds.RoutingTablesOptions, RoutingTablesOptionsSchema, options);
+export async function add(options: RoutingTableOptions, globalOptions: GlobalOptions = {}): Promise<void> {
+  validate<RoutingTableOptions>(SchemaIds.RoutingTablesOptions, RoutingTableOptionsSchema, options);
   validate<GlobalOptions>(SchemaIds.GlobalOptions, GlobalOptionsSchema, globalOptions);
 
   const tables        = await show();
@@ -85,8 +85,8 @@ export async function add(options: RoutingTablesOptions, globalOptions: GlobalOp
  * @param options        - Parameters options to be passed down to `ip`.
  * @param globalOptions  - Global parameters options that affects the command execution.
  */
-export async function del(options: RoutingTablesOptions, globalOptions: GlobalOptions = {}): Promise<void> {
-  validate<RoutingTablesOptions>(SchemaIds.RoutingTablesOptions, RoutingTablesOptionsSchema, options);
+export async function del(options: RoutingTableOptions, globalOptions: GlobalOptions = {}): Promise<void> {
+  validate<RoutingTableOptions>(SchemaIds.RoutingTablesOptions, RoutingTableOptionsSchema, options);
   validate<GlobalOptions>(SchemaIds.GlobalOptions, GlobalOptionsSchema, globalOptions);
 
   const oldTables = await show();

@@ -1,5 +1,9 @@
 import { AddressScopes } from '../address.constants';
 
+/**
+ * Address delete options.
+ * @category Interfaces
+ */
 export interface AddressDeleteOptions {
   /**
    *  The address of the interface. The format of the address depends on the protocol.

@@ -1,5 +1,9 @@
 import { TtlSpecialValues } from '../../link.constants';
 
+/**
+ * Add route ip encap arguments.
+ * @category Interfaces
+ */
 export interface AddRouteIpEncapArgs {
   /** XXX */
   ip: true;

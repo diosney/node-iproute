@@ -1,3 +1,7 @@
+/**
+ * Link set xdp pinned options.
+ * @category Interfaces
+ */
 export interface LinkSetXdpPinnedOptions {
   /**
    * Attaches a XDP/BPF program to the given device.

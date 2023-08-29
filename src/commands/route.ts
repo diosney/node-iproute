@@ -5,7 +5,7 @@ import Command                         from '../common/classes/command';
 import { EmptySchema, SchemaIds }      from '../common/constants/schemas';
 
 import {
-  EmptyOptions,
+  Empty,
   GlobalOptions,
   GlobalOptionsWithRequiredFilePath
 } from '../common/interfaces/common';
@@ -117,11 +117,11 @@ export async function save(options: RouteShowOptions = {},
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
-export async function restore(globalOptions: GlobalOptionsWithRequiredFilePath): Promise<Command<EmptyOptions>> {
+export async function restore(globalOptions: GlobalOptionsWithRequiredFilePath): Promise<Command<Empty>> {
 
   const cmd = [ 'ip', 'route', 'restore' ];
 
-  const ipCmd = new CommandWithRedirectFromFilepath<EmptyOptions>(
+  const ipCmd = new CommandWithRedirectFromFilepath<Empty>(
     SchemaIds.Empty,
     EmptySchema,
     {},

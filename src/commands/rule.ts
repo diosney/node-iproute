@@ -5,7 +5,7 @@ import Command                         from '../common/classes/command';
 import { EmptySchema, SchemaIds }      from '../common/constants/schemas';
 
 import {
-  EmptyOptions,
+  Empty,
   GlobalOptions,
   GlobalOptionsWithRequiredFilePath
 } from '../common/interfaces/common';
@@ -75,11 +75,11 @@ export async function del(options: RuleAddOptions,
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
-export async function save(globalOptions: GlobalOptionsWithRequiredFilePath): Promise<Command<EmptyOptions>> {
+export async function save(globalOptions: GlobalOptionsWithRequiredFilePath): Promise<Command<Empty>> {
 
   const cmd = [ 'ip', 'rule', 'save' ];
 
-  const ipCmd = new CommandWithRedirectToFilepath<EmptyOptions>(
+  const ipCmd = new CommandWithRedirectToFilepath<Empty>(
     SchemaIds.Empty,
     EmptySchema,
     {},
@@ -97,11 +97,11 @@ export async function save(globalOptions: GlobalOptionsWithRequiredFilePath): Pr
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
-export async function restore(globalOptions: GlobalOptionsWithRequiredFilePath): Promise<Command<EmptyOptions>> {
+export async function restore(globalOptions: GlobalOptionsWithRequiredFilePath): Promise<Command<Empty>> {
 
   const cmd = [ 'ip', 'rule', 'restore' ];
 
-  const ipCmd = new CommandWithRedirectFromFilepath<EmptyOptions>(
+  const ipCmd = new CommandWithRedirectFromFilepath<Empty>(
     SchemaIds.Empty,
     EmptySchema,
     {},
@@ -123,10 +123,10 @@ export async function restore(globalOptions: GlobalOptionsWithRequiredFilePath):
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
-export async function flush(globalOptions: GlobalOptions = {}): Promise<Command<EmptyOptions>> {
+export async function flush(globalOptions: GlobalOptions = {}): Promise<Command<Empty>> {
   const cmd = [ 'ip', 'rule', 'flush' ];
 
-  const ipCmd = new Command<EmptyOptions>(
+  const ipCmd = new Command<Empty>(
     SchemaIds.Empty,
     EmptySchema,
     {},

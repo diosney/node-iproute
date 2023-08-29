@@ -4,6 +4,7 @@ import ajv                 from './validator';
 import { SchemaIds }       from './constants/schemas';
 import { ParametersError } from './errors/parameters';
 
+/** @internal */
 export function validate<T_Options>(schemaId: SchemaIds,
                                     schema: JSONSchemaType<T_Options>,
                                     options: T_Options) {
@@ -12,8 +13,6 @@ export function validate<T_Options>(schemaId: SchemaIds,
   const isValid     = ajvValidate(options);
 
   if (!isValid) {
-    console.log(ajvValidate.errors)
-
     throw new ParametersError(ParametersError.message, ajvValidate.errors);
   }
 }

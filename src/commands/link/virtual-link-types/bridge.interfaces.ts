@@ -7,6 +7,10 @@ import {
   VlanProtocols
 } from '../../link.constants';
 
+/**
+ * Add link bridge type arguments.
+ * @category Interfaces
+ */
 export interface AddLinkBridgeTypeArgs {
   /**
    * Configure the bridge's FDB entries ageing time, ie the number of seconds a

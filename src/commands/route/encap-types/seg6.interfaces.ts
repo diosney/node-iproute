@@ -1,3 +1,7 @@
+/**
+ * Add route seg6 encap arguments.
+ * @category Interfaces
+ */
 export interface AddRouteSeg6EncapArgs {
   /** XXX */
   seg6: true;

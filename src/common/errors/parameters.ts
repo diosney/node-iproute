@@ -2,9 +2,10 @@ import { ErrorObject } from 'ajv';
 
 /**
  * Error class to be used when the provided options are invalid.
+ * @category Errors
  */
 export class ParametersError extends Error {
-  /** Code to identify the error easily in `catch` clauses. */
+  /** Code to identify the error in `catch` clauses. */
   code = 'ERR_INVALID_PARAMETERS';
 
   /**

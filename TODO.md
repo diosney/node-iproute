@@ -6,10 +6,11 @@
 
 - Some useful global options to add:
     - `ensureOrder` flag by using the schemas to ensure proper options order?
+    - `disableValidations` flag to bypass `ajv` options validations.
 
 - Cleaning:
     - Change all remaining `pattern` into `format`. Add respective tests.
-    - Should condense `IpCommand` classes by using template method or any other pattern? Or by subclassing is OK?
+    - Should condense `Command` classes by using template method or any other pattern? Or by subclassing is OK?
     - Should add a map to know that options are keyless to remove the `args_` pattern?
 
 ### Commands
@@ -31,6 +32,12 @@
 
 - The interfaces of the `show` methods needs to be completed. 
   Those interfaces are: `RuleInfo`, `RouteInfo`, `LinkInfo`, `LinkWithAddressInfo`.
+
+### Documentation
+
+- Should publish in the public API?
+  - Schemas
+  - `Command`s
 
 ### Tests
 

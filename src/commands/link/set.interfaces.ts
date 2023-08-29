@@ -5,7 +5,7 @@ import {
 
 import {
   AddrGenMode,
-  ExtendedVirtualLinkTypes,
+  ExtendedLinkTypes,
   VlanProtocols
 } from '../link.constants';
 
@@ -14,7 +14,13 @@ import { LinkSetXdpObjectOptions } from './xdp-options/object.interfaces';
 import { LinkSetXdpPinnedOptions } from './xdp-options/pinned.interfaces';
 import { LinkSetXdpOffOptions }    from './xdp-options/off.interfaces';
 
-interface LinkSetCommonOptions {
+/**
+ * Link set common options.
+ *
+ * @category Interfaces
+ * @internal
+ */
+export interface LinkSetCommonOptions {
   /** Change the state of the device to UP. */
   up?: true;
   /** Change the state of the device to DOWN. */
@@ -23,7 +29,7 @@ interface LinkSetCommonOptions {
    * Change type-specific settings. For a list of supported types and arguments refer to {@link LinkAddOptions.type_}.
    * In addition to that, it is possible to manipulate settings to slave devices {@link type_}.
    */
-  type?: ExtendedVirtualLinkTypes;
+  type?: ExtendedLinkTypes;
   type_?: ExtendedTypeArgs;
   /** Change the NOARP flag on the device. */
   arp?: OnOffToggle;
@@ -95,7 +101,7 @@ interface LinkSetCommonOptions {
   alias?: string;
   /**
    * Specify a Virtual Function device to be configured.
-   * The associated PF device must be specified using the {@link dev} parameter.
+   * The associated PF device must be specified using the {@link LinkSetDevOptions.dev_ | dev_} parameter.
    */
   vf?: number;
   vf_?: {
@@ -217,11 +223,21 @@ interface LinkSetCommonOptions {
   addrgenmode?: AddrGenMode;
 }
 
+/**
+ * Xdp options.
+ * @category Interfaces
+ */
 export type XdpOptions = LinkSetXdpObjectOptions
   | LinkSetXdpPinnedOptions
   | LinkSetXdpOffOptions;
 
-interface LinkSetGroupOptions extends LinkSetCommonOptions {
+/**
+ * Link set group options.
+ *
+ * @category Interfaces
+ * @internal
+ */
+export interface LinkSetGroupOptions extends LinkSetCommonOptions {
   /**
    * GROUP has a dual role: If both group and dev are present, then move the device to the specified group.
    * If only a group is specified, then the command operates on all devices in that group.
@@ -229,7 +245,13 @@ interface LinkSetGroupOptions extends LinkSetCommonOptions {
   group?: number;
 }
 
-interface LinkSetDevOptions extends LinkSetCommonOptions {
+/**
+ * Link set dev options.
+ *
+ * @category Interfaces
+ * @internal
+ */
+export interface LinkSetDevOptions extends LinkSetCommonOptions {
   /**
    * Specifies network device to operate on.
    *
@@ -239,4 +261,8 @@ interface LinkSetDevOptions extends LinkSetCommonOptions {
   dev_?: string;
 }
 
+/**
+ * Link set options.
+ * @category Interfaces
+ */
 export type LinkSetOptions = LinkSetGroupOptions | LinkSetDevOptions;

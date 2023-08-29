@@ -1,12 +1,20 @@
+/**
+ * Route preference values.
+ * @category Constants
+ */
 export enum RoutePreferences {
-  /** The route has a lowest priority. */
+  /** The route has the lowest priority. */
   Low    = 'low',
-  /** The route has a default priority. */
+  /** The route has the default priority. */
   Medium = 'medium',
-  /** The route has a highest priority. */
+  /** The route has the highest priority. */
   High   = 'high',
 }
 
+/**
+ * Encap-seg6 local actions.
+ * @category Constants
+ */
 export enum EncapSeg6LocalActions {
   /**
    * Regular SRv6 processing as intermediate segment endpoint.

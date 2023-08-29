@@ -9,8 +9,10 @@
   "theme": "default",
   "cacheBust": true,
   "hideParameterTypesInTitle": false,
-  "searchInComments": true,
+  "searchInComments": false,
   "cleanOutputDir": true,
+  "excludeInternal": false,
+  "treatWarningsAsErrors": false,
   "navigationLinks": {
     "npm": "http://npmjs.com/iproute",
     "Github": "https://github.com/diosney/node-iproute"
@@ -20,7 +22,7 @@
     "Examples": "https://github.com/diosney/node-iproute/blob/master/README-examples.md"
   },
   "navigation": {
-    "includeCategories": false,
+    "includeCategories": true,
     "includeGroups": false
   },
   "visibilityFilters": {
@@ -28,5 +30,16 @@
     "private": true,
     "inherited": true,
     "external": true
-  }
+  },
+  "defaultCategory": "Misc",
+  "categoryOrder": [
+    "IP Commands",
+    "Errors",
+    "Constants",
+    "Interfaces",
+    "Schemas",
+    "Classes",
+    "Regexes",
+    "Other"
+  ]
 }

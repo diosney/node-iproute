@@ -4,7 +4,7 @@ import { expect }                      from 'chai';
 import { add, del, show }   from '../../../src/commands/link';
 import { LinkInfo }         from '../../../src/commands/link/show.interfaces';
 import { LinkAddOptions }   from '../../../src/commands/link/add.interfaces';
-import { VirtualLinkTypes } from '../../../src/commands/link.constants';
+import { LinkTypes } from '../../../src/commands/link.constants';
 
 describe('link', () => {
   describe('show', () => {
@@ -41,7 +41,7 @@ describe('link', () => {
       name:    'dummy100',
       address: '00:11:22:33:44:55',
       mtu:     1500,
-      type:    VirtualLinkTypes.Dummy
+      type: LinkTypes.Dummy
     };
 
     let linksBeforeAdd: LinkInfo[] = [];
@@ -55,7 +55,7 @@ describe('link', () => {
     after(async function () {
       await del({
         dev_: newLink.name,
-        type: VirtualLinkTypes.Dummy
+        type: LinkTypes.Dummy
       }, {
         sudo: true
       });
@@ -82,7 +82,7 @@ describe('link', () => {
       name:    'dummy100',
       address: '00:11:22:33:44:55',
       mtu:     1500,
-      type:    VirtualLinkTypes.Dummy
+      type: LinkTypes.Dummy
     };
 
     let linksBeforeAdd: LinkInfo[] = [];
@@ -100,7 +100,7 @@ describe('link', () => {
     it('should delete a dummy link', async () => {
       await del({
         dev_: newLink.name,
-        type: VirtualLinkTypes.Dummy
+        type: LinkTypes.Dummy
       }, {
         sudo: true
       });

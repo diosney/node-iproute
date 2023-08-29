@@ -6,6 +6,10 @@ import {
   RoutingTableTypes
 } from './show.constants';
 
+/**
+ * Route show options.
+ * @category Interfaces
+ */
 export interface RouteShowOptions {
   /**
    * Only select routes from the given range of destinations.
@@ -75,7 +79,12 @@ export interface RouteShowOptions {
   realms?: string;
 }
 
-// TODO: Need help to build this undocumented & comprehensive interface.
+/**
+ * Route information.
+ * TODO: Need help to build this undocumented & comprehensive interface.
+ *
+ * @category Interfaces
+ */
 export interface RouteInfo {
   type: RoutingTableTypes;
   dst: RouteRoutingTables | string;

@@ -1,5 +1,9 @@
 import { HsrProtocols, HsrVersions } from '../../link.constants';
 
+/**
+ * Add link hsr type arguments.
+ * @category Interfaces
+ */
 export interface AddLinkHsrTypeArgs {
   /** Specifies the physical device used for the first of the two ring ports. */
   slave1: string;

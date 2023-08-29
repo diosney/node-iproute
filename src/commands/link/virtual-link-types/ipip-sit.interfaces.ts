@@ -1,5 +1,9 @@
 import { IpipSipDeviceModes, SecondaryUdpEncapsulations } from '../../link.constants';
 
+/**
+ * Add link IPIP & Sit type arguments.
+ * @category Interfaces
+ */
 export interface AddLinkIpipSitTypeArgs {
   /** Specifies the remote address of the tunnel. */
   remote: string;
@@ -22,14 +26,14 @@ export interface AddLinkIpipSitTypeArgs {
   'encap-dport'?: number ;
   /** Specifies if UDP checksums are enabled in the secondary encapsulation. */
   'encap-csum'?: boolean;
-  /** @see {@link 'encap-csum'} */
+  /** @see {@link['encap-csum']} */
   'noencap-csum'?: boolean;
   /**
    * Specifies if Remote Checksum Offload is enabled.
    * This is only applicable for Generic UDP Encapsulation.
    */
   'encap-remcsum'?: boolean;
-  /** @see {@link 'encap-remcsum'} */
+  /** @see {@link['encap-remcsum']} */
   'noencap-remcsum'?: boolean;
   /**
    * Specifies mode in which device should run.

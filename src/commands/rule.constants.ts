@@ -1,3 +1,7 @@
+/**
+ * Routing table special names.
+ * @category Constants
+ */
 export enum RoutingTables {
   /**
    * The `local` table is a special routing table containing high priority control routes for local
@@ -13,6 +17,10 @@ export enum RoutingTables {
   Default = 'default',
 }
 
+/**
+ * Rule special values.
+ * @category Constants
+ */
 export enum RuleTypes {
   /** The rule prescribes to return the route found in the routing table referenced by the rule. */
   Unicast     = 'unicast',

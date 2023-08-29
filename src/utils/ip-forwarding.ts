@@ -60,14 +60,23 @@ export const v6 = {
   status:  (globalOptions: GlobalOptions = {}) => sysctl(SysctlPaths.Ipv6Forwarding, SysctlActions.Status, globalOptions)
 };
 
+/**
+ * Enables both IPv4 & IPv6 IP forwarding.
+ */
 export const enable = async (globalOptions: GlobalOptions = {}) => {
   await Promise.all([ v4.enable(globalOptions), v6.enable(globalOptions) ]);
 };
 
+/**
+ * Disables both IPv4 & IPv6 IP forwarding.
+ */
 export const disable = async (globalOptions: GlobalOptions = {}) => {
   await Promise.all([ v4.disable(globalOptions), v6.disable(globalOptions) ]);
 };
 
+/**
+ * Checks both IPv4 & IPv6 IP forwarding statuses.
+ */
 export const status = async (globalOptions: GlobalOptions = {}): Promise<{ v4: string; v6: string }> => {
   const results = await Promise.all([ v4.status(globalOptions), v6.status(globalOptions) ]);
   return {

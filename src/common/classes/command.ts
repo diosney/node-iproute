@@ -11,6 +11,12 @@ import { validate }                       from '../misc';
 
 const promisifiedExec = promisify(exec);
 
+/**
+ * Class to group common behavior among commands.
+ *
+ * @category Classes
+ * @internal
+ */
 export default class Command<T_CommandOptions extends { [index: string]: any; }> {
   protected _cmd: Array<string | number> = [];
   protected _cmdToExec: string           = '';

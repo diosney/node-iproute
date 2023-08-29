@@ -1,6 +1,10 @@
 import { OnOffToggle }                 from '../../../common/constants/attribute-values';
 import { MacsecValidationModeOptions } from '../../link.constants';
 
+/**
+ * Add link macsec type arguments.
+ * @category Interfaces
+ */
 export interface AddLinkMacsecTypeArgs {
   /** Sets the system identifier component of secure channel for this MACsec device. */
   address?: string;

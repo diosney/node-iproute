@@ -1,5 +1,9 @@
 import { DontFragmentFlagValues } from '../../link.constants';
 
+/**
+ * Add link geneve type arguments.
+ * @category Interfaces
+ */
 export interface AddLinkGeneveTypeArgs {
   /** Specifies the Virtual Network Identifier to use. */
   id: number;

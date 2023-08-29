@@ -1,3 +1,7 @@
+/**
+ * Add route bpf encap arguments.
+ * @category Interfaces
+ */
 export interface AddRouteBpfEncapArgs {
   /** XXX */
   bpf: true;

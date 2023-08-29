@@ -1,3 +1,7 @@
+/**
+ * Route routing tables.
+ * @category Constants
+ */
 export enum RouteRoutingTables {
   /**
    * The `local` table is a special routing table containing high priority control routes for local
@@ -15,6 +19,10 @@ export enum RouteRoutingTables {
   Cache   = 'cache'
 }
 
+/**
+ * Routing table protocols.
+ * @category Constants
+ */
 export enum RoutingTableProtocols {
   /** The route was installed by the kernel during autoconfiguration. */
   Kernel   = 'kernel',
@@ -34,6 +42,10 @@ export enum RoutingTableProtocols {
   Ra       = 'ra'
 }
 
+/**
+ * Routing table types.
+ * @category Constants
+ */
 export enum RoutingTableTypes {
   /** The route entry describes real paths to the destinations covered by the route prefix. */
   Unicast     = 'unicast',

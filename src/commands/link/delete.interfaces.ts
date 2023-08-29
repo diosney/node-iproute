@@ -1,6 +1,10 @@
-import { VirtualLinkTypes } from '../link.constants';
+import { LinkTypes } from '../link.constants';
 import { TypeArgs }         from './add.interfaces';
 
+/**
+ * Link delete options.
+ * @category Interfaces
+ */
 export interface LinkDeleteOptions {
   /** Specifies the virtual device to act operate on. */
   dev_?: string;
@@ -10,7 +14,7 @@ export interface LinkDeleteOptions {
    */
   group?: number;
   /** Specifies the type of the device. */
-  type: VirtualLinkTypes;
+  type: LinkTypes;
   /** Specifies the additional arguments related to the specified virtual link type. */
   type_?: TypeArgs;
 }

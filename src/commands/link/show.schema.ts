@@ -1,6 +1,6 @@
 import { JSONSchemaType } from 'ajv';
 
-import { ExtendedVirtualLinkTypes } from '../link.constants';
+import { ExtendedLinkTypes } from '../link.constants';
 import { SchemaIds }                from '../../common/constants/schemas';
 import { LinkShowOptions }          from './show.interfaces';
 
@@ -31,7 +31,7 @@ export const LinkShowSchema: JSONSchemaType<LinkShowOptions> = {
     },
     type:   {
       type:     'string',
-      enum:     Object.values(ExtendedVirtualLinkTypes) as ExtendedVirtualLinkTypes[],
+      enum:     Object.values(ExtendedLinkTypes) as ExtendedLinkTypes[],
       nullable: true
     },
     vrf:    {

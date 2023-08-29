@@ -1,6 +1,10 @@
 import { OnOffToggle }           from '../../../common/constants/attribute-values';
 import { BridgeSlavePortStates } from '../../link.constants';
 
+/**
+ * Set link bridge-slave type args.
+ * @category Interfaces
+ */
 export interface SetLinkBridgeSlaveTypeArgs {
   /** Flush bridge slave's fdb dynamic entries. */
   fdb_flush?: true;

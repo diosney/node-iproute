@@ -1,6 +1,12 @@
-import { ExtendedVirtualLinkTypes } from '../link.constants';
+import { ExtendedLinkTypes } from '../link.constants';
 
-interface LinkShowCommonOptions {
+/**
+ * Link show common options.
+ *
+ * @category Interfaces
+ * @internal
+ */
+export interface LinkShowCommonOptions {
   /** Only display running interfaces. */
   up?: true;
   /** Specifies the master device which enslaves devices to show. */
@@ -16,24 +22,45 @@ interface LinkShowCommonOptions {
    *
    * Therefore any string is accepted, but may lead to empty output.
    */
-  type?: ExtendedVirtualLinkTypes;
+  type?: ExtendedLinkTypes;
   /** Specifies the VRF which enslaves devices to show. */
   vrf?: string;
 }
 
-interface LinkShowGroupOptions extends LinkShowCommonOptions {
+/**
+ * Link show group options.
+ *
+ * @category Interfaces
+ * @internal
+ */
+export interface LinkShowGroupOptions extends LinkShowCommonOptions {
   /** Specifies what group of devices to show. */
   group?: number;
 }
 
-interface LinkShowDevOptions extends LinkShowCommonOptions {
+/**
+ * Link show dev options.
+ *
+ * @category Interfaces
+ * @internal
+ */
+export interface LinkShowDevOptions extends LinkShowCommonOptions {
   /** Specifies the network device to show. */
   dev?: string;
 }
 
+/**
+ * Link show options.
+ * @category Interfaces
+ */
 export type LinkShowOptions = LinkShowGroupOptions | LinkShowDevOptions;
 
-// TODO: Need help to build this undocumented & comprehensive interface.
+/**
+ * Link Info.
+ * TODO: Need help to build this undocumented & comprehensive interface.
+ *
+ * @category Interfaces
+ */
 export interface LinkInfo {
   ifindex: number;
   ifname: string;

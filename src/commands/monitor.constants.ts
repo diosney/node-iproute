@@ -1,3 +1,7 @@
+/**
+ * Monitor objects.
+ * @category Constants
+ */
 export enum MonitorObjects {
   All     = 'all',
   Link    = 'link',

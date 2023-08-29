@@ -1,5 +1,9 @@
 import { AddressScopes } from '../address.constants';
 
+/**
+ * Address flush options.
+ * @category Interfaces
+ */
 export interface AddressFlushOptions {
   /** The name of the device to match the address from. */
   dev?: string;
