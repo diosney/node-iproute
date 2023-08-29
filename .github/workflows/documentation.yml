@@ -1,9 +1,9 @@
 name: Generate and Deploy TypeDoc Documentation
 
 on:
-  release:
-    types:
-      - created
+  push:
+    branches:
+      - master
 
 jobs:
   build-and-deploy:
