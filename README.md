@@ -4,6 +4,9 @@ Show and manipulate network devices, addresses, routing, policy routing and tunn
 
 Wrapper around native **iproute** suite to allow its functionality to be used in Node.js space.
 
+[![tests](https://github.com/diosney/node-iproute/actions/workflows/tests.yml/badge.svg)](https://github.com/diosney/node-iproute/actions?query=workflow%3Atests)
+[![documentation](https://github.com/diosney/node-iproute/actions/workflows/docs.yml/badge.svg)](https://github.com/diosney/node-iproute/actions?query=workflow%3Adocs)
+
 ## Installation
 
 	$ npm install iproute --save
