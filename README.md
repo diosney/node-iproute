@@ -199,6 +199,8 @@ Since `iproute` can let your box without access to the Internet, the tests are d
 - `test:exec`, which do execute real commands and can leave the box in an unexpected state if they fail, in which case a simple reboot
           should be enough to restore the default interfaces, addresses and route information.
 - `test:all`, which as implies executes both the `test:safe` and the `test:exec` tests.
+- `test:github-actions`, which are all except `exec/utils` since Github Actions doesn't allow to modify `rt_tables` nor
+   the `sysctl` variables.
 
 For that reason, the default set of tests that are called by `npm test` are the `safe` ones.
 
