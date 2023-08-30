@@ -12,6 +12,7 @@
 		"test:all": "npm run build && npx mocha --spec=./__tests__/**/*.ts",
 		"test:safe": "npm run build && npx mocha --spec=./__tests__/safe/**/*.ts",
 		"test:exec": "npm run build && npx mocha --spec=./__tests__/exec/**/*.ts",
+		"test:github-actions": "npm run build && npx mocha --spec='./__tests__/**/*.ts' --exclude='./__tests__/exec/utils/**/*.ts'",
 		"docs": "npx typedoc --options typedoc.config.json"
 	},
 	"keywords": [
@@ -42,7 +43,7 @@
 		"lodash.isplainobject": "^4.0.6"
 	},
 	"engines": {
-		"node": ">=16.0.0"
+		"node": ">=14.0.0"
 	},
 	"homepage": "https://diosney.github.io/node-iproute",
 	"bugs": {

@@ -30,4 +30,4 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - run: npm ci
-      - run: npm run test:all
+      - run: npm run test:github-actions
