@@ -79,13 +79,6 @@ And lastly execute the commands with the `sudo: true` global option:
       sudo: true
     });
 
-## Issues
-
-The source code can be accessed on [GitHub](https://github.com/diosney/node-iproute).
-<br>
-If you encounter any bugs or need a new feature, please report them on the
-[issue tracker](https://github.com/diosney/node-iproute/issues).
-
 ## Usage
 
 As a general guideline, the module identifiers and options match those provided by **iproute**. This means you can easily use 
@@ -118,7 +111,7 @@ If you are using Typescript, you can use the aforementioned `require` calls, or 
 
 ### How to Use
 
-All method return Promises, so you can use them directly with `.then().catch()` or you can use `async/await`.
+All methods return Promises, so you can use them directly with `.then().catch()` or you can use `async/await`.
 Both of these calls are valid:
 
     const { utils } = require('iproute');
@@ -169,6 +162,13 @@ The documentation is divided across several files:
   showcasing how to use the library.
 - [TODO.md](https://github.com/diosney/node-iproute/blob/master/TODO.md) A checklist of several items to add or improve upon.
 - [Public API site](https://diosney.github.io/node-iproute), which provides a comprehensive index of the library interfaces, constants, enums, and classes.
+
+## Issues
+
+The source code can be accessed on [GitHub](https://github.com/diosney/node-iproute).
+<br>
+If you encounter any bugs or need a new feature, please report them on the
+[issue tracker](https://github.com/diosney/node-iproute/issues).
 
 ## Contributing
 
