@@ -1,14 +1,12 @@
-# Examples
+## Examples
 
-Here you have several usage examples to give you an idea of what you can do with the library.
+Several usage examples to give you an idea of what you can do with the library.
 
-## `ip link` Network devices configuration / [Man Page](https://man7.org/linux/man-pages/man8/ip-link.8.html).
+### `ip link` Network devices configuration / [Man Page](https://man7.org/linux/man-pages/man8/ip-link.8.html)
 
 	import { link } from 'iproute';
 
-### `link.show(options?, globalOptions?)`
-
-**Examples:**
+#### `link.show(options?, globalOptions?)`
 
 *Show link information about the `eth0` device*
 
@@ -21,9 +19,9 @@ Here you have several usage examples to give you an idea of what you can do with
 	const links = await link.show();
 	const links = await link.show({});
 
-The `links` output is an array of links with the matching `RoutingTable[]` interface which you can see at TODO:Typedoc.
+The `links` output is an array of links with the matching [LinkInfo[]](https://diosney.github.io/node-iproute/interfaces/LinkInfo.html) interface.
 
-### `link.del(options, globalOptions?)`
+#### `link.del(options, globalOptions?)`
 
 **Example:**
 
@@ -31,7 +29,7 @@ The `links` output is an array of links with the matching `RoutingTable[]` inter
 	  dev_: 'eth0.1@eth0'
 	});
 
-### `link.add(options, globalOptions?)`
+#### `link.add(options, globalOptions?)`
 
 **Example:**
 
@@ -43,13 +41,11 @@ The `links` output is an array of links with the matching `RoutingTable[]` inter
       type:    VirtualLinkTypes.Dummy
 	});
 
-## `ip address` Protocol address management / [Man Page](https://man7.org/linux/man-pages/man8/ip-address.8.html).
+### `ip address` Protocol address management / [Man Page](https://man7.org/linux/man-pages/man8/ip-address.8.html)
 
 	import { address } from 'iproute';
 
-### `address.show(options?, globalOptions?)`
-
-**Examples:**
+#### `address.show(options?, globalOptions?)`
 
 *Show only the `eth0` device addresses*
 
@@ -60,19 +56,15 @@ The `links` output is an array of links with the matching `RoutingTable[]` inter
     const addresses = await address.show();
     const addresses = await address.show({});
 
-The `addresses` output is an array of links with the matching `LinkWithAddressInfo[]` interface which you can see at TODO:Typedoc.
+The `addresses` output is an array of links with the matching [LinkWithAddressInfo[]](https://diosney.github.io/node-iproute/interfaces/LinkWithAddressInfo.html) interface.
 
-### `address.flush(options, globalOptions?)`
-
-**Examples:**
+#### `address.flush(options, globalOptions?)`
 
 	await address.flush({
 	  dev: 'eth0'
 	});
 
-### `address.add(options, globalOptions?)`
-
-**Examples:**
+#### `address.add(options, globalOptions?)`
 
 	await address.add({
 	  local:  '10.3.15.3/24',
@@ -80,20 +72,18 @@ The `addresses` output is an array of links with the matching `LinkWithAddressIn
 	  dev:	 'eth0'
 	});
 
-### `address.del(options, globalOptions?)`
-
-**Examples:**
+#### `address.del(options, globalOptions?)`
 
 	await address.del({
 	  local: '10.3.15.3/24'
 	  dev:	 'eth0'
 	});
 
-## `ip route` Routing table management / [Man Page](https://man7.org/linux/man-pages/man8/ip-route.8.html).
+### `ip route` Routing table management / [Man Page](https://man7.org/linux/man-pages/man8/ip-route.8.html)
 
 	import { route } from 'iproute';
 
-### `route.show(options?, globalOptions?)`
+#### `route.show(options?, globalOptions?)`
 
 **Example:**
 
@@ -101,20 +91,16 @@ The `addresses` output is an array of links with the matching `LinkWithAddressIn
 	  table: RouteRoutingTables.All    // 'all'
 	});
 
-The `routes` output is an array of routes with the matching `RouteInfo[]` interface which you can see at TODO:Typedoc.
+The `routes` output is an array of routes with the matching [RouteInfo[]](https://diosney.github.io/node-iproute/interfaces/RouteInfo.html) interface.
 
-### route.flush(options, globalOptions?)
-
-**Examples:**
+#### route.flush(options, globalOptions?)
 
 	await route.flush({
 	  table: RouteRoutingTables.Cache   // 'cache'
 	});
 
-### `route.add(options, globalOptions?)`
-### `route.replace(options, globalOptions?)`
-
-**Examples:**
+#### `route.add(options, globalOptions?)`
+#### `route.replace(options, globalOptions?)`
 
 *Unicast type route (the default if not specified)*
 
@@ -151,9 +137,7 @@ The `routes` output is an array of routes with the matching `RouteInfo[]` interf
       }
 	});
 
-### `route.del(options, globalOptions?)`
-
-**Examples:**
+#### `route.del(options, globalOptions?)`
 
 *Delete multipath route with load balance between devices*
 
@@ -170,13 +154,11 @@ The `routes` output is an array of routes with the matching `RouteInfo[]` interf
 	   }]
 	});
 
-## `ip rule` Routing policy database (RPDB) management / [Man Page](https://man7.org/linux/man-pages/man8/ip-rule.8.html).
+### `ip rule` Routing policy database (RPDB) management / [Man Page](https://man7.org/linux/man-pages/man8/ip-rule.8.html)
 
 	import { rule } from 'iproute';
 
-### `rule.add(options, globalOptions?)`
-
-**Examples:**
+#### `rule.add(options, globalOptions?)`
 
 *Unicast type rule (the default if not specified)*
 
@@ -195,9 +177,7 @@ The `routes` output is an array of routes with the matching `RouteInfo[]` interf
 	  nat:		    '192.203.80.144'
 	});
 
-### `rule.del(options, globalOptions?)`
-
-**Examples:**
+#### `rule.del(options, globalOptions?)`
 
 *Delete the unused default rule*
 
@@ -205,27 +185,25 @@ The `routes` output is an array of routes with the matching `RouteInfo[]` interf
 	  preference: 32767
 	});
 
-### `rule.flush(globalOptions?)`
+#### `rule.flush(globalOptions?)`
 
 **Example:**
 
 	await rule.flush();
 
-### `rule.show(options?, globalOptions?)`
+#### `rule.show(options?, globalOptions?)`
 
 **Example:**
 
 	const rules = await rule.show();
 
-The `rules` output is an array of routes with the matching `RuleInfo[]` interface which you can see at TODO:Typedoc.
+The `rules` output is an array of routes with the matching [RuleInfo[]](https://diosney.github.io/node-iproute/interfaces/RuleInfo.html) interface.
 
-## `ip monitor` State monitoring / [Man Page](https://man7.org/linux/man-pages/man8/ip-monitor.8.html).
+### `ip monitor` State monitoring / [Man Page](https://man7.org/linux/man-pages/man8/ip-monitor.8.html)
 
 	import { monitor } from 'iproute';
 
-### `monitor(options, globalOptions?)`
-
-**Examples:**
+#### `monitor(options, globalOptions?)`
 
 *Monitor all objects state changes*
 
@@ -258,18 +236,18 @@ The `rules` output is an array of routes with the matching `RuleInfo[]` interfac
 
 
 The `data` object will hold the `iproute` output data, which at this moment doesn't support the `-json` option, so right
-now will conform to the interface `MonitorEmittedData` which you can see at TODO:Typedoc.
+now will conform to the interface [MonitorEmittedData](https://diosney.github.io/node-iproute/interfaces/MonitorEmittedData.html).
 
-## utils
+### utils
 
 General helpful utils to provide extra handy functionality not present in `iproute`, like routing table manipulation
 and IP forwarding configuration.
 
-See the complete API documentation at TODO:Tsdoc
+See its complete [API documentation](https://diosney.github.io/node-iproute/modules/utils.html).
 
 	import { utils } from 'iproute';
 
-### `utils.ipForwarding`
+#### `utils.ipForwarding`
 
 Allows you to enable/disable IP forwarding, and query for its status.
 
@@ -287,7 +265,7 @@ General methods affecting both IPv4 and IPv6:
 
     const status = await utils.ipForwarding.status()
 
-### `utils.routingTables`
+#### `utils.routingTables`
 
 Provides routing tables manipulation functions, like table creation, deletion and querying.
 
@@ -301,9 +279,7 @@ Those are wrapper functions to manage the `/etc/iproute/rt_tables` file.
 >       table: RouteRoutingTables.Cache   // 'cache'
 >     });
 
-#### `utils.routingTables.show(options?, globalOptions?)`
-
-**Examples:**
+##### `utils.routingTables.show(options?, globalOptions?)`
 
 *Show all tables*
 
@@ -330,13 +306,11 @@ Those are wrapper functions to manage the `/etc/iproute/rt_tables` file.
       { id: '255', name: 'local' }
     ]
 
-It adheres to the `RoutingTable[]` interface which you can see at TODO:Typedoc.
+It adheres to the [RoutingTable](https://diosney.github.io/node-iproute/interfaces/RoutingTable.html) interface.
 
-#### `utils.routingTables.add(options, globalOptions?)`
+##### `utils.routingTables.add(options, globalOptions?)`
 
 It will add passed in table if it is not already present.
-
-**Examples:**
 
 *Add a single table*
 
@@ -345,7 +319,7 @@ It will add passed in table if it is not already present.
 	  name: 'table_name'
 	});
 
-#### `utils.routingTables.del(options)`
+##### `utils.routingTables.del(options)`
 
 It will remove the specified table if it exists.
 
@@ -353,14 +327,12 @@ It will remove the specified table if it exists.
 	  id: 50
 	});
 
-#### `utils.routingTables.clear(globalOptions?)`
+##### `utils.routingTables.clear(globalOptions?)`
 
 > **Note:** It will clear/remove all the present tables so use it carefully!
 
 It doesn't immediately flush the route cache, allowing you to continue making changes (like adding new tables) before
 the modifications take effect and routes with unreferenced tables are discarded.
-
-**Examples:**
 
 *Clear all tables*
 

@@ -74,6 +74,8 @@ export { ParametersError } from './common/errors/parameters';
 
 /**
  * Network devices configuration.
+ *
+ * @see [Man Page](https://man7.org/linux/man-pages/man8/ip-link.8.html)
  * @category IP Commands
  */
 export { linkModule as link };
@@ -146,6 +148,8 @@ export { LinkSetXdpPinnedOptions } from './commands/link/xdp-options/pinned.inte
 
 /**
  * Protocol address management.
+ *
+ * @see [Man Page](https://man7.org/linux/man-pages/man8/ip-address.8.html)
  * @category IP Commands
  */
 export { addressModule as address };
@@ -164,6 +168,8 @@ export {
 
 /**
  * Routing table management.
+ *
+ * @see [Man Page](https://man7.org/linux/man-pages/man8/ip-route.8.html)
  * @category IP Commands
  */
 export { routeModule as route };
@@ -191,6 +197,8 @@ export {
 
 /**
  * Routing policy database (RPDB) management.
+ *
+ * @see [Man Page](https://man7.org/linux/man-pages/man8/ip-rule.8.html)
  * @category IP Commands
  */
 export { ruleModule as rule };
@@ -200,6 +208,8 @@ export { RuleShowOptions, RuleInfo } from './commands/rule/show.interfaces';
 
 /**
  * State monitoring.
+ *
+ * @see [Man Page](https://man7.org/linux/man-pages/man8/ip-monitor.8.html)
  * @category IP Commands
  */
 export { monitorModule as monitor };

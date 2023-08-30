@@ -1,4 +1,4 @@
-name: Generate and Deploy TypeDoc Documentation
+name: Generate & Deploy Docs
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Cache node modules
+      - name: Cache node-modules
         uses: actions/cache@v2
         with:
           path: node_modules
@@ -21,10 +21,10 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-node-
 
-      - name: Install and Build
+      - name: Install & Build
         run: npm install
 
-      - name: Generate TypeDoc
+      - name: Generate Docs
         run: npm run docs
 
       - name: Deploy

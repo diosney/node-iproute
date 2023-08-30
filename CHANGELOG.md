@@ -1,4 +1,4 @@
-## Release Notes
+### Release Notes
 
 ### 2.0.0-beta
 
@@ -56,7 +56,7 @@
 
 ### 0.6.7
 
-- `ip-address`: Changed `utils.scopes` from an array type to an map (object) type.
+- `ip-address`: Changed `utils.scopes` from an array type to a map (object) type.
 - `ip-rule`: Added two new parameters added to `iproute`: `suppress_prefixlength` and `suppress_ifgroup`.
 - `ip-route`: Added one new parameters from `iproute`: `quickack` and fixed `onlink` one to behave correctly as a boolean flag.
 

@@ -14,12 +14,15 @@
   "excludeInternal": false,
   "treatWarningsAsErrors": false,
   "navigationLinks": {
-    "npm": "http://npmjs.com/iproute",
-    "Github": "https://github.com/diosney/node-iproute"
+    "npm": "https://npmjs.com/iproute",
+    "Github": "https://github.com/diosney/node-iproute",
+    "Buy me a Coffee": "https://www.buymeacoffee.com/diosney"
   },
   "sidebarLinks": {
-    "Home": "/",
-    "Examples": "https://github.com/diosney/node-iproute/blob/master/README-examples.md"
+    "Home": "/node-iproute",
+    "Examples": "https://github.com/diosney/node-iproute/blob/master/README-examples.md",
+    "TODO": "https://github.com/diosney/node-iproute/blob/master/TODO.md",
+    "Changelog": "https://github.com/diosney/node-iproute/blob/master/CHANGELOG.md"
   },
   "navigation": {
     "includeCategories": true,
@@ -40,6 +43,6 @@
     "Schemas",
     "Classes",
     "Regexes",
-    "Other"
+    "Misc"
   ]
 }
