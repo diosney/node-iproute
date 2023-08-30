@@ -6,6 +6,8 @@ Wrapper around native **iproute** suite to allow its functionality to be used in
 
 [![docs](https://github.com/diosney/node-iproute/actions/workflows/docs.yml/badge.svg?branch=master)](https://github.com/diosney/node-iproute/actions/workflows/docs.yml)
 [![tests](https://github.com/diosney/node-iproute/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/diosney/node-iproute/actions/workflows/tests.yml/badge.svg)
+[![npm](https://img.shields.io/npm/v/iproute.svg)](https://www.npmjs.com/package/iproute)
+[![GitHub master version](https://img.shields.io/github/package-json/v/diosney/node-iproute/master)](https://github.com/diosney/node-iproute)
 
 ## Installation
 
