@@ -1,9 +1,9 @@
-<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>node-iproute - v2.0.0-beta</title><meta name="description" content="Documentation for node-iproute"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css?cache=1693363457504"/><link rel="stylesheet" href="assets/highlight.css?cache=1693363457504"/><script defer src="assets/main.js?cache=1693363457504"></script><script async src="assets/search.js?cache=1693363457504" id="tsd-search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>node-iproute - v2.0.0-beta</title><meta name="description" content="Documentation for node-iproute"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css?cache=1693365078758"/><link rel="stylesheet" href="assets/highlight.css?cache=1693365078758"/><script defer src="assets/main.js?cache=1693365078758"></script><script async src="assets/search.js?cache=1693365078758" id="tsd-search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
 <div class="tsd-toolbar-contents container">
 <div class="table-cell" id="tsd-search" data-base=".">
 <div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15.7824 13.833L12.6666 10.7177C12.5259 10.5771 12.3353 10.499 12.1353 10.499H11.6259C12.4884 9.39596 13.001 8.00859 13.001 6.49937C13.001 2.90909 10.0914 0 6.50048 0C2.90959 0 0 2.90909 0 6.49937C0 10.0896 2.90959 12.9987 6.50048 12.9987C8.00996 12.9987 9.39756 12.4863 10.5008 11.6239V12.1332C10.5008 12.3332 10.5789 12.5238 10.7195 12.6644L13.8354 15.7797C14.1292 16.0734 14.6042 16.0734 14.8948 15.7797L15.7793 14.8954C16.0731 14.6017 16.0731 14.1267 15.7824 13.833ZM6.50048 10.499C4.29094 10.499 2.50018 8.71165 2.50018 6.49937C2.50018 4.29021 4.28781 2.49976 6.50048 2.49976C8.71001 2.49976 10.5008 4.28708 10.5008 6.49937C10.5008 8.70852 8.71314 10.499 6.50048 10.499Z" fill="var(--color-text)"></path></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div>
 <div class="field">
-<div id="tsd-toolbar-links"><a href="https://npmjs.com/iproute">npm</a><a href="https://github.com/diosney/node-iproute">Github</a><a href="https://www.buymeacoffee.com/diosney">Buy me a Coffee</a></div></div>
+<div id="tsd-toolbar-links"><a href="https://npmjs.com/iproute">npm</a><a href="https://github.com/diosney/node-iproute">Github</a><a href="https://www.buymeacoffee.com/diosney">Buy me a Coffee!</a></div></div>
 <ul class="results">
 <li class="state loading">Preparing search index...</li>
 <li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">node-iproute - v2.0.0-beta</a></div>
@@ -98,10 +98,6 @@ command when editing this file to prevent syntax errors, which could lock you ou
 <p>And lastly execute the commands with the <code>sudo: true</code> global option:</p>
 <pre><code><span class="hl-0">link</span><span class="hl-1">.</span><span class="hl-3">show</span><span class="hl-1">({}, {</span><br/><span class="hl-1">  </span><span class="hl-0">sudo:</span><span class="hl-1"> </span><span class="hl-4">true</span><br/><span class="hl-1">});</span><br/><br/><span class="hl-0">ipForwarding</span><span class="hl-1">.</span><span class="hl-0">v4</span><span class="hl-1">.</span><span class="hl-3">enable</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-0">sudo:</span><span class="hl-1"> </span><span class="hl-4">true</span><br/><span class="hl-1">});</span>
 </code><button>Copy</button></pre>
-<a id="md:issues" class="tsd-anchor"></a><h2><a href="#md:issues">Issues</a></h2><p>The source code can be accessed on <a href="https://github.com/diosney/node-iproute">GitHub</a>.
-<br>
-If you encounter any bugs or need a new feature, please report them on the
-<a href="https://github.com/diosney/node-iproute/issues">issue tracker</a>.</p>
 <a id="md:usage" class="tsd-anchor"></a><h2><a href="#md:usage">Usage</a></h2><p>As a general guideline, the module identifiers and options match those provided by <strong>iproute</strong>. This means you can easily use 
 the module with a basic understanding of <strong>iproute</strong>.</p>
 <p>There are two specific details that you must be aware of, though:</p>
@@ -122,7 +118,7 @@ at the <a href="https://diosney.github.io/node-iproute/modules.html">API documen
 <p>If you are using Typescript, you can use the aforementioned <code>require</code> calls, or just Ecmascript modules import:</p>
 <pre><code><span class="hl-6">import</span><span class="hl-1"> { </span><span class="hl-0">link</span><span class="hl-1"> } </span><span class="hl-6">from</span><span class="hl-1"> </span><span class="hl-2">&#39;iproute&#39;</span><span class="hl-1">;</span><br/><span class="hl-6">import</span><span class="hl-1"> </span><span class="hl-0">iproute</span><span class="hl-1">, { </span><span class="hl-0">link</span><span class="hl-1"> } </span><span class="hl-6">from</span><span class="hl-1"> </span><span class="hl-2">&#39;iproute&#39;</span><span class="hl-1">;</span><br/><span class="hl-6">import</span><span class="hl-1"> </span><span class="hl-4">*</span><span class="hl-1"> </span><span class="hl-6">as</span><span class="hl-1"> </span><span class="hl-0">iproute</span><span class="hl-1"> </span><span class="hl-6">from</span><span class="hl-1"> </span><span class="hl-2">&#39;iproute&#39;</span><span class="hl-1">;</span>
 </code><button>Copy</button></pre>
-<a id="md:how-to-use" class="tsd-anchor"></a><h3><a href="#md:how-to-use">How to Use</a></h3><p>All method return Promises, so you can use them directly with <code>.then().catch()</code> or you can use <code>async/await</code>.
+<a id="md:how-to-use" class="tsd-anchor"></a><h3><a href="#md:how-to-use">How to Use</a></h3><p>All methods return Promises, so you can use them directly with <code>.then().catch()</code> or you can use <code>async/await</code>.
 Both of these calls are valid:</p>
 <pre><code><span class="hl-4">const</span><span class="hl-1"> { </span><span class="hl-5">utils</span><span class="hl-1"> } = </span><span class="hl-3">require</span><span class="hl-1">(</span><span class="hl-2">&#39;iproute&#39;</span><span class="hl-1">);</span><br/><br/><span class="hl-7">// Using Promises.</span><br/><span class="hl-0">utils</span><br/><span class="hl-1">  .</span><span class="hl-0">ipForwarding</span><br/><span class="hl-1">  .</span><span class="hl-3">enable</span><span class="hl-1">({ </span><span class="hl-0">sudo:</span><span class="hl-1"> </span><span class="hl-4">true</span><span class="hl-1"> })</span><br/><span class="hl-1">  .</span><span class="hl-3">then</span><span class="hl-1">(() </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-7">// Do something;</span><br/><span class="hl-1">  })</span><br/><span class="hl-1">  .</span><span class="hl-3">catch</span><span class="hl-1">(() </span><span class="hl-4">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-7">// Do something;</span><br/><span class="hl-1">  });</span><br/><br/><span class="hl-7">// Using async/await.</span><br/><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-0">utils</span><span class="hl-1">.</span><span class="hl-0">ipForwarding</span><span class="hl-1">.</span><span class="hl-3">enable</span><span class="hl-1">({ </span><span class="hl-0">sudo:</span><span class="hl-1"> </span><span class="hl-4">true</span><span class="hl-1"> });</span>
 </code><button>Copy</button></pre>
@@ -151,6 +147,10 @@ showcasing how to use the library.</li>
 <li><a href="https://github.com/diosney/node-iproute/blob/master/TODO.md">TODO.md</a> A checklist of several items to add or improve upon.</li>
 <li><a href="https://diosney.github.io/node-iproute">Public API site</a>, which provides a comprehensive index of the library interfaces, constants, enums, and classes.</li>
 </ul>
+<a id="md:issues" class="tsd-anchor"></a><h2><a href="#md:issues">Issues</a></h2><p>The source code can be accessed on <a href="https://github.com/diosney/node-iproute">GitHub</a>.
+<br>
+If you encounter any bugs or need a new feature, please report them on the
+<a href="https://github.com/diosney/node-iproute/issues">issue tracker</a>.</p>
 <a id="md:contributing" class="tsd-anchor"></a><h2><a href="#md:contributing">Contributing</a></h2><p>If you want to contribute just follow the project organization and code style and submit a <strong>PR</strong>.
 <br>
 If you want to be an official maintainer or contributor just say so, this library is bigger that it seems and there are a
@@ -221,7 +221,6 @@ THE SOFTWARE.</p>
 <ul>
 <li><a href="#md:having-iproute-available-in-the-system"><span>Having iproute available in the system</span></a></li>
 <li><a href="#md:permission-level"><span>Permission <wbr/>Level</span></a></li></ul></li>
-<li><a href="#md:issues"><span>Issues</span></a></li>
 <li><a href="#md:usage"><span>Usage</span></a></li>
 <li>
 <ul>
@@ -229,6 +228,7 @@ THE SOFTWARE.</p>
 <li><a href="#md:how-to-use"><span>How to <wbr/>Use</span></a></li>
 <li><a href="#md:some-important-notes"><span>Some <wbr/>Important <wbr/>Notes</span></a></li></ul></li>
 <li><a href="#md:documentation"><span>Documentation</span></a></li>
+<li><a href="#md:issues"><span>Issues</span></a></li>
 <li><a href="#md:contributing"><span>Contributing</span></a></li>
 <li><a href="#md:tests"><span>Tests</span></a></li>
 <li><a href="#md:license"><span>License</span></a></li></ul></li></ul></li></ul></div></details></div>
