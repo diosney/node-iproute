@@ -1,5 +1,5 @@
 import { EncapSeg6LocalActions } from '../../route.constants';
-import { NhArgs }                from '../add.interfaces';
+import { NextHopArgs }                from '../add.interfaces';
 import { RouteRoutingTables }    from '../show.constants';
 
 /**
@@ -32,7 +32,7 @@ export interface AddRouteSeg6LocalEncapArgs {
  * EndXSeg6local encap arguments.
  * @category Interfaces
  */
-export interface EndXSeg6LocalEncapArgs extends NhArgs {
+export interface EndXSeg6LocalEncapArgs extends NextHopArgs {
   nh6: true;
 }
 
@@ -40,7 +40,7 @@ export interface EndXSeg6LocalEncapArgs extends NhArgs {
  * EndDt6Seg6local encap arguments.
  * @category Interfaces
  */
-export interface EndDt6Seg6LocalEncapArgs extends NhArgs {
+export interface EndDt6Seg6LocalEncapArgs extends NextHopArgs {
   table?: number | RouteRoutingTables;
   vrftable?: number | RouteRoutingTables;
 }
@@ -49,7 +49,7 @@ export interface EndDt6Seg6LocalEncapArgs extends NhArgs {
  * EndB6Seg6local encap arguments.
  * @category Interfaces
  */
-export interface EndB6Seg6LocalEncapArgs extends NhArgs {
+export interface EndB6Seg6LocalEncapArgs extends NextHopArgs {
   srh: true;
   /** List of comma separated IPv6 addresses. */
   segs: string;

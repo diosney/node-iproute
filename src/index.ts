@@ -162,7 +162,7 @@ export { AddressFlushOptions } from './commands/address/flush.interfaces';
 export {
   AddressShowOptions,
   LinkWithAddressInfo,
-  OnlyWithAddressInfo,
+  OnlyAddressInfo,
   AddressInfo
 } from './commands/address/show.interfaces';
 
@@ -175,9 +175,9 @@ export {
 export { routeModule as route };
 export { RoutePreferences, EncapSeg6LocalActions } from './commands/route.constants';
 
-export { RouteAddOptions, EncapArgs, NhArgs } from './commands/route/add.interfaces';
+export { RouteAddOptions, EncapArgs, NextHopArgs } from './commands/route/add.interfaces';
 export { RouteGetOptions } from './commands/route/get.interfaces';
-export { RouteRoutingTables, RoutingTableProtocols, RoutingTableTypes } from './commands/route/show.constants';
+export { RouteRoutingTables, RoutingTableProtocols, RouteTypes } from './commands/route/show.constants';
 export { RouteShowOptions, RouteInfo } from './commands/route/show.interfaces';
 export { AddRouteBpfEncapArgs } from './commands/route/encap-types/bpf.interfaces';
 export { AddRouteIoam6EncapArgs } from './commands/route/encap-types/ioam6.interfaces';

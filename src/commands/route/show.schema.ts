@@ -6,7 +6,7 @@ import { AddressScopes } from '../address.constants';
 import {
   RouteRoutingTables,
   RoutingTableProtocols,
-  RoutingTableTypes
+  RouteTypes
 } from './show.constants';
 
 import { RouteShowOptions } from './show.interfaces';
@@ -118,7 +118,7 @@ export const RouteShowSchema: JSONSchemaType<RouteShowOptions> = {
     },
     type    : {
       type    : 'string',
-      enum    : Object.values(RoutingTableTypes) as RoutingTableTypes[],
+      enum    : Object.values(RouteTypes) as RouteTypes[],
       nullable: true
     },
     scope   : {

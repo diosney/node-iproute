@@ -113,7 +113,7 @@ export interface LinkWithAddressInfo extends LinkInfo {
  * Only with address info.
  * @category Interfaces
  */
-export interface OnlyWithAddressInfo {
+export interface OnlyAddressInfo {
   addr_info: AddressInfo[];
 }
 

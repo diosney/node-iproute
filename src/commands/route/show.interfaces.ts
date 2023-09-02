@@ -3,7 +3,7 @@ import { AddressScopes } from '../address.constants';
 import {
   RouteRoutingTables,
   RoutingTableProtocols,
-  RoutingTableTypes
+  RouteTypes
 } from './show.constants';
 
 /**
@@ -62,7 +62,7 @@ export interface RouteShowOptions {
   protocol?: RoutingTableProtocols | number;
   proto?: RoutingTableProtocols | number;
   /** The type of this rule. */
-  type?: RoutingTableTypes;
+  type?: RouteTypes;
   /**
    * The scope of the area where this address is valid.
    * The available scopes are listed in file `/etc/iproute2/rt_scopes`.
@@ -86,7 +86,7 @@ export interface RouteShowOptions {
  * @category Interfaces
  */
 export interface RouteInfo {
-  type: RoutingTableTypes;
+  type: RouteTypes;
   dst: RouteRoutingTables | string;
   gateway: string;
   dev: string;

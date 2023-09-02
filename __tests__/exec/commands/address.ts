@@ -7,7 +7,7 @@ import { add, del, show, save, showdump } from '../../../src/commands/address';
 
 import {
   LinkWithAddressInfo,
-  OnlyWithAddressInfo
+  OnlyAddressInfo
 } from '../../../src/commands/address/show.interfaces';
 
 import { AddressAddOptions } from '../../../src/commands/address/add.interfaces';
@@ -96,7 +96,7 @@ describe('address', () => {
       let linkWithAddresses = await showdump({
         sudo: true,
         filePath
-      }) as OnlyWithAddressInfo[];
+      }) as OnlyAddressInfo[];
 
       expect(linkWithAddresses).to.be.an('array').that.has.lengthOf.at.least(1);
 

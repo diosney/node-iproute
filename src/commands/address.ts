@@ -19,7 +19,7 @@ import { AddressFlushSchema }   from './address/flush.schema';
 import {
   LinkWithAddressInfo,
   AddressShowOptions,
-  OnlyWithAddressInfo
+  OnlyAddressInfo
 } from './address/show.interfaces';
 
 import { AddressShowSchema } from './address/show.schema';
@@ -206,7 +206,7 @@ export async function restore(globalOptions: GlobalOptionsWithRequiredFilePath):
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
  */
-export async function showdump(globalOptions: GlobalOptionsWithRequiredFilePath): Promise<Command<Empty> | OnlyWithAddressInfo[]> {
+export async function showdump(globalOptions: GlobalOptionsWithRequiredFilePath): Promise<Command<Empty> | OnlyAddressInfo[]> {
   const cmd = [ 'ip', 'address', 'showdump' ];
 
   const ipCmd = new CommandWithRedirectFromFilepathAndReturnedData<Empty>(
@@ -222,7 +222,7 @@ export async function showdump(globalOptions: GlobalOptionsWithRequiredFilePath)
     },
     cmd);
 
-  return await ipCmd.exec<OnlyWithAddressInfo[]>();
+  return await ipCmd.exec<OnlyAddressInfo[]>();
 }
 
 /**

@@ -43,10 +43,10 @@ export enum RoutingTableProtocols {
 }
 
 /**
- * Routing table types.
+ * Route types.
  * @category Constants
  */
-export enum RoutingTableTypes {
+export enum RouteTypes {
   /** The route entry describes real paths to the destinations covered by the route prefix. */
   Unicast     = 'unicast',
   /**

@@ -11,7 +11,7 @@ import { AddRouteSeg6LocalEncapArgs }     from './encap-types/seg6local.interfac
 import {
   RouteRoutingTables,
   RoutingTableProtocols,
-  RoutingTableTypes
+  RouteTypes
 } from './show.constants';
 
 /**
@@ -21,13 +21,13 @@ import {
 export interface RouteAddOptions {
   /**
    * The destination prefix of the route.
-   * If TYPE is omitted, `ip` assumes type {@link RoutingTableTypes.Unicast}.
+   * If TYPE is omitted, `ip` assumes type {@link RouteTypes.Unicast}.
    * PREFIX is an IP or IPv6 address optionally followed by a slash and the prefix length.
    * If the length of the prefix is missing, `ip` assumes a full-length host route.
    *
    * There is also a special PREFIX `default` - which is equivalent to IP `0/0` or to IPv6 `::/0`.
    */
-  type_?: RoutingTableTypes;
+  type_?: RouteTypes;
   /** The destination address. */
   to_: string;
   /**
@@ -218,7 +218,7 @@ export interface RouteAddOptions {
    */
   nexthops_?: Array<{
     nexthop: true;
-  } & NhArgs>;
+  } & NextHopArgs>;
 }
 
 /**
@@ -236,7 +236,7 @@ export type EncapArgs = AddRouteMplsEncapArgs
  * NH arguments.
  * @category Interfaces
  */
-export interface NhArgs {
+export interface NextHopArgs {
   via?: {
     family?: AddressFamilies;
     address: string;

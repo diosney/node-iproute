@@ -15,7 +15,7 @@ import {RouteSeg6LocalEncapArgsSchema} from './encap-types/seg6local.schema';
 import {
   RouteRoutingTables,
   RoutingTableProtocols,
-  RoutingTableTypes
+  RouteTypes
 } from './show.constants';
 
 export const RouteAddSchema: JSONSchemaType<RouteAddOptions> = {
@@ -25,7 +25,7 @@ export const RouteAddSchema: JSONSchemaType<RouteAddOptions> = {
   properties: {
     type_: {
       type: 'string',
-      enum: Object.values(RoutingTableTypes) as RoutingTableTypes[],
+      enum: Object.values(RouteTypes) as RouteTypes[],
       nullable: true
     },
     to_: {
