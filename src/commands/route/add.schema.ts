@@ -1,22 +1,28 @@
-import {JSONSchemaType} from 'ajv';
+import { JSONSchemaType } from 'ajv';
 
-import {EnableDisableAsStringToggle} from '../../common/constants/attribute-values';
-import {SchemaIds}                      from '../../common/constants/schemas';
-import {AddressFamilies, AddressScopes} from '../address.constants';
-import {RoutePreferences}               from '../route.constants';
-import {RouteAddOptions}                from './add.interfaces';
-import {RouteBpfEncapArgsSchema} from './encap-types/bpf.schema';
-import {RouteIoam6EncapArgsSchema} from './encap-types/ioam6.schema';
-import {RouteIpEncapArgsSchema} from './encap-types/ip.schema';
-import {RouteMplsEncapArgsSchema} from './encap-types/mpls.schema';
-import {RouteSeg6EncapArgsSchema} from './encap-types/seg6.schema';
-import {RouteSeg6LocalEncapArgsSchema} from './encap-types/seg6local.schema';
+import { EnableDisableAsStringToggle } from '../../common/constants/attribute-values';
+import { SchemaIds } from '../../common/constants/schemas';
+import { AddressFamilies, AddressScopes } from '../address.constants';
+import { RoutePreferences } from '../route.constants';
+import { RouteAddOptions } from './add.interfaces';
+import { RouteBpfEncapArgsSchema } from './encap-types/bpf.schema';
+import { RouteIoam6EncapArgsSchema } from './encap-types/ioam6.schema';
+import { RouteIpEncapArgsSchema } from './encap-types/ip.schema';
+import { RouteMplsEncapArgsSchema } from './encap-types/mpls.schema';
+import { RouteSeg6EncapArgsSchema } from './encap-types/seg6.schema';
+import { RouteSeg6LocalEncapArgsSchema } from './encap-types/seg6local.schema';
 
 import {
   RouteRoutingTables,
   RoutingTableProtocols,
   RouteTypes
 } from './show.constants';
+import { AddRouteIpEncapArgs } from './encap-types/ip.interfaces';
+import { AddRouteMplsEncapArgs } from './encap-types/mpls.interfaces';
+import { AddRouteBpfEncapArgs } from './encap-types/bpf.interfaces';
+import { AddRouteSeg6EncapArgs } from './encap-types/seg6.interfaces';
+import { AddRouteSeg6LocalEncapArgs } from './encap-types/seg6local.interfaces';
+import { AddRouteIoam6EncapArgs } from './encap-types/ioam6.interfaces';
 
 export const RouteAddSchema: JSONSchemaType<RouteAddOptions> = {
   $id: SchemaIds.RouteAdd,
@@ -128,14 +134,14 @@ export const RouteAddSchema: JSONSchemaType<RouteAddOptions> = {
     encap: {
       type: 'object',
       nullable: true,
-      oneOf: [
-        RouteBpfEncapArgsSchema,
-        RouteIoam6EncapArgsSchema,
-        RouteIpEncapArgsSchema,
-        RouteMplsEncapArgsSchema,
-        RouteSeg6EncapArgsSchema,
-        RouteSeg6LocalEncapArgsSchema
-      ]
+      properties: {
+        mpls: RouteMplsEncapArgsSchema as Required<JSONSchemaType<AddRouteMplsEncapArgs>>,
+        ip: RouteIpEncapArgsSchema as Required<JSONSchemaType<AddRouteIpEncapArgs>>,
+        bpf: RouteBpfEncapArgsSchema as Required<JSONSchemaType<AddRouteBpfEncapArgs>>,
+        seg6: RouteSeg6EncapArgsSchema as Required<JSONSchemaType<AddRouteSeg6EncapArgs>>,
+        seg6local: RouteSeg6LocalEncapArgsSchema as Required<JSONSchemaType<AddRouteSeg6LocalEncapArgs>>,
+        ioam6: RouteIoam6EncapArgsSchema as Required<JSONSchemaType<AddRouteIoam6EncapArgs>>
+      }
     },
     via: {
       type: 'object',
@@ -332,7 +338,7 @@ export const RouteAddSchema: JSONSchemaType<RouteAddOptions> = {
         properties: {
           nexthop: {
             type: 'boolean',
-            enum: [true],
+            enum: [true]
           },
           via: {
             type: 'object',

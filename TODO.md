@@ -10,8 +10,9 @@
 
 - Cleaning:
     - Change all remaining `pattern` into `format`. Add respective tests.
-    - Should condense `Command` classes by using template method or any other pattern? Or by subclassing is OK?
-    - Should add a map to know that options are keyless to remove the `args_` pattern?
+    - Condense `Command` classes by using template method or any other pattern? Or by subclassing is OK?
+    - Add a map to know that options are keyless to remove the `args_` pattern?
+    - Add `sonarlint` or `prettify`?
 
 ### Commands
 
@@ -29,6 +30,7 @@
 - `monitor`
   - Should parse output to `json` or wait for `iproute` team to add a `-json` option?
   - Parse object in response to one of the enums, at least the ones that the library supports.
+  - Contact native `iproute` developers and ask them to add the `-json` option to `monitor`.
 
 - The interfaces of the `show` methods needs to be completed. 
   Those interfaces are: `RuleInfo`, `RouteInfo`, `LinkInfo`, `LinkWithAddressInfo`.

@@ -1,12 +1,12 @@
-import { EnableDisableAsStringToggle }    from '../../common/constants/attribute-values';
+import { EnableDisableAsStringToggle } from '../../common/constants/attribute-values';
 import { AddressFamilies, AddressScopes } from '../address.constants';
-import { RoutePreferences }               from '../route.constants';
-import { AddRouteBpfEncapArgs }           from './encap-types/bpf.interfaces';
-import { AddRouteIoam6EncapArgs }         from './encap-types/ioam6.interfaces';
-import { AddRouteIpEncapArgs }            from './encap-types/ip.interfaces';
-import { AddRouteMplsEncapArgs }          from './encap-types/mpls.interfaces';
-import { AddRouteSeg6EncapArgs }          from './encap-types/seg6.interfaces';
-import { AddRouteSeg6LocalEncapArgs }     from './encap-types/seg6local.interfaces';
+import { RoutePreferences } from '../route.constants';
+import { AddRouteBpfEncapArgs } from './encap-types/bpf.interfaces';
+import { AddRouteIoam6EncapArgs } from './encap-types/ioam6.interfaces';
+import { AddRouteIpEncapArgs } from './encap-types/ip.interfaces';
+import { AddRouteMplsEncapArgs } from './encap-types/mpls.interfaces';
+import { AddRouteSeg6EncapArgs } from './encap-types/seg6.interfaces';
+import { AddRouteSeg6LocalEncapArgs } from './encap-types/seg6local.interfaces';
 
 import {
   RouteRoutingTables,
@@ -80,7 +80,14 @@ export interface RouteAddOptions {
    */
   'ttl-propagate'?: EnableDisableAsStringToggle;
   /** Attach tunnel encapsulation attributes to this route. */
-  encap?: EncapArgs;
+  encap?: {
+    mpls?: AddRouteMplsEncapArgs;
+    ip?: AddRouteIpEncapArgs;
+    bpf?: AddRouteBpfEncapArgs;
+    seg6?: AddRouteSeg6EncapArgs;
+    seg6local?: AddRouteSeg6LocalEncapArgs;
+    ioam6?: AddRouteIoam6EncapArgs;
+  };
   /**
    * The address of the nexthop router, in the address family FAMILY.
    * Actually, the sense of this field depends on the route type.  For normal unicast routes it is either
@@ -220,17 +227,6 @@ export interface RouteAddOptions {
     nexthop: true;
   } & NextHopArgs>;
 }
-
-/**
- * Encap arguments.
- * @category Interfaces
- */
-export type EncapArgs = AddRouteMplsEncapArgs
-  | AddRouteIpEncapArgs
-  | AddRouteBpfEncapArgs
-  | AddRouteSeg6EncapArgs
-  | AddRouteSeg6LocalEncapArgs
-  | AddRouteIoam6EncapArgs;
 
 /**
  * NH arguments.

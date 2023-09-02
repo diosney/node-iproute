@@ -175,7 +175,7 @@ export {
 export { routeModule as route };
 export { RoutePreferences, EncapSeg6LocalActions } from './commands/route.constants';
 
-export { RouteAddOptions, EncapArgs, NextHopArgs } from './commands/route/add.interfaces';
+export { RouteAddOptions, NextHopArgs } from './commands/route/add.interfaces';
 export { RouteGetOptions } from './commands/route/get.interfaces';
 export { RouteRoutingTables, RoutingTableProtocols, RouteTypes } from './commands/route/show.constants';
 export { RouteShowOptions, RouteInfo } from './commands/route/show.interfaces';
@@ -233,10 +233,10 @@ export { MonitorCommand as MonitorCommand };
 
 /** @hidden **/
 export default {
-  link:    linkDefaults,
+  link: linkDefaults,
   address: addressDefaults,
-  rule:    ruleDefaults,
-  route:   routeDefaults,
+  rule: ruleDefaults,
+  route: routeDefaults,
   monitor: monitorDefaults,
   // Extras.
   utils: utilsDefaults

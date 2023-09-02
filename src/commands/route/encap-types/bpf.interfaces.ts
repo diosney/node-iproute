@@ -3,8 +3,6 @@
  * @category Interfaces
  */
 export interface AddRouteBpfEncapArgs {
-  /** XXX */
-  bpf: true;
   /** BPF program to execute for incoming packets. */
   in?: string;
   /** BPF program to execute for outgoing packets. */

@@ -166,12 +166,9 @@ export const EndB6Seg6LocalEncapArgsSchema: JSONSchemaType<EndB6Seg6LocalEncapAr
 export const RouteSeg6LocalEncapArgsSchema: JSONSchemaType<AddRouteSeg6LocalEncapArgs> = {
   $id: SchemaIds.RouteAddSeg6LocalEncapArgs,
   type: 'object',
-  required: ['seg6local', 'action'],
+  nullable:true,
+  required: ['action'],
   properties: {
-    seg6local: {
-      type: 'boolean',
-      enum: [true],
-    },
     action: {
       type: 'string',
       enum: Object.values(EncapSeg6LocalActions) as EncapSeg6LocalActions[]

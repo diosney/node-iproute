@@ -5,8 +5,6 @@ import { TtlSpecialValues } from '../../link.constants';
  * @category Interfaces
  */
 export interface AddRouteIpEncapArgs {
-  /** XXX */
-  ip: true;
   /** Tunel id. */
   id: number;
   /** Remote IP. */

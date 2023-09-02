@@ -1,5 +1,5 @@
-import {RouteAddOptions}         from '../../../../src/commands/route/add.interfaces';
-import {TestFixture}             from '../../../../src/common/interfaces/tests';
+import { RouteAddOptions } from '../../../../src/commands/route/add.interfaces';
+import { TestFixture } from '../../../../src/common/interfaces/tests';
 import { EncapSeg6LocalActions } from '../../../../src/commands/route.constants';
 
 export const Tests: TestFixture<RouteAddOptions>[] = [
@@ -30,7 +30,9 @@ export const Tests: TestFixture<RouteAddOptions>[] = [
     options: {
       to_: '10.1.1.0/30',
       encap: {
-        mpls: '200/300'
+        mpls: {
+          label_: '200/300'
+        }
       },
       via: {
         address_: '10.1.1.1'
@@ -58,10 +60,11 @@ export const Tests: TestFixture<RouteAddOptions>[] = [
     options: {
       to_: '2001:db8:1::/64',
       encap: {
-        seg6: true,
-        mode: true,
-        encap: true,
-        segs: '2001:db8:42::1,2001:db8:ffff::2'
+        seg6: {
+          mode: true,
+          encap: true,
+          segs: '2001:db8:42::1,2001:db8:ffff::2'
+        }
       },
       dev: 'eth0'
     },
@@ -87,10 +90,11 @@ export const Tests: TestFixture<RouteAddOptions>[] = [
     options: {
       to_: '2001:db8:1::/64',
       encap: {
-        seg6local: true,
-        action: EncapSeg6LocalActions.EndDT46,
-        actionArgs_: {
-          vrftable: 100
+        seg6local: {
+          action: EncapSeg6LocalActions.EndDT46,
+          actionArgs_: {
+            vrftable: 100
+          }
         }
       },
       dev: 'vrf100'
@@ -117,12 +121,13 @@ export const Tests: TestFixture<RouteAddOptions>[] = [
     options: {
       to_: '2001:db8:1::/64',
       encap: {
-        ioam6: true,
-        trace: true,
-        prealloc: true,
-        type: 0x800000,
-        ns: 1,
-        size: 12,
+        ioam6: {
+          trace: true,
+          prealloc: true,
+          type: 0x800000,
+          ns: 1,
+          size: 12
+        }
       },
       dev: 'eth0'
     },

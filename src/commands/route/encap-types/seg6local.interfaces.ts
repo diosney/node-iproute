@@ -7,8 +7,6 @@ import { RouteRoutingTables }    from '../show.constants';
  * @category Interfaces
  */
 export interface AddRouteSeg6LocalEncapArgs {
-  /** XXX */
-  seg6local: true;
   /** Operation to perform on matching packets. */
   action: EncapSeg6LocalActions;
   /** Operation arguments. */

@@ -1,25 +1,26 @@
-import {JSONSchemaType} from 'ajv';
+import { JSONSchemaType } from 'ajv';
 
-import {SchemaIds}             from '../../../common/constants/schemas';
-import {TtlSpecialValues}      from '../../link.constants';
-import {AddRouteMplsEncapArgs} from './mpls.interfaces';
+import { SchemaIds } from '../../../common/constants/schemas';
+import { TtlSpecialValues } from '../../link.constants';
+import { AddRouteMplsEncapArgs } from './mpls.interfaces';
 
 export const RouteMplsEncapArgsSchema: JSONSchemaType<AddRouteMplsEncapArgs> = {
   $id: SchemaIds.RouteAddMplsEncapArgs,
   type: 'object',
-  required: ['mpls'],
+  nullable: true,
+  required: ['label_'],
   properties: {
-    mpls: {
+    label_: {
       type: ['boolean', 'string'],
       oneOf: [
         {
           type: 'string',
           format: 'slash-separated-numbers',
-          minLength: 1,
+          minLength: 1
         },
         {
           type: 'boolean',
-          enum: [true],
+          enum: [true]
         }
       ]
     },

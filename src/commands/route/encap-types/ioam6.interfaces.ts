@@ -4,8 +4,6 @@
  */
 export interface AddRouteIoam6EncapArgs {
   /** XXX */
-  ioam6: true;
-  /** XXX */
   trace: true;
   /** XXX */
   prealloc: true;
