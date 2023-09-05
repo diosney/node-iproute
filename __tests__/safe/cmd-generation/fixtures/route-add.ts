@@ -91,9 +91,10 @@ export const Tests: TestFixture<RouteAddOptions>[] = [
       to_: '2001:db8:1::/64',
       encap: {
         seg6local: {
-          action: EncapSeg6LocalActions.EndDT46,
-          actionArgs_: {
-            vrftable: 100
+          action: {
+            [EncapSeg6LocalActions.EndDT46]: {
+              vrftable: 100
+            }
           }
         }
       },

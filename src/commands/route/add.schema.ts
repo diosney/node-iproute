@@ -3,7 +3,7 @@ import { JSONSchemaType } from 'ajv';
 import { EnableDisableAsStringToggle } from '../../common/constants/attribute-values';
 import { SchemaIds } from '../../common/constants/schemas';
 import { AddressFamilies, AddressScopes } from '../address.constants';
-import { RoutePreferences } from '../route.constants';
+import { EncapTypes, RoutePreferences } from '../route.constants';
 import { RouteAddOptions } from './add.interfaces';
 import { RouteBpfEncapArgsSchema } from './encap-types/bpf.schema';
 import { RouteIoam6EncapArgsSchema } from './encap-types/ioam6.schema';
@@ -135,12 +135,12 @@ export const RouteAddSchema: JSONSchemaType<RouteAddOptions> = {
       type: 'object',
       nullable: true,
       properties: {
-        mpls: RouteMplsEncapArgsSchema as Required<JSONSchemaType<AddRouteMplsEncapArgs>>,
-        ip: RouteIpEncapArgsSchema as Required<JSONSchemaType<AddRouteIpEncapArgs>>,
-        bpf: RouteBpfEncapArgsSchema as Required<JSONSchemaType<AddRouteBpfEncapArgs>>,
-        seg6: RouteSeg6EncapArgsSchema as Required<JSONSchemaType<AddRouteSeg6EncapArgs>>,
-        seg6local: RouteSeg6LocalEncapArgsSchema as Required<JSONSchemaType<AddRouteSeg6LocalEncapArgs>>,
-        ioam6: RouteIoam6EncapArgsSchema as Required<JSONSchemaType<AddRouteIoam6EncapArgs>>
+        [EncapTypes.Mpls]: RouteMplsEncapArgsSchema as Required<JSONSchemaType<AddRouteMplsEncapArgs>>,
+        [EncapTypes.Ip]: RouteIpEncapArgsSchema as Required<JSONSchemaType<AddRouteIpEncapArgs>>,
+        [EncapTypes.Bpf]: RouteBpfEncapArgsSchema as Required<JSONSchemaType<AddRouteBpfEncapArgs>>,
+        [EncapTypes.Seg6]: RouteSeg6EncapArgsSchema as Required<JSONSchemaType<AddRouteSeg6EncapArgs>>,
+        [EncapTypes.Seg6local]: RouteSeg6LocalEncapArgsSchema as Required<JSONSchemaType<AddRouteSeg6LocalEncapArgs>>,
+        [EncapTypes.Ioam6]: RouteIoam6EncapArgsSchema as Required<JSONSchemaType<AddRouteIoam6EncapArgs>>
       }
     },
     via: {

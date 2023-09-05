@@ -1,18 +1,19 @@
 import { EncapSeg6LocalActions } from '../../route.constants';
-import { NextHopArgs }                from '../add.interfaces';
-import { RouteRoutingTables }    from '../show.constants';
+import { EncapSeg6LocalActionsMappings, NextHopArgs } from '../add.interfaces';
+import { RouteRoutingTables } from '../show.constants';
 
 /**
  * Add route seg6local encap arguments.
  * @category Interfaces
  */
 export interface AddRouteSeg6LocalEncapArgs {
-  /** Operation to perform on matching packets. */
-  action: EncapSeg6LocalActions;
-  /** Operation arguments. */
-  actionArgs_?: EndXSeg6LocalEncapArgs
-    | EndDt6Seg6LocalEncapArgs
-    | EndB6Seg6LocalEncapArgs;
+  /**
+   * Operation to perform on matching packets.
+   * @see {@link EncapSeg6LocalActions}
+   */
+  action: {
+    [key in EncapSeg6LocalActions]?: EncapSeg6LocalActionsMappings[key];
+  };
   /**
    * Used to collect statistics on the processing of actions.
    * Three counters are implemented:

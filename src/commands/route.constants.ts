@@ -110,3 +110,22 @@ export enum EncapSeg6LocalActions {
    */
   EndB6Encaps = 'End.B6.Encaps'
 }
+
+/**
+ * Tunnel encapsulation types.
+ * @category Constants
+ */
+export enum EncapTypes {
+  /** Encapsulation type MPLS. */
+  Mpls      = 'mpls',
+  /** IP encapsulation (Geneve, GRE, VXLAN, ...). */
+  Ip        = 'ip',
+  /** Execution of BPF program. */
+  Bpf       = 'bpf',
+  /** Encapsulation type IPv6 Segment Routing. */
+  Seg6      = 'seg6',
+  /** Local SRv6 segment processing. */
+  Seg6local = 'seg6local',
+  /** Encapsulation type IPv6 IOAM. */
+  Ioam6     = 'ioam6',
+}

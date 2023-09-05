@@ -173,9 +173,13 @@ export {
  * @category IP Commands
  */
 export { routeModule as route };
-export { RoutePreferences, EncapSeg6LocalActions } from './commands/route.constants';
+export {
+  RoutePreferences,
+  EncapSeg6LocalActions,
+  EncapTypes
+} from './commands/route.constants';
 
-export { RouteAddOptions, NextHopArgs } from './commands/route/add.interfaces';
+export { RouteAddOptions, NextHopArgs, EncapTypesMappings, EncapSeg6LocalActionsMappings } from './commands/route/add.interfaces';
 export { RouteGetOptions } from './commands/route/get.interfaces';
 export { RouteRoutingTables, RoutingTableProtocols, RouteTypes } from './commands/route/show.constants';
 export { RouteShowOptions, RouteInfo } from './commands/route/show.interfaces';

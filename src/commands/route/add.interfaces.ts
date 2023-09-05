@@ -1,18 +1,27 @@
 import { EnableDisableAsStringToggle } from '../../common/constants/attribute-values';
 import { AddressFamilies, AddressScopes } from '../address.constants';
-import { RoutePreferences } from '../route.constants';
-import { AddRouteBpfEncapArgs } from './encap-types/bpf.interfaces';
-import { AddRouteIoam6EncapArgs } from './encap-types/ioam6.interfaces';
-import { AddRouteIpEncapArgs } from './encap-types/ip.interfaces';
-import { AddRouteMplsEncapArgs } from './encap-types/mpls.interfaces';
-import { AddRouteSeg6EncapArgs } from './encap-types/seg6.interfaces';
-import { AddRouteSeg6LocalEncapArgs } from './encap-types/seg6local.interfaces';
+import { EncapSeg6LocalActions, EncapTypes, RoutePreferences } from '../route.constants';
 
 import {
   RouteRoutingTables,
   RoutingTableProtocols,
   RouteTypes
 } from './show.constants';
+import { AddRouteMplsEncapArgs } from './encap-types/mpls.interfaces';
+import { AddRouteIpEncapArgs } from './encap-types/ip.interfaces';
+import { AddRouteBpfEncapArgs } from './encap-types/bpf.interfaces';
+import { AddRouteSeg6EncapArgs } from './encap-types/seg6.interfaces';
+import {
+  AddRouteSeg6LocalEncapArgs,
+  EndB6EncapsSeg6LocalEncapArgs,
+  EndB6Seg6LocalEncapArgs,
+  EndDt46Seg6LocalEncapArgs,
+  EndDt4Seg6LocalEncapArgs,
+  EndDt6Seg6LocalEncapArgs,
+  EndDx6Seg6LocalEncapArgs,
+  EndXSeg6LocalEncapArgs
+} from './encap-types/seg6local.interfaces';
+import { AddRouteIoam6EncapArgs } from './encap-types/ioam6.interfaces';
 
 /**
  * Route add options.
@@ -79,15 +88,13 @@ export interface RouteAddOptions {
    * Only supported for MPLS at present.
    */
   'ttl-propagate'?: EnableDisableAsStringToggle;
-  /** Attach tunnel encapsulation attributes to this route. */
+  /**
+   * Attach tunnel encapsulation attributes to this route.
+   * @see {@link EncapTypes}
+   */
   encap?: {
-    mpls?: AddRouteMplsEncapArgs;
-    ip?: AddRouteIpEncapArgs;
-    bpf?: AddRouteBpfEncapArgs;
-    seg6?: AddRouteSeg6EncapArgs;
-    seg6local?: AddRouteSeg6LocalEncapArgs;
-    ioam6?: AddRouteIoam6EncapArgs;
-  };
+    [key in EncapTypes]?: EncapTypesMappings[key];
+  },
   /**
    * The address of the nexthop router, in the address family FAMILY.
    * Actually, the sense of this field depends on the route type.  For normal unicast routes it is either
@@ -143,7 +150,7 @@ export interface RouteAddOptions {
   /**
    * The initial RTT variance estimate. Values are specified as with rtt above.
    *
-   * @see @{link rtt}
+   * @see {@link rtt}
    */
   rttvar?: number | string;
   /**
@@ -164,7 +171,7 @@ export interface RouteAddOptions {
    * The minimum TCP Retransmission TimeOut to use when communicating with this destination.
    * Values are specified as with rtt above.
    *
-   * @see @{link rtt}
+   * @see {@link rtt}
    */
   rto_min?: number | string;
   /**
@@ -241,4 +248,32 @@ export interface NextHopArgs {
   dev?: string;
   /** Is a weight for this element of a multipath route reflecting its relative bandwidth or quality. */
   weight?: number;
+}
+
+/**
+ * Tunnel encapsulation mapping.
+ * @category Constants
+ */
+export interface EncapTypesMappings {
+  [EncapTypes.Mpls]: AddRouteMplsEncapArgs;
+  [EncapTypes.Ip]: AddRouteIpEncapArgs;
+  [EncapTypes.Bpf]: AddRouteBpfEncapArgs;
+  [EncapTypes.Seg6]: AddRouteSeg6EncapArgs;
+  [EncapTypes.Seg6local]: AddRouteSeg6LocalEncapArgs;
+  [EncapTypes.Ioam6]: AddRouteIoam6EncapArgs;
+}
+
+/**
+ * Seg6local encapsulation action mappings.
+ * @category Constants
+ */
+export interface EncapSeg6LocalActionsMappings {
+  [EncapSeg6LocalActions.End]: true;
+  [EncapSeg6LocalActions.EndX]: EndXSeg6LocalEncapArgs;
+  [EncapSeg6LocalActions.EndDX6]: EndDx6Seg6LocalEncapArgs;
+  [EncapSeg6LocalActions.EndDT6]: EndDt6Seg6LocalEncapArgs;
+  [EncapSeg6LocalActions.EndDT4]: EndDt4Seg6LocalEncapArgs;
+  [EncapSeg6LocalActions.EndDT46]: EndDt46Seg6LocalEncapArgs;
+  [EncapSeg6LocalActions.EndB6]: EndB6Seg6LocalEncapArgs;
+  [EncapSeg6LocalActions.EndB6Encaps]: EndB6EncapsSeg6LocalEncapArgs;
 }
