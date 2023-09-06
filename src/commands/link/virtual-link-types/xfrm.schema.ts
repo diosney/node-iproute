@@ -1,10 +1,8 @@
 import { JSONSchemaType } from 'ajv';
 
-import { SchemaIds }           from '../../../common/constants/schemas';
 import { AddLinkXfrmTypeArgs } from './xfrm.interfaces';
 
 export const AddLinkXfrmArgsSchema: JSONSchemaType<AddLinkXfrmTypeArgs> = {
-  $id                 : SchemaIds.LinkAddXfrmOptions,
   type                : 'object',
   required            : ['dev'],
   additionalProperties: false,

@@ -366,3 +366,13 @@ export enum BridgeSlavePortStates {
   Forwarding = 3,
   Blocking   = 4,
 }
+
+/**
+ * Xdp option types.
+ * @category Constants
+ */
+export enum XdpOptionTypes {
+  Off    = 'off',
+  Object = 'object',
+  Pinned = 'pinned'
+}

@@ -5,14 +5,15 @@ import {
 
 import {
   AddrGenMode,
-  ExtendedLinkTypes,
-  VlanProtocols
+  ExtendedLinkTypes, LinkTypes,
+  VlanProtocols, XdpOptionTypes
 } from '../link.constants';
 
-import { ExtendedTypeArgs }        from './add.interfaces';
 import { LinkSetXdpObjectOptions } from './xdp-options/object.interfaces';
 import { LinkSetXdpPinnedOptions } from './xdp-options/pinned.interfaces';
-import { LinkSetXdpOffOptions }    from './xdp-options/off.interfaces';
+import { LinkSetXdpOffOptions } from './xdp-options/off.interfaces';
+import { ExtendedLinkTypesMappings, LinkTypesMappings } from './add.interfaces';
+import { AddLinkVlanTypeArgs } from './virtual-link-types/vlan.interfaces';
 
 /**
  * Link set common options.
@@ -26,11 +27,16 @@ export interface LinkSetCommonOptions {
   /** Change the state of the device to DOWN. */
   down?: true;
   /**
-   * Change type-specific settings. For a list of supported types and arguments refer to {@link LinkAddOptions.type_}.
-   * In addition to that, it is possible to manipulate settings to slave devices {@link type_}.
+   * Change type-specific settings.
+   *
+   * For a list of supported types and arguments refer to {@link LinkAddOptions.type}.
+   * In addition to that, it is possible to manipulate settings to slave devices type.
+   *
+   * @see {@link ExtendedLinkTypes}
    */
-  type?: ExtendedLinkTypes;
-  type_?: ExtendedTypeArgs;
+  type?: {
+    [key in ExtendedLinkTypes]?: ExtendedLinkTypesMappings[key];
+  };
   /** Change the NOARP flag on the device. */
   arp?: OnOffToggle;
   /**
@@ -207,14 +213,24 @@ export interface LinkSetCommonOptions {
    * {@link xdpoffload} in `ip link` output indicates that the program has been offloaded to hardware and can also be
    * used to request the "offload" mode, much like {@link xdpgeneric} it forces program to be installed specifically in
    * HW/FW of the apater.
+   *
+   * @see {@link XdpOptionTypes}
    */
-  xdp?: XdpOptions;
+  xdp?: {
+    [key in XdpOptionTypes]?: XdpOptionTypesMappings[key];
+  };
   /** @see {@link xdp} */
-  xdpgeneric?: XdpOptions;
+  xdpgeneric?: {
+    [key in XdpOptionTypes]?: XdpOptionTypesMappings[key];
+  };
   /** @see {@link xdp} */
-  xdpdrv?: XdpOptions;
+  xdpdrv?: {
+    [key in XdpOptionTypes]?: XdpOptionTypesMappings[key];
+  };
   /** @see {@link xdp} */
-  xdpoffload?: XdpOptions;
+  xdpoffload?: {
+    [key in XdpOptionTypes]?: XdpOptionTypesMappings[key];
+  };
   /** Set master device of the device (enslave device). */
   master?: string;
   /** Unset master device of the device (release device). */
@@ -222,14 +238,6 @@ export interface LinkSetCommonOptions {
   /** Set the IPv6 address generation mode. */
   addrgenmode?: AddrGenMode;
 }
-
-/**
- * Xdp options.
- * @category Interfaces
- */
-export type XdpOptions = LinkSetXdpObjectOptions
-  | LinkSetXdpPinnedOptions
-  | LinkSetXdpOffOptions;
 
 /**
  * Link set group options.
@@ -266,3 +274,13 @@ export interface LinkSetDevOptions extends LinkSetCommonOptions {
  * @category Interfaces
  */
 export type LinkSetOptions = LinkSetGroupOptions | LinkSetDevOptions;
+
+/**
+ * Xdp option types mappings.
+ * @category Interfaces
+ */
+export interface XdpOptionTypesMappings {
+  [XdpOptionTypes.Off]: LinkSetXdpOffOptions;
+  [XdpOptionTypes.Object]: LinkSetXdpObjectOptions;
+  [XdpOptionTypes.Pinned]: LinkSetXdpPinnedOptions;
+}

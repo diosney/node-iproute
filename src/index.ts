@@ -99,18 +99,19 @@ export {
   MacsecValidationModeOptions,
   SecureAssociationEncodings,
   AddrGenMode,
-  BridgeSlavePortStates
+  BridgeSlavePortStates,
+  XdpOptionTypes
 } from './commands/link.constants';
 
-export { LinkAddOptions, TypeArgs, ExtendedTypeArgs } from './commands/link/add.interfaces';
+export { LinkAddOptions, LinkTypesMappings } from './commands/link/add.interfaces';
 export { LinkDeleteOptions } from './commands/link/delete.interfaces';
 
 export {
   LinkSetCommonOptions,
-  XdpOptions,
   LinkSetGroupOptions,
   LinkSetDevOptions,
-  LinkSetOptions
+  LinkSetOptions,
+  XdpOptionTypesMappings
 } from './commands/link/set.interfaces';
 
 export {

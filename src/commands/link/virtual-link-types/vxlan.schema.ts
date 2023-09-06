@@ -1,14 +1,12 @@
 import { JSONSchemaType } from 'ajv';
 
 import { DontFragmentFlagValues } from '../../link.constants';
-import { SchemaIds }              from '../../../common/constants/schemas';
 
 import {
   AddLinkVxlanTypeArgs
 } from './vxlan.interfaces';
 
 export const AddLinkVxlanArgsSchema: JSONSchemaType<AddLinkVxlanTypeArgs> = {
-  $id:                  SchemaIds.LinkAddVxlanOptions,
   type:                 'object',
   required:             [ 'id' ],
   additionalProperties: false,

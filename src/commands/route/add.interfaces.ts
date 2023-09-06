@@ -265,7 +265,7 @@ export interface EncapTypesMappings {
 
 /**
  * Seg6local encapsulation action mappings.
- * @category Constants
+ * @category Interfaces
  */
 export interface EncapSeg6LocalActionsMappings {
   [EncapSeg6LocalActions.End]: true;

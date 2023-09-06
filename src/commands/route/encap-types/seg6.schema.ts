@@ -1,10 +1,8 @@
 import { JSONSchemaType } from 'ajv';
 
-import { SchemaIds } from '../../../common/constants/schemas';
 import { AddRouteSeg6EncapArgs } from './seg6.interfaces';
 
 export const RouteSeg6EncapArgsSchema: JSONSchemaType<AddRouteSeg6EncapArgs> = {
-  $id: SchemaIds.RouteAddSeg6EncapArgs,
   type: 'object',
   required: [ 'mode', 'segs' ],
   properties: {

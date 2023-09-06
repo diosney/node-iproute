@@ -1,5 +1,5 @@
 import { LinkTypes } from '../link.constants';
-import { TypeArgs }         from './add.interfaces';
+import { LinkTypesMappings } from './add.interfaces';
 
 /**
  * Link delete options.
@@ -13,8 +13,11 @@ export interface LinkDeleteOptions {
    * Group 0 is not allowed to be deleted since it is the default group.
    */
   group?: number;
-  /** Specifies the type of the device. */
-  type: LinkTypes;
-  /** Specifies the additional arguments related to the specified virtual link type. */
-  type_?: TypeArgs;
+  /**
+   * Specifies the type of the device.
+   * @see {@link LinkTypes}
+   */
+  type?: {
+    [key in LinkTypes]?: LinkTypesMappings[key];
+  };
 }

@@ -2,14 +2,12 @@ import { JSONSchemaType } from 'ajv';
 
 import { OnOffToggle }   from '../../../common/constants/attribute-values';
 import { VlanProtocols } from '../../link.constants';
-import { SchemaIds }     from '../../../common/constants/schemas';
 
 import {
   AddLinkVlanTypeArgs
 } from './vlan.interfaces';
 
 export const AddLinkVlanArgsSchema: JSONSchemaType<AddLinkVlanTypeArgs> = {
-  $id:                  SchemaIds.LinkAddVlanOptions,
   type:                 'object',
   required:             [ 'protocol', 'id' ],
   additionalProperties: false,

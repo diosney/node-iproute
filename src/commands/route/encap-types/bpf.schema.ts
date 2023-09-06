@@ -1,10 +1,8 @@
 import { JSONSchemaType } from 'ajv';
 
-import { SchemaIds } from '../../../common/constants/schemas';
 import { AddRouteBpfEncapArgs } from './bpf.interfaces';
 
 export const RouteBpfEncapArgsSchema: JSONSchemaType<AddRouteBpfEncapArgs> = {
-  $id:        SchemaIds.RouteAddBpfEncapArgs,
   type:       'object',
   nullable:   true,
   required:   [],

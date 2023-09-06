@@ -6,11 +6,9 @@ import {
   SecureAssociationEncodings
 } from '../../link.constants';
 
-import { SchemaIds }             from '../../../common/constants/schemas';
 import { AddLinkMacsecTypeArgs } from './macsec.interfaces';
 
 export const AddLinkMacsecArgsSchema: JSONSchemaType<AddLinkMacsecTypeArgs> = {
-  $id:                  SchemaIds.LinkAddMacsecOptions,
   type:                 'object',
   required:             [],
   additionalProperties: false,

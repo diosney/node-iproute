@@ -1,6 +1,5 @@
 import { JSONSchemaType } from 'ajv';
 
-import { SchemaIds } from '../../../common/constants/schemas';
 import { AddressFamilies } from '../../address.constants';
 import { EncapSeg6LocalActions } from '../../route.constants';
 import { RouteRoutingTables } from '../show.constants';
@@ -161,7 +160,6 @@ export const EndB6Seg6LocalEncapArgsSchema: JSONSchemaType<EndB6Seg6LocalEncapAr
 };
 
 export const RouteSeg6LocalEncapArgsSchema: JSONSchemaType<AddRouteSeg6LocalEncapArgs> = {
-  $id: SchemaIds.RouteAddSeg6LocalEncapArgs,
   type: 'object',
   nullable: true,
   required: ['action'],

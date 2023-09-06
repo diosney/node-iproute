@@ -1,11 +1,9 @@
 import { JSONSchemaType } from 'ajv';
 
-import { SchemaIds } from '../../../common/constants/schemas';
 import { TtlSpecialValues } from '../../link.constants';
 import { AddRouteIpEncapArgs } from './ip.interfaces';
 
 export const RouteIpEncapArgsSchema: JSONSchemaType<AddRouteIpEncapArgs> = {
-  $id:        SchemaIds.RouteAddIpEncapArgs,
   type:       'object',
   required:   [ 'id', 'dst' ],
   nullable: true,

@@ -1,26 +1,23 @@
 import { JSONSchemaType } from 'ajv';
 
 import { LinkSetXdpObjectOptions } from './object.interfaces';
-import { SchemaIds }               from '../../../common/constants/schemas';
 
 export const LinkSetXdpObjectOptionsSchema: JSONSchemaType<LinkSetXdpObjectOptions> = {
-  // TODO: Error: reference "#link-set-xdp-off" resolves to more than one schema
-  // $id:        SchemaIds.LinkSetXdpObjectOptions,
-  type:       'object',
-  required:   [ 'object' ],
+  type: 'object',
+  required: ['file_'],
   properties: {
-    object:  {
-      type:      'string',
+    file_: {
+      type: 'string',
       minLength: 1
     },
     section: {
-      type:      'string',
+      type: 'string',
       minLength: 1,
-      nullable:  true
+      nullable: true
     },
     verbose: {
-      type:     'boolean',
-      enum:     [ true ],
+      type: 'boolean',
+      enum: [true],
       nullable: true
     }
   }

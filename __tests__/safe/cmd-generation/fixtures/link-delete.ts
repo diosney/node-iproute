@@ -1,41 +1,47 @@
 import { LinkDeleteOptions } from '../../../../src/commands/link/delete.interfaces';
-import { TestFixture }       from '../../../../src/common/interfaces/tests';
-import { LinkTypes }  from '../../../../src/commands/link.constants';
+import { TestFixture } from '../../../../src/common/interfaces/tests';
+import { LinkTypes, VlanProtocols } from '../../../../src/commands/link.constants';
 
 export const Tests: TestFixture<LinkDeleteOptions>[] = [
   {
-    description:       'with `type vlan` and only `dev`',
-    options:           {
-      dev_: 'vlan100',
-      type: LinkTypes.Vlan
+    description: 'with only `dev`',
+    options: {
+      dev_: 'vlan100'
     },
-    expectedCmd:       [
+    expectedCmd: [
       '',
       'ip',
       'link',
       'delete',
-      'vlan100',
-      'type',
-      LinkTypes.Vlan
+      'vlan100'
     ],
-    expectedCmdToExec: ` ip link delete vlan100 type ${LinkTypes.Vlan}`
+    expectedCmdToExec: ` ip link delete vlan100`
   },
   {
-    description:       'with `type vlan` and `dev` with type',
-    options:           {
+    description: 'with `dev` with type=vlan',
+    options: {
       dev_: 'vlan100',
-      type: LinkTypes.Vlan
+      type: {
+        [LinkTypes.Vlan]: {
+          protocol: VlanProtocols['802.1Q'],
+          id: 100
+        }
+      }
     },
-    expectedCmd:       [
+    expectedCmd: [
       '',
       'ip',
       'link',
       'delete',
       'vlan100',
       'type',
-      LinkTypes.Vlan
+      LinkTypes.Vlan,
+      'protocol',
+      VlanProtocols['802.1Q'],
+      'id',
+      100
     ],
-    expectedCmdToExec: ` ip link delete vlan100 type ${ LinkTypes.Vlan }`
+    expectedCmdToExec: ` ip link delete vlan100 type ${ LinkTypes.Vlan } protocol ${ VlanProtocols['802.1Q'] } id ${ 100 }`
   }
 ];
 

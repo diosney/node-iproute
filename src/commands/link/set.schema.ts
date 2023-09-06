@@ -1,100 +1,103 @@
 import { JSONSchemaType } from 'ajv';
 
-import { EnableDisableAutoToggle, OnOffToggle }                 from '../../common/constants/attribute-values';
-import { AddrGenMode, ExtendedLinkTypes, VlanProtocols } from '../link.constants';
-import { SchemaIds }                                            from '../../common/constants/schemas';
-import { SetLinkBondSlaveArgsSchema }                           from './extended-virtual-link-types/bond-slave.schema';
-import { SetLinkBridgeSlaveArgsSchema }                         from './extended-virtual-link-types/bridge-slave.schema';
-import { LinkSetOptions }                                       from './set.interfaces';
-import { SetLinkMacvlanMacvtapArgsSchema }                      from './virtual-link-types/macvlan-macvtap.schema';
-import { LinkSetXdpObjectOptionsSchema }                        from './xdp-options/object.schema';
-import { LinkSetXdpPinnedOptionsSchema }                        from './xdp-options/pinned.schema';
-import { LinkSetXdpOffOptionsSchema }                           from './xdp-options/off.schema';
-import { typeArgsSchemas }                                      from './add.schema';
+import { EnableDisableAutoToggle, OnOffToggle } from '../../common/constants/attribute-values';
+import { AddrGenMode, ExtendedLinkTypes, VlanProtocols, XdpOptionTypes } from '../link.constants';
+import { SchemaIds } from '../../common/constants/schemas';
+import { SetLinkBondSlaveArgsSchema } from './extended-virtual-link-types/bond-slave.schema';
+import { SetLinkBridgeSlaveArgsSchema } from './extended-virtual-link-types/bridge-slave.schema';
+import { LinkSetOptions } from './set.interfaces';
+import { SetLinkMacvlanMacvtapArgsSchema } from './virtual-link-types/macvlan-macvtap.schema';
+import { LinkSetXdpObjectOptionsSchema } from './xdp-options/object.schema';
+import { LinkSetXdpPinnedOptionsSchema } from './xdp-options/pinned.schema';
+import { LinkSetXdpOffOptionsSchema } from './xdp-options/off.schema';
+import { SetLinkBridgeSlaveTypeArgs } from './extended-virtual-link-types/bridge-slave.interfaces';
+import { SetLinkBondSlaveTypeArgs } from './extended-virtual-link-types/bond-slave.interfaces';
+import { SetLinkMacvlanMacvtapTypeArgs } from './virtual-link-types/macvlan-macvtap.interfaces';
+import { LinkSetXdpOffOptions } from './xdp-options/off.interfaces';
+import { LinkSetXdpObjectOptions } from './xdp-options/object.interfaces';
+import { LinkSetXdpPinnedOptions } from './xdp-options/pinned.interfaces';
+import { typePropertiesSchema } from './add.schema';
 
-export const xdpArgsSchemas: any = [
-  LinkSetXdpOffOptionsSchema,
-  LinkSetXdpObjectOptionsSchema,
-  LinkSetXdpPinnedOptionsSchema
-];
+export const xdpOptionsPropertiesSchema: any = {
+  [XdpOptionTypes.Off]: LinkSetXdpOffOptionsSchema as Required<JSONSchemaType<LinkSetXdpOffOptions>>,
+  [XdpOptionTypes.Object]: LinkSetXdpObjectOptionsSchema as Required<JSONSchemaType<LinkSetXdpObjectOptions>>,
+  [XdpOptionTypes.Pinned]: LinkSetXdpPinnedOptionsSchema as Required<JSONSchemaType<LinkSetXdpPinnedOptions>>
+};
+
+export const extendedTypesPropertiesSchema: any = {
+  ...typePropertiesSchema,
+  [ExtendedLinkTypes.BridgeSlave]: SetLinkBridgeSlaveArgsSchema as Required<JSONSchemaType<SetLinkBridgeSlaveTypeArgs>>,
+  [ExtendedLinkTypes.BondSlave]: SetLinkBondSlaveArgsSchema as Required<JSONSchemaType<SetLinkBondSlaveTypeArgs>>,
+  [ExtendedLinkTypes.Macsec]: SetLinkMacvlanMacvtapArgsSchema as Required<JSONSchemaType<SetLinkMacvlanMacvtapTypeArgs>>
+};
 
 export const LinkSetSchema: JSONSchemaType<LinkSetOptions> = {
-  $id:        SchemaIds.LinkSet,
-  type:       'object',
-  required:   [],
+  $id: SchemaIds.LinkSet,
+  type: 'object',
+  required: [],
   properties: {
-    dev_:             {
-      type:      'string',
+    dev_: {
+      type: 'string',
       minLength: 1,
-      nullable:  true
-    },
-    group:            {
-      type:     'integer',
-      minimum:  0,
       nullable: true
     },
-    up:               {
-      type:     'boolean',
-      enum:     [ true ],
+    group: {
+      type: 'integer',
+      minimum: 0,
       nullable: true
     },
-    down:             {
-      type:     'boolean',
-      enum:     [ true ],
+    up: {
+      type: 'boolean',
+      enum: [true],
       nullable: true
     },
-    type:             {
-      type:     'string',
-      enum:     Object.values(ExtendedLinkTypes) as ExtendedLinkTypes[],
+    down: {
+      type: 'boolean',
+      enum: [true],
       nullable: true
     },
-    type_:            {
-      type:     'object',
+    type: {
+      type: 'object',
       nullable: true,
-      anyOf:    [
-        ...typeArgsSchemas,
-        SetLinkBridgeSlaveArgsSchema,
-        SetLinkBondSlaveArgsSchema,
-        SetLinkMacvlanMacvtapArgsSchema
-      ]
+      properties: extendedTypesPropertiesSchema
     },
-    arp:              {
-      type:     'string',
-      enum:     Object.values(OnOffToggle) as OnOffToggle[],
+    arp: {
+      type: 'string',
+      enum: Object.values(OnOffToggle) as OnOffToggle[],
       nullable: true
     },
-    dynamic:          {
-      type:     'string',
-      enum:     Object.values(OnOffToggle) as OnOffToggle[],
+    dynamic: {
+      type: 'string',
+      enum: Object.values(OnOffToggle) as OnOffToggle[],
       nullable: true
     },
-    multicast:        {
-      type:     'string',
-      enum:     Object.values(OnOffToggle) as OnOffToggle[],
+    multicast: {
+      type: 'string',
+      enum: Object.values(OnOffToggle) as OnOffToggle[],
       nullable: true
     },
-    allmulticast:     {
-      type:     'string',
-      enum:     Object.values(OnOffToggle) as OnOffToggle[],
+    allmulticast: {
+      type: 'string',
+      enum: Object.values(OnOffToggle) as OnOffToggle[],
       nullable: true
     },
-    promisc:          {
-      type:     'string',
-      enum:     Object.values(OnOffToggle) as OnOffToggle[],
+    promisc: {
+      type: 'string',
+      enum: Object.values(OnOffToggle) as OnOffToggle[],
       nullable: true
     },
-    protodown:        {
-      type:     'string',
-      enum:     Object.values(OnOffToggle) as OnOffToggle[],
+    protodown: {
+      type: 'string',
+      enum: Object.values(OnOffToggle) as OnOffToggle[],
       nullable: true
     },
     protodown_reason: {
-      type:       'object',
-      required:   [ 'name_', 'enable_' ],
-      nullable:   true,
+      type: 'object',
+      required: ['name_', 'enable_'],
+      nullable: true,
       properties: {
-        name_:   {
-          type:    'number',
+        name_: {
+          type: 'number',
           minimum: 0,
           maximum: 2147483647
         },
@@ -104,185 +107,185 @@ export const LinkSetSchema: JSONSchemaType<LinkSetOptions> = {
         }
       }
     },
-    trailers:         {
-      type:     'string',
-      enum:     Object.values(OnOffToggle) as OnOffToggle[],
+    trailers: {
+      type: 'string',
+      enum: Object.values(OnOffToggle) as OnOffToggle[],
       nullable: true
     },
-    txqueuelen:       {
-      type:     'integer',
-      minimum:  1,
+    txqueuelen: {
+      type: 'integer',
+      minimum: 1,
       nullable: true
     },
-    name:             {
-      type:     'string',
-      format:   'mac',
+    name: {
+      type: 'string',
+      format: 'mac',
       nullable: true
     },
-    address:          {
-      type:     'string',
-      format:   'mac',
+    address: {
+      type: 'string',
+      format: 'mac',
       nullable: true
     },
-    broadcast:        {
-      type:     'string',
-      format:   'mac',
+    broadcast: {
+      type: 'string',
+      format: 'mac',
       nullable: true
     },
-    mtu:              {
-      type:     'integer',
-      minimum:  1,
+    mtu: {
+      type: 'integer',
+      minimum: 1,
       nullable: true
     },
-    netns:            {
-      type:     [ 'string', 'integer' ],
+    netns: {
+      type: ['string', 'integer'],
       nullable: true,
-      oneOf:    [
+      oneOf: [
         {
-          type:      'string',
+          type: 'string',
           minLength: 1,
-          nullable:  true
+          nullable: true
         },
         {
-          type:     'integer',
-          minimum:  0,
+          type: 'integer',
+          minimum: 0,
           nullable: true
         }
       ]
     },
-    'link-netnsid':   {
-      type:     'integer',
-      minimum:  1,
+    'link-netnsid': {
+      type: 'integer',
+      minimum: 1,
       nullable: true
     },
-    alias:            {
-      type:      'string',
+    alias: {
+      type: 'string',
       minLength: 1,
-      nullable:  true
-    },
-    vf:               {
-      type:     'integer',
-      minimum:  0,
       nullable: true
     },
-    vf_:              {
-      type:       'object',
-      nullable:   true,
+    vf: {
+      type: 'integer',
+      minimum: 0,
+      nullable: true
+    },
+    vf_: {
+      type: 'object',
+      nullable: true,
       properties: {
-        mac:         {
-          type:     'string',
-          format:   'mac',
+        mac: {
+          type: 'string',
+          format: 'mac',
           nullable: true
         },
-        vlan_list_:  {
-          type:     'array',
+        vlan_list_: {
+          type: 'array',
           nullable: true,
-          items:    {
-            type:       'object',
-            required:   [ 'vlan' ],
+          items: {
+            type: 'object',
+            required: ['vlan'],
             properties: {
-              vlan:  {
-                type:    'integer',
+              vlan: {
+                type: 'integer',
                 minimum: 0,
                 maximum: 4095
               },
-              qos:   {
-                type:     'integer',
-                minimum:  0,
+              qos: {
+                type: 'integer',
+                minimum: 0,
                 nullable: true
               },
               proto: {
-                type:     'string',
-                enum:     Object.values(VlanProtocols) as VlanProtocols[],
+                type: 'string',
+                enum: Object.values(VlanProtocols) as VlanProtocols[],
                 nullable: true
               }
             }
           }
         },
-        rate:        {
-          type:     'integer',
-          minimum:  0,
+        rate: {
+          type: 'integer',
+          minimum: 0,
           nullable: true
         },
         max_tx_rate: {
-          type:     'integer',
-          minimum:  0,
+          type: 'integer',
+          minimum: 0,
           nullable: true
         },
         min_tx_rate: {
-          type:     'integer',
-          minimum:  0,
+          type: 'integer',
+          minimum: 0,
           nullable: true
         },
-        spoofchk:    {
-          type:     'string',
-          enum:     Object.values(OnOffToggle) as OnOffToggle[],
+        spoofchk: {
+          type: 'string',
+          enum: Object.values(OnOffToggle) as OnOffToggle[],
           nullable: true
         },
-        query_rss:   {
-          type:     'string',
-          enum:     Object.values(OnOffToggle) as OnOffToggle[],
+        query_rss: {
+          type: 'string',
+          enum: Object.values(OnOffToggle) as OnOffToggle[],
           nullable: true
         },
-        state:       {
-          type:     'string',
-          enum:     Object.values(EnableDisableAutoToggle) as EnableDisableAutoToggle[],
+        state: {
+          type: 'string',
+          enum: Object.values(EnableDisableAutoToggle) as EnableDisableAutoToggle[],
           nullable: true
         },
-        trust:       {
-          type:     'string',
-          enum:     Object.values(OnOffToggle) as OnOffToggle[],
+        trust: {
+          type: 'string',
+          enum: Object.values(OnOffToggle) as OnOffToggle[],
           nullable: true
         },
-        node_guid:   {
-          type:     'integer',
-          minimum:  0,
+        node_guid: {
+          type: 'integer',
+          minimum: 0,
           nullable: true
         },
-        port_guid:   {
-          type:     'integer',
-          minimum:  0,
+        port_guid: {
+          type: 'integer',
+          minimum: 0,
           nullable: true
         }
       }
     },
-    xdp:              {
-      type:     'object',
+    xdp: {
+      type: 'object',
       required: [],
       nullable: true,
-      anyOf:    xdpArgsSchemas
+      properties: xdpOptionsPropertiesSchema
     },
-    xdpgeneric:       {
-      type:     'object',
+    xdpgeneric: {
+      type: 'object',
       required: [],
       nullable: true,
-      anyOf:    xdpArgsSchemas
+      properties: xdpOptionsPropertiesSchema
     },
-    xdpdrv:           {
-      type:     'object',
+    xdpdrv: {
+      type: 'object',
       required: [],
       nullable: true,
-      anyOf:    xdpArgsSchemas
+      properties: xdpOptionsPropertiesSchema
     },
-    xdpoffload:       {
-      type:     'object',
+    xdpoffload: {
+      type: 'object',
       required: [],
       nullable: true,
-      anyOf:    xdpArgsSchemas
+      properties: xdpOptionsPropertiesSchema
     },
-    master:           {
-      type:      'string',
+    master: {
+      type: 'string',
       minLength: 1,
-      nullable:  true
-    },
-    nomaster:         {
-      type:     'boolean',
-      enum:     [ true ],
       nullable: true
     },
-    addrgenmode:      {
-      type:     'string',
-      enum:     Object.values(AddrGenMode) as AddrGenMode[],
+    nomaster: {
+      type: 'boolean',
+      enum: [true],
+      nullable: true
+    },
+    addrgenmode: {
+      type: 'string',
+      enum: Object.values(AddrGenMode) as AddrGenMode[],
       nullable: true
     }
   }
