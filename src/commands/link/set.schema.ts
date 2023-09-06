@@ -97,7 +97,7 @@ export const LinkSetSchema: JSONSchemaType<LinkSetOptions> = {
       nullable: true,
       properties: {
         name_: {
-          type: 'number',
+          type: 'integer',
           minimum: 0,
           maximum: 2147483647
         },

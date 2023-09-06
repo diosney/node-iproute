@@ -9,7 +9,7 @@ export const RoutingTableOptionsSchema: JSONSchemaType<RoutingTableOptions> = {
   required:   [],
   properties: {
     id:   {
-      type:     'number',
+      type:     'integer',
       minimum:  0,
       nullable: true
     },
