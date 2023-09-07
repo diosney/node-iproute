@@ -1,8 +1,8 @@
 import { RoutingTables }  from '../../../../src/commands/rule.constants';
-import { RuleAddOptions } from '../../../../src/commands/rule/add.interfaces';
 import { TestFixture }    from '../../../../src/common/interfaces/tests';
+import { RuleShowOptions } from '../../../../src';
 
-export const Tests: TestFixture<RuleAddOptions>[] = [
+export const Tests: TestFixture<RuleShowOptions>[] = [
   {
     description      : 'with no params',
     options          : {},

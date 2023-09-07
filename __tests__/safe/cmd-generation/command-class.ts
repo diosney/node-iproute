@@ -1,5 +1,5 @@
 import { describe, it } from 'mocha';
-import { expect } from 'chai';
+import { expect }       from 'chai';
 
 import Command from '../../../src/common/classes/command';
 
@@ -9,14 +9,14 @@ import {
   SchemaIds
 } from '../../../src/common/constants/schemas';
 
-import { TestEnum } from '../../../src/common/constants/tests';
-import { Empty, GlobalOptions } from '../../../src/common/interfaces/common';
+import { TestEnum }                    from '../../../src/common/constants/tests';
+import { Empty, GlobalOptions }        from '../../../src/common/interfaces/common';
 import { ComplexIpCommandTestOptions } from '../../../src/common/interfaces/tests';
 
 describe('ip command', function () {
   describe('when testing a simple command with `sudo` set', function () {
     it('should build the proper cmd string', async function () {
-      const cmd                          = [ 'test' ];
+      const cmd                          = ['test'];
       const globalOptions: GlobalOptions = {
         sudo:   true,
         dryRun: true
@@ -46,7 +46,7 @@ describe('ip command', function () {
 
   describe('when testing a simple command with some `ip` global options set (`-details, -json`)', function () {
     it('should build the proper cmd string', async function () {
-      const cmd                          = [ 'test_a', 'test_b' ];
+      const cmd                          = ['test_a', 'test_b'];
       const globalOptions: GlobalOptions = {
         dryRun:     true,
         '-details': true,
@@ -80,7 +80,7 @@ describe('ip command', function () {
 
   describe('when testing a command with all parameter types', function () {
     it('should build the proper cmd string', async function () {
-      const cmd                          = [ 'test' ];
+      const cmd                          = ['test'];
       const globalOptions: GlobalOptions = {
         dryRun: true
       };
@@ -95,7 +95,7 @@ describe('ip command', function () {
 
         number_: 2,
 
-        aTuple:  [ 0, 1 ],
+        aTuple:  [0, 1],
         anArray: [
           {
             aNumber: 25
@@ -104,18 +104,119 @@ describe('ip command', function () {
 
         nestedInvisibleKey_: {
           aString: 'b-string',
+          anEnum:  TestEnum.ValueB,
           aNumber: 2,
+
+          noaFlag: false,
+          aFlag:   false,
+
+          aTuple: [2, 3],
+
+          anArray: [
+            {
+              aStringWithDefaultValue: 'c-string',
+              aNumber:                 15
+            }
+          ]
+        }
+      };
+
+      let ipCommand = new Command<ComplexIpCommandTestOptions>(
+        SchemaIds.ComplexIpCommandTestOptions,
+        IpCommandTestOptionsSchema,
+        options,
+        globalOptions,
+        cmd);
+
+      expect(ipCommand.cmd)
+        .to.be.an('array')
+        .and.to.be.deep.eq([
+          // No `sudo` or `sudo: false`.
+          '',
+          // Made up command.
+          'test',
+          'aString',
+          'a-string',
+          'aNumber',
+          1,
+          'anEnum',
+          'value-a',
+          'aFlag',
+          'noaFlag',
+          2,
+          'aTuple',
+          0,
+          1,
+          'anArray',
+          'aNumber',
+          25,
+          'aStringWithDefaultValue',
+          'default-value',
+          // `type_` now.
+          'aString',
+          'b-string',
+          'aNumber',
+          2,
+          'anEnum',
+          'value-b',
+          'noaFlag',
+          'aFlag',
+          'aTuple',
+          2,
+          3,
+          'anArray',
+          'aNumber',
+          15,
+          'aStringWithDefaultValue',
+          'c-string'
+        ]
+      );
+
+      expect(ipCommand.cmdToExec)
+        .to.be.a('string')
+        .and.to.be.eq(
+        ' test aString a-string aNumber 1 anEnum value-a aFlag noaFlag 2 aTuple 0 1 anArray aNumber 25 aStringWithDefaultValue default-value aString b-string aNumber 2 anEnum value-b noaFlag aFlag aTuple 2 3 anArray aNumber 15 aStringWithDefaultValue c-string');
+    });
+  });
+
+  describe('when testing a command with all parameter types and keys with wrong sorting order', function () {
+    it('should build the proper cmd string with the right order', async function () {
+      const cmd                          = ['test'];
+      const globalOptions: GlobalOptions = {
+        dryRun: true
+      };
+
+      const options: ComplexIpCommandTestOptions = {
+        anEnum:  TestEnum.ValueA,
+        aNumber: 1,
+        aString: 'a-string',
+
+        noaFlag: true,
+        aFlag:   true,
+
+        number_: 2,
+
+        aTuple:  [0, 1],
+        anArray: [
+          {
+            aNumber: 25
+          }
+        ],
+
+        nestedInvisibleKey_: {
+          aNumber: 2,
+          aString: 'b-string',
           anEnum:  TestEnum.ValueB,
 
           aFlag:   false,
           noaFlag: false,
 
-          aTuple: [ 2, 3 ],
+          aTuple: [2, 3],
 
           anArray: [
             {
-              aNumber:                 15,
-              aStringWithDefaultValue: 'c-string'
+              aStringWithDefaultValue: 'c-string',
+              aNumber:                 15
             }
           ]
         }

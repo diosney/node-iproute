@@ -4,10 +4,6 @@
 
 - Should contribute `@types/iproute`?
 
-- Some useful global options to add:
-    - `ensureOrder` flag by using the schemas to ensure proper options order?
-    - `disableValidations` flag to bypass `ajv` options validations.
-
 - Cleaning:
     - Change all remaining `pattern` into `format`. Add respective tests.
     - Condense `Command` classes by using template method or any other pattern? Or by subclassing is OK?
@@ -32,7 +28,7 @@
   - Parse object in response to one of the enums, at least the ones that the library supports.
   - Contact native `iproute` developers and ask them to add the `-json` option to `monitor`.
 
-- The interfaces of the `show` methods needs to be completed. 
+- The interfaces of the `show` methods need to be completed. 
   Those interfaces are: `RuleInfo`, `RouteInfo`, `LinkInfo`, `LinkWithAddressInfo`.
 
 ### Documentation
@@ -40,6 +36,8 @@
 - Should publish in the public API?
   - Schemas
   - `Command`s
+
+- Document every property with schema `format` as a `@see {@link}` in the interfaces?.
 
 ### Tests
 

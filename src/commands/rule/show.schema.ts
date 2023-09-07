@@ -1,70 +1,70 @@
 import { JSONSchemaType } from 'ajv';
 
-import { SchemaIds }       from '../../common/constants/schemas';
-import { RuleTypes }       from '../rule.constants';
-import { RuleShowOptions } from './show.interfaces';
+import { SchemaIds }                from '../../common/constants/schemas';
+import { RoutingTables, RuleTypes } from '../rule.constants';
+import { RuleShowOptions }          from './show.interfaces';
 
 export const RuleShowSchema: JSONSchemaType<RuleShowOptions> = {
   $id:        SchemaIds.RuleShow,
   type:       'object',
   required:   [],
   properties: {
-    type:     {
+    type:       {
       type:     'string',
       enum:     Object.values(RuleTypes) as RuleTypes[],
       nullable: true
     },
-    not:      {
+    not:        {
       type:     'boolean',
-      enum:     [ true ],
+      enum:     [true],
       nullable: true
     },
-    from:     {
+    from:       {
       type:     'string',
       format:   'ip-with-optional-mask',
       nullable: true
     },
-    to:       {
+    to:         {
       type:     'string',
       format:   'ip-with-optional-mask',
       nullable: true
     },
-    tos:      {
+    tos:        {
       type:     'integer',
       nullable: true,
       minimum:  0,
       maximum:  255
     },
-    fwmark:   {
+    fwmark:     {
       type:     'string',
       nullable: true,
       pattern:  '^(0x[0-9a-fA-F]+|[0-9]+)(/(0x[0-9a-fA-F]+|[0-9]+))?$'
     },
-    iif:      {
+    iif:        {
       type:      'string',
       minLength: 1,
       maxLength: 15,
       nullable:  true
     },
-    oif:      {
+    oif:        {
       type:      'string',
       minLength: 1,
       maxLength: 15,
       nullable:  true
     },
-    l3mdev:   {
+    l3mdev:     {
       type:     'boolean',
-      enum:     [ true ],
+      enum:     [true],
       nullable: true
     },
-    uidrange: {
+    uidrange:   {
       type:      'string',
       minLength: 1,
       pattern:   '^[0-9]+-[0-9]+$',
       nullable:  true
     },
-    ipproto:  {
-      type:     [ 'string', 'integer' ],
+    ipproto:    {
+      type:     ['string', 'integer'],
       nullable: true,
       oneOf:    [
         {
@@ -79,8 +79,8 @@ export const RuleShowSchema: JSONSchemaType<RuleShowOptions> = {
         }
       ]
     },
-    sport:    {
-      type:     [ 'string', 'integer' ],
+    sport:      {
+      type:     ['string', 'integer'],
       nullable: true,
       oneOf:    [
         {
@@ -95,8 +95,8 @@ export const RuleShowSchema: JSONSchemaType<RuleShowOptions> = {
         }
       ]
     },
-    dport:    {
-      type:     [ 'string', 'integer' ],
+    dport:      {
+      type:     ['string', 'integer'],
       nullable: true,
       oneOf:    [
         {
@@ -116,10 +116,42 @@ export const RuleShowSchema: JSONSchemaType<RuleShowOptions> = {
       minimum:  0,
       nullable: true
     },
-    tun_id:   {
+    tun_id:     {
       type:     'integer',
       minimum:  0,
       nullable: true
+    },
+    table:      {
+      type:     ['string', 'integer'],
+      nullable: true,
+      oneOf:    [
+        {
+          type:     'string',
+          enum:     Object.values(RoutingTables) as RoutingTables[],
+          nullable: true
+        },
+        {
+          type:     'integer',
+          minimum:  0,
+          nullable: true
+        }
+      ]
+    },
+    protocol:   {
+      type:     ['string', 'integer'],
+      nullable: true,
+      oneOf:    [
+        {
+          type:      'string',
+          minLength: 1,
+          nullable:  true
+        },
+        {
+          type:     'integer',
+          minimum:  0,
+          nullable: true
+        }
+      ]
     }
   }
 };

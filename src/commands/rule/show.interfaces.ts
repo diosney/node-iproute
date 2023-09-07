@@ -62,6 +62,16 @@ export interface RuleShowOptions {
    *  The tunnel ID helps identify individual tunnels in scenarios where multiple tunnels are used.
    */
   tun_id?: number;
+  /**
+   * The routing table identifier to lookup if the rule selector matches.
+   * It is also possible to use lookup instead of table.
+   */
+  table?: number | RoutingTables;
+  /**
+   * The routing protocol who installed the rule in question.
+   * As an example when zebra installs a rule it would get RTPROT_ZEBRA as the installing protocol.
+   */
+  protocol?: string | number;
 }
 
 /**

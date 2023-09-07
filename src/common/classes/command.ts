@@ -48,7 +48,7 @@ export default class Command<T_CommandOptions extends { [index: string]: any; }>
                     ? 'sudo'
                     : '';
 
-    let cmd: Array<string | number> = [ hasSudo, ...this.ipCmd ];
+    let cmd: Array<string | number> = [hasSudo, ...this.ipCmd];
 
     // Add specific `ip` options to cmd.
     let ipOptions: Array<string | number> = [];
@@ -59,19 +59,23 @@ export default class Command<T_CommandOptions extends { [index: string]: any; }>
         if (key.search(/^-/) === -1) {
           return;
         }
-        ipOptions.push(...this.getCmdFromOptions(this.globalOptions[key], key));
+        ipOptions.push(...this.getCmdFromOptions(this.globalOptions[key], key, false));
       });
 
     cmd.splice(2, 0, ...ipOptions);
 
     // Add regular arguments to cmd.
-    cmd.push(...this.getCmdFromOptions(this.options));
+    cmd.push(...this.getCmdFromOptions(this.options, '', true, this.schema));
 
     this._cmd       = cmd;
     this._cmdToExec = cmd.join(' ');
   }
 
-  private getCmdFromOptions(value: any, key = ''): Array<string | number> {
+  private getCmdFromOptions(value: any,
+                            key               = '',
+                            orderKeysBySchema = true,
+                            schema?: JSONSchemaType<any>): Array<string | number> {
+
     let cmd: Array<string | number> = [];
 
     let isVisibleKey = (key.search(invisibleKeySuffix) === -1);
@@ -106,6 +110,10 @@ export default class Command<T_CommandOptions extends { [index: string]: any; }>
         cmd.push(key);
       }
       value.forEach((nestedValue) => {
+        if(isPlainObject(nestedValue) && schema?.items) {
+          cmd.push(...this.getCmdFromOptions(nestedValue, '', orderKeysBySchema, schema?.items));
+          return;
+        }
         cmd.push(...this.getCmdFromOptions(nestedValue));
       });
       return cmd;
@@ -114,10 +122,17 @@ export default class Command<T_CommandOptions extends { [index: string]: any; }>
       if (isVisibleKey && key) {
         cmd.push(key);
       }
+
+      let sourceForKeysOrdering = (orderKeysBySchema && schema)
+                                  ? schema.properties
+                                  : value;
+
       Object
-        .keys(value)
-        .forEach((nestedKey) => {
-          cmd.push(...this.getCmdFromOptions(value[nestedKey], nestedKey));
+        .keys(sourceForKeysOrdering)
+        .forEach((schemaKey) => {
+          if (value.hasOwnProperty(schemaKey)) {
+            cmd.push(...this.getCmdFromOptions(value[schemaKey], schemaKey, orderKeysBySchema, schema?.properties[schemaKey]));
+          }
         });
       return cmd;
     }

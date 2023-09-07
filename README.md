@@ -26,6 +26,17 @@ Wrapper around native **iproute** suite to allow its functionality to be used in
 | [utils.ipForwarding](https://diosney.github.io/node-iproute/modules/utils.ipForwarding.html)   | Manipulates IP forwarding.                               | `enable`, `disable`, `status`, `v{4\|6}.enable()`, `v{4\|6}.disable()`, `v{4\|6}.status()` |
 | [utils.routingTables](https://diosney.github.io/node-iproute/modules/utils.routingTables.html) | Manipulates routing tables.                              | `show`, `add`, `del`, `clear`                                                              |
 
+## Docs
+
+The documentation is divided across several files:
+
+| Link                                                      | Description                                                                              |
+|-----------------------------------------------------------|------------------------------------------------------------------------------------------|
+| [Public API site](https://diosney.github.io/node-iproute) | Provides a comprehensive index of the library interfaces, constants, enums, and classes. |
+| [README.md](https://github.com/diosney/node-iproute/blob/master/README.md)                                                          | This document.                                                                                  |
+| [README-examples.md](https://github.com/diosney/node-iproute/blob/master/README-examples.md)                                                          | Code samples showcasing how to use the library.                                          |
+| [TODO.md](https://github.com/diosney/node-iproute/blob/master/TODO.md)                                                           | A checklist of several items to add or improve upon.                                     |
+
 ## Motivation
 
 Given the current Node.js version (`v20.5.1`), the network-related functionality provided by the built-in modules is 
@@ -40,6 +51,8 @@ With this module, you can:
 - Interact seamlessly with **iproute** commands, without the need to directly execute commands or verify option validations.
 - Access numerous utilities to modify routing tables and manage forwarding capabilities.
 - Eliminate the redundancy of boilerplate code, as the module handles these shared operations across all commands for you.
+- Use the provided interfaces and types to help you to discover the IP command options.
+- Use the Typedoc documentation to navigate between options, its descriptions and its types.
 
 ## Requirements
 
@@ -89,16 +102,12 @@ And lastly execute the commands with the `sudo: true` global option:
 As a general guideline, the module identifiers and options match those provided by **iproute**. This means you can easily use 
 the module with a basic understanding of **iproute**.
 
-There are two specific details that you must be aware of, though:
+There is one specific detail that you must be aware of, though:
 
-1. All the options are order sensitive, which means they are parsed in the sequence they appear in the
-   provided `options` object, therefore, it's essential to ensure they are in the correct order. To achieve this, 
-   you can refer to the command man page sequence or the order listed in the interface definitions.
-
-2. Some options in the `ip` command definition don't have a related key in the respective command line. In the library, 
-   those are identified with a trailing underscore `_`, such as `types_`. 
-   For autocompletion, you can rely on the type definitions supplied within the library or refer to the interface documentation
-   at the [API documentation](https://diosney.github.io/node-iproute/modules.html).
+Some options in the `ip` command definition don't have a related key in the respective command line. In the library, 
+those are identified with a trailing underscore `_`, such as `types_`. 
+For autocompletion, you can rely on the type definitions supplied within the library or refer to the interface documentation
+at the [API documentation](https://diosney.github.io/node-iproute/modules.html).
 
 ### How to Import
 
@@ -137,11 +146,11 @@ Both of these calls are valid:
 
 ### Some Important Notes
 
-- All `show` operations use the native `iproute` `-json` flag, which prevents many errors if parsed manually parsing but also
-  means the output interfaces are different that the ones provided by `v1.x.x`.
+- All `show` operations use the native `iproute` `-json` flag, which prevents many errors if parsed manually but also
+  means the output interfaces are different that the ones provided by this library `1.x.x` version.
 
-- Now you will have to call `ip route flush table cache` by yourself after modifying the **rules** or the **routing tables**.
-  This is so you can do several operations before making the changes active. 
+- In `2.x.x` you must have to call `ip route flush table cache` by yourself after modifying the **rules** or the **routing tables**.
+  This is by design to match the native `iproute` behavior, so one can do several operations before making the changes active. 
 
   You can do it by using the following code:
 
@@ -158,16 +167,6 @@ Both of these calls are valid:
  
   A **PR** is more than welcome.
 
-## Documentation
-
-The documentation is divided across several files:
-
-- [README.md](https://github.com/diosney/node-iproute/blob/master/README.md) for the main documentation entry point,
-- [README-examples.md](https://github.com/diosney/node-iproute/blob/master/README-examples.md) for several code samples
-  showcasing how to use the library.
-- [TODO.md](https://github.com/diosney/node-iproute/blob/master/TODO.md) A checklist of several items to add or improve upon.
-- [Public API site](https://diosney.github.io/node-iproute), which provides a comprehensive index of the library interfaces, constants, enums, and classes.
-
 ## Issues
 
 The source code can be accessed on [GitHub](https://github.com/diosney/node-iproute).
@@ -180,27 +179,28 @@ If you encounter any bugs or need a new feature, please report them on the
 If you want to contribute just follow the project organization and code style and submit a **PR**.
 <br>
 If you want to be an official maintainer or contributor just say so, this library is bigger that it seems and there are a
-lot of features to add or improve.
+lot of features to add or to improve.
 
 For potential features to contribute to, please refer to the [TODO.md](https://github.com/diosney/node-iproute/blob/master/TODO.md) in the project root directory.
-This can be especially helpful if you're unsure of what to contribute or if the [issues](https://github.com/diosney/node-iproute/issues) board is empty.
+This can be specially helpful if you're unsure of what to contribute or if the [issues](https://github.com/diosney/node-iproute/issues) board is empty.
 
 ## Tests
 
-**tldr;**
-<br>
-You can run `npm test`, which is safe to execute as explained below, since it doesn't execute any real commands.
+### tldr;
 
-**Long Explanation**
-<br>
-Since `iproute` can let your box without access to the Internet, the tests are divided in three npm scripts:
+You can run `npm test`, which is safe to execute as explained below, since it doesn't really execute any commands.
 
-- `test:safe`, which are safe to execute even in your regular computer and don't execute any real `iproute` commands,
-- `test:exec`, which do execute real commands and can leave the box in an unexpected state if they fail, in which case a simple reboot
+### Detailed Explanation
+
+Since manipulating the interfaces, routes and routing tables can let your box without access to the Internet, to ease
+the library development the tests are divided in three npm scripts:
+
+- `test:safe`, which are safe to execute even in your regular computer and don't really run any `iproute` commands,
+- `test:exec`, which **do** execute real commands and can leave the box in an unexpected state if they fail, in which case a simple reboot
           should be enough to restore the default interfaces, addresses and route information.
 - `test:all`, which as implies executes both the `test:safe` and the `test:exec` tests.
 - `test:github-actions`, which are all except `exec/utils` since Github Actions doesn't allow to modify `rt_tables` nor
-   the `sysctl` variables.
+   the `sysctl` variables (if you find a way, a **PR** is more than welcome!).
 
 For that reason, the default set of tests that are called by `npm test` are the `safe` ones.
 

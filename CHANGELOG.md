@@ -10,7 +10,7 @@
 - Added tests checking the `cmd` generation and the real command execution.
 - Now all `show` commands use the native `iproute` `-json` flag, which prevents many parsing errors.
 
-#### Breaking Changes
+#### Important Changes From Previous Version
 
 - Treat this version as a new library, though I will document several changes you need to take into account.
 - After modifying the routing tables by using the module `utils`, you need now to flush the routing table cache by yourself:
@@ -23,7 +23,9 @@
 
 - Some methods were renamed, fi, `delete` to `del`, `utils.routingTables.flush` to `utils.routingTables.clear`.
 - Since now all `show` commands use the native `iproute` `-json` flag, the output interface is different that the one
-  provided by `v1.0.0`
+  provided by `v1.0.0`.
+- The native `monitor` command doesn't support the `-json` flag yet, and since all the manual stdout parsing was removed
+  the library `monitor` will only give you the actual `stdout` lines for now, not a parsed object.
 
 ### 1.0.2
 
