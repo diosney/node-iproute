@@ -30,12 +30,12 @@ Wrapper around native **iproute** suite to allow its functionality to be used in
 
 The documentation is divided across several files:
 
-| Link                                                      | Description                                                                              |
-|-----------------------------------------------------------|------------------------------------------------------------------------------------------|
-| [Public API site](https://diosney.github.io/node-iproute) | Provides a comprehensive index of the library interfaces, constants, enums, and classes. |
-| [README.md](https://github.com/diosney/node-iproute/blob/master/README.md)                                                          | This document.                                                                                  |
-| [README-examples.md](https://github.com/diosney/node-iproute/blob/master/README-examples.md)                                                          | Code samples showcasing how to use the library.                                          |
-| [TODO.md](https://github.com/diosney/node-iproute/blob/master/TODO.md)                                                           | A checklist of several items to add or improve upon.                                     |
+| Link                                                                           | Description                                                                              |
+|--------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| [Public API site](https://diosney.github.io/node-iproute)                      | Provides a comprehensive index of the library interfaces, constants, enums, and classes. |
+| [README.md](https://github.com/diosney/node-iproute/blob/master/README.md)     | This document.                                                                                  |
+| [Examples.md](https://github.com/diosney/node-iproute/blob/master/Examples.md) | Code samples showcasing how to use the library.                                          |
+| [TODO.md](https://github.com/diosney/node-iproute/blob/master/TODO.md)         | A checklist of several items to add or improve upon.                                     |
 
 ## Motivation
 

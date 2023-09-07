@@ -20,7 +20,7 @@
   },
   "sidebarLinks": {
     "Home": "/node-iproute",
-    "Examples": "https://github.com/diosney/node-iproute/blob/master/README-examples.md",
+    "Examples": "https://github.com/diosney/node-iproute/blob/master/Examples.md",
     "TODO": "https://github.com/diosney/node-iproute/blob/master/TODO.md",
     "Changelog": "https://github.com/diosney/node-iproute/blob/master/CHANGELOG.md"
   },
