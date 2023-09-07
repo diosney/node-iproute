@@ -1,5 +1,10 @@
 ### Release Notes
 
+### 2.0.0-beta.1
+
+- Fixed badge links URL.
+- Updated README image style to look good on npm.
+
 ### 2.0.0-beta
 
 - Refactored project to typescript.

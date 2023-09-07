@@ -1,11 +1,11 @@
-# node-iproute <a href="https://www.buymeacoffee.com/diosney" target="_blank"><img align="right" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="width: 117px !important;" ></a>
+# node-iproute <a href="https://www.buymeacoffee.com/diosney" target="_blank"><img align="right" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="117" style="width: 117px !important;" ></a>
 
 Show and manipulate network devices, addresses, routing, policy routing and tunnels.
 
 Wrapper around native **iproute** suite to allow its functionality to be used in Node.js space.
 
 [![docs](https://github.com/diosney/node-iproute/actions/workflows/docs.yml/badge.svg?branch=master)](https://github.com/diosney/node-iproute/actions/workflows/docs.yml)
-[![tests](https://github.com/diosney/node-iproute/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/diosney/node-iproute/actions/workflows/tests.yml/badge.svg)
+[![tests](https://github.com/diosney/node-iproute/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/diosney/node-iproute/actions/workflows/tests.yml)
 [![npm](https://img.shields.io/npm/v/iproute.svg)](https://www.npmjs.com/package/iproute)
 [![GitHub master version](https://img.shields.io/github/package-json/v/diosney/node-iproute/master)](https://github.com/diosney/node-iproute)
 
