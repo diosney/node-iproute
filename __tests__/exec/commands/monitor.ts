@@ -40,7 +40,7 @@ describe('monitor', () => {
       .then((_command) => {
         command = _command;
 
-        command.emitter.on(MonitorObjects.All, (data: MonitorEmittedData) => {
+        command.on(MonitorObjects.All, (data: MonitorEmittedData) => {
           expect(data).to.be.an('object');
           expect(data).to.have.keys('object', 'lines');
           expect(data.object).to.be.a('string');
@@ -48,7 +48,7 @@ describe('monitor', () => {
           safeDone();
         });
 
-        command.emitter.on('error', safeDone);
+        command.on('error', safeDone);
       });
 
     add(newAddress, {

@@ -221,11 +221,11 @@ The `rules` output is an array of routes with the matching [RuleInfo[]](https://
     .then((_command) => {
       command = _command;
     
-      command.emitter.on(MonitorObjects.All, (data: MonitorEmittedData) => {
+      command.on(MonitorObjects.All, (data: MonitorEmittedData) => {
         // Do something.      
       });
     
-      command.emitter.on('error', (error) => {
+      command.on('error', (error) => {
         // Do something.
       });
     });

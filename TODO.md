@@ -33,14 +33,10 @@
 
 ### Documentation
 
-- Should publish in the public API?
-  - Schemas
-  - `Command`s
-
 - Document every property with schema `format` as a `@see {@link}` in the interfaces?.
 
 ### Tests
 
+- Add Docker to automatize `test:all`.
 - Add code coverage.
 - Add more unit tests. 
-- Add Docker to automatize `test:all`.

@@ -18,8 +18,8 @@ export default class MonitorCommand<T_CommandOptions extends {
   [index: string]: any;
 }> extends Command<T_CommandOptions> {
 
-  emitter = new EventEmitter();
-  spawnedProcess: ChildProcessWithoutNullStreams | undefined;
+  private emitter = new EventEmitter();
+  private spawnedProcess: ChildProcessWithoutNullStreams | undefined;
 
   constructor(protected schemaId: SchemaIds,
               protected schema: JSONSchemaType<T_CommandOptions>,
@@ -39,7 +39,7 @@ export default class MonitorCommand<T_CommandOptions extends {
       return this;
     }
 
-    let [ command, ...args ] = this._cmdToExec.trim().split(' ');
+    let [command, ...args] = this._cmdToExec.trim().split(' ');
 
     this.spawnedProcess = spawn(command as string, args);
 
@@ -54,7 +54,7 @@ export default class MonitorCommand<T_CommandOptions extends {
         }
 
         const dataLines = [];
-        const objectId  = ((sectionPattern.exec(output[line]) || [ '[unknown]' ])[0])
+        const objectId  = ((sectionPattern.exec(output[line]) || ['[unknown]'])[0])
           .split('[')[1]
           .split(']')[0]
           .toLowerCase();
@@ -90,6 +90,12 @@ export default class MonitorCommand<T_CommandOptions extends {
     return this;
   }
 
+  /** Listens to the events triggered by the monitor. */
+  on(event: MonitorObjects | 'error', cb: (data?: any) => void) {
+    this.emitter.on.call(this.emitter, event, cb);
+  }
+
+  /** Closes the monitor. */
   close() {
     if (this.spawnedProcess) {
       this.spawnedProcess.kill();

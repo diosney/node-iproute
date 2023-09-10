@@ -21,9 +21,9 @@ Wrapper around native **iproute** suite to allow its functionality to be used in
 | [ip-address](https://diosney.github.io/node-iproute/modules/address.html)                      | Protocol address management.                             | `add`, `change`, `replace`, `del`, `flush`, `save`, `restore`, `showdump`, `show`          |
 | [ip-route](https://diosney.github.io/node-iproute/modules/route.html)                          | Routing table management.                                | `show`, `flush`, `save`, `restore`, `get`, `add`, `del`, `change`, `append`, `replace`     |
 | [ip-rule](https://diosney.github.io/node-iproute/modules/rule.html)                            | Routing policy database (RPDB) management.               | `add`, `del`, `save`, `restore`, `flush`, `show`, `list`                                   |
-| [ip-monitor](https://diosney.github.io/node-iproute/modules/monitor.html)                      | State monitoring.                                        | -                                                                                          |
+| [ip-monitor](https://diosney.github.io/node-iproute/modules/monitor.html)                      | State monitoring.                                        | `on`, `close`                                                                              |
 | [utils](https://diosney.github.io/node-iproute/modules/utils.html)                             | Custom utility library that complements `iproute` suite. | -                                                                                          |
-| [utils.ipForwarding](https://diosney.github.io/node-iproute/modules/utils.ipForwarding.html)   | Manipulates IP forwarding.                               | `enable`, `disable`, `status`, `v{4\|6}.enable()`, `v{4\|6}.disable()`, `v{4\|6}.status()` |
+| [utils.ipForwarding](https://diosney.github.io/node-iproute/modules/utils.ipForwarding.html)   | Manipulates IP forwarding.                               | `enable`, `disable`, `status`, `v{4\|6}.enable`, `v{4\|6}.disable`, `v{4\|6}.status` |
 | [utils.routingTables](https://diosney.github.io/node-iproute/modules/utils.routingTables.html) | Manipulates routing tables.                              | `show`, `add`, `del`, `clear`                                                              |
 
 ## Docs
