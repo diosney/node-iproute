@@ -40,3 +40,6 @@ export const commaSeparatedIpv6Addresses = /^((?:[0-9a-f]{1,4}:){7}[0-9a-f]{1,4}
 export const timeWithUnit          = /^\d+(s|sec|secs|m|msec|msecs)$/;
 /** @category Regexes */
 export const colonSeparatedNumbers = /^\d+:\d+$/;
+
+/** @category Regexes */
+export const tos = /^(?:[a-zA-Z]+|[0-9a-fA-F]{2}|inherit(?:\/(?:[a-zA-Z]+|[0-9a-fA-F]{2}))?)$/;

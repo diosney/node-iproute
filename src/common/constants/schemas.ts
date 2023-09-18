@@ -42,70 +42,84 @@ export enum SchemaIds {
   RouteAdd                    = '#route-add',
 
   Monitor                     = '#monitor',
+
+  AddrlabelAdd                = '#addrlabel-add',
+  AddrlabelDel                = '#addrlabel-del',
+
+  NeighbourAdd                = '#neighbour-add',
+  NeighbourDel                = '#neighbour-del',
+  NeighbourShow               = '#neighbour-show',
+
+  NtableShow                  = '#ntable-show',
+  NtableChange                = '#ntable-change',
+
+  TunnelAdd                   = '#tunnel-add',
+  Tunnel6rd                   = '#tunnel-6rd',
+  TunnelPrl                   = '#tunnel-prl',
 }
 
 export const GlobalOptionsSchema: JSONSchemaType<GlobalOptions> = {
-  $id: SchemaIds.GlobalOptions,
-  type: 'object',
+  $id       : SchemaIds.GlobalOptions,
+  type      : 'object',
   properties: {
-    sudo: {
-      type: 'boolean',
-      default: false,
+    sudo         : {
+      type    : 'boolean',
+      default : false,
       nullable: true
     },
-    dryRun: {
-      type: 'boolean',
-      default: false,
+    dryRun       : {
+      type    : 'boolean',
+      default : false,
       nullable: true
     },
-    filePath: {
-      type: 'string',
-      format: 'filepath',
+    filePath     : {
+      type    : 'string',
+      format  : 'filepath',
       nullable: true
     },
-    '-details': {
-      type: 'boolean',
-      enum: [true],
+    '-details'   : {
+      type    : 'boolean',
+      enum    : [true],
       nullable: true
     },
     '-statistics': {
-      type: 'boolean',
-      enum: [true],
+      type    : 'boolean',
+      enum    : [true],
       nullable: true
     },
-    '-json': {
-      type: 'boolean',
-      enum: [true],
+    '-json'      : {
+      type    : 'boolean',
+      enum    : [true],
       nullable: true
     }
   }
 };
 
 export const FilePathGlobalOptionSchema: JSONSchemaType<FilePathRequiredGlobalOption> = {
-  $id: SchemaIds.FilePathGlobalOption,
-  type: 'object',
-  required: ['filePath'],
+  $id                 : SchemaIds.FilePathGlobalOption,
+  type                : 'object',
+  required            : ['filePath'],
   additionalProperties: true,
-  properties: {
+  properties          : {
     filePath: {
-      type: 'string',
+      type  : 'string',
       format: 'filepath'
     }
   }
 };
 
 export const EmptySchema: JSONSchemaType<Empty> = {
-  $id: SchemaIds.Empty,
-  type: 'object',
-  required: [],
+  $id                 : SchemaIds.Empty,
+  type                : 'object',
+  required            : [],
   additionalProperties: false,
-  properties: {}
+  properties          : {}
 };
 
 export const IpCommandTestOptionsSchema: JSONSchemaType<ComplexIpCommandTestOptions> = {
-  $id: SchemaIds.ComplexIpCommandTestOptions,
-  type: 'object',
-  required: [
+  $id       : SchemaIds.ComplexIpCommandTestOptions,
+  type      : 'object',
+  required  : [
     'aString',
     'aNumber',
     'anEnum',
@@ -119,62 +133,62 @@ export const IpCommandTestOptionsSchema: JSONSchemaType<ComplexIpCommandTestOpti
     'nestedInvisibleKey_'
   ],
   properties: {
-    aString: {
+    aString            : {
       type: 'string'
     },
-    aNumber: {
-      type: 'number',
+    aNumber            : {
+      type   : 'number',
       minimum: 0
     },
-    anEnum: {
+    anEnum             : {
       type: 'string',
       enum: Object.values(TestEnum) as TestEnum[]
     },
-    aFlag: {
+    aFlag              : {
       type: 'boolean'
     },
-    noaFlag: {
+    noaFlag            : {
       type: 'boolean'
     },
-    number_: {
-      type: 'number',
+    number_            : {
+      type    : 'number',
       nullable: true
     },
-    aTuple: {
-      type: 'array',
-      items: [
+    aTuple             : {
+      type    : 'array',
+      items   : [
         {
-          type: 'number',
+          type   : 'number',
           minimum: 0
         },
         {
-          type: 'number',
+          type   : 'number',
           minimum: 0
         }
       ],
       minItems: 2,
       maxItems: 2
     },
-    anArray: {
-      type: 'array',
+    anArray            : {
+      type : 'array',
       items: {
-        type: 'object',
-        required: ['aNumber'],
+        type      : 'object',
+        required  : ['aNumber'],
         properties: {
-          aNumber: {
+          aNumber                : {
             type: 'number'
           },
           aStringWithDefaultValue: {
-            type: 'string',
-            default: 'default-value',
+            type    : 'string',
+            default : 'default-value',
             nullable: true
           }
         }
       }
     },
     nestedInvisibleKey_: {
-      type: 'object',
-      required: [
+      type      : 'object',
+      required  : [
         'aString',
         'aNumber',
         'anEnum',
@@ -190,32 +204,32 @@ export const IpCommandTestOptionsSchema: JSONSchemaType<ComplexIpCommandTestOpti
           type: 'string'
         },
         aNumber: {
-          type: 'number',
+          type   : 'number',
           minimum: 0
         },
-        anEnum: {
+        anEnum : {
           type: 'string',
           enum: Object.values(TestEnum) as TestEnum[]
         },
-        aFlag: {
+        aFlag  : {
           type: 'boolean'
         },
         noaFlag: {
           type: 'boolean'
         },
         number_: {
-          type: 'number',
+          type    : 'number',
           nullable: true
         },
-        aTuple: {
-          type: 'array',
-          items: [
+        aTuple : {
+          type    : 'array',
+          items   : [
             {
-              type: 'number',
+              type   : 'number',
               minimum: 0
             },
             {
-              type: 'number',
+              type   : 'number',
               minimum: 0
             }
           ],
@@ -223,17 +237,17 @@ export const IpCommandTestOptionsSchema: JSONSchemaType<ComplexIpCommandTestOpti
           maxItems: 2
         },
         anArray: {
-          type: 'array',
+          type : 'array',
           items: {
-            type: 'object',
-            required: ['aNumber'],
+            type      : 'object',
+            required  : ['aNumber'],
             properties: {
-              aNumber: {
+              aNumber                : {
                 type: 'number'
               },
               aStringWithDefaultValue: {
-                type: 'string',
-                default: 'default-value',
+                type    : 'string',
+                default : 'default-value',
                 nullable: true
               }
             }

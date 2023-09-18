@@ -1,6 +1,6 @@
 # node-iproute <a href="https://www.buymeacoffee.com/diosney" target="_blank"><img align="right" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="117" style="width: 117px !important;" ></a>
 
-Show and manipulate network devices, addresses, routing, policy routing and tunnels.
+Show and manipulate network devices, addresses, routing, policy routing, tunnels, IP forwarding, address labels and other `iproute` objects.
 
 Wrapper around native **iproute** suite to allow its functionality to be used in Node.js space.
 
@@ -15,16 +15,20 @@ Wrapper around native **iproute** suite to allow its functionality to be used in
 
 ## Supported Functionality
 
-| Command                                                                                        | Description                                              | Operations                                                                                 |
-|------------------------------------------------------------------------------------------------|----------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| [ip-link](https://diosney.github.io/node-iproute/modules/link.html)                            | Network devices configuration.                           | `add`, `del`, `show`, `set`, `change`                                                      |
-| [ip-address](https://diosney.github.io/node-iproute/modules/address.html)                      | Protocol address management.                             | `add`, `change`, `replace`, `del`, `flush`, `save`, `restore`, `showdump`, `show`          |
-| [ip-route](https://diosney.github.io/node-iproute/modules/route.html)                          | Routing table management.                                | `show`, `flush`, `save`, `restore`, `get`, `add`, `del`, `change`, `append`, `replace`     |
-| [ip-rule](https://diosney.github.io/node-iproute/modules/rule.html)                            | Routing policy database (RPDB) management.               | `add`, `del`, `save`, `restore`, `flush`, `show`, `list`                                   |
-| [ip-monitor](https://diosney.github.io/node-iproute/modules/monitor.html)                      | State monitoring.                                        | `on`, `close`                                                                              |
-| [utils](https://diosney.github.io/node-iproute/modules/utils.html)                             | Custom utility library that complements `iproute` suite. | -                                                                                          |
-| [utils.ipForwarding](https://diosney.github.io/node-iproute/modules/utils.ipForwarding.html)   | Manipulates IP forwarding.                               | `enable`, `disable`, `status`, `v{4\|6}.enable`, `v{4\|6}.disable`, `v{4\|6}.status` |
-| [utils.routingTables](https://diosney.github.io/node-iproute/modules/utils.routingTables.html) | Manipulates routing tables.                              | `show`, `add`, `del`, `clear`                                                              |
+| Command                                                                                        | Description                                              | Operations                                                                             |
+|------------------------------------------------------------------------------------------------|----------------------------------------------------------|----------------------------------------------------------------------------------------|
+| [ip-link](https://diosney.github.io/node-iproute/modules/link.html)                            | Network devices configuration.                           | `add`, `del`, `show`, `set`, `change`                                                  |
+| [ip-address](https://diosney.github.io/node-iproute/modules/address.html)                      | Protocol address management.                             | `add`, `change`, `replace`, `del`, `flush`, `save`, `restore`, `showdump`, `show`      |
+| [ip-route](https://diosney.github.io/node-iproute/modules/route.html)                          | Routing table management.                                | `show`, `flush`, `save`, `restore`, `get`, `add`, `del`, `change`, `append`, `replace` |
+| [ip-rule](https://diosney.github.io/node-iproute/modules/rule.html)                            | Routing policy database (RPDB) management.               | `add`, `del`, `save`, `restore`, `flush`, `show`, `list`                               |
+| [ip-monitor](https://diosney.github.io/node-iproute/modules/monitor.html)                      | State monitoring.                                        | `on`, `close`                                                                          |
+| [ip-addrlabel](https://diosney.github.io/node-iproute/modules/addrlabel.html)                  | Protocol address label management.                       | `add`, `del`, `list`, `flush`                                                          |
+| [ip-neighbour](https://diosney.github.io/node-iproute/modules/neighbour.html)                  | Neighbour/ARP tables management.                         | `add`, `del`, `change`, `replace`, `flush`, `show`                                     |
+| [ip-ntable](https://man7.org/linux/man-pages/man8/ip-ntable.8.html)                            | Neighbour table configuration.                           | `change`, `show`                                                                       |
+| [ip-tunnel](https://man7.org/linux/man-pages/man8/ip-tunnel.8.html)                            | Tunnel configuration.                                    | `add`, `change`, `del`, `show`, `prl`, `6rd`                                           |
+| [utils](https://diosney.github.io/node-iproute/modules/utils.html)                             | Custom utility library that complements `iproute` suite. | -                                                                                      |
+| [utils.ipForwarding](https://diosney.github.io/node-iproute/modules/utils.ipForwarding.html)   | Manipulates IP forwarding.                               | `enable`, `disable`, `status`, `v{4\|6}.enable`, `v{4\|6}.disable`, `v{4\|6}.status`   |
+| [utils.routingTables](https://diosney.github.io/node-iproute/modules/utils.routingTables.html) | Manipulates routing tables.                              | `show`, `add`, `del`, `clear`                                                          |
 
 ## Docs
 
@@ -34,7 +38,7 @@ The documentation is divided across several files:
 |--------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
 | [Public API site](https://diosney.github.io/node-iproute)                      | Provides a comprehensive index of the library interfaces, constants, enums, and classes. |
 | [README.md](https://github.com/diosney/node-iproute/blob/master/README.md)     | This document.                                                                                  |
-| [Examples.md](https://github.com/diosney/node-iproute/blob/master/Examples.md) | Code samples showcasing how to use the library.                                          |
+| [EXAMPLES.md](https://github.com/diosney/node-iproute/blob/master/EXAMPLES.md) | Code samples showcasing how to use the library.                                          |
 | [TODO.md](https://github.com/diosney/node-iproute/blob/master/TODO.md)         | A checklist of several items to add or improve upon.                                     |
 
 ## Motivation
@@ -160,12 +164,16 @@ Both of these calls are valid:
         table: RouteRoutingTables.Cache   // 'cache'
       });
 
-- Need help to complete the interfaces [RuleInfo](https://diosney.github.io/node-iproute/interfaces/RuleInfo.html), 
-  [RouteInfo](https://diosney.github.io/node-iproute/interfaces/RouteInfo.html), 
-  [LinkInfo](https://diosney.github.io/node-iproute/interfaces/LinkInfo.html), 
-  [LinkWithAddressInfo](https://diosney.github.io/node-iproute/interfaces/LinkWithAddressInfo.html).
+- Need help to complete the interfaces:
+  - [RuleInfo](https://diosney.github.io/node-iproute/interfaces/RuleInfo.html)
+  - [RouteInfo](https://diosney.github.io/node-iproute/interfaces/RouteInfo.html)
+  - [LinkInfo](https://diosney.github.io/node-iproute/interfaces/LinkInfo.html)
+  - [LinkWithAddressInfo](https://diosney.github.io/node-iproute/interfaces/LinkWithAddressInfo.html)
+  - [NeighbourInfo](https://diosney.github.io/node-iproute/interfaces/NeighbourInfo.html)
+  - [NtableInfo](https://diosney.github.io/node-iproute/interfaces/NtableInfo.html)
+  - [TunnelInfo](https://diosney.github.io/node-iproute/interfaces/TunnelInfo.html)
  
-  A **PR** is more than welcome.
+A **PR** is more than welcome.
 
 ## Issues
 

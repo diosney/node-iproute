@@ -61,7 +61,7 @@ export interface SetLinkBridgeSlaveTypeArgs {
    */
   group_fwd_mask?: number;
   /**
-   * Controls whether neigh discovery (arp and nd) proxy and suppression is enabled on the port.
+   * Controls whether neighbour discovery (arp and nd) proxy and suppression is enabled on the port.
    * By default this flag is off.
    */
   neigh_suppress?: OnOffToggle;

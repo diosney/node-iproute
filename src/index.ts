@@ -18,9 +18,29 @@ import ruleDefaults from './commands/rule';
 import * as monitorModule from './commands/monitor';
 import monitorDefaults from './commands/monitor';
 
+// Protocol address label management.
+import * as addrlabelModule from './commands/addrlabel';
+import addrlabelDefaults from './commands/addrlabel';
+
+// Neighbour/ARP tables management.
+import * as neighbourModule from './commands/neighbour';
+import neighbourDefaults from './commands/neighbour';
+
+// Neighbour table configuration.
+import * as ntableModule from './commands/ntable';
+import ntableDefaults from './commands/ntable';
+
+// Tunnel configuration.
+import * as tunnelModule from './commands/tunnel';
+import tunnelDefaults from './commands/tunnel';
+
 // General utilities functions to provide extra handy functionality not present in iproute.
 import * as utilsModule from './utils';
 import utilsDefaults from './utils';
+
+// Common.
+import Command from './common/classes/command';
+import MonitorCommand from './common/classes/monitor-command';
 
 //
 // Common/Constants.
@@ -222,27 +242,84 @@ export { MonitorObjects } from './commands/monitor.constants';
 export { MonitorOptions } from './commands/monitor/monitor.interfaces';
 
 /**
+ * Protocol address label management.
+ *
+ * @remarks
+ * IPv6 address labels are used for address selection; they are described in RFC 3484.
+ * Precedence is managed by userspace, and only the label itself is stored in the kernel.
+ *
+ * @see [Man Page](https://man7.org/linux/man-pages/man8/ip-addrlabel.8.html)
+ * @category IP Commands
+ */
+export { addrlabelModule as addrlabel };
+export { AddrlabelAddOptions } from './commands/addrlabel/add.interfaces';
+export { AddrlabelDelOptions } from './commands/addrlabel/del.interfaces';
+export { AddrlabelInfo } from './commands/addrlabel/list.interfaces';
+
+/**
+ * Neighbour/ARP tables management.
+ *
+ * @remarks
+ * Manipulates neighbour objects that establish bindings between protocol addresses and
+ * link layer addresses for hosts sharing the same link.
+ *
+ * Neighbour entries are organized into tables.
+ * The IPv4 neighbour table is also known by another name - the ARP table.
+ *
+ * @see [Man Page](https://man7.org/linux/man-pages/man8/ip-neighbour.8.html)
+ * @category IP Commands
+ */
+export { neighbourModule as neighbour };
+export { NeighbourAddOptions } from './commands/neighbour/add.interfaces';
+export { NeighbourDelOptions } from './commands/neighbour/del.interfaces';
+export { NeighbourShowOptions, NeighbourInfo } from './commands/neighbour/show.interfaces';
+
+/**
+ * Neighbour table configuration.
+ *
+ * @remarks
+ * Controls the parameters for the neighbour tables.
+ *
+ * @see [Man Page](https://man7.org/linux/man-pages/man8/ip-ntable.8.html)
+ * @category IP Commands
+ */
+export { ntableModule as ntable };
+export { NtableInfo, NtableShowOptions } from './commands/ntable/show.interfaces';
+
+/**
+ * Tunnel.
+ *
+ * @see [Man Page](https://man7.org/linux/man-pages/man8/ip-tunnel.8.html)
+ * @category IP Commands
+ */
+export { tunnelModule as tunnel };
+export { TunnelInfo, TunnelModes } from './commands/tunnel.constants';
+export { TunnelAddOptions } from './commands/tunnel/add.interfaces';
+export { Tunnel6rdOptions } from './commands/tunnel/6rd.interfaces';
+export { TunnelPrlOptions } from './commands/tunnel/prl.interfaces';
+
+/**
  * Custom utility library that complements `iproute` suite.
  * @category IP Commands
  */
 export { utilsModule as utils };
 export { RoutingTable, RoutingTableOptions } from './utils/routing-tables.interfaces';
 
-import Command from './common/classes/command';
-
+// Internal classes.
 export { Command as Command };
-
-import MonitorCommand from './common/classes/monitor-command';
-
 export { MonitorCommand as MonitorCommand };
 
 /** @hidden **/
 export default {
-  link: linkDefaults,
-  address: addressDefaults,
-  rule: ruleDefaults,
-  route: routeDefaults,
-  monitor: monitorDefaults,
+  link     : linkDefaults,
+  address  : addressDefaults,
+  rule     : ruleDefaults,
+  route    : routeDefaults,
+  monitor  : monitorDefaults,
+  addrlabel: addrlabelDefaults,
+  neighbour: neighbourDefaults,
+  ntable   : ntableDefaults,
+  tunnel   : tunnelDefaults,
   // Extras.
   utils: utilsDefaults
 };

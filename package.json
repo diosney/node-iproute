@@ -1,7 +1,7 @@
 {
 	"name": "iproute",
-	"version": "2.0.0-beta.1",
-	"description": "Show and manipulate network devices, addresses, routing, policy routing, tunnels, and IP forwarding.",
+	"version": "2.0.0-beta.2",
+	"description": "Show and manipulate network devices, addresses, routing, policy routing, tunnels, IP forwarding, address labels and other `iproute` objects.",
 	"main": "./lib/index.js",
 	"types": "./lib/index.d.ts",
 	"scripts": {
@@ -35,7 +35,11 @@
 		"network",
 		"networking",
 		"utils",
-    "forwarding"
+    "forwarding",
+    "addrlabel",
+    "neighbour",
+    "neigh",
+    "ntable"
 	],
 	"dependencies": {
 		"ajv": "^8.12.0",

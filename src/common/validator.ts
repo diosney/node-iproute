@@ -1,4 +1,4 @@
-import Ajv        from 'ajv';
+import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 
 import {
@@ -11,13 +11,13 @@ import {
   slashSeparatedStrings,
   commaSeparatedIpv6Addresses,
   timeWithUnit, colonSeparatedNumbers,
-  ipOrAny, slashSeparatedNumbers, mac, hex4Digits
+  ipOrAny, slashSeparatedNumbers, mac, hex4Digits, tos
 } from './constants/regexes';
 
 const ajv = new Ajv({
-  strict:          true,
-  useDefaults:     true,
-  coerceTypes:     true,
+  strict         : true,
+  useDefaults    : true,
+  coerceTypes    : true,
   allowUnionTypes: true
 });
 
@@ -34,6 +34,7 @@ ajv.addFormat('slash-separated-numbers', slashSeparatedNumbers);
 ajv.addFormat('comma-separated-ipv6-addresses', commaSeparatedIpv6Addresses);
 ajv.addFormat('time-with-unit', timeWithUnit);
 ajv.addFormat('colon-separated-numbers', colonSeparatedNumbers);
+ajv.addFormat('tos', tos);
 
 // Since `ajv` doesn't support several formats for same property.
 ajv.addFormat('ip', new RegExp(ip, 'i'));

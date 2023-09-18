@@ -1,5 +1,9 @@
 ### Release Notes
 
+### 2.0.0-beta.2
+
+- Added more commands: `addrlabel`, `neighbour`, `ntable`, `tunnel`.
+
 ### 2.0.0-beta.1
 
 - Fixed badge links URL.

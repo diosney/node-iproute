@@ -1,5 +1,5 @@
 import { describe, it } from 'mocha';
-import { expect }       from 'chai';
+import { expect } from 'chai';
 
 import {
   invisibleKeySuffix,
@@ -13,7 +13,7 @@ import {
   slashSeparatedStrings,
   slashSeparatedNumbers, colonSeparatedNumbers,
   hex4Digits, mac,
-  commaSeparatedIpv6Addresses, timeWithUnit
+  commaSeparatedIpv6Addresses, timeWithUnit, tos
 } from '../../src/common/constants/regexes';
 
 describe('regular expressions', () => {
@@ -164,77 +164,35 @@ describe('regular expressions', () => {
     expect(ipWithOptionalFamilyPrefix.test('hello')).to.be.false;
   });
 
-  describe('`slashSeparatedStrings`', () => {
-    it('should match strings without slashes', () => {
-      expect(slashSeparatedStrings.test('abc')).to.be.true;
-    });
+  it('`slashSeparatedStrings`', () => {
+    expect(slashSeparatedStrings.test('abc')).to.be.true;
+    expect(slashSeparatedStrings.test('abc/def/ghi')).to.be.true;
 
-    it('should match strings with slashes but not starting or ending with a slash', () => {
-      expect(slashSeparatedStrings.test('abc/def/ghi')).to.be.true;
-    });
-
-    it('should not match strings starting with a slash', () => {
-      expect(slashSeparatedStrings.test('/abc/def')).to.be.false;
-    });
-
-    it('should not match strings ending with a slash', () => {
-      expect(slashSeparatedStrings.test('abc/def/')).to.be.false;
-    });
-
-    it('should not match strings with consecutive slashes', () => {
-      expect(slashSeparatedStrings.test('abc//def')).to.be.false;
-    });
+    expect(slashSeparatedStrings.test('/abc/def')).to.be.false;
+    expect(slashSeparatedStrings.test('abc/def/')).to.be.false;
+    expect(slashSeparatedStrings.test('abc//def')).to.be.false;
   });
 
-  describe('`slashSeparatedNumbers`', () => {
-    it('should match numbers without slashes', () => {
-      expect(slashSeparatedNumbers.test('100')).to.be.true;
-    });
+  it('`slashSeparatedNumbers`', () => {
+    expect(slashSeparatedNumbers.test('100')).to.be.true;
+    expect(slashSeparatedNumbers.test('100/200/300')).to.be.true;
 
-    it('should match numbers with slashes but not starting or ending with a slash', () => {
-      expect(slashSeparatedNumbers.test('100/200/300')).to.be.true;
-    });
-
-    it('should not match numbers starting with a slash', () => {
-      expect(slashSeparatedNumbers.test('/100/200')).to.be.false;
-    });
-
-    it('should not match numbers ending with a slash', () => {
-      expect(slashSeparatedNumbers.test('100/200/')).to.be.false;
-    });
-
-    it('should not match numbers with consecutive slashes', () => {
-      expect(slashSeparatedNumbers.test('100//200')).to.be.false;
-    });
+    expect(slashSeparatedNumbers.test('/100/200')).to.be.false;
+    expect(slashSeparatedNumbers.test('100/200/')).to.be.false;
+    expect(slashSeparatedNumbers.test('100//200')).to.be.false;
   });
 
-  describe('`commaSeparatedIpv6Addresses`', () => {
-    it('should match single valid IPv6 addresses', () => {
-      expect(commaSeparatedIpv6Addresses.test('2001:0db8:85a3:0000:0000:8a2e:0370:7334')).to.be.true;
-      expect(commaSeparatedIpv6Addresses.test('2001:0db8::2:1')).to.be.true;
-    });
+  it('`commaSeparatedIpv6Addresses`', () => {
+    expect(commaSeparatedIpv6Addresses.test('2001:0db8:85a3:0000:0000:8a2e:0370:7334')).to.be.true;
+    expect(commaSeparatedIpv6Addresses.test('2001:0db8::2:1')).to.be.true;
+    expect(commaSeparatedIpv6Addresses.test('2001:0db8:85a3:0000:0000:8a2e:0370:7334,2001:0db8::2:1')).to.be.true;
+    expect(commaSeparatedIpv6Addresses.test('2001:0db8::1,2001:0db8::2,2001:0db8::3')).to.be.true;
 
-    it('should match comma-separated valid IPv6 addresses', () => {
-      expect(commaSeparatedIpv6Addresses.test('2001:0db8:85a3:0000:0000:8a2e:0370:7334,2001:0db8::2:1')).to.be.true;
-      expect(commaSeparatedIpv6Addresses.test('2001:0db8::1,2001:0db8::2,2001:0db8::3')).to.be.true;
-    });
-
-    it('should not match IPv6 addresses separated by spaces', () => {
-      expect(commaSeparatedIpv6Addresses.test('2001:0db8::1 2001:0db8::2')).to.be.false;
-    });
-
-    it('should not match if there are spaces around commas', () => {
-      expect(commaSeparatedIpv6Addresses.test('2001:0db8::1 , 2001:0db8::2')).to.be.false;
-    });
-
-    it('should not match invalid IPv6 addresses', () => {
-      expect(commaSeparatedIpv6Addresses.test('2001:0db8:85a3:0000:0000:8a2e:0370:7334Z')).to.be.false;
-      expect(commaSeparatedIpv6Addresses.test('2001::0db8::2:1')).to.be.false;
-    });
-
-    it('should not match if there are consecutive commas', () => {
-      expect(commaSeparatedIpv6Addresses.test('2001:0db8::1,,2001:0db8::2')).to.be.false;
-    });
+    expect(commaSeparatedIpv6Addresses.test('2001:0db8::1 2001:0db8::2')).to.be.false;
+    expect(commaSeparatedIpv6Addresses.test('2001:0db8::1 , 2001:0db8::2')).to.be.false;
+    expect(commaSeparatedIpv6Addresses.test('2001:0db8:85a3:0000:0000:8a2e:0370:7334Z')).to.be.false;
+    expect(commaSeparatedIpv6Addresses.test('2001::0db8::2:1')).to.be.false;
+    expect(commaSeparatedIpv6Addresses.test('2001:0db8::1,,2001:0db8::2')).to.be.false;
   });
 
   it('`commaSeparatedIpv6Addresses`', () => {
@@ -271,5 +229,24 @@ describe('regular expressions', () => {
     expect(colonSeparatedNumbers.test(':')).to.be.false;
     expect(colonSeparatedNumbers.test('123:')).to.be.false;
     expect(colonSeparatedNumbers.test(':456')).to.be.false;
+  });
+
+  it('`tos`', () => {
+    expect(tos.test('abcd')).to.be.true;
+    expect(tos.test('ABCD')).to.be.true;
+    expect(tos.test('aBcD')).to.be.true;
+    expect(tos.test('ff')).to.be.true;
+    expect(tos.test('00')).to.be.true;
+    expect(tos.test('inherit')).to.be.true;
+    expect(tos.test('inherit/abcd')).to.be.true;
+    expect(tos.test('inherit/FF')).to.be.true;
+    expect(tos.test('inherit/a')).to.be.true;
+    expect(tos.test('inherit/fff')).to.be.true;
+    expect(tos.test('gg')).to.be.true;
+    expect(tos.test('abcdef')).to.be.true;
+
+    expect(tos.test('/abcd')).to.be.false;
+    expect(tos.test('123')).to.be.false;
+    expect(tos.test('')).to.be.false;
   });
 });

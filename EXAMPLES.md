@@ -234,9 +234,147 @@ The `rules` output is an array of routes with the matching [RuleInfo[]](https://
        command.close();
     }, 5000)
 
-
 The `data` object will hold the `iproute` output data, which at this moment doesn't support the `-json` option, so right
 now will conform to the interface [MonitorEmittedData](https://diosney.github.io/node-iproute/interfaces/MonitorEmittedData.html).
+
+### `ip addrlabel` Protocol address label management / [Man Page](https://man7.org/linux/man-pages/man8/ip-addrlabel.8.html)
+
+	import { addrlabel } from 'iproute';
+
+#### `addrlabel.add(options, globalOptions?)`
+
+*Add an address label*
+
+	await addrlabel.add({
+	  prefix: '2001:db8::/32',
+	  label:   100,
+	});
+
+#### `addrlabel.del(options, globalOptions?)`
+
+*Delete an address label*
+
+	await addrlabel.del({
+	  prefix: '2001:db8::/32'
+	});
+
+#### `addrlabel.flush(globalOptions?)`
+
+**Example:**
+
+	await addrlabel.flush();
+
+#### `addrlabel.list(globalOptions?)`
+
+**Example:**
+
+	const labels = await addrlabel.list();
+
+The `labels` output is an array of address labels with the matching [AddrlabelInfo[]](https://diosney.github.io/node-iproute/interfaces/AddrlabelInfo.html) interface.
+
+### `ip neighbour` Neighbour/ARP tables management / [Man Page](https://man7.org/linux/man-pages/man8/ip-neighbour.8.html)
+
+	import { neighbour } from 'iproute';
+
+#### `neighbour.add(options, globalOptions?)`
+
+*Add a simple ARP entry*
+
+	await neighbour.add({
+	  to    : '192.168.1.100',
+      lladdr: '00:aa:bb:cc:dd:ee',
+      dev   : 'eth0'
+	});
+
+#### `neighbour.del(options, globalOptions?)`
+
+*Delete an ARP entry*
+
+	await neighbour.del({
+	  to : '192.168.1.100',
+      dev: 'eth0'
+	});
+
+#### `neighbour.flush(options, globalOptions?)`
+
+**Example:**
+
+	await neighbour.flush({
+      dev: 'eth0'
+	});
+
+#### `neighbour.show(options, globalOptions?)`
+
+**Example:**
+
+	const entries = await neighbour.show({});
+
+The `entries` output is an array of ARP entries with the matching [NeighbourInfo[]](https://diosney.github.io/node-iproute/interfaces/NeighbourInfo.html) interface.
+
+### `ip ntable` Neighbour table configuration / [Man Page](https://man7.org/linux/man-pages/man8/ip-ntable.8.html)
+
+	import { ntable } from 'iproute';
+
+#### `ntable.show(options, globalOptions?)`
+
+**Example:**
+
+	const entries = await ntable.show({});
+
+The `entries` output is an array of entries with the matching [NtableInfo[]](https://diosney.github.io/node-iproute/interfaces/NtableInfo.html) interface.
+
+### `ip tunnel` Tunnel configuration / [Man Page](https://man7.org/linux/man-pages/man8/ip-tunnel.8.html)
+
+	import { tunnel } from 'iproute';
+
+#### `tunnel.add(options, globalOptions?)`
+
+*Create a new tunnel*
+
+	await tunnel.add({
+        name  : 'tun0',
+        mode  : TunnelModes.Gre,
+        remote: '203.0.113.4',
+        local : '203.0.113.5',
+        dev   : 'eth0'
+	});
+
+#### `tunnel.del(options, globalOptions?)`
+
+*Delete a tunnel*
+
+	await tunnel.del({
+	  name: 'tun0'  
+	});
+
+#### `tunnel.change(options, globalOptions?)`
+
+**Modify an existing tunnel**
+
+	await tunnel.change({
+        name  : 'tun0',
+        mode  : TunnelModes.Ipip,
+        remote: '203.0.113.6',
+        local : '203.0.113.7',
+        dev   : 'eth1'
+	});
+
+#### `tunnel.show(globalOptions?)`
+
+**Example:**
+
+	const entries = await tunnel.show({});
+
+The `entries` output is an array of tunnel configurations with the matching [TunnelInfo[]](https://diosney.github.io/node-iproute/interfaces/TunnelInfo.html) interface.
+
+#### `tunnel.6rd(options, globalOptions?)`
+
+**Example:**
+
+    await tunnel.6rd({
+        dev        : 'eth0',
+        6rd_prefix : '2001:db8::'
+    });
 
 ### utils
 
