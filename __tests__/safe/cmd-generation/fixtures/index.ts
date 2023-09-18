@@ -124,7 +124,7 @@ import { Tests as tunnelDelTests } from './tunnel-del';
 import { Tests as tunnelChangeTests } from './tunnel-change';
 import { Tests as tunnelShowTests } from './tunnel-show';
 import { Tests as tunnelPrlTests } from './tunnel-prl';
-import { Tests as tunnelV6RdTests } from './tunnel-v6Rd';
+import { Tests as tunnelV6RdTests } from './tunnel-v6rd';
 
 export const fixtures: TestDefinition = {
   link     : [
