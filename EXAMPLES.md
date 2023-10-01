@@ -376,6 +376,34 @@ The `entries` output is an array of tunnel configurations with the matching [Tun
         6rd_prefix : '2001:db8::'
     });
 
+### `ip tuntap` Tuntap tunnel configuration
+
+	import { tuntap } from 'iproute';
+
+#### `tuntap.add(options, globalOptions?)`
+
+*Create a new tuntap device*
+
+	await tuntap.add({
+        mode: TunTapTunnelModes.Tun
+	});
+
+#### `tuntap.del(options, globalOptions?)`
+
+*Delete a tunnel*
+
+	await tuntap.del({
+      mode: TunTapTunnelModes.Tun
+	});
+
+#### `tuntap.show(globalOptions?)`
+
+**Example:**
+
+	const entries = await tuntap.show({});
+
+The `entries` output is an array of tunnel configurations with the matching [TunTapTunnelInfo[]](https://diosney.github.io/node-iproute/interfaces/TunTapTunnelInfo.html) interface.
+
 ### utils
 
 General helpful utils to provide extra handy functionality not present in `iproute`, like routing table manipulation

@@ -17,7 +17,7 @@ import {
 const ajv = new Ajv({
   strict         : true,
   useDefaults    : true,
-  coerceTypes    : true,
+  coerceTypes    : false,
   allowUnionTypes: true
 });
 

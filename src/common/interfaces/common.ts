@@ -39,6 +39,7 @@ export interface Empty {
  * @category Interfaces
  */
 export type FilePathRequiredGlobalOption = Required<Pick<GlobalOptions, 'filePath'>>;
+
 /**
  * Global options with required file path.
  * @category Interfaces

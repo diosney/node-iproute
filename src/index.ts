@@ -34,6 +34,10 @@ import ntableDefaults from './commands/ntable';
 import * as tunnelModule from './commands/tunnel';
 import tunnelDefaults from './commands/tunnel';
 
+// TunTap configuration.
+import * as tuntapModule from './commands/tuntap';
+import tuntapDefaults from './commands/tuntap';
+
 // General utilities functions to provide extra handy functionality not present in iproute.
 import * as utilsModule from './utils';
 import utilsDefaults from './utils';
@@ -299,6 +303,17 @@ export { Tunnel6rdOptions } from './commands/tunnel/6rd.interfaces';
 export { TunnelPrlOptions } from './commands/tunnel/prl.interfaces';
 
 /**
+ * TunTap.
+ *
+ * TODO: Man page doesn't exist yet.
+ * @category IP Commands
+ */
+export { tuntapModule as tuntap };
+export { TunTapTunnelModes } from './commands/tuntap.constants';
+export { TunTapTunnelAddOptions } from './commands/tuntap/add.interfaces';
+export { TunTapTunnelShowOptions, TunTapTunnelInfo } from './commands/tuntap/show.interfaces';
+
+/**
  * Custom utility library that complements `iproute` suite.
  * @category IP Commands
  */
@@ -320,6 +335,7 @@ export default {
   neighbour: neighbourDefaults,
   ntable   : ntableDefaults,
   tunnel   : tunnelDefaults,
+  tuntap   : tuntapDefaults,
   // Extras.
   utils: utilsDefaults
 };

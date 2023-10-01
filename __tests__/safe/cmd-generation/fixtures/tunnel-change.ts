@@ -1,5 +1,5 @@
 import { TestFixture } from '../../../../src/common/interfaces/tests';
-import { TunnelAddOptions } from '../../../../src';  // Assuming there's a suitable type for change
+import { TunnelAddOptions } from '../../../../src';
 
 export const Tests: TestFixture<TunnelAddOptions>[] = [
   {

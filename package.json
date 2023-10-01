@@ -39,7 +39,8 @@
     "addrlabel",
     "neighbour",
     "neigh",
-    "ntable"
+    "ntable",
+    "tuntap"
 	],
 	"dependencies": {
 		"ajv": "^8.12.0",

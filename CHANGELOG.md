@@ -2,7 +2,7 @@
 
 ### 2.0.0-beta.2
 
-- Added more commands: `addrlabel`, `neighbour`, `ntable`, `tunnel`.
+- Added more commands: `addrlabel`, `neighbour`, `ntable`, `tunnel`, `tuntap`.
 
 ### 2.0.0-beta.1
 

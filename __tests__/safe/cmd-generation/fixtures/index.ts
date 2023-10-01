@@ -69,6 +69,12 @@ import {
   prl as tunnelPrl
 } from '../../../../src/commands/tunnel';
 
+import {
+  add as tuntapAdd,
+  del as tuntapDel,
+  show as tuntapShow
+} from '../../../../src/commands/tuntap';
+
 import { TestDefinition } from '../../../../src/common/interfaces/tests';
 
 import { Tests as linkAddTests } from './link-add';
@@ -125,6 +131,10 @@ import { Tests as tunnelChangeTests } from './tunnel-change';
 import { Tests as tunnelShowTests } from './tunnel-show';
 import { Tests as tunnelPrlTests } from './tunnel-prl';
 import { Tests as tunnelV6RdTests } from './tunnel-v6rd';
+
+import { Tests as tuntapAddTests } from './tuntap-add';
+import { Tests as tuntapDelTests } from './tuntap-del';
+import { Tests as tuntapShowTests } from './tuntap-show';
 
 export const fixtures: TestDefinition = {
   link     : [
@@ -390,6 +400,23 @@ export const fixtures: TestDefinition = {
       operator   : 'v6Rd',
       testBattery: tunnelV6RdTests,
       method     : tunnelV6Rd
+    }
+  ],
+  tuntap   : [
+    {
+      operator   : 'add',
+      testBattery: tuntapAddTests,
+      method     : tuntapAdd
+    },
+    {
+      operator   : 'delete',
+      testBattery: tuntapDelTests,
+      method     : tuntapDel
+    },
+    {
+      operator   : 'show',
+      testBattery: tuntapShowTests,
+      method     : tuntapShow
     }
   ]
 };

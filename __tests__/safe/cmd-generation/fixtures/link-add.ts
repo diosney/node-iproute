@@ -547,7 +547,7 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       type: {
         [LinkTypes.Bareudp]: {
           dstport:    5000,
-          ethertype:  800,
+          ethertype:  200,
           srcportmin: 4000
         }
       }
@@ -566,11 +566,11 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       'dstport',
       5000,
       'ethertype',
-      800,
+      200,
       'srcportmin',
       4000
     ],
-    expectedCmdToExec: ` ip link add link eth0 name bareudp0 type ${ LinkTypes.Bareudp } dstport 5000 ethertype 800 srcportmin 4000`
+    expectedCmdToExec: ` ip link add link eth0 name bareudp0 type ${ LinkTypes.Bareudp } dstport 5000 ethertype 200 srcportmin 4000`
   },
   {
     description:       'with `type macvlan`',

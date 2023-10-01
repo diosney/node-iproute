@@ -38,6 +38,9 @@
 - `tunnel`
   - Add exec tests.
 
+- `tuntap`
+  - Add manpage links when it gets created since it doesn't exist yet.
+
 ### Documentation
 
 - Document every property with schema `format` as a `@see {@link}` in the interfaces?.

@@ -1,7 +1,7 @@
 import { JSONSchemaType } from 'ajv';
 
-import ajv                 from './validator';
-import { SchemaIds }       from './constants/schemas';
+import ajv from './validator';
+import { SchemaIds } from './constants/schemas';
 import { ParametersError } from './errors/parameters';
 
 /** @internal */

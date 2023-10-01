@@ -56,6 +56,9 @@ export enum SchemaIds {
   TunnelAdd                   = '#tunnel-add',
   Tunnel6rd                   = '#tunnel-6rd',
   TunnelPrl                   = '#tunnel-prl',
+
+  TunTapAdd                   = '#tuntap-add',
+  TunTapShow                  = '#tuntap-show',
 }
 
 export const GlobalOptionsSchema: JSONSchemaType<GlobalOptions> = {
