@@ -42,6 +42,10 @@ import tuntapDefaults from './commands/tuntap';
 import * as maddressModule from './commands/maddress';
 import maddressDefaults from './commands/maddress';
 
+// Multicast routing cache management.
+import * as mrouteModule from './commands/mroute';
+import mrouteDefaults from './commands/mroute';
+
 // General utilities functions to provide extra handy functionality not present in iproute.
 import * as utilsModule from './utils';
 import utilsDefaults from './utils';
@@ -295,7 +299,11 @@ export { ntableModule as ntable };
 export { NtableInfo, NtableShowOptions } from './commands/ntable/show.interfaces';
 
 /**
- * Tunnel.
+ * Tunnel configuration.
+ *
+ * @remarks
+ * Tunnel objects are tunnels, encapsulating packets in IP packets and then sending them over
+ * the IP infrastructure.
  *
  * @see [Man Page](https://man7.org/linux/man-pages/man8/ip-tunnel.8.html)
  * @category IP Commands
@@ -318,13 +326,28 @@ export { TunTapTunnelAddOptions } from './commands/tuntap/add.interfaces';
 export { TunTapTunnelShowOptions, TunTapTunnelInfo } from './commands/tuntap/show.interfaces';
 
 /**
- * Maddress.
+ * Multicast addresses management.
  *
  * @category IP Commands
  */
 export { maddressModule as maddress };
 export { MaddressAddOptions } from './commands/maddress/add.interfaces';
 export { MaddressShowOptions, MaddressInfo } from './commands/maddress/show.interfaces';
+
+/**
+ * Multicast routing cache management.
+ *
+ * @remarks
+ * `mroute` objects are multicast routing cache entries created by a user-level mrouting daemon (f.e. `pimd` or `mrouted`).
+ *
+ * Due to the limitations of the current interface to the multicast routing engine, it is impossible
+ * to change `mroute` objects administratively, so we can only display them.
+ * This limitation will be removed in the future.
+ *
+ * @category IP Commands
+ */
+export { mrouteModule as mroute };
+export { MrouteInfo, MrouteShowOptions } from './commands/mroute/show.interfaces';
 
 /**
  * Custom utility library that complements `iproute` suite.
@@ -350,6 +373,7 @@ export default {
   tunnel   : tunnelDefaults,
   tuntap   : tuntapDefaults,
   maddress : maddressDefaults,
+  mroute   : mrouteDefaults,
   // Extras.
   utils: utilsDefaults
 };

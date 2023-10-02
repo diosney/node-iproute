@@ -62,6 +62,8 @@ export enum SchemaIds {
 
   MaddressAdd                 = '#maddress-add',
   MaddressShow                = '#maddress-show',
+
+  MrouteShow                  = '#mroute-show',
 }
 
 export const GlobalOptionsSchema: JSONSchemaType<GlobalOptions> = {

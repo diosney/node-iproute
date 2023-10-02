@@ -434,6 +434,18 @@ The `entries` output is an array of tunnel configurations with the matching [Tun
 
 The `entries` output is an array of tunnel configurations with the matching [MaddressInfo[]](https://diosney.github.io/node-iproute/interfaces/MaddressInfo.html) interface.
 
+### `ip mroute` Multicast routing cache management / [Man Page](https://man7.org/linux/man-pages/man8/ip-mroute.8.html)
+
+	import { mroute } from 'iproute';
+
+#### `mroute.show(options, globalOptions?)`
+
+**Example:**
+
+	const entries = await mroute.show({});
+
+The `entries` output is an array of multicast routing entries configurations with the matching [MrouteInfo[]](https://diosney.github.io/node-iproute/interfaces/MrouteInfo.html) interface.
+
 ### utils
 
 General helpful utils to provide extra handy functionality not present in `iproute`, like routing table manipulation

@@ -17,7 +17,7 @@ export const Tests: TestFixture<MaddressAddOptions>[] = [
       'dev',
       'eth0'
     ],
-    expectedCmdToExec: `ip maddress del 33:33:00:00:00:01 dev eth0`
+    expectedCmdToExec: ` ip maddress del 33:33:00:00:00:01 dev eth0`
   }
 ];
 

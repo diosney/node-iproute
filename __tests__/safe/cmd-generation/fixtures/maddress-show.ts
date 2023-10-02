@@ -8,10 +8,13 @@ export const Tests: TestFixture<MaddressShowOptions>[] = [
     expectedCmd      : [
       '',
       'ip',
+      '-details',
+      '-statistics',
+      '-json',
       'maddress',
       'show'
     ],
-    expectedCmdToExec: `ip maddress show`
+    expectedCmdToExec: ` ip -details -statistics -json maddress show`
   },
   {
     description      : 'show multicast addresses for interface `eth0`',
@@ -21,12 +24,15 @@ export const Tests: TestFixture<MaddressShowOptions>[] = [
     expectedCmd      : [
       '',
       'ip',
+      '-details',
+      '-statistics',
+      '-json',
       'maddress',
       'show',
       'dev',
       'eth0'
     ],
-    expectedCmdToExec: `ip maddress show dev eth0`
+    expectedCmdToExec: ` ip -details -statistics -json maddress show dev eth0`
   }
 ];
 

@@ -75,6 +75,16 @@ import {
   show as tuntapShow
 } from '../../../../src/commands/tuntap';
 
+import {
+  add as maddressAdd,
+  del as maddressDel,
+  show as maddressShow
+} from '../../../../src/commands/maddress';
+
+import {
+  show as mrouteShow
+} from '../../../../src/commands/mroute';
+
 import { TestDefinition } from '../../../../src/common/interfaces/tests';
 
 import { Tests as linkAddTests } from './link-add';
@@ -135,6 +145,12 @@ import { Tests as tunnelV6RdTests } from './tunnel-v6rd';
 import { Tests as tuntapAddTests } from './tuntap-add';
 import { Tests as tuntapDelTests } from './tuntap-del';
 import { Tests as tuntapShowTests } from './tuntap-show';
+
+import { Tests as maddressAddTests } from './maddress-add';
+import { Tests as maddressDelTests } from './maddress-del';
+import { Tests as maddressShowTests } from './maddress-show';
+
+import { Tests as mrouteShowTests } from './mroute-show';
 
 export const fixtures: TestDefinition = {
   link     : [
@@ -417,6 +433,30 @@ export const fixtures: TestDefinition = {
       operator   : 'show',
       testBattery: tuntapShowTests,
       method     : tuntapShow
+    }
+  ],
+  maddress : [
+    {
+      operator   : 'add',
+      testBattery: maddressAddTests,
+      method     : maddressAdd
+    },
+    {
+      operator   : 'delete',
+      testBattery: maddressDelTests,
+      method     : maddressDel
+    },
+    {
+      operator   : 'show',
+      testBattery: maddressShowTests,
+      method     : maddressShow
+    }
+  ],
+  mroute   : [
+    {
+      operator   : 'show',
+      testBattery: mrouteShowTests,
+      method     : mrouteShow
     }
   ]
 };

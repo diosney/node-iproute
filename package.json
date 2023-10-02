@@ -41,7 +41,8 @@
 		"neigh",
 		"ntable",
 		"tuntap",
-		"maddress"
+		"maddress",
+		"mroute"
 	],
 	"dependencies": {
 		"ajv": "^8.12.0",
