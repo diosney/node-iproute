@@ -38,6 +38,10 @@ import tunnelDefaults from './commands/tunnel';
 import * as tuntapModule from './commands/tuntap';
 import tuntapDefaults from './commands/tuntap';
 
+// Maddress configuration.
+import * as maddressModule from './commands/maddress';
+import maddressDefaults from './commands/maddress';
+
 // General utilities functions to provide extra handy functionality not present in iproute.
 import * as utilsModule from './utils';
 import utilsDefaults from './utils';
@@ -314,6 +318,15 @@ export { TunTapTunnelAddOptions } from './commands/tuntap/add.interfaces';
 export { TunTapTunnelShowOptions, TunTapTunnelInfo } from './commands/tuntap/show.interfaces';
 
 /**
+ * Maddress.
+ *
+ * @category IP Commands
+ */
+export { maddressModule as maddress };
+export { MaddressAddOptions } from './commands/maddress/add.interfaces';
+export { MaddressShowOptions, MaddressInfo } from './commands/maddress/show.interfaces';
+
+/**
  * Custom utility library that complements `iproute` suite.
  * @category IP Commands
  */
@@ -336,6 +349,7 @@ export default {
   ntable   : ntableDefaults,
   tunnel   : tunnelDefaults,
   tuntap   : tuntapDefaults,
+  maddress : maddressDefaults,
   // Extras.
   utils: utilsDefaults
 };

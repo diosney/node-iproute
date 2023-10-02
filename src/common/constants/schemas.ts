@@ -59,6 +59,9 @@ export enum SchemaIds {
 
   TunTapAdd                   = '#tuntap-add',
   TunTapShow                  = '#tuntap-show',
+
+  MaddressAdd                 = '#maddress-add',
+  MaddressShow                = '#maddress-show',
 }
 
 export const GlobalOptionsSchema: JSONSchemaType<GlobalOptions> = {

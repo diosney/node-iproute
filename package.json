@@ -35,12 +35,13 @@
 		"network",
 		"networking",
 		"utils",
-    "forwarding",
-    "addrlabel",
-    "neighbour",
-    "neigh",
-    "ntable",
-    "tuntap"
+		"forwarding",
+		"addrlabel",
+		"neighbour",
+		"neigh",
+		"ntable",
+		"tuntap",
+		"maddress"
 	],
 	"dependencies": {
 		"ajv": "^8.12.0",

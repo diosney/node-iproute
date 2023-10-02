@@ -359,7 +359,7 @@ The `entries` output is an array of entries with the matching [NtableInfo[]](htt
         dev   : 'eth1'
 	});
 
-#### `tunnel.show(globalOptions?)`
+#### `tunnel.show(options, globalOptions?)`
 
 **Example:**
 
@@ -396,13 +396,43 @@ The `entries` output is an array of tunnel configurations with the matching [Tun
       mode: TunTapTunnelModes.Tun
 	});
 
-#### `tuntap.show(globalOptions?)`
+#### `tuntap.show(options, globalOptions?)`
 
 **Example:**
 
 	const entries = await tuntap.show({});
 
 The `entries` output is an array of tunnel configurations with the matching [TunTapTunnelInfo[]](https://diosney.github.io/node-iproute/interfaces/TunTapTunnelInfo.html) interface.
+
+### `ip maddress` Multicast addresses management / [Man Page](https://man7.org/linux/man-pages/man8/ip-maddress.8.html)
+
+	import { maddress } from 'iproute';
+
+#### `maddress.add(options, globalOptions?)`
+
+*Add a multicast address*
+
+	await maddress.add({
+        address_: '33:33:00:00:00:01',
+        dev: 'enp0s3'
+	});
+
+#### `maddress.del(options, globalOptions?)`
+
+*Delete a tunnel*
+
+	await maddress.del({
+        address_: '33:33:00:00:00:01',
+        dev: 'enp0s3'
+	});
+
+#### `maddress.show(options, globalOptions?)`
+
+**Example:**
+
+	const entries = await maddress.show({});
+
+The `entries` output is an array of tunnel configurations with the matching [MaddressInfo[]](https://diosney.github.io/node-iproute/interfaces/MaddressInfo.html) interface.
 
 ### utils
 

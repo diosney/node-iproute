@@ -27,6 +27,7 @@ Wrapper around native **iproute** suite to allow its functionality to be used in
 | [ip-ntable](https://man7.org/linux/man-pages/man8/ip-ntable.8.html)                            | Neighbour table configuration.                           | `change`, `show`                                                                       |
 | [ip-tunnel](https://man7.org/linux/man-pages/man8/ip-tunnel.8.html)                            | Tunnel configuration.                                    | `add`, `change`, `del`, `show`, `prl`, `6rd`                                           |
 | ip-tuntap                                                                                      | TunTap tunnel configuration.                             | `add`, `del`, `show`, `list`, `lst`                                                    |
+| [ip-maddress](https://man7.org/linux/man-pages/man8/ip-maddress.8.html)                          | Multicast addresses management.                          | `add`, `del`, `show`                                           |
 | [utils](https://diosney.github.io/node-iproute/modules/utils.html)                             | Custom utility library that complements `iproute` suite. | -                                                                                      |
 | [utils.ipForwarding](https://diosney.github.io/node-iproute/modules/utils.ipForwarding.html)   | Manipulates IP forwarding.                               | `enable`, `disable`, `status`, `v{4\|6}.enable`, `v{4\|6}.disable`, `v{4\|6}.status`   |
 | [utils.routingTables](https://diosney.github.io/node-iproute/modules/utils.routingTables.html) | Manipulates routing tables.                              | `show`, `add`, `del`, `clear`                                                          |
@@ -174,6 +175,7 @@ Both of these calls are valid:
   - [NtableInfo](https://diosney.github.io/node-iproute/interfaces/NtableInfo.html)
   - [TunnelInfo](https://diosney.github.io/node-iproute/interfaces/TunnelInfo.html)
   - [TunTapTunnelInfo](https://diosney.github.io/node-iproute/interfaces/TunTapTunnelInfo.html)
+  - [MaddressInfo](https://diosney.github.io/node-iproute/interfaces/MaddressInfo.html)
  
 A **PR** is more than welcome.
 
