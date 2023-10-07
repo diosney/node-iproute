@@ -3,6 +3,7 @@
 ### 2.0.0-beta.2
 
 - Added more commands: `addrlabel`, `neighbour`, `ntable`, `tunnel`, `tuntap`, `maddress`, `mroute`.
+- Add support for an array of tables to `routingTables.{add|del}` methods.
 
 ### 2.0.0-beta.1
 

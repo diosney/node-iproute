@@ -527,6 +527,16 @@ It will add passed in table if it is not already present.
 	  name: 'table_name'
 	});
 
+*Add more than one table*
+
+	await utils.routingTables.add([{
+	  id: 50,
+	  name: 'table_name'
+	}, {
+	  id: 51,
+	  name: 'table_name2'
+	}]);
+
 ##### `utils.routingTables.del(options)`
 
 It will remove the specified table if it exists.
@@ -534,6 +544,14 @@ It will remove the specified table if it exists.
 	await utils.routingTables.delete({
 	  id: 50
 	});
+
+Delete more than one table.
+
+	await utils.routingTables.delete([{
+	  id: 51
+	}, {
+	  id: 52
+	}]);
 
 ##### `utils.routingTables.clear(globalOptions?)`
 

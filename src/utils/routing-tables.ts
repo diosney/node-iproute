@@ -1,15 +1,16 @@
 import { promises as fs } from 'fs';
+import isPlainObject from 'lodash.isplainobject';
 
-import { tablesPath }    from './routing-tables.constants';
+import { tablesPath } from './routing-tables.constants';
 import { GlobalOptions } from '../common/interfaces/common';
 
 import {
   RoutingTable,
   RoutingTableOptions
-}                                         from './routing-tables.interfaces';
-import { validate }                       from '../common/misc';
+} from './routing-tables.interfaces';
+import { validate } from '../common/misc';
 import { GlobalOptionsSchema, SchemaIds } from '../common/constants/schemas';
-import { RoutingTableOptionsSchema }     from './routing-tables.schemas';
+import { RoutingTableOptionsSchema } from './routing-tables.schemas';
 
 function parseTables(rawData: string): RoutingTable[] {
   if (!rawData) {
@@ -24,7 +25,7 @@ function parseTables(rawData: string): RoutingTable[] {
   for (const line of output) {
     const fields              = line.trim().split(/\s+/);
     const table: RoutingTable = {
-      id:   Number(fields[0]),
+      id  : Number(fields[0]),
       name: fields[1]
     };
     tables.push(table);
@@ -63,19 +64,36 @@ export async function show(options: RoutingTableOptions = {}, globalOptions: Glo
  * @param options        - Parameters options to be passed down to `ip`.
  * @param globalOptions  - Global parameters options that affects the command execution.
  */
-export async function add(options: RoutingTableOptions, globalOptions: GlobalOptions = {}): Promise<void> {
-  validate<RoutingTableOptions>(SchemaIds.RoutingTablesOptions, RoutingTableOptionsSchema, options);
-  validate<GlobalOptions>(SchemaIds.GlobalOptions, GlobalOptionsSchema, globalOptions);
+export async function add(options: RoutingTableOptions | RoutingTableOptions[], globalOptions: GlobalOptions = {}): Promise<void> {
+  let tablesToAdd: RoutingTableOptions[] = [];
 
-  const tables        = await show();
-  const existingTable = tables.find(table => table.id === options.id || table.name === options.name);
-
-  if (existingTable) {
-    // The table is already there, so exit silently.
-    return;
+  if (isPlainObject(options)) {
+    tablesToAdd.push(options as RoutingTableOptions);
+  }
+  else {
+    tablesToAdd = options as RoutingTableOptions[];
   }
 
-  const toAppend = `${ options.id }\t${ options.name }\n`;
+  for (let newTable of tablesToAdd) {
+    validate<RoutingTableOptions>(SchemaIds.RoutingTablesOptions, RoutingTableOptionsSchema, newTable);
+  }
+
+  validate<GlobalOptions>(SchemaIds.GlobalOptions, GlobalOptionsSchema, globalOptions);
+
+  const tables = await show();
+  let toAppend = '';
+
+  for (let newTable of tablesToAdd) {
+    const existingTable = tables.find(table => table.id === newTable.id || table.name === newTable.name);
+
+    if (existingTable) {
+      // The table is already there, so exit silently.
+      continue;
+    }
+
+    toAppend += `${ newTable.id }\t${ newTable.name }\n`;
+  }
+
   await fs.appendFile(tablesPath, toAppend);
 }
 
@@ -85,12 +103,30 @@ export async function add(options: RoutingTableOptions, globalOptions: GlobalOpt
  * @param options        - Parameters options to be passed down to `ip`.
  * @param globalOptions  - Global parameters options that affects the command execution.
  */
-export async function del(options: RoutingTableOptions, globalOptions: GlobalOptions = {}): Promise<void> {
-  validate<RoutingTableOptions>(SchemaIds.RoutingTablesOptions, RoutingTableOptionsSchema, options);
+export async function del(options: RoutingTableOptions | RoutingTableOptions[], globalOptions: GlobalOptions = {}): Promise<void> {
+  let tablesToDelete: RoutingTableOptions[] = [];
+
+  if (isPlainObject(options)) {
+    tablesToDelete.push(options as RoutingTableOptions);
+  }
+  else {
+    tablesToDelete = options as RoutingTableOptions[];
+  }
+
+  for (let tableToDelete of tablesToDelete) {
+    validate<RoutingTableOptions>(SchemaIds.RoutingTablesOptions, RoutingTableOptionsSchema, tableToDelete);
+  }
+
   validate<GlobalOptions>(SchemaIds.GlobalOptions, GlobalOptionsSchema, globalOptions);
 
   const oldTables = await show();
-  const newTables = oldTables.filter(item => item.id !== options.id);
+  const newTables = oldTables.filter(oldTable => {
+    let foundIndex = tablesToDelete.findIndex((tableToDelete) => {
+      return tableToDelete.id === oldTable.id || tableToDelete.name === oldTable.name;
+    });
+
+    return foundIndex === -1;
+  });
 
   const toWrite = newTables.map(table => `${ table.id }\t${ table.name }`).join('\n') + '\n';
 
