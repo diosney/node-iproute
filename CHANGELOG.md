@@ -1,6 +1,6 @@
 ### Release Notes
 
-### 2.0.0
+### 2.0.0-beta.3
 
 - Added support for specifying family shortcut global options, like `-4`.
 - Added support for batch mode.
