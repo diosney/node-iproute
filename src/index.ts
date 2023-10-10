@@ -1,3 +1,7 @@
+// Special commands not pertaining to a specific command object.
+import * as batchModule from './commands/batch';
+import batchDefaults from './commands/batch';
+
 // Network devices configuration.
 import * as linkModule from './commands/link';
 import linkDefaults from './commands/link';
@@ -93,7 +97,9 @@ export {
   GlobalOptions,
   Empty,
   FilePathRequiredGlobalOption,
-  GlobalOptionsWithRequiredFilePath
+  StdinRequiredGlobalOption,
+  GlobalOptionsWithRequiredFilePath,
+  GlobalOptionsWithRequiredStdin
 } from './common/interfaces/common';
 
 export { MonitorEmittedData } from './common/interfaces/monitor';
@@ -103,6 +109,14 @@ export { MonitorEmittedData } from './common/interfaces/monitor';
 //
 export { CommandError } from './common/errors/command';
 export { ParametersError } from './common/errors/parameters';
+
+/**
+ * Read commands from provided file or standard input and invoke them.
+ *
+ * @see [Man Page](https://man7.org/linux/man-pages/man8/ip.8.html)
+ * @category IP Commands
+ */
+export { batchModule as batch };
 
 /**
  * Network devices configuration.
@@ -362,6 +376,9 @@ export { MonitorCommand as MonitorCommand };
 
 /** @hidden **/
 export default {
+  // Special methods not pertaining to IP commands.
+  batch: batchDefaults,
+  // IP Commands.
   link     : linkDefaults,
   address  : addressDefaults,
   rule     : ruleDefaults,

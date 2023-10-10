@@ -2,6 +2,31 @@
 
 Several usage examples to give you an idea of what you can do with the library.
 
+### `ip -batch` Batch mode support / [Man Page](https://man7.org/linux/man-pages/man8/ip.8.html)
+
+	import { batch } from 'iproute';
+
+#### `batch.fromFile(globalOptions)`
+
+*Executes batch commands from a file*
+
+	await batch.fromFile({
+	  filePath: '/tmp/filepath'
+	});
+
+#### `batch.fromFile(globalOptions)`
+
+*Executes batch commands from stdin*
+
+	await batch.fromStdin({
+      stdin: [
+        'address add local 127.0.1.4/32 dev lo',
+        'address add local 127.0.1.5/32 dev lo',
+        'address add local 127.0.1.6/32 dev lo',
+        'address add local 127.0.1.7/32 dev lo'
+      ].join('\n')
+    });
+
 ### `ip link` Network devices configuration / [Man Page](https://man7.org/linux/man-pages/man8/ip-link.8.html)
 
 	import { link } from 'iproute';

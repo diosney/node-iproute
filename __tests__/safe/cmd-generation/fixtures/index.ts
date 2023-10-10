@@ -1,4 +1,9 @@
 import {
+  fromFile as batchFromFile,
+  fromStdin as batchFromStdin
+} from '../../../../src/commands/batch';
+
+import {
   del as linkDel,
   add as linkAdd,
   show as linkShow,
@@ -87,6 +92,9 @@ import {
 
 import { TestDefinition } from '../../../../src/common/interfaces/tests';
 
+import { Tests as batchFromFileTests } from './batch-fromfile';
+import { Tests as batchFromStdinTests } from './batch-fromstdin';
+
 import { Tests as linkAddTests } from './link-add';
 import { Tests as linkDeleteTests } from './link-delete';
 import { Tests as linkShowTests } from './link-show';
@@ -153,6 +161,20 @@ import { Tests as maddressShowTests } from './maddress-show';
 import { Tests as mrouteShowTests } from './mroute-show';
 
 export const fixtures: TestDefinition = {
+  batch    : [
+    {
+      operator   : 'fromStdin',
+      testBattery: batchFromStdinTests,
+      method     : batchFromStdin,
+      skipOptions: true
+    },
+    {
+      operator   : 'fromFile',
+      testBattery: batchFromFileTests,
+      method     : batchFromFile,
+      skipOptions: true
+    }
+  ],
   link     : [
     {
       operator   : 'del',

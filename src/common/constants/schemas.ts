@@ -2,7 +2,7 @@ import { JSONSchemaType } from 'ajv';
 
 import {
   FilePathRequiredGlobalOption,
-  GlobalOptions
+  GlobalOptions, StdinRequiredGlobalOption
 } from '../interfaces/common';
 
 import { ComplexIpCommandTestOptions } from '../interfaces/tests';
@@ -20,6 +20,7 @@ export enum SchemaIds {
 
   GlobalOptions               = '#global-options',
   FilePathGlobalOption        = '#global-options-file-path',
+  StdinGlobalOption           = '#global-options-stdin',
   ComplexIpCommandTestOptions = '#complex-ip-command-test-options',
 
   RoutingTablesOptions        = '#routing-tables-options',
@@ -85,6 +86,41 @@ export const GlobalOptionsSchema: JSONSchemaType<GlobalOptions> = {
       format  : 'filepath',
       nullable: true
     },
+    stdin        : {
+      type     : 'string',
+      minLength: 1,
+      nullable : true
+    },
+    '-4'         : {
+      type    : 'boolean',
+      enum    : [true],
+      nullable: true
+    },
+    '-6'         : {
+      type    : 'boolean',
+      enum    : [true],
+      nullable: true
+    },
+    '-B'         : {
+      type    : 'boolean',
+      enum    : [true],
+      nullable: true
+    },
+    '-M'         : {
+      type    : 'boolean',
+      enum    : [true],
+      nullable: true
+    },
+    '-0'         : {
+      type    : 'boolean',
+      enum    : [true],
+      nullable: true
+    },
+    '-oneline'   : {
+      type    : 'boolean',
+      enum    : [true],
+      nullable: true
+    },
     '-details'   : {
       type    : 'boolean',
       enum    : [true],
@@ -112,6 +148,19 @@ export const FilePathGlobalOptionSchema: JSONSchemaType<FilePathRequiredGlobalOp
     filePath: {
       type  : 'string',
       format: 'filepath'
+    }
+  }
+};
+
+export const StdinGlobalOptionSchema: JSONSchemaType<StdinRequiredGlobalOption> = {
+  $id                 : SchemaIds.StdinGlobalOption,
+  type                : 'object',
+  required            : ['stdin'],
+  additionalProperties: true,
+  properties          : {
+    stdin: {
+      type     : 'string',
+      minLength: 1
     }
   }
 };
