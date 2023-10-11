@@ -12,7 +12,7 @@
 		"test:all": "npm run build && npx mocha --spec=./__tests__/**/*.ts",
 		"test:safe": "npm run build && npx mocha --spec=./__tests__/safe/**/*.ts",
 		"test:exec": "npm run build && npx mocha --spec=./__tests__/exec/**/*.ts",
-		"test:github-actions": "npm run build && npx mocha --spec='./__tests__/**/*.ts' --exclude='./__tests__/exec/utils/**/*.ts'",
+		"test:github-actions": "npm run build && npx mocha --spec='./__tests__/**/*.ts' --exclude='./__tests__/exec/utils/**/*.ts' --exclude='./__tests__/exec/commands/monitor.ts'",
 		"docs": "npx typedoc --options typedoc.config.json"
 	},
 	"keywords": [
