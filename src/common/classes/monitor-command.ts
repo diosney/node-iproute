@@ -1,11 +1,11 @@
-import { JSONSchemaType }                        from 'ajv';
+import { JSONSchemaType } from 'ajv';
 import { ChildProcessWithoutNullStreams, spawn } from 'child_process';
-import { EventEmitter }                          from 'events';
+import { EventEmitter } from 'events';
 
-import { SchemaIds }          from '../constants/schemas';
-import { GlobalOptions }      from '../interfaces/common';
-import Command                from './command';
-import { MonitorObjects }     from '../../commands/monitor.constants';
+import { SchemaIds } from '../constants/schemas';
+import { GlobalOptions } from '../interfaces/common';
+import Command from './command';
+import { MonitorObjects } from '../../commands/monitor.constants';
 import { MonitorEmittedData } from '../interfaces/monitor';
 
 /**
@@ -18,6 +18,42 @@ export default class MonitorCommand<T_CommandOptions extends {
   [index: string]: any;
 }> extends Command<T_CommandOptions> {
 
+  static parseLineOutput(eventLine: string): MonitorEmittedData {
+    const bracketsSectionRegex     = /^\[.*?\](?: (\[.*?\])*)?/;
+    const textsInsideBracketsRegex = /\[([^\]]+)\]/g;
+
+    const bracketsSectionMatch = eventLine.match(bracketsSectionRegex);
+    const bracketsSection      = (bracketsSectionMatch)
+                                 ? bracketsSectionMatch[0]
+                                 : '';
+
+    const dataLines = eventLine
+      .split(/\\\s+/g)
+      .map((line) => line.trim());
+
+    const bracketMatches = dataLines[0].match(textsInsideBracketsRegex);
+    const brackets       = (bracketMatches)
+                           ? bracketMatches.map(b => b.slice(1, -1))
+                           : [];
+
+    // Extracting the rest of the line that isn't wrapped in [].
+    const firstLineRest = dataLines[0].replace(textsInsideBracketsRegex, '').trim();
+
+    return {
+      timestamp   : brackets[0],
+      nsid        : brackets[1].split(' ')[1],
+      object      : (brackets[2] === 'ADDR')
+                    ? MonitorObjects.Address
+                    : brackets[2].toLowerCase() as MonitorObjects,
+      originalLine: eventLine,
+      lines       : [
+        bracketsSection,
+        firstLineRest,
+        ...dataLines.slice(1)
+      ]
+    };
+  }
+
   private emitter = new EventEmitter();
   private spawnedProcess: ChildProcessWithoutNullStreams | undefined;
 
@@ -29,7 +65,12 @@ export default class MonitorCommand<T_CommandOptions extends {
 
     super(schemaId,
       schema,
-      options,
+      {
+        ...options,
+        // Override options to maximize output.
+        label     : true,
+        'all-nsid': true
+      },
       globalOptions,
       ipCmd);
   }
@@ -45,38 +86,18 @@ export default class MonitorCommand<T_CommandOptions extends {
 
     this.spawnedProcess.stdout.setEncoding('utf8');
     this.spawnedProcess.stdout.on('data', (data) => {
-      const output         = data.split('\n');
-      const sectionPattern = /\[\w+\]/;
+      const output = data.split('\n');
 
-      for (let line = 0, outputLength = output.length - 1; line < outputLength; line++) {
-        if (output[line].search(sectionPattern) === -1) {
-          continue;
-        }
+      for (let lineNumber = 0, outputLength = output.length - 1;
+           lineNumber < outputLength;
+           lineNumber++) {
 
-        const dataLines = [];
-        const objectId  = ((sectionPattern.exec(output[line]) || ['[unknown]'])[0])
-          .split('[')[1]
-          .split(']')[0]
-          .toLowerCase();
-
-        dataLines.push(output[line].split(sectionPattern)[1].trim());
-
-        for (let line2 = line + 1; line2 < outputLength; line2++) {
-          if (output[line2].search(sectionPattern) !== -1) {
-            break;
-          }
-          dataLines.push(output[line2].trim());
-        }
-
-        let toEmit: MonitorEmittedData = {
-          object: objectId.toLowerCase(),
-          lines:  dataLines
-        };
+        let toEmit: MonitorEmittedData = MonitorCommand.parseLineOutput(output[lineNumber]);
 
         this.emitter.emit(MonitorObjects.All, toEmit);
 
-        if (this.options.object !== MonitorObjects.All) {
-          this.emitter.emit(this.options.object, toEmit);
+        if (this.options.object_ !== MonitorObjects.All) {
+          this.emitter.emit(this.options.object_, toEmit);
         }
       }
     });

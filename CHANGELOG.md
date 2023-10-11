@@ -1,5 +1,9 @@
 ### Release Notes
 
+### 2.0.0-beta.4
+
+- Improved `monitor` command.
+
 ### 2.0.0-beta.3
 
 - Added support for specifying family shortcut global options, like `-4`.

@@ -20,7 +20,6 @@
     
 - `monitor`
   - Should parse output to `json` or wait for `iproute` team to add a `-json` option?
-  - Parse object in response to one of the enums, at least the ones that the library supports.
 
 - The interfaces of the `show` methods need to be completed. 
   Those interfaces are: `RuleInfo`, `RouteInfo`, `LinkInfo`, `LinkWithAddressInfo`.
@@ -38,6 +37,7 @@
 ### Documentation
 
 - Document every property with schema `format` as a `@see {@link}` in the interfaces?.
+- Add `@examples` to each module/method?.
 
 ### Contact `ip` Developers
 

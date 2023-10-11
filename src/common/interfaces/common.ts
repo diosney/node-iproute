@@ -72,8 +72,18 @@ export interface GlobalOptions {
    */
   '-json'?: true;
   /**
+   * Used in `ip monitor`.
+   * Prints short timestamp before the event message on the same line in format:
+   * `[<YYYY>-<MM>-<DD>T<hh:mm:ss>.<ms>] <EVENT>`
+   * @hidden
+   */
+  '-tshort'?: true;
+  /**
    * Output each record on a single line, replacing line feeds with the '\' character.
    * This is convenient when you want to count records with `wc(1)` or to `grep(1)` the output.
+   * Used in `ip monitor`.
+   * Prints short timestamp before the event message on the same line in format:
+   * `[<YYYY>-<MM>-<DD>T<hh:mm:ss>.<ms>] <EVENT>`
    * @hidden
    */
   '-oneline'?: true;

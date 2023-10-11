@@ -1,8 +1,8 @@
-import MonitorCommand     from '../common/classes/monitor-command';
-import { SchemaIds }      from '../common/constants/schemas';
-import { GlobalOptions }  from '../common/interfaces/common';
+import MonitorCommand from '../common/classes/monitor-command';
+import { SchemaIds } from '../common/constants/schemas';
+import { GlobalOptions } from '../common/interfaces/common';
 import { MonitorOptions } from './monitor/monitor.interfaces';
-import { MonitorSchema }  from './monitor/monitor.schema';
+import { MonitorSchema } from './monitor/monitor.schema';
 
 /**
  * State monitoring.
@@ -16,13 +16,17 @@ import { MonitorSchema }  from './monitor/monitor.schema';
 export async function monitor(options: MonitorOptions,
                               globalOptions: GlobalOptions = {}): Promise<MonitorCommand<MonitorOptions>> {
 
-  const cmd = [ 'ip', 'monitor' ];
+  const cmd = ['ip', 'monitor'];
 
   const ipCmd = new MonitorCommand<MonitorOptions>(
     SchemaIds.Monitor,
     MonitorSchema,
     options,
-    globalOptions,
+    {
+      ...globalOptions,
+      '-tshort' : true,
+      '-oneline': true
+    },
     cmd);
 
   return await ipCmd.exec();

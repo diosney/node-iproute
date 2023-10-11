@@ -135,6 +135,11 @@ export const GlobalOptionsSchema: JSONSchemaType<GlobalOptions> = {
       type    : 'boolean',
       enum    : [true],
       nullable: true
+    },
+    '-tshort'      : {
+      type    : 'boolean',
+      enum    : [true],
+      nullable: true
     }
   }
 };

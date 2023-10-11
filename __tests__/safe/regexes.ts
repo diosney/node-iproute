@@ -33,7 +33,6 @@ describe('regular expressions', () => {
     expect(mac.test('')).to.be.false;
     expect(mac.test('00:1A:2B:3C:4D')).to.be.false;
     expect(mac.test('00:1A:2B:3C:4D:5E:6F')).to.be.false;
-
   });
 
   it('`hex4Digits`', () => {
