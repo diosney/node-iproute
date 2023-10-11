@@ -1,4 +1,10 @@
-# node-iproute <a href="https://www.buymeacoffee.com/diosney" target="_blank"><img align="right" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="117" style="width: 117px !important;" ></a>
+<style>
+  h1 .heading-link {
+    display: block !important;
+  }
+</style>
+
+# node-iproute <a href="https://www.buymeacoffee.com/diosney" target="_blank"><img align="right" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="117" style="width: 117px !important;"></a>
 
 Show and manipulate network devices, addresses, routing, policy routing, tunnels, IP forwarding, address labels and other `iproute` objects.
 
@@ -15,23 +21,23 @@ Wrapper around native **iproute** suite to allow its functionality to be used in
 
 ## Supported Functionality
 
-| Command                                                                                        | Description                                             | Operations                                                                             |
-|------------------------------------------------------------------------------------------------|---------------------------------------------------------|----------------------------------------------------------------------------------------|
-| [ip-batch](https://diosney.github.io/node-iproute/modules/batch.html)                          | Batch mode.                                      | `fromFile`, `fromStdin`                                                                |
-| [ip-link](https://diosney.github.io/node-iproute/modules/link.html)                            | Network devices configuration.                          | `add`, `del`, `show`, `set`, `change`                                                  |
-| [ip-address](https://diosney.github.io/node-iproute/modules/address.html)                      | Protocol address management.                            | `add`, `change`, `replace`, `del`, `flush`, `save`, `restore`, `showdump`, `show`      |
-| [ip-route](https://diosney.github.io/node-iproute/modules/route.html)                          | Routing table management.                               | `show`, `flush`, `save`, `restore`, `get`, `add`, `del`, `change`, `append`, `replace` |
-| [ip-rule](https://diosney.github.io/node-iproute/modules/rule.html)                            | Routing policy database (RPDB) management.              | `add`, `del`, `save`, `restore`, `flush`, `show`, `list`                               |
-| [ip-monitor](https://diosney.github.io/node-iproute/modules/monitor.html)                      | State monitoring.                                       | `on`, `close`                                                                          |
-| [ip-addrlabel](https://diosney.github.io/node-iproute/modules/addrlabel.html)                  | Protocol address label management.                      | `add`, `del`, `list`, `flush`                                                          |
-| [ip-neighbour](https://diosney.github.io/node-iproute/modules/neighbour.html)                  | Neighbour/ARP tables management.                        | `add`, `del`, `change`, `replace`, `flush`, `show`                                     |
-| [ip-ntable](https://diosney.github.io/node-iproute/modules/ntable.html)                        | Neighbour table configuration.                          | `change`, `show`                                                                       |
-| [ip-tunnel](https://diosney.github.io/node-iproute/modules/tunnel.html)                        | Tunnel configuration.                                   | `add`, `change`, `del`, `show`, `prl`, `6rd`                                           |
-| [ip-tuntap](https://diosney.github.io/node-iproute/modules/tuntap.html)                        | TunTap tunnel configuration.                            | `add`, `del`, `show`, `list`, `lst`                                                    |
-| [ip-maddress](https://diosney.github.io/node-iproute/modules/maddress.html)                    | Multicast addresses management.                         | `add`, `del`, `show`                                                                   |
-| [ip-mroute](https://diosney.github.io/node-iproute/modules/mroute.html)                        | Multicast routing cache management.                     | `show`                                                                                 |
-| [utils](https://diosney.github.io/node-iproute/modules/utils.html)                             | Custom utility library that complements `iproute` suite. | -                                                                                      |
-| [utils.ipForwarding](https://diosney.github.io/node-iproute/modules/utils.ipForwarding.html)   | Manipulates IP forwarding.                              | `enable`, `disable`, `status`, `v{4\|6}.enable`, `v{4\|6}.disable`, `v{4\|6}.status`   |
+| Command                                                              | Description                                             | Operations                                                                             |
+|----------------------------------------------------------------------|---------------------------------------------------------|----------------------------------------------------------------------------------------|
+| [batch](https://diosney.github.io/node-iproute/modules/batch.html)   | Batch mode.                                      | `fromFile`, `fromStdin`                                                                |
+| [link](https://diosney.github.io/node-iproute/modules/link.html)     | Network devices configuration.                          | `add`, `del`, `show`, `set`, `change`                                                  |
+| [address](https://diosney.github.io/node-iproute/modules/address.html) | Protocol address management.                            | `add`, `change`, `replace`, `del`, `flush`, `save`, `restore`, `showdump`, `show`      |
+| [route](https://diosney.github.io/node-iproute/modules/route.html)   | Routing table management.                               | `show`, `flush`, `save`, `restore`, `get`, `add`, `del`, `change`, `append`, `replace` |
+| [rule](https://diosney.github.io/node-iproute/modules/rule.html)     | Routing policy database (RPDB) management.              | `add`, `del`, `save`, `restore`, `flush`, `show`, `list`                               |
+| [monitor](https://diosney.github.io/node-iproute/modules/monitor.html) | State monitoring.                                       | `on`, `close`                                                                          |
+| [addrlabel](https://diosney.github.io/node-iproute/modules/addrlabel.html) | Protocol address label management.                      | `add`, `del`, `list`, `flush`                                                          |
+| [neighbour](https://diosney.github.io/node-iproute/modules/neighbour.html) | Neighbour/ARP tables management.                        | `add`, `del`, `change`, `replace`, `flush`, `show`                                     |
+| [ntable](https://diosney.github.io/node-iproute/modules/ntable.html) | Neighbour table configuration.                          | `change`, `show`                                                                       |
+| [tunnel](https://diosney.github.io/node-iproute/modules/tunnel.html) | Tunnel configuration.                                   | `add`, `change`, `del`, `show`, `prl`, `6rd`                                           |
+| [tuntap](https://diosney.github.io/node-iproute/modules/tuntap.html) | TunTap tunnel configuration.                            | `add`, `del`, `show`, `list`, `lst`                                                    |
+| [maddress](https://diosney.github.io/node-iproute/modules/maddress.html) | Multicast addresses management.                         | `add`, `del`, `show`                                                                   |
+| [mroute](https://diosney.github.io/node-iproute/modules/mroute.html) | Multicast routing cache management.                     | `show`                                                                                 |
+| [utils](https://diosney.github.io/node-iproute/modules/utils.html)   | Custom utility library that complements `iproute` suite. | -                                                                                      |
+| [utils.ipForwarding](https://diosney.github.io/node-iproute/modules/utils.ipForwarding.html) | Manipulates IP forwarding.                              | `enable`, `disable`, `status`, `v{4\|6}.enable`, `v{4\|6}.disable`, `v{4\|6}.status`   |
 | [utils.routingTables](https://diosney.github.io/node-iproute/modules/utils.routingTables.html) | Manipulates routing tables.                             | `show`, `add`, `del`, `clear`                                                          |
 
 ## Docs

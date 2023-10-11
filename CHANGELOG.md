@@ -1,5 +1,9 @@
 ### Release Notes
 
+### 2.0.1
+
+- Minor updates to README file to fix npm styles.
+
 ### 2.0.0
 
 - Release v2.
