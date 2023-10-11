@@ -1,10 +1,6 @@
-<style>
-  h1 .heading-link {
-    display: block !important;
-  }
-</style>
+# node-iproute
 
-# node-iproute <a href="https://www.buymeacoffee.com/diosney" target="_blank"><img align="right" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="117" style="width: 117px !important;"></a>
+<a href="https://www.buymeacoffee.com/diosney" target="_blank"><img align="right" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="117" style="width: 117px !important;"></a>
 
 Show and manipulate network devices, addresses, routing, policy routing, tunnels, IP forwarding, address labels and other `iproute` objects.
 

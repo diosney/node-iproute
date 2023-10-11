@@ -37,7 +37,6 @@
 ### Documentation
 
 - Document every property with schema `format` as a `@see {@link}` in the interfaces?.
-- Add `@examples` to each module/method?.
 
 ### Contact `ip` Developers
 
