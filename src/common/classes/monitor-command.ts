@@ -112,14 +112,16 @@ export default class MonitorCommand<T_CommandOptions extends {
   }
 
   /** Listens to the events triggered by the monitor. */
-  on(event: MonitorObjects | 'error', cb: (data?: any) => void) {
+  on(event: MonitorObjects | 'error', cb: (data?: any) => void): this {
     this.emitter.on.call(this.emitter, event, cb);
+    return this;
   }
 
   /** Closes the monitor. */
   close() {
     if (this.spawnedProcess) {
-      this.spawnedProcess.kill();
+      this.spawnedProcess.removeAllListeners();
+      this.spawnedProcess.kill('SIGKILL');
     }
     this.emitter.removeAllListeners();
   }

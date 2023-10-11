@@ -9,13 +9,13 @@ import { add, del } from '../../../src/commands/address';
 import MonitorCommand from '../../../src/common/classes/monitor-command';
 import { MonitorOptions } from '../../../src/commands/monitor/monitor.interfaces';
 
-describe('monitor', () => {
+describe('monitor', function () {
+  let command: MonitorCommand<MonitorOptions>;
+
   let newAddress: AddressAddOptions = {
-    local: '2001:db8:85a3::370:7334',
+    local: '2001:db8:85a3::370:7334/128',
     dev  : 'lo'
   };
-
-  let command: MonitorCommand<MonitorOptions>;
 
   after(async function () {
     await del(newAddress, {
@@ -23,20 +23,25 @@ describe('monitor', () => {
     });
   });
 
-  it('should watch events in `all` channel', (done) => {
+  it('should watch events in `all` channel', function (done) {
     let hasDoneBeenCalled = false;
 
     let safeDone = (error?: any) => {
       if (!hasDoneBeenCalled) {
         hasDoneBeenCalled = true;
-        command.close();
+
+        if (command) {
+          command.close();
+        }
         done(error);
       }
     };
 
     monitor({
       object_: MonitorObjects.All
-    }, {})
+    }, {
+      sudo: true
+    })
       .then((_command) => {
         command = _command;
 
@@ -54,6 +59,7 @@ describe('monitor', () => {
           expect(data.object).to.be.a('string');
           expect(data.lines).to.be.an('array').with.lengthOf.at.least(1);
           expect(data.originalLine).to.be.a('string');
+
           safeDone();
         });
 
