@@ -1,5 +1,9 @@
 ### Release Notes
 
+### 2.0.0
+
+- Release v2.
+
 ### 2.0.0-beta.5
 
 - Added examples snippets to each command documentation block.
