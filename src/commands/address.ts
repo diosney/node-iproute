@@ -33,6 +33,22 @@ import CommandWithRedirectFromFilepathAndReturnedData from '../common/classes/co
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { address } from 'iproute';
+ * ```
+ *
+ * Add a new address
+ * ```
+ * await address.add({
+ *   local:  '10.3.15.3/24',
+ *   scope:  AddressScopes.Host,
+ *   dev:	 'eth0'
+ * });
+ * ```
  */
 export async function add(options: AddressAddOptions,
                           globalOptions: GlobalOptions = {}): Promise<Command<AddressAddOptions>> {
@@ -105,6 +121,21 @@ export async function replace(options: AddressAddOptions,
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { address } from 'iproute';
+ * ```
+ *
+ * Delete an address
+ * ```
+ * await address.del({
+ *   local: '10.3.15.3/24'
+ *   dev:	 'eth0'
+ * });
+ * ```
  */
 export async function del(options: AddressDeleteOptions,
                           globalOptions: GlobalOptions = {}): Promise<Command<AddressDeleteOptions>> {
@@ -137,6 +168,20 @@ export async function del(options: AddressDeleteOptions,
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { address } from 'iproute';
+ * ```
+ *
+ * Flush `eth0` addresses
+ * ```
+ * await address.flush({
+ *   dev: 'eth0'
+ * });
+ * ```
  */
 export async function flush(options: AddressFlushOptions,
                             globalOptions: GlobalOptions = {}): Promise<Command<AddressFlushOptions>> {
@@ -233,6 +278,26 @@ export async function showdump(globalOptions: GlobalOptionsWithRequiredFilePath)
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { address } from 'iproute';
+ * ```
+ *
+ * Show only `eth0` device addresses
+ * ```
+ * const addresses = await address.show({
+ *   dev: 'eth0'
+ * });
+ * ```
+ *
+ * Show all addresses
+ * ```
+ * const addresses = await address.show();
+ * const addresses = await address.show({});
+ * ```
  */
 export async function show(options: AddressShowOptions  = {},
                            globalOptions: GlobalOptions = {}): Promise<Command<AddressShowOptions> | LinkWithAddressInfo[]> {

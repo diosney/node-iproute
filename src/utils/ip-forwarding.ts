@@ -9,7 +9,6 @@ import { validate }                       from '../common/misc';
 
 const promisifiedExec = promisify(exec);
 
-// TODO: Convert this to `Command` class?
 async function sysctl(path: string,
                       action: SysctlActions,
                       globalOptions: GlobalOptions = {}): Promise<string | null> {
@@ -48,12 +47,40 @@ async function sysctl(path: string,
   return null;
 }
 
+/**
+ * Enables and checks status of IPv4 forwarding.
+ *
+ * @example
+ *
+ * ```
+ * import { utils } from 'iproute';
+ *
+ * await utils.ipForwarding.v4.enable();
+ * await utils.ipForwarding.v4.disable();
+ *
+ * const status = await utils.ipForwarding.v4.status();
+ * ```
+ */
 export const v4 = {
   enable:  (globalOptions: GlobalOptions = {}) => sysctl(SysctlPaths.Ipv4Forwarding, SysctlActions.Enable, globalOptions),
   disable: (globalOptions: GlobalOptions = {}) => sysctl(SysctlPaths.Ipv4Forwarding, SysctlActions.Disable, globalOptions),
   status:  (globalOptions: GlobalOptions = {}) => sysctl(SysctlPaths.Ipv4Forwarding, SysctlActions.Status, globalOptions)
 };
 
+/**
+ * Enables and checks status of IPv6 forwarding.
+ *
+ * @example
+ *
+ * ```
+ * import { utils } from 'iproute';
+ *
+ * await utils.ipForwarding.v6.enable();
+ * await utils.ipForwarding.v6.disable();
+ *
+ * const status = await utils.ipForwarding.v6.status();
+ * ```
+ */
 export const v6 = {
   enable:  (globalOptions: GlobalOptions = {}) => sysctl(SysctlPaths.Ipv6Forwarding, SysctlActions.Enable, globalOptions),
   disable: (globalOptions: GlobalOptions = {}) => sysctl(SysctlPaths.Ipv6Forwarding, SysctlActions.Disable, globalOptions),
@@ -62,6 +89,16 @@ export const v6 = {
 
 /**
  * Enables both IPv4 & IPv6 IP forwarding.
+ *
+ * @param globalOptions  - Global parameters options that affects the command execution.
+ *
+ * @example
+ *
+ * ```
+ * import { utils } from 'iproute';
+ *
+ * await utils.ipForwarding.enable();
+ * ```
  */
 export const enable = async (globalOptions: GlobalOptions = {}) => {
   await Promise.all([ v4.enable(globalOptions), v6.enable(globalOptions) ]);
@@ -69,6 +106,16 @@ export const enable = async (globalOptions: GlobalOptions = {}) => {
 
 /**
  * Disables both IPv4 & IPv6 IP forwarding.
+ *
+ * @param globalOptions  - Global parameters options that affects the command execution.
+ *
+ * @example
+ *
+ * ```
+ * import { utils } from 'iproute';
+ *
+ * await utils.ipForwarding.disable();
+ * ```
  */
 export const disable = async (globalOptions: GlobalOptions = {}) => {
   await Promise.all([ v4.disable(globalOptions), v6.disable(globalOptions) ]);
@@ -76,6 +123,16 @@ export const disable = async (globalOptions: GlobalOptions = {}) => {
 
 /**
  * Checks both IPv4 & IPv6 IP forwarding statuses.
+ *
+ * @param globalOptions  - Global parameters options that affects the command execution.
+ *
+ * @example
+ *
+ * ```
+ * import { utils } from 'iproute';
+ *
+ * const status = await utils.ipForwarding.status();
+ * ```
  */
 export const status = async (globalOptions: GlobalOptions = {}): Promise<{ v4: string; v6: string }> => {
   const results = await Promise.all([ v4.status(globalOptions), v6.status(globalOptions) ]);

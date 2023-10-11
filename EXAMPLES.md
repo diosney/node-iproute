@@ -2,6 +2,8 @@
 
 Several usage examples to give you an idea of what you can do with the library.
 
+> These examples are gathered as a whole here for quick find, but they are also in each of the module methods.
+
 ### `ip -batch` Batch mode support / [Man Page](https://man7.org/linux/man-pages/man8/ip.8.html)
 
 	import { batch } from 'iproute';
@@ -236,7 +238,7 @@ The `rules` output is an array of routes with the matching [RuleInfo[]](https://
       object_: MonitorObjects.All     // 'all'
     });
 
-*After starting the monitor, you can start watching for changes:*
+*After starting the monitor, you can start watching for changes*
 
     let command: MonitorCommand<MonitorOptions>;
 
@@ -247,17 +249,17 @@ The `rules` output is an array of routes with the matching [RuleInfo[]](https://
       command = _command;
     
       command.on(MonitorObjects.All, (data: MonitorEmittedData) => {
-        // Do something.      
+        // Do something with `data`.      
       });
     
       command.on('error', (error) => {
-        // Do something.
+        // Do something with `data`. 
       });
     });
 
     setTimeout(() => {
        command.close();
-    }, 5000)
+    }, 5000);
 
 The `data` object will hold the `iproute` output data, which at this moment doesn't support the `-json` option, so right
 now will conform to the interface [MonitorEmittedData](https://diosney.github.io/node-iproute/interfaces/MonitorEmittedData.html).

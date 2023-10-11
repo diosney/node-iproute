@@ -30,6 +30,20 @@ import { RouteAddSchema }              from './route/add.schema';
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { route } from 'iproute';
+ * ```
+ *
+ * Show routes from all tables
+ * ```
+ * const routes = await route.show({
+ *   table: RouteRoutingTables.All
+ * });
+ * ```
  */
 export async function show(options: RouteShowOptions    = {},
                            globalOptions: GlobalOptions = {}): Promise<Command<RouteShowOptions> | RouteInfo[]> {
@@ -63,6 +77,20 @@ export async function show(options: RouteShowOptions    = {},
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { route } from 'iproute';
+ * ```
+ *
+ * Flush the table cache
+ * ```
+ * await route.flush({
+ *   table: RouteRoutingTables.Cache
+ * });
+ * ```
  */
 export async function flush(options: RouteShowOptions,
                             globalOptions: GlobalOptions = {}): Promise<Command<RouteShowOptions>> {
@@ -171,6 +199,51 @@ export async function get(options: RouteGetOptions,
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { route } from 'iproute';
+ * ```
+ *
+ * Unicast type route (the default if not specified)
+ * ```
+ * await route.add({
+ *   to_:	'10.0.0.0/24',
+ *   via:	{
+ *     address_: '192.168.56.1'
+ *   }
+ * });
+ * ```
+ *
+ * Multipath route with load balance between devices
+ * ```
+ * await route.add({
+ *   to_:	  'default',
+ *   scope:	AddressScopes.Global,
+ *   nexthops_:  [{
+ *     nexthop: true,
+ *     dev:     'ppp0'
+ *   },
+ *   {
+ *     nexthop: true,
+ *     dev:     'ppp1'
+ *   }]
+ * });
+ * ```
+ *
+ * A NAT route
+ * ```
+ * await route.add({
+ *   type_:	RoutingTableTypes.Nat,
+ *   to_:	    '10.0.0.0/24',
+ *   table:	300,
+ *   via:	{
+ *     address_: '192.168.56.1'
+ *   }
+ * });
+ * ```
  */
 export async function add(options: RouteAddOptions,
                           globalOptions: GlobalOptions = {}): Promise<Command<RouteAddOptions>> {
@@ -195,6 +268,29 @@ export async function add(options: RouteAddOptions,
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { route } from 'iproute';
+ * ```
+ *
+ * Delete multipath route with load balance between devices
+ * ```
+ * await route.del({
+ *   to_:	  'default',
+ *   scope:	AddressScopes.Global,
+ *   nexthops_:  [{
+ *     nexthop: true,
+ *     dev:     'ppp0'
+ *   },
+ *   {
+ *     nexthop: true,
+ *     dev:     'ppp1'
+ *  }]
+ * });
+ * ```
  */
 export async function del(options: RouteAddOptions,
                           globalOptions: GlobalOptions = {}): Promise<Command<RouteAddOptions>> {
@@ -267,6 +363,51 @@ export async function append(options: RouteAddOptions,
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { route } from 'iproute';
+ * ```
+ *
+ * Unicast type route (the default if not specified)
+ * ```
+ * await route.add({
+ *   to_:	'10.0.0.0/24',
+ *   via:	{
+ *     address_: '192.168.56.1'
+ *   }
+ * });
+ * ```
+ *
+ * Multipath route with load balance between devices
+ * ```
+ * await route.add({
+ *   to_:	  'default',
+ *   scope:	AddressScopes.Global,
+ *   nexthops_:  [{
+ *     nexthop: true,
+ *     dev:     'ppp0'
+ *   },
+ *   {
+ *     nexthop: true,
+ *     dev:     'ppp1'
+ *   }]
+ * });
+ * ```
+ *
+ * A NAT route
+ * ```
+ * await route.add({
+ *   type_:	RoutingTableTypes.Nat,
+ *   to_:	    '10.0.0.0/24',
+ *   table:	300,
+ *   via:	{
+ *     address_: '192.168.56.1'
+ *   }
+ * });
+ * ```
  */
 export async function replace(options: RouteAddOptions,
                               globalOptions: GlobalOptions = {}): Promise<Command<RouteAddOptions>> {

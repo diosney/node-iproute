@@ -17,6 +17,22 @@ import { NeighbourInfo, NeighbourShowOptions } from './neighbour/show.interfaces
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { neighbour } from 'iproute';
+ * ```
+ *
+ * Add a simple ARP entry
+ * ```
+ * await neighbour.add({
+ *   to    : '192.168.1.100',
+ *   lladdr: '00:aa:bb:cc:dd:ee',
+ *   dev   : 'eth0'
+ * });
+ * ```
  */
 export async function add(options: NeighbourAddOptions,
                           globalOptions: GlobalOptions = {}): Promise<Command<NeighbourAddOptions>> {
@@ -48,6 +64,21 @@ export async function add(options: NeighbourAddOptions,
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { neighbour } from 'iproute';
+ * ```
+ *
+ * Delete an ARP entry
+ * ```
+ * await neighbour.del({
+ *   to : '192.168.1.100',
+ *   dev: 'eth0'
+ * });
+ * ```
  */
 export async function del(options: NeighbourDelOptions,
                           globalOptions: GlobalOptions = {}): Promise<Command<NeighbourDelOptions>> {
@@ -124,6 +155,20 @@ export async function replace(options: NeighbourAddOptions,
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { neighbour } from 'iproute';
+ * ```
+ *
+ * Flush neighbour entries from dev `eth0`
+ * ```
+ * await neighbour.flush({
+ *   dev: 'eth0'
+ * });
+ * ```
  */
 export async function flush(options: NeighbourShowOptions,
                             globalOptions: GlobalOptions = {}): Promise<Command<NeighbourShowOptions>> {
@@ -148,6 +193,18 @@ export async function flush(options: NeighbourShowOptions,
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { neighbour } from 'iproute';
+ * ```
+ *
+ * Show all neighbour entries
+ * ```
+ * const entries = await neighbour.show({});
+ * ```
  */
 export async function show(options: NeighbourShowOptions = {},
                            globalOptions: GlobalOptions  = {}): Promise<Command<NeighbourShowOptions> | NeighbourInfo[]> {

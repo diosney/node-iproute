@@ -24,6 +24,24 @@ import { LinkShowSchema } from './link/show.schema';
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { link } from 'iproute';
+ * ```
+ *
+ * Add a link
+ * ```
+ * await link.add({
+ *   link:    'lo',
+ *   name:    'dummy100',
+ *   address: '00:11:22:33:44:55',
+ *   mtu:     1500,
+ *   type:    VirtualLinkTypes.Dummy
+ * });
+ * ```
  */
 export async function add(options: LinkAddOptions,
                           globalOptions: GlobalOptions = {}): Promise<Command<LinkAddOptions>> {
@@ -48,6 +66,20 @@ export async function add(options: LinkAddOptions,
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { link } from 'iproute';
+ * ```
+ *
+ * Delete a link
+ * ```
+ * await link.del({
+ *   dev_: 'eth0.1@eth0'
+ * });
+ * ```
  */
 export async function del(options: LinkDeleteOptions,
                           globalOptions: GlobalOptions = {}): Promise<Command<LinkDeleteOptions>> {
@@ -72,6 +104,26 @@ export async function del(options: LinkDeleteOptions,
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { link } from 'iproute';
+ * ```
+ *
+ * Show link information about the `eth0` device
+ * ```
+ * const links = await link.show({
+ *   dev: 'eth0'
+ * });
+ * ```
+ *
+ * Shortcut to show all links
+ * ```
+ * const links = await link.show();
+ * const links = await link.show({});
+ * ```
  */
 export async function show(options: LinkShowOptions     = {},
                            globalOptions: GlobalOptions = {}): Promise<Command<LinkShowOptions> | LinkInfo[]> {

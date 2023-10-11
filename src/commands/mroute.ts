@@ -13,6 +13,18 @@ import { MrouteShowSchema } from './mroute/show.schema';
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { mroute } from 'iproute';
+ * ```
+ *
+ * Show multicast routes
+ * ```
+ * const entries = await mroute.show({});
+ * ```
  */
 export async function show(options: MrouteShowOptions,
                            globalOptions: GlobalOptions = {}): Promise<Command<MrouteShowOptions> | MrouteInfo[]> {

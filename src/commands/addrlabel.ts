@@ -21,6 +21,21 @@ import { AddrlabelDelSchema } from './addrlabel/del.schema';
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { addrlabel } from 'iproute';
+ * ```
+ *
+ * Add an address label
+ * ```
+ * await addrlabel.add({
+ *   prefix: '2001:db8::/32',
+ *   label:   100,
+ * });
+ * ```
  */
 export async function add(options: AddrlabelAddOptions,
                           globalOptions: GlobalOptions = {}): Promise<Command<AddrlabelAddOptions>> {
@@ -45,6 +60,20 @@ export async function add(options: AddrlabelAddOptions,
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { addrlabel } from 'iproute';
+ * ```
+ *
+ * Delete an address label
+ * ```
+ * await addrlabel.del({
+ *   prefix: '2001:db8::/32'
+ * });
+ * ```
  */
 export async function del(options: AddrlabelDelOptions,
                           globalOptions: GlobalOptions = {}): Promise<Command<AddrlabelDelOptions>> {
@@ -69,6 +98,18 @@ export async function del(options: AddrlabelDelOptions,
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { addrlabel } from 'iproute';
+ * ```
+ *
+ * Flush address labels
+ * ```
+ * await addrlabel.flush();
+ * ```
  */
 export async function flush(globalOptions: GlobalOptions = {}): Promise<Command<Empty>> {
   const cmd = ['ip', 'addrlabel', 'flush'];
@@ -90,6 +131,18 @@ export async function flush(globalOptions: GlobalOptions = {}): Promise<Command<
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { addrlabel } from 'iproute';
+ * ```
+ *
+ * Show all address labels
+ * ```
+ * const labels = await addrlabel.list();
+ * ```
  */
 export async function list(globalOptions: GlobalOptions = {}): Promise<Command<Empty> | AddrlabelInfo[]> {
 

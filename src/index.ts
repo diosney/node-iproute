@@ -115,6 +115,11 @@ export { ParametersError } from './common/errors/parameters';
  *
  * @see [Man Page](https://man7.org/linux/man-pages/man8/ip.8.html)
  * @category IP Commands
+ *
+ * @example
+ * ```
+ * import { batch } from 'iproute';
+ * ```
  */
 export { batchModule as batch };
 
@@ -123,6 +128,11 @@ export { batchModule as batch };
  *
  * @see [Man Page](https://man7.org/linux/man-pages/man8/ip-link.8.html)
  * @category IP Commands
+ *
+ * @example
+ * ```
+ * import { link } from 'iproute';
+ * ```
  */
 export { linkModule as link };
 
@@ -198,6 +208,11 @@ export { LinkSetXdpPinnedOptions } from './commands/link/xdp-options/pinned.inte
  *
  * @see [Man Page](https://man7.org/linux/man-pages/man8/ip-address.8.html)
  * @category IP Commands
+ *
+ * @example
+ * ```
+ * import { address } from 'iproute';
+ * ```
  */
 export { addressModule as address };
 
@@ -218,6 +233,11 @@ export {
  *
  * @see [Man Page](https://man7.org/linux/man-pages/man8/ip-route.8.html)
  * @category IP Commands
+ *
+ * @example
+ * ```
+ * import { route } from 'iproute';
+ * ```
  */
 export { routeModule as route };
 export {
@@ -251,6 +271,11 @@ export {
  *
  * @see [Man Page](https://man7.org/linux/man-pages/man8/ip-rule.8.html)
  * @category IP Commands
+ *
+ * @example
+ * ```
+ * import { rule } from 'iproute';
+ * ```
  */
 export { ruleModule as rule };
 export { RoutingTables, RuleTypes } from './commands/rule.constants';
@@ -262,6 +287,11 @@ export { RuleShowOptions, RuleInfo } from './commands/rule/show.interfaces';
  *
  * @see [Man Page](https://man7.org/linux/man-pages/man8/ip-monitor.8.html)
  * @category IP Commands
+ *
+ * @example
+ * ```
+ * import { monitor } from 'iproute';
+ * ```
  */
 export { monitorModule as monitor };
 export { MonitorObjects } from './commands/monitor.constants';
@@ -276,6 +306,11 @@ export { MonitorOptions } from './commands/monitor/monitor.interfaces';
  *
  * @see [Man Page](https://man7.org/linux/man-pages/man8/ip-addrlabel.8.html)
  * @category IP Commands
+ *
+ * @example
+ * ```
+ * import { addrlabel } from 'iproute';
+ * ```
  */
 export { addrlabelModule as addrlabel };
 export { AddrlabelAddOptions } from './commands/addrlabel/add.interfaces';
@@ -294,8 +329,14 @@ export { AddrlabelInfo } from './commands/addrlabel/list.interfaces';
  *
  * @see [Man Page](https://man7.org/linux/man-pages/man8/ip-neighbour.8.html)
  * @category IP Commands
+ *
+ * @example
+ * ```
+ * import { neighbour } from 'iproute';
+ * ```
  */
 export { neighbourModule as neighbour };
+export { NudStates } from './commands/neighbour.constants';
 export { NeighbourAddOptions } from './commands/neighbour/add.interfaces';
 export { NeighbourDelOptions } from './commands/neighbour/del.interfaces';
 export { NeighbourShowOptions, NeighbourInfo } from './commands/neighbour/show.interfaces';
@@ -308,9 +349,15 @@ export { NeighbourShowOptions, NeighbourInfo } from './commands/neighbour/show.i
  *
  * @see [Man Page](https://man7.org/linux/man-pages/man8/ip-ntable.8.html)
  * @category IP Commands
+ *
+ * @example
+ * ```
+ * import { ntable } from 'iproute';
+ * ```
  */
 export { ntableModule as ntable };
 export { NtableInfo, NtableShowOptions } from './commands/ntable/show.interfaces';
+export { NtableChangeOptions } from './commands/ntable/change.interfaces';
 
 /**
  * Tunnel configuration.
@@ -321,6 +368,11 @@ export { NtableInfo, NtableShowOptions } from './commands/ntable/show.interfaces
  *
  * @see [Man Page](https://man7.org/linux/man-pages/man8/ip-tunnel.8.html)
  * @category IP Commands
+ *
+ * @example
+ * ```
+ * import { tunnel } from 'iproute';
+ * ```
  */
 export { tunnelModule as tunnel };
 export { TunnelInfo, TunnelModes } from './commands/tunnel.constants';
@@ -333,6 +385,11 @@ export { TunnelPrlOptions } from './commands/tunnel/prl.interfaces';
  *
  * TODO: Man page doesn't exist yet.
  * @category IP Commands
+ *
+ * @example
+ * ```
+ * import { tuntap } from 'iproute';
+ * ```
  */
 export { tuntapModule as tuntap };
 export { TunTapTunnelModes } from './commands/tuntap.constants';
@@ -343,6 +400,11 @@ export { TunTapTunnelShowOptions, TunTapTunnelInfo } from './commands/tuntap/sho
  * Multicast addresses management.
  *
  * @category IP Commands
+ *
+ * @example
+ * ```
+ * import { maddress } from 'iproute';
+ * ```
  */
 export { maddressModule as maddress };
 export { MaddressAddOptions } from './commands/maddress/add.interfaces';
@@ -359,6 +421,11 @@ export { MaddressShowOptions, MaddressInfo } from './commands/maddress/show.inte
  * This limitation will be removed in the future.
  *
  * @category IP Commands
+ *
+ * @example
+ * ```
+ * import { mroute } from 'iproute';
+ * ```
  */
 export { mrouteModule as mroute };
 export { MrouteInfo, MrouteShowOptions } from './commands/mroute/show.interfaces';
@@ -366,6 +433,11 @@ export { MrouteInfo, MrouteShowOptions } from './commands/mroute/show.interfaces
 /**
  * Custom utility library that complements `iproute` suite.
  * @category IP Commands
+ *
+ * @example
+ * ```
+ * import { utils } from 'iproute';
+ * ```
  */
 export { utilsModule as utils };
 export { RoutingTable, RoutingTableOptions } from './utils/routing-tables.interfaces';

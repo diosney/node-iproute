@@ -12,6 +12,44 @@ import { MonitorSchema } from './monitor/monitor.schema';
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { monitor } from 'iproute';
+ * ```
+ *
+ * Monitor all objects state changes
+ * ```
+ * monitor({
+ *   object_: MonitorObjects.All
+ * });
+ * ```
+ *
+ * After starting the monitor, you can start watching for changes
+ * ```
+ * let command: MonitorCommand<MonitorOptions>;
+ *
+ * monitor({
+ *   object_: MonitorObjects.All
+ * })
+ * .then((_command) => {
+ *   command = _command;
+ *
+ *   command.on(MonitorObjects.All, (data: MonitorEmittedData) => {
+ *     // Do something with `data`.
+ *   });
+ *
+ *   command.on('error', (error) => {
+ *     // Do something with `data`.
+ *   });
+ * });
+ *
+ * setTimeout(() => {
+ *   command.close();
+ * }, 5000);
+ * ```
  */
 export async function monitor(options: MonitorOptions,
                               globalOptions: GlobalOptions = {}): Promise<MonitorCommand<MonitorOptions>> {

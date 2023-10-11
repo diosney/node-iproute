@@ -16,6 +16,20 @@ import { TunTapShowSchema } from './tuntap/show.schema';
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { tuntap } from 'iproute';
+ * ```
+ *
+ * Create a new tuntap device
+ * ```
+ * await tuntap.add({
+ *   mode: TunTapTunnelModes.Tun
+ * });
+ * ```
  */
 export async function add(options: TunTapTunnelAddOptions,
                           globalOptions: GlobalOptions = {}): Promise<Command<TunTapTunnelAddOptions>> {
@@ -40,6 +54,20 @@ export async function add(options: TunTapTunnelAddOptions,
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { tuntap } from 'iproute';
+ * ```
+ *
+ * Delete a tunnel
+ * ```
+ * await tuntap.del({
+ *   mode: TunTapTunnelModes.Tun
+ * });
+ * ```
  */
 export async function del(options: TunTapTunnelAddOptions,
                           globalOptions: GlobalOptions = {}): Promise<Command<TunTapTunnelAddOptions>> {
@@ -64,6 +92,18 @@ export async function del(options: TunTapTunnelAddOptions,
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { tuntap } from 'iproute';
+ * ```
+ *
+ * Show tuntap devices
+ * ```
+ * const entries = await tuntap.show({});
+ * ```
  */
 export async function show(options: TunTapTunnelShowOptions = {},
                            globalOptions: GlobalOptions     = {}): Promise<Command<TunTapTunnelShowOptions> | TunTapTunnelInfo[]> {

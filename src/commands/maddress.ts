@@ -15,6 +15,21 @@ import { MaddressShowSchema } from './maddress/show.schema';
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { maddress } from 'iproute';
+ * ```
+ *
+ * Add a multicast address
+ * ```
+ * await maddress.add({
+ *   address_: '33:33:00:00:00:01',
+ *   dev: 'enp0s3'
+ * });
+ * ```
  */
 export async function add(options: MaddressAddOptions,
                           globalOptions: GlobalOptions = {}): Promise<Command<MaddressAddOptions>> {
@@ -39,6 +54,21 @@ export async function add(options: MaddressAddOptions,
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { maddress } from 'iproute';
+ * ```
+ *
+ * Delete a tunnel
+ * ```
+ * await maddress.del({
+ *   address_: '33:33:00:00:00:01',
+ *   dev: 'enp0s3'
+ * });
+ * ```
  */
 export async function del(options: MaddressAddOptions,
                           globalOptions: GlobalOptions = {}): Promise<Command<MaddressAddOptions>> {
@@ -63,6 +93,18 @@ export async function del(options: MaddressAddOptions,
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { maddress } from 'iproute';
+ * ```
+ *
+ * Show multicast addresses
+ * ```
+ * const entries = await maddress.show({});
+ * ```
  */
 export async function show(options: MaddressShowOptions,
                            globalOptions: GlobalOptions = {}): Promise<Command<MaddressShowOptions> | MaddressInfo[]> {

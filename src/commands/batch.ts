@@ -18,6 +18,20 @@ import {
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { batch } from 'iproute';
+ * ```
+ *
+ * Executes batch commands from a file
+ * ```
+ * await batch.fromFile({
+ *   filePath: '/tmp/filepath'
+ * });
+ * ```
  */
 export async function fromFile(globalOptions: GlobalOptionsWithRequiredFilePath): Promise<Command<Empty>> {
   const cmd = ['ip', '-batch'];
@@ -40,6 +54,25 @@ export async function fromFile(globalOptions: GlobalOptionsWithRequiredFilePath)
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { batch } from 'iproute';
+ * ```
+ *
+ * Executes batch commands from stdin
+ * ```
+ *  await batch.fromStdin({
+ *    stdin: [
+ *      'address add local 127.0.1.4/32 dev lo',
+ *      'address add local 127.0.1.5/32 dev lo',
+ *      'address add local 127.0.1.6/32 dev lo',
+ *      'address add local 127.0.1.7/32 dev lo'
+ *    ].join('\n')
+ *  });
+ * ```
  */
 export async function fromStdin(globalOptions: GlobalOptionsWithRequiredStdin): Promise<Command<Empty>> {
   const cmd = ['ip', '-batch'];

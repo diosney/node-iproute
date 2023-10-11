@@ -27,6 +27,32 @@ import { RuleShowSchema }            from './rule/show.schema';
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { rule } from 'iproute';
+ * ```
+ *
+ * Unicast type rule (the default if not specified)
+ * ```
+ * await rule.add({
+ *   from:	      '192.203.80.0/24',
+ *   table:	  300,
+ *   preference: 220
+ * });
+ * ```
+ *
+ * NAT type rule
+ * ```
+ * await rule.add({
+ *   from:	        '193.233.7.83',
+ *   table:	    1,
+ *   preference:   320,
+ *   nat:		    '192.203.80.144'
+ * });
+ * ```
  */
 export async function add(options: RuleAddOptions,
                           globalOptions: GlobalOptions = {}): Promise<Command<RuleAddOptions>> {
@@ -51,6 +77,20 @@ export async function add(options: RuleAddOptions,
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { rule } from 'iproute';
+ * ```
+ *
+ * Delete the unused default rule
+ * ```
+ * await rule.del({
+ *   preference: 32767
+ * });
+ * ```
  */
 export async function del(options: RuleAddOptions,
                           globalOptions: GlobalOptions = {}): Promise<Command<RuleAddOptions>> {
@@ -122,6 +162,18 @@ export async function restore(globalOptions: GlobalOptionsWithRequiredFilePath):
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { rule } from 'iproute';
+ * ```
+ *
+ * Flush the rules
+ * ```
+ * await rule.flush();
+ * ```
  */
 export async function flush(globalOptions: GlobalOptions = {}): Promise<Command<Empty>> {
   const cmd = [ 'ip', 'rule', 'flush' ];
@@ -144,6 +196,18 @@ export async function flush(globalOptions: GlobalOptions = {}): Promise<Command<
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { rule } from 'iproute';
+ * ```
+ *
+ * Show all rules
+ * ```
+ * const rules = await rule.show();
+ * ```
  */
 export async function show(options: RuleShowOptions     = {},
                            globalOptions: GlobalOptions = {}): Promise<Command<RuleShowOptions> | RuleInfo[]> {

@@ -41,6 +41,18 @@ export async function change(options: NtableChangeOptions,
  *
  * @throws {@link ParametersError} - Throws when passed parameters are invalid.
  * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { ntable } from 'iproute';
+ * ```
+ *
+ * Show all neighbour tables
+ * ```
+ * const entries = await ntable.show({});
+ * ```
  */
 export async function show(options: NtableShowOptions   = {},
                            globalOptions: GlobalOptions = {}): Promise<Command<NtableShowOptions> | NtableInfo[]> {
