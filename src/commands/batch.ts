@@ -64,14 +64,14 @@ export async function fromFile(globalOptions: GlobalOptionsWithRequiredFilePath)
  *
  * Executes batch commands from stdin
  * ```
- *  await batch.fromStdin({
- *    stdin: [
- *      'address add local 127.0.1.4/32 dev lo',
- *      'address add local 127.0.1.5/32 dev lo',
- *      'address add local 127.0.1.6/32 dev lo',
- *      'address add local 127.0.1.7/32 dev lo'
- *    ].join('\n')
- *  });
+ * await batch.fromStdin({
+ *   stdin: [
+ *     'address add local 127.0.1.4/32 dev lo',
+ *     'address add local 127.0.1.5/32 dev lo',
+ *     'address add local 127.0.1.6/32 dev lo',
+ *     'address add local 127.0.1.7/32 dev lo'
+ *   ].join('\n')
+ * });
  * ```
  */
 export async function fromStdin(globalOptions: GlobalOptionsWithRequiredStdin): Promise<Command<Empty>> {
