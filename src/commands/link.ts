@@ -77,7 +77,7 @@ export async function add(options: LinkAddOptions,
  * Delete a link
  * ```
  * await link.del({
- *   dev_: 'eth0.1@eth0'
+ *   dev: 'eth0.1@eth0'
  * });
  * ```
  */

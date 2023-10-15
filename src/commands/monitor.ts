@@ -23,7 +23,7 @@ import { MonitorSchema } from './monitor/monitor.schema';
  * Monitor all objects state changes
  * ```
  * monitor({
- *   object_: MonitorObjects.All
+ *   object: MonitorObjects.All
  * });
  * ```
  *
@@ -32,7 +32,7 @@ import { MonitorSchema } from './monitor/monitor.schema';
  * let command: MonitorCommand<MonitorOptions>;
  *
  * monitor({
- *   object_: MonitorObjects.All
+ *   object: MonitorObjects.All
  * })
  * .then((_command) => {
  *   command = _command;

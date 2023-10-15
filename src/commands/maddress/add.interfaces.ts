@@ -4,7 +4,7 @@
  */
 export interface MaddressAddOptions {
   /** The link-layer multicast address. */
-  address_: string;
+  address: string;
   /** The device to join/leave this multicast address. */
   dev: string;
 }

@@ -1,13 +1,12 @@
 import { JSONSchemaType } from 'ajv';
-import isPlainObject      from 'lodash.isplainobject';
-import { promisify }      from 'util';
-import { exec }           from 'child_process';
+import isPlainObject from 'lodash.isplainobject';
+import { promisify } from 'util';
+import { exec } from 'child_process';
 
-import { invisibleKeySuffix }             from '../constants/regexes';
 import { GlobalOptionsSchema, SchemaIds } from '../constants/schemas';
-import { CommandError }                   from '../errors/command';
-import { GlobalOptions }                  from '../interfaces/common';
-import { validate }                       from '../misc';
+import { CommandError } from '../errors/command';
+import { GlobalOptions } from '../interfaces/common';
+import { validate } from '../misc';
 
 const promisifiedExec = promisify(exec);
 
@@ -77,8 +76,7 @@ export default class Command<T_CommandOptions extends { [index: string]: any; }>
                             schema?: JSONSchemaType<any>): Array<string | number> {
 
     let cmd: Array<string | number> = [];
-
-    let isVisibleKey = (key.search(invisibleKeySuffix) === -1);
+    let isVisibleKey                = !schema?.keyless;
 
     if (typeof value === 'string' || typeof value === 'number') {
       if (isVisibleKey && key) {
@@ -110,7 +108,7 @@ export default class Command<T_CommandOptions extends { [index: string]: any; }>
         cmd.push(key);
       }
       value.forEach((nestedValue) => {
-        if(isPlainObject(nestedValue) && schema?.items) {
+        if (isPlainObject(nestedValue) && schema?.items) {
           cmd.push(...this.getCmdFromOptions(nestedValue, '', orderKeysBySchema, schema?.items));
           return;
         }

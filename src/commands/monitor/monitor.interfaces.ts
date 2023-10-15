@@ -6,7 +6,7 @@ import { MonitorObjects } from '../monitor.constants';
  */
 export interface MonitorOptions {
   /** Object type to monitor. */
-  object_: MonitorObjects;
+  object: MonitorObjects;
   /**
    * If set, a prefix is displayed before each message to show the family of the message.
    * For `monitor`, is always enforced internally for consistency.

@@ -6,7 +6,7 @@ export const Tests: TestFixture<LinkSetOptions>[] = [
   {
     description: 'with several options set (1)',
     options: {
-      dev_: 'ppp0',
+      dev: 'ppp0',
       mtu: 1400
     },
     expectedCmd: [
@@ -23,10 +23,10 @@ export const Tests: TestFixture<LinkSetOptions>[] = [
   {
     description: 'with several options set (2)',
     options: {
-      dev_: 'eth0',
+      dev: 'eth0',
       xdp: {
         [XdpOptionTypes.Object]: {
-          file_: 'prog.o'
+          file: 'prog.o'
         }
       }
     },
@@ -45,10 +45,10 @@ export const Tests: TestFixture<LinkSetOptions>[] = [
   {
     description: 'with several options set (2)',
     options: {
-      dev_: 'eth0',
+      dev: 'eth0',
       xdp: {
         [XdpOptionTypes.Object]: {
-          file_: 'prog.o',
+          file:    'prog.o',
           section: 'foo'
         }
       }
@@ -70,10 +70,10 @@ export const Tests: TestFixture<LinkSetOptions>[] = [
   {
     description: 'with several options set (2)',
     options: {
-      dev_: 'eth0',
+      dev: 'eth0',
       xdp: {
         [XdpOptionTypes.Pinned]:{
-          file_:'/sys/fs/bpf/foo'
+          file: '/sys/fs/bpf/foo'
         }
       }
     },

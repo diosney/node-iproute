@@ -5,9 +5,9 @@ export const Tests: TestFixture<RouteAddOptions>[] = [
   {
     description: 'with `to` `via` and `dev`',
     options: {
-      to_: 'default',
+      to: 'default',
       via: {
-        address_: '192.168.1.1'
+        address: '192.168.1.1'
       },
       dev: 'eth0'
     },

@@ -1,8 +1,8 @@
 import { JSONSchemaType } from 'ajv';
 
 import { ExtendedLinkTypes } from '../link.constants';
-import { SchemaIds }                from '../../common/constants/schemas';
-import { LinkShowOptions }          from './show.interfaces';
+import { SchemaIds } from '../../common/constants/schemas';
+import { LinkShowOptions } from './show.interfaces';
 
 export const LinkShowSchema: JSONSchemaType<LinkShowOptions> = {
   $id:        SchemaIds.LinkShow,
@@ -21,7 +21,7 @@ export const LinkShowSchema: JSONSchemaType<LinkShowOptions> = {
     },
     up:     {
       type:     'boolean',
-      enum:     [ true ],
+      enum:     [true],
       nullable: true
     },
     master: {

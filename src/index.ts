@@ -71,7 +71,6 @@ export {
 export { SchemaIds } from './common/constants/schemas';
 
 export {
-  invisibleKeySuffix,
   mac,
   hex4Digits,
   ipv4,

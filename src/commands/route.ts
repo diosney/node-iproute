@@ -210,9 +210,9 @@ export async function get(options: RouteGetOptions,
  * Unicast type route (the default if not specified)
  * ```
  * await route.add({
- *   to_:	'10.0.0.0/24',
+ *   to:	'10.0.0.0/24',
  *   via:	{
- *     address_: '192.168.56.1'
+ *     address: '192.168.56.1'
  *   }
  * });
  * ```
@@ -220,9 +220,9 @@ export async function get(options: RouteGetOptions,
  * Multipath route with load balance between devices
  * ```
  * await route.add({
- *   to_:	  'default',
+ *   to:	  'default',
  *   scope:	AddressScopes.Global,
- *   nexthops_:  [{
+ *   nexthops:  [{
  *     nexthop: true,
  *     dev:     'ppp0'
  *   },
@@ -236,11 +236,11 @@ export async function get(options: RouteGetOptions,
  * A NAT route
  * ```
  * await route.add({
- *   type_:	RoutingTableTypes.Nat,
- *   to_:	    '10.0.0.0/24',
+ *   type:	RoutingTableTypes.Nat,
+ *   to:	    '10.0.0.0/24',
  *   table:	300,
  *   via:	{
- *     address_: '192.168.56.1'
+ *     address: '192.168.56.1'
  *   }
  * });
  * ```
@@ -279,9 +279,9 @@ export async function add(options: RouteAddOptions,
  * Delete multipath route with load balance between devices
  * ```
  * await route.del({
- *   to_:	  'default',
+ *   to:	  'default',
  *   scope:	AddressScopes.Global,
- *   nexthops_:  [{
+ *   nexthops:  [{
  *     nexthop: true,
  *     dev:     'ppp0'
  *   },
@@ -374,9 +374,9 @@ export async function append(options: RouteAddOptions,
  * Unicast type route (the default if not specified)
  * ```
  * await route.add({
- *   to_:	'10.0.0.0/24',
+ *   to:	'10.0.0.0/24',
  *   via:	{
- *     address_: '192.168.56.1'
+ *     address: '192.168.56.1'
  *   }
  * });
  * ```
@@ -384,9 +384,9 @@ export async function append(options: RouteAddOptions,
  * Multipath route with load balance between devices
  * ```
  * await route.add({
- *   to_:	  'default',
+ *   to:	  'default',
  *   scope:	AddressScopes.Global,
- *   nexthops_:  [{
+ *   nexthops:  [{
  *     nexthop: true,
  *     dev:     'ppp0'
  *   },
@@ -400,11 +400,11 @@ export async function append(options: RouteAddOptions,
  * A NAT route
  * ```
  * await route.add({
- *   type_:	RoutingTableTypes.Nat,
- *   to_:	    '10.0.0.0/24',
+ *   type:	RoutingTableTypes.Nat,
+ *   to:	    '10.0.0.0/24',
  *   table:	300,
  *   via:	{
- *     address_: '192.168.56.1'
+ *     address: '192.168.56.1'
  *   }
  * });
  * ```

@@ -6,7 +6,7 @@ export const Tests: TestFixture<LinkDeleteOptions>[] = [
   {
     description: 'with only `dev`',
     options: {
-      dev_: 'vlan100'
+      dev: 'vlan100'
     },
     expectedCmd: [
       '',
@@ -20,7 +20,7 @@ export const Tests: TestFixture<LinkDeleteOptions>[] = [
   {
     description: 'with `dev` with type=vlan',
     options: {
-      dev_: 'vlan100',
+      dev : 'vlan100',
       type: {
         [LinkTypes.Vlan]: {
           protocol: VlanProtocols['802.1Q'],

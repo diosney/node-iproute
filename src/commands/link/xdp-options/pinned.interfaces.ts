@@ -9,5 +9,5 @@ export interface LinkSetXdpPinnedOptions {
    * The option section doesn't apply here, but otherwise semantics are the same as with the option object described
    * already.
    */
-  file_: string;
+  file: string;
 }

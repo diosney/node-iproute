@@ -4,5 +4,5 @@
  */
 export interface LinkSetXdpOffOptions {
   /** `off` detaches any currently attached XDP/BPF program from the given device. */
-  value_: true;
+  value: true;
 }

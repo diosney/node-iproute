@@ -26,7 +26,7 @@ import { MaddressShowSchema } from './maddress/show.schema';
  * Add a multicast address
  * ```
  * await maddress.add({
- *   address_: '33:33:00:00:00:01',
+ *   address: '33:33:00:00:00:01',
  *   dev: 'enp0s3'
  * });
  * ```
@@ -65,7 +65,7 @@ export async function add(options: MaddressAddOptions,
  * Delete a tunnel
  * ```
  * await maddress.del({
- *   address_: '33:33:00:00:00:01',
+ *   address: '33:33:00:00:00:01',
  *   dev: 'enp0s3'
  * });
  * ```

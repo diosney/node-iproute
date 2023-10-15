@@ -2,7 +2,6 @@ import { describe, it } from 'mocha';
 import { expect } from 'chai';
 
 import {
-  invisibleKeySuffix,
   ip, ipv4, ipv6,
   ipWithOptionalMask,
   ipWithRequiredMask,
@@ -53,11 +52,6 @@ describe('regular expressions', () => {
     expect(hex4Digits.test('1a2b ')).to.be.false;
     expect(hex4Digits.test(' 1a2b ')).to.be.false;
     expect(hex4Digits.test('1a 2b')).to.be.false;
-  });
-
-  it('`invisibleKeySuffix`', () => {
-    expect(invisibleKeySuffix.test('key_')).to.be.true;
-    expect(invisibleKeySuffix.test(' key')).to.be.false;
   });
 
   it('`ipv4`', () => {

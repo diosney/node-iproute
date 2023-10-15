@@ -27,16 +27,18 @@ import { AddRouteIoam6EncapArgs } from './encap-types/ioam6.interfaces';
 export const RouteAddSchema: JSONSchemaType<RouteAddOptions> = {
   $id: SchemaIds.RouteAdd,
   type: 'object',
-  required: ['to_'],
+  required: ['to'],
   properties: {
-    type_: {
+    type: {
       type: 'string',
       enum: Object.values(RouteTypes) as RouteTypes[],
-      nullable: true
+      nullable: true,
+      keyless: true
     },
-    to_: {
+    to: {
       type: 'string',
-      format: 'ip-with-optional-mask-and-all-and-default-values'
+      format: 'ip-with-optional-mask-and-all-and-default-values',
+      keyless: true
     },
     tos: {
       type: 'integer',
@@ -145,7 +147,7 @@ export const RouteAddSchema: JSONSchemaType<RouteAddOptions> = {
     },
     via: {
       type: 'object',
-      required: ['address_'],
+      required: ['address'],
       nullable: true,
       properties: {
         family: {
@@ -153,9 +155,10 @@ export const RouteAddSchema: JSONSchemaType<RouteAddOptions> = {
           enum: Object.values(AddressFamilies) as AddressFamilies[],
           nullable: true
         },
-        address_: {
+        address: {
           type: 'string',
-          format: 'ip-with-optional-mask'
+          format: 'ip-with-optional-mask',
+          keyless: true
         }
       }
     },
@@ -328,10 +331,11 @@ export const RouteAddSchema: JSONSchemaType<RouteAddOptions> = {
       type: 'boolean',
       nullable: true
     },
-    nexthops_: {
+    nexthops: {
       type: 'array',
       nullable: true,
       minItems: 1,
+      keyless: true,
       items: {
         type: 'object',
         required: ['nexthop'],

@@ -5,15 +5,14 @@ import {
 
 import {
   AddrGenMode,
-  ExtendedLinkTypes, LinkTypes,
+  ExtendedLinkTypes,
   VlanProtocols, XdpOptionTypes
 } from '../link.constants';
 
 import { LinkSetXdpObjectOptions } from './xdp-options/object.interfaces';
 import { LinkSetXdpPinnedOptions } from './xdp-options/pinned.interfaces';
 import { LinkSetXdpOffOptions } from './xdp-options/off.interfaces';
-import { ExtendedLinkTypesMappings, LinkTypesMappings } from './add.interfaces';
-import { AddLinkVlanTypeArgs } from './virtual-link-types/vlan.interfaces';
+import { ExtendedLinkTypesMappings } from './add.interfaces';
 
 /**
  * Link set common options.
@@ -69,8 +68,8 @@ export interface LinkSetCommonOptions {
    * Possible reasons bits 0-31.
    */
   protodown_reason?: {
-    name_: number;
-    enable_: OnOffToggle;
+    name: number;
+    enable: OnOffToggle;
   };
   /** Change the NOTRAILERS flag on the device, NOT used by the Linux and exists for BSD compatibility. */
   trailers?: OnOffToggle;
@@ -110,13 +109,13 @@ export interface LinkSetCommonOptions {
    * The associated PF device must be specified using the {@link LinkSetDevOptions.dev_ | dev_} parameter.
    */
   vf?: number;
-  vf_?: {
+  vf_args?: {
     /**
      * Change the station address for the specified VF.
      * The {@link vf} parameter must be specified.
      */
     mac?: string;
-    vlan_list_?: Array<{
+    vlan_list?: Array<{
       /**
        * Change the assigned VLAN for the specified VF.
        *
@@ -266,7 +265,7 @@ export interface LinkSetDevOptions extends LinkSetCommonOptions {
    * When configuring SR-IOV Virtual Function (VF) devices, this keyword should
    * specify the associated Physical Function (PF) device.
    */
-  dev_?: string;
+  dev?: string;
 }
 
 /**

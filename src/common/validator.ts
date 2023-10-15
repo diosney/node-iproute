@@ -1,4 +1,4 @@
-import Ajv from 'ajv';
+import Ajv, { _, KeywordCxt } from 'ajv';
 import addFormats from 'ajv-formats';
 
 import {
@@ -19,6 +19,15 @@ const ajv = new Ajv({
   useDefaults    : true,
   coerceTypes    : false,
   allowUnionTypes: true
+});
+
+ajv.addKeyword({
+  keyword   : 'keyless',
+  schemaType: 'boolean',
+  valid     : true,
+  code(cxt: KeywordCxt) {
+    // Noop.
+  }
 });
 
 addFormats(ajv, [

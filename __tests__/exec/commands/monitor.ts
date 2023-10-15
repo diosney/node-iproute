@@ -38,7 +38,7 @@ describe('monitor', function () {
     };
 
     monitor({
-      object_: MonitorObjects.All
+      object: MonitorObjects.All
     }, {
       sudo: true
     })

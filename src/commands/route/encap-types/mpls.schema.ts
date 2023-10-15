@@ -6,19 +6,22 @@ import { AddRouteMplsEncapArgs } from './mpls.interfaces';
 export const RouteMplsEncapArgsSchema: JSONSchemaType<AddRouteMplsEncapArgs> = {
   type: 'object',
   nullable: true,
-  required: ['label_'],
+  required: ['label'],
   properties: {
-    label_: {
+    label: {
       type: ['boolean', 'string'],
+      keyless: true,
       oneOf: [
         {
           type: 'string',
           format: 'slash-separated-numbers',
-          minLength: 1
+          minLength: 1,
+          keyless: true
         },
         {
           type: 'boolean',
-          enum: [true]
+          enum: [true],
+          keyless: true
         }
       ]
     },

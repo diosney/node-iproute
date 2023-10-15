@@ -20,7 +20,7 @@ describe('route', () => {
 
   describe('add', () => {
     let newRoute: RouteAddOptions = {
-      to_: '10.1.1.0/30',
+      to: '10.1.1.0/30',
       dev: 'lo'
     };
 
@@ -47,7 +47,7 @@ describe('route', () => {
       expect(routes).to.be.an('array');
       expect(routes).to.be.an('array').that.has.lengthOf.at.least(routesBeforeAdd.length + 1);
 
-      const addedRule = routes.find(item => item.dst === newRoute.to_!.toString());
+      const addedRule = routes.find(item => item.dst === newRoute.to!.toString());
       expect(addedRule).not.to.be.undefined;
       expect(addedRule).to.be.an('object');
     });
@@ -55,7 +55,7 @@ describe('route', () => {
 
   describe('del', () => {
     let newRoute: RouteAddOptions = {
-      to_: '10.1.1.0/30',
+      to: '10.1.1.0/30',
       dev: 'lo'
     };
 
@@ -80,7 +80,7 @@ describe('route', () => {
       expect(routes).to.be.an('array');
       expect(routes).to.be.an('array').that.has.lengthOf.at.least(routesBeforeAdd.length - 1);
 
-      const addedRoute = routes.find(item => item.dst === newRoute.to_!.toString());
+      const addedRoute = routes.find(item => item.dst === newRoute.to!.toString());
       expect(addedRoute).to.be.undefined;
     });
   });

@@ -1,5 +1,5 @@
 import { describe, it } from 'mocha';
-import { expect }       from 'chai';
+import { expect } from 'chai';
 
 import Command from '../../../src/common/classes/command';
 
@@ -9,8 +9,8 @@ import {
   SchemaIds
 } from '../../../src/common/constants/schemas';
 
-import { TestEnum }                    from '../../../src/common/constants/tests';
-import { Empty, GlobalOptions }        from '../../../src/common/interfaces/common';
+import { TestEnum } from '../../../src/common/constants/tests';
+import { Empty, GlobalOptions } from '../../../src/common/interfaces/common';
 import { ComplexIpCommandTestOptions } from '../../../src/common/interfaces/tests';
 
 describe('ip command', function () {
@@ -18,7 +18,7 @@ describe('ip command', function () {
     it('should build the proper cmd string', async function () {
       const cmd                          = ['test'];
       const globalOptions: GlobalOptions = {
-        sudo:   true,
+        sudo  : true,
         dryRun: true
       };
 
@@ -48,9 +48,9 @@ describe('ip command', function () {
     it('should build the proper cmd string', async function () {
       const cmd                          = ['test_a', 'test_b'];
       const globalOptions: GlobalOptions = {
-        dryRun:     true,
+        dryRun    : true,
         '-details': true,
-        '-json':    true
+        '-json'   : true
       };
 
       const options: Empty = {};
@@ -88,34 +88,34 @@ describe('ip command', function () {
       const options: ComplexIpCommandTestOptions = {
         aString: 'a-string',
         aNumber: 1,
-        anEnum:  TestEnum.ValueA,
+        anEnum : TestEnum.ValueA,
 
-        aFlag:   true,
+        aFlag  : true,
         noaFlag: true,
 
-        number_: 2,
+        number: 2,
 
-        aTuple:  [0, 1],
+        aTuple : [0, 1],
         anArray: [
           {
             aNumber: 25
           }
         ],
 
-        nestedInvisibleKey_: {
+        nestedInvisibleKey: {
           aString: 'b-string',
-          anEnum:  TestEnum.ValueB,
+          anEnum : TestEnum.ValueB,
           aNumber: 2,
 
           noaFlag: false,
-          aFlag:   false,
+          aFlag  : false,
 
           aTuple: [2, 3],
 
           anArray: [
             {
               aStringWithDefaultValue: 'c-string',
-              aNumber:                 15
+              aNumber                : 15
             }
           ]
         }
@@ -187,28 +187,28 @@ describe('ip command', function () {
       };
 
       const options: ComplexIpCommandTestOptions = {
-        anEnum:  TestEnum.ValueA,
+        anEnum : TestEnum.ValueA,
         aNumber: 1,
         aString: 'a-string',
 
         noaFlag: true,
-        aFlag:   true,
+        aFlag  : true,
 
-        number_: 2,
+        number: 2,
 
-        aTuple:  [0, 1],
+        aTuple : [0, 1],
         anArray: [
           {
             aNumber: 25
           }
         ],
 
-        nestedInvisibleKey_: {
+        nestedInvisibleKey: {
           aNumber: 2,
           aString: 'b-string',
-          anEnum:  TestEnum.ValueB,
+          anEnum : TestEnum.ValueB,
 
-          aFlag:   false,
+          aFlag  : false,
           noaFlag: false,
 
           aTuple: [2, 3],
@@ -216,7 +216,7 @@ describe('ip command', function () {
           anArray: [
             {
               aStringWithDefaultValue: 'c-string',
-              aNumber:                 15
+              aNumber                : 15
             }
           ]
         }

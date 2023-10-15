@@ -112,10 +112,6 @@ And lastly execute the commands with the `sudo: true` global option:
 As a general guideline, the module identifiers and options match those provided by **iproute**. This means you can easily use 
 the module with a basic understanding of **iproute**.
 
-There is one specific detail that you must be aware of, though:
-
-Some options in the `ip` command definition don't have a related key in the respective command line. In the library, 
-those are identified with a trailing underscore `_`, such as `types_`. 
 For autocompletion, you can rely on the type definitions supplied within the library or refer to the interface documentation
 at the [API documentation](https://diosney.github.io/node-iproute/modules.html).
 

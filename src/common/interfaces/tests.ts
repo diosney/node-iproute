@@ -1,8 +1,8 @@
-import { TestEnum }           from '../constants/tests';
-import { GlobalOptions }      from './common';
+import { TestEnum } from '../constants/tests';
+import { GlobalOptions } from './common';
 
 export interface ComplexIpCommandTestOptions extends ComplexIpCommandTestArgsOptions {
-  nestedInvisibleKey_: ComplexIpCommandTestArgsOptions;
+  nestedInvisibleKey: ComplexIpCommandTestArgsOptions;
 }
 
 export interface ComplexIpCommandTestArgsOptions {
@@ -13,9 +13,9 @@ export interface ComplexIpCommandTestArgsOptions {
   aFlag: boolean;
   noaFlag: boolean;
 
-  number_?: number;
+  number?: number;
 
-  aTuple: [ number, number ];
+  aTuple: [number, number];
 
   anArray: Array<{
     aNumber: number;

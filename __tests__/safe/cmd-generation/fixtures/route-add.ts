@@ -6,9 +6,9 @@ export const Tests: TestFixture<RouteAddOptions>[] = [
   {
     description: 'with `to` `via` and `dev`',
     options: {
-      to_: 'default',
+      to: 'default',
       via: {
-        address_: '192.168.1.1'
+        address: '192.168.1.1'
       },
       dev: 'eth0'
     },
@@ -28,14 +28,14 @@ export const Tests: TestFixture<RouteAddOptions>[] = [
   {
     description: 'with `to`, `encap mpls`, `via` and `dev`',
     options: {
-      to_: '10.1.1.0/30',
+      to: '10.1.1.0/30',
       encap: {
         mpls: {
-          label_: '200/300'
+          label: '200/300'
         }
       },
       via: {
-        address_: '10.1.1.1'
+        address: '10.1.1.1'
       },
       dev: 'eth0'
     },
@@ -58,7 +58,7 @@ export const Tests: TestFixture<RouteAddOptions>[] = [
   {
     description: 'with `to`, `encap seg6` and `dev`',
     options: {
-      to_: '2001:db8:1::/64',
+      to: '2001:db8:1::/64',
       encap: {
         seg6: {
           mode: true,
@@ -88,7 +88,7 @@ export const Tests: TestFixture<RouteAddOptions>[] = [
   {
     description: 'with `to`, `encap seg6local` and `dev`',
     options: {
-      to_: '2001:db8:1::/64',
+      to: '2001:db8:1::/64',
       encap: {
         seg6local: {
           action: {
@@ -120,7 +120,7 @@ export const Tests: TestFixture<RouteAddOptions>[] = [
   {
     description: 'with `to`, `encap ioam6` and `dev`',
     options: {
-      to_: '2001:db8:1::/64',
+      to: '2001:db8:1::/64',
       encap: {
         ioam6: {
           trace: true,

@@ -136,7 +136,7 @@ export const GlobalOptionsSchema: JSONSchemaType<GlobalOptions> = {
       enum    : [true],
       nullable: true
     },
-    '-tshort'      : {
+    '-tshort'    : {
       type    : 'boolean',
       enum    : [true],
       nullable: true
@@ -192,31 +192,32 @@ export const IpCommandTestOptionsSchema: JSONSchemaType<ComplexIpCommandTestOpti
     'aTuple',
     'anArray',
 
-    'nestedInvisibleKey_'
+    'nestedInvisibleKey'
   ],
   properties: {
-    aString            : {
+    aString           : {
       type: 'string'
     },
-    aNumber            : {
+    aNumber           : {
       type   : 'number',
       minimum: 0
     },
-    anEnum             : {
+    anEnum            : {
       type: 'string',
       enum: Object.values(TestEnum) as TestEnum[]
     },
-    aFlag              : {
+    aFlag             : {
       type: 'boolean'
     },
-    noaFlag            : {
+    noaFlag           : {
       type: 'boolean'
     },
-    number_            : {
+    number            : {
       type    : 'number',
+      keyless : true,
       nullable: true
     },
-    aTuple             : {
+    aTuple            : {
       type    : 'array',
       items   : [
         {
@@ -231,7 +232,7 @@ export const IpCommandTestOptionsSchema: JSONSchemaType<ComplexIpCommandTestOpti
       minItems: 2,
       maxItems: 2
     },
-    anArray            : {
+    anArray           : {
       type : 'array',
       items: {
         type      : 'object',
@@ -248,8 +249,9 @@ export const IpCommandTestOptionsSchema: JSONSchemaType<ComplexIpCommandTestOpti
         }
       }
     },
-    nestedInvisibleKey_: {
+    nestedInvisibleKey: {
       type      : 'object',
+      keyless   : true,
       required  : [
         'aString',
         'aNumber',
@@ -279,8 +281,9 @@ export const IpCommandTestOptionsSchema: JSONSchemaType<ComplexIpCommandTestOpti
         noaFlag: {
           type: 'boolean'
         },
-        number_: {
+        number : {
           type    : 'number',
+          keyless : true,
           nullable: true
         },
         aTuple : {

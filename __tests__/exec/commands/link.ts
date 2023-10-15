@@ -56,7 +56,7 @@ describe('link', () => {
 
     after(async function () {
       await del({
-        dev_: newLink.name,
+        dev : newLink.name,
         type: {
           [LinkTypes.Dummy]: true
         }
@@ -105,7 +105,7 @@ describe('link', () => {
 
     it('should delete a dummy link', async () => {
       await del({
-        dev_: newLink.name,
+        dev : newLink.name,
         type: {
           [LinkTypes.Dummy]: true
         }

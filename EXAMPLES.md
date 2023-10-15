@@ -53,7 +53,7 @@ The `links` output is an array of links with the matching [LinkInfo[]](https://d
 **Example:**
 
 	await link.del({
-	  dev_: 'eth0.1@eth0'
+	  dev: 'eth0.1@eth0'
 	});
 
 #### `link.add(options, globalOptions?)`
@@ -132,18 +132,18 @@ The `routes` output is an array of routes with the matching [RouteInfo[]](https:
 *Unicast type route (the default if not specified)*
 
 	await route.add({
-	  to_:	'10.0.0.0/24',
+	  to:	'10.0.0.0/24',
 	  via:	{
-        address_: '192.168.56.1'
+        address: '192.168.56.1'
       }
 	});
 
 *Multipath route with load balance between devices*
 
 	await route.add({
-	  to_:	      'default',
+	  to:	      'default',
 	  scope:	  AddressScopes.Global,     // 'global'
-	  nexthops_:  [{
+	  nexthops:  [{
           nexthop: true,
 	      dev: 'ppp0'
 	    },
@@ -156,11 +156,11 @@ The `routes` output is an array of routes with the matching [RouteInfo[]](https:
 *A NAT route*
 
 	await route.add({
-	  type_:	RoutingTableTypes.Nat,    // 'nat'
-	  to_:	    '10.0.0.0/24',
+	  type:	RoutingTableTypes.Nat,    // 'nat'
+	  to:	    '10.0.0.0/24',
 	  table:	300,
       via:	{
-        address_: '192.168.56.1'
+        address: '192.168.56.1'
       }
 	});
 
@@ -169,9 +169,9 @@ The `routes` output is an array of routes with the matching [RouteInfo[]](https:
 *Delete multipath route with load balance between devices*
 
 	await route.del({
-	  to_:	      'default',
+	  to:	      'default',
 	  scope:	  AddressScopes.Global,     // 'global'
-	  nexthops_:  [{
+	  nexthops:  [{
           nexthop: true,
 	      dev: 'ppp0'
 	    },
@@ -235,7 +235,7 @@ The `rules` output is an array of routes with the matching [RuleInfo[]](https://
 *Monitor all objects state changes*
 
 	monitor({
-      object_: MonitorObjects.All     // 'all'
+      object: MonitorObjects.All     // 'all'
     });
 
 *After starting the monitor, you can start watching for changes*
@@ -243,7 +243,7 @@ The `rules` output is an array of routes with the matching [RuleInfo[]](https://
     let command: MonitorCommand<MonitorOptions>;
 
     monitor({
-      object_: MonitorObjects.All
+      object: MonitorObjects.All
     })
     .then((_command) => {
       command = _command;
@@ -440,7 +440,7 @@ The `entries` output is an array of tunnel configurations with the matching [Tun
 *Add a multicast address*
 
 	await maddress.add({
-        address_: '33:33:00:00:00:01',
+        address: '33:33:00:00:00:01',
         dev: 'enp0s3'
 	});
 
@@ -449,7 +449,7 @@ The `entries` output is an array of tunnel configurations with the matching [Tun
 *Delete a tunnel*
 
 	await maddress.del({
-        address_: '33:33:00:00:00:01',
+        address: '33:33:00:00:00:01',
         dev: 'enp0s3'
 	});
 

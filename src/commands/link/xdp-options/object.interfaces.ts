@@ -21,7 +21,7 @@ export interface LinkSetXdpObjectOptions {
    * If no verbose option is passed, then a verifier log will only be dumped on load error.
    * See also EXAMPLES section for usage examples.
    */
-  file_: string;
+  file: string;
   /**
    * Specifies a section name that contains the BPF program code.
    * If no section name is specified, the default one ("prog") will be used.

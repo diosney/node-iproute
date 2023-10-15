@@ -1,7 +1,3 @@
-// Ex: `type_`, it won't output the `type` string into the cmd.
-/** @category Regexes */
-export const invisibleKeySuffix = /_$/;
-
 /** @category Regexes */
 export const mac        = /^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$/;
 /** @category Regexes */
