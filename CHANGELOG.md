@@ -1,5 +1,9 @@
 ### Release Notes
 
+### 2.1.1
+
+- Added `package-lock.json` to uploaded files to npm.
+
 ### 2.1.0
 
 - Changed keyless properties support removing the need to specify a trailing dash `_`.
