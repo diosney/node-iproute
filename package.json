@@ -1,6 +1,6 @@
 {
 	"name": "iproute",
-	"version": "2.1.1",
+	"version": "2.1.2",
 	"description": "Show and manipulate network devices, addresses, routing, policy routing, tunnels, IP forwarding, address labels and other `iproute` objects.",
 	"main": "./lib/index.js",
 	"types": "./lib/index.d.ts",
@@ -71,8 +71,7 @@
 		"url": "https://www.buymeacoffee.com/diosney"
 	},
 	"files": [
-		"lib/",
-    "package-lock.json"
+		"lib/"
 	],
 	"devDependencies": {
 		"@types/ajv": "^1.0.0",

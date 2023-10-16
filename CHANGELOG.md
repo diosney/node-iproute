@@ -1,5 +1,9 @@
 ### Release Notes
 
+### 2.1.2
+
+- Removed `package-lock.json` to uploaded files to npm (npm ignore it anyway).
+
 ### 2.1.1
 
 - Added `package-lock.json` to uploaded files to npm.
