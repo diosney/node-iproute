@@ -829,6 +829,26 @@ export const Tests: TestFixture<LinkAddOptions>[] = [
       OnOffToggle.On
     ],
     expectedCmdToExec: ` ip link add link eth0 name macsec0 type ${ LinkTypes.Macsec } sci 0102030405060708 cipher gcm-aes-128 icvlen 16 encrypt on`
+  },
+  {
+    description:       'with `type can`',
+    options:           {
+      name: 'can0',
+      type: {
+        [LinkTypes.Can]: true,
+      }
+    },
+    expectedCmd:       [
+      '',
+      'ip',
+      'link',
+      'add',
+      'name',
+      'can0',
+      'type',
+      LinkTypes.Can
+    ],
+    expectedCmdToExec: ` ip link add name can0 type ${ LinkTypes.Can }`
   }
 ];
 

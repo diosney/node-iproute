@@ -82,6 +82,11 @@ export const typePropertiesSchema: any = {
     enum: [true],
     nullable: true
   },
+  [LinkTypes.Can]: {
+    type: 'boolean',
+    enum: [true],
+    nullable: true
+  },
   [LinkTypes.Ip6tnl]: {
     type: 'boolean',
     enum: [true],

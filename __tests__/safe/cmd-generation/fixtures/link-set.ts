@@ -1,6 +1,7 @@
 import { LinkSetOptions } from '../../../../src/commands/link/set.interfaces';
 import { TestFixture } from '../../../../src/common/interfaces/tests';
 import { XdpOptionTypes } from '../../../../src';
+import { LinkTypes } from '../../../../src/commands/link.constants';
 
 export const Tests: TestFixture<LinkSetOptions>[] = [
   {
@@ -88,6 +89,28 @@ export const Tests: TestFixture<LinkSetOptions>[] = [
       '/sys/fs/bpf/foo'
     ],
     expectedCmdToExec: ` ip link set eth0 xdp ${XdpOptionTypes.Pinned} /sys/fs/bpf/foo`
+  },
+  {
+    description: 'with type can and bitrate',
+    options: {
+      dev: 'can0',
+      type: {
+        [LinkTypes.Can]: true,
+      },
+      bitrate: 500000
+    },
+    expectedCmd: [
+      '',
+      'ip',
+      'link',
+      'set',
+      'can0',
+      'type',
+      'can',
+      'bitrate',
+      500000
+    ],
+    expectedCmdToExec: ` ip link set can0 type can bitrate 500000`
   }
 ];
 
