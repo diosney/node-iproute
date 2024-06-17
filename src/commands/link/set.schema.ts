@@ -120,11 +120,6 @@ export const LinkSetSchema: JSONSchemaType<LinkSetOptions> = {
       minimum:  1,
       nullable: true
     },
-    bitrate:          {
-      type:     'integer',
-      minimum:  1,
-      nullable: true
-    },
     name:             {
       type:     'string',
       format:   'mac',

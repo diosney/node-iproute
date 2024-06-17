@@ -75,8 +75,6 @@ export interface LinkSetCommonOptions {
   trailers?: OnOffToggle;
   /** Change the transmit queue length of the device. */
   txqueuelen?: number;
-  /** Change the bitrate of the device. */
-  bitrate?: number;
   /**
    * Change the name of the device.
    * This operation is not recommended if the device is running or has some addresses already configured.

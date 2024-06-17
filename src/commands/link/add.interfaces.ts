@@ -12,10 +12,7 @@ import { AddLinkIpipSitTypeArgs } from './virtual-link-types/ipip-sit.interfaces
 import { AddLinkIpoibTypeArgs } from './virtual-link-types/ipoib.interfaces';
 import { AddLinkMacsecTypeArgs } from './virtual-link-types/macsec.interfaces';
 
-import {
-  AddLinkMacvlanMacvtapTypeArgs,
-  SetLinkMacvlanMacvtapTypeArgs
-} from './virtual-link-types/macvlan-macvtap.interfaces';
+import { AddLinkMacvlanMacvtapTypeArgs, SetLinkMacvlanMacvtapTypeArgs } from './virtual-link-types/macvlan-macvtap.interfaces';
 
 import { AddLinkRmnetTypeArgs } from './virtual-link-types/rmnet.interfaces';
 import { AddLinkVethVxcanTypeArgs } from './virtual-link-types/veth-vxcan.interfaces';
@@ -23,6 +20,7 @@ import { AddLinkVlanTypeArgs } from './virtual-link-types/vlan.interfaces';
 import { AddLinkVrfTypeArgs } from './virtual-link-types/vrf.interfaces';
 import { AddLinkVxlanTypeArgs } from './virtual-link-types/vxlan.interfaces';
 import { AddLinkXfrmTypeArgs } from './virtual-link-types/xfrm.interfaces';
+import { AddLinkCanTypeArgs } from './virtual-link-types/can.interfaces';
 
 /**
  * Link add options.
@@ -84,6 +82,7 @@ export interface LinkTypesMappings {
   [LinkTypes.Vxlan]: AddLinkVxlanTypeArgs;
   [LinkTypes.Veth]: AddLinkVethVxcanTypeArgs;
   [LinkTypes.Vxcan]: AddLinkVethVxcanTypeArgs;
+  [LinkTypes.Can]: AddLinkCanTypeArgs;
   [LinkTypes.Ipip]: AddLinkIpipSitTypeArgs;
   [LinkTypes.Sit]: AddLinkIpipSitTypeArgs;
   [LinkTypes.Gre]: AddLinkGreGretapTypeArgs;
@@ -108,7 +107,6 @@ export interface LinkTypesMappings {
   [LinkTypes.Dummy]: true;
   [LinkTypes.Ifb]: true;
   [LinkTypes.Vcan]: true;
-  [LinkTypes.Can]: true;
   [LinkTypes.Ip6tnl]: true;
   [LinkTypes.Vti]: true;
   [LinkTypes.Nlmon]: true;

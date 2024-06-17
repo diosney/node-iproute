@@ -1,5 +1,9 @@
 ### Release Notes
 
+### 2.2.0
+
+- (@cordellcalitz) Added support for CAN link interfaces.
+
 ### 2.1.2
 
 - Removed `package-lock.json` to uploaded files to npm (npm ignore it anyway).

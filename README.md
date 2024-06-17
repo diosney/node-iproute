@@ -223,7 +223,7 @@ If you want to execute all the tests, you can set up a **virtual machine** and e
 
 The MIT License (MIT)
 
-Copyright (c) 2014-2023 Diosney Sarmiento
+Copyright (c) 2014-2024 Diosney Sarmiento
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

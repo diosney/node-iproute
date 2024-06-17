@@ -41,7 +41,7 @@ export const Tests: TestFixture<LinkSetOptions>[] = [
       XdpOptionTypes.Object,
       'prog.o'
     ],
-    expectedCmdToExec: ` ip link set eth0 xdp ${ XdpOptionTypes.Object } prog.o`
+    expectedCmdToExec: ` ip link set eth0 xdp ${XdpOptionTypes.Object} prog.o`
   },
   {
     description: 'with several options set (2)',
@@ -49,7 +49,7 @@ export const Tests: TestFixture<LinkSetOptions>[] = [
       dev: 'eth0',
       xdp: {
         [XdpOptionTypes.Object]: {
-          file:    'prog.o',
+          file: 'prog.o',
           section: 'foo'
         }
       }
@@ -66,14 +66,14 @@ export const Tests: TestFixture<LinkSetOptions>[] = [
       'section',
       'foo'
     ],
-    expectedCmdToExec: ` ip link set eth0 xdp ${ XdpOptionTypes.Object } prog.o section foo`
+    expectedCmdToExec: ` ip link set eth0 xdp ${XdpOptionTypes.Object} prog.o section foo`
   },
   {
     description: 'with several options set (2)',
     options: {
       dev: 'eth0',
       xdp: {
-        [XdpOptionTypes.Pinned]:{
+        [XdpOptionTypes.Pinned]: {
           file: '/sys/fs/bpf/foo'
         }
       }
@@ -95,9 +95,10 @@ export const Tests: TestFixture<LinkSetOptions>[] = [
     options: {
       dev: 'can0',
       type: {
-        [LinkTypes.Can]: true,
-      },
-      bitrate: 500000
+        [LinkTypes.Can]: {
+          bitrate: 500000
+        }
+      }
     },
     expectedCmd: [
       '',

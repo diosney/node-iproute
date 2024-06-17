@@ -20,6 +20,7 @@ import { AddLinkVlanArgsSchema } from './virtual-link-types/vlan.schema';
 import { AddLinkVrfArgsSchema } from './virtual-link-types/vrf.schema';
 import { AddLinkVxlanArgsSchema } from './virtual-link-types/vxlan.schema';
 import { AddLinkXfrmArgsSchema } from './virtual-link-types/xfrm.schema';
+import { AddLinkCanArgsSchema } from './virtual-link-types/can.schema';
 import { AddLinkVlanTypeArgs } from './virtual-link-types/vlan.interfaces';
 import { AddLinkVxlanTypeArgs } from './virtual-link-types/vxlan.interfaces';
 import { AddLinkVethVxcanTypeArgs } from './virtual-link-types/veth-vxcan.interfaces';
@@ -37,12 +38,14 @@ import { AddLinkRmnetTypeArgs } from './virtual-link-types/rmnet.interfaces';
 import { AddLinkXfrmTypeArgs } from './virtual-link-types/xfrm.interfaces';
 import { AddLinkBridgeTypeArgs } from './virtual-link-types/bridge.interfaces';
 import { AddLinkMacsecTypeArgs } from './virtual-link-types/macsec.interfaces';
+import { AddLinkCanTypeArgs } from './virtual-link-types/can.interfaces';
 
 export const typePropertiesSchema: any = {
   [LinkTypes.Vlan]: AddLinkVlanArgsSchema as Required<JSONSchemaType<AddLinkVlanTypeArgs>>,
   [LinkTypes.Vxlan]: AddLinkVxlanArgsSchema as Required<JSONSchemaType<AddLinkVxlanTypeArgs>>,
   [LinkTypes.Veth]: AddLinkVethVxcanArgsSchema as Required<JSONSchemaType<AddLinkVethVxcanTypeArgs>>,
   [LinkTypes.Vxcan]: AddLinkVethVxcanArgsSchema as Required<JSONSchemaType<AddLinkVethVxcanTypeArgs>>,
+  [LinkTypes.Can]: AddLinkCanArgsSchema as Required<JSONSchemaType<AddLinkCanTypeArgs>>,
   [LinkTypes.Ipip]: AddLinkIpipSipArgsSchema as Required<JSONSchemaType<AddLinkIpipSitTypeArgs>>,
   [LinkTypes.Sit]: AddLinkIpipSipArgsSchema as Required<JSONSchemaType<AddLinkIpipSitTypeArgs>>,
   [LinkTypes.Gre]: AddGreGretapArgsSchema as Required<JSONSchemaType<AddLinkGreGretapTypeArgs>>,
@@ -78,11 +81,6 @@ export const typePropertiesSchema: any = {
     nullable: true
   },
   [LinkTypes.Vcan]: {
-    type: 'boolean',
-    enum: [true],
-    nullable: true
-  },
-  [LinkTypes.Can]: {
     type: 'boolean',
     enum: [true],
     nullable: true
