@@ -1,5 +1,9 @@
 ### Release Notes
 
+### 2.2.1
+
+- Added missing CAN export for documentation purposes.
+
 ### 2.2.0
 
 - (@cordellcalitz) Added support for CAN link interfaces.

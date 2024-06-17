@@ -182,6 +182,7 @@ export { SetLinkBridgeSlaveTypeArgs } from './commands/link/extended-virtual-lin
 
 export { AddLinkBareudpTypeArgs } from './commands/link/virtual-link-types/bareup.interfaces';
 export { AddLinkBridgeTypeArgs } from './commands/link/virtual-link-types/bridge.interfaces';
+export { AddLinkCanTypeArgs } from './commands/link/virtual-link-types/can.interfaces';
 export { AddLinkErspanIp6erspanTypeArgs } from './commands/link/virtual-link-types/erspan-ip6erspan.interfaces';
 export { AddLinkGeneveTypeArgs } from './commands/link/virtual-link-types/geneve.interfaces';
 export { AddLinkGreGretapTypeArgs } from './commands/link/virtual-link-types/gre-gretap.interfaces';
