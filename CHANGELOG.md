@@ -1,5 +1,9 @@
 ### Release Notes
 
+### 2.2.2
+
+- Merged dependabot PR.
+
 ### 2.2.1
 
 - Added missing CAN export for documentation purposes.
