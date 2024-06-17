@@ -108,6 +108,7 @@ export interface LinkTypesMappings {
   [LinkTypes.Dummy]: true;
   [LinkTypes.Ifb]: true;
   [LinkTypes.Vcan]: true;
+  [LinkTypes.Can]: true;
   [LinkTypes.Ip6tnl]: true;
   [LinkTypes.Vti]: true;
   [LinkTypes.Nlmon]: true;

@@ -21,6 +21,8 @@ export const LinkTypes = {
   Macvtap: 'macvtap',
   /** Virtual Controller Area Network interface. */
   Vcan: 'vcan',
+  /** Controller Area Network interface. */
+  Can: 'can',
   /** Virtual Controller Area Network tunnel interface. */
   Vxcan: 'vxcan',
   /** Virtual ethernet interface. */
