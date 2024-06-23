@@ -1,5 +1,10 @@
 ### Release Notes
 
+### 2.3.0
+
+- Added support for `ip neighbour get`.
+- Updated badges in README.
+
 ### 2.2.2
 
 - Merged dependabot PR.

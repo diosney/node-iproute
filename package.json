@@ -1,6 +1,6 @@
 {
 	"name": "iproute",
-	"version": "2.2.2",
+	"version": "2.3.0",
 	"description": "Show and manipulate network devices, addresses, routing, policy routing, tunnels, IP forwarding, address labels and other `iproute` objects.",
 	"main": "./lib/index.js",
 	"types": "./lib/index.d.ts",
@@ -40,6 +40,7 @@
 		"addrlabel",
 		"neighbour",
 		"neigh",
+		"neighbour",
 		"ntable",
 		"tuntap",
 		"maddress",
@@ -68,8 +69,8 @@
 		"url": "https://github.com/diosney/node-iproute.git"
 	},
 	"funding": {
-		"type": "buymeacoffee",
-		"url": "https://www.buymeacoffee.com/diosney"
+		"type": "ko-fi",
+		"url": "https://ko-fi.com/diosney"
 	},
 	"files": [
 		"lib/"

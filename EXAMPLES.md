@@ -338,6 +338,17 @@ The `labels` output is an array of address labels with the matching [AddrlabelIn
 
 The `entries` output is an array of ARP entries with the matching [NeighbourInfo[]](https://diosney.github.io/node-iproute/interfaces/NeighbourInfo.html) interface.
 
+#### `neighbour.get(options, globalOptions?)`
+
+**Example:**
+
+	const entries = await neighbour.get({
+      to:  '10.0.1.10',
+      dev: 'eth0'
+    });
+
+The `entries` output is an array of ARP entries with the matching [NeighbourInfo[]](https://diosney.github.io/node-iproute/interfaces/NeighbourInfo.html) interface.
+
 ### `ip ntable` Neighbour table configuration / [Man Page](https://man7.org/linux/man-pages/man8/ip-ntable.8.html)
 
 	import { ntable } from 'iproute';

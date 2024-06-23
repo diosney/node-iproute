@@ -8,6 +8,8 @@ import { NeighbourDelOptions } from './neighbour/del.interfaces';
 import { NeighbourDelSchema } from './neighbour/del.schema';
 import { NeighbourShowSchema } from './neighbour/show.schema';
 import { NeighbourInfo, NeighbourShowOptions } from './neighbour/show.interfaces';
+import { NeighbourGetOptions } from './neighbour/get.interfaces';
+import { NeighbourGetSchema } from './neighbour/get.schema';
 
 /**
  * Add a new neighbour entry.
@@ -227,11 +229,57 @@ export async function show(options: NeighbourShowOptions = {},
   return await ipCmd.exec<NeighbourInfo[]>();
 }
 
+/**
+ * Lookup a neighbour entry to a destination given a device.
+ *
+ * @param options        - Parameters options to be passed down to `ip`.
+ * @param globalOptions  - Global parameters options that affects the command execution.
+ *
+ * @throws {@link ParametersError} - Throws when passed parameters are invalid.
+ * @throws {@link CommandError}    - Throws when the executed command fails.
+ *
+ * @example
+ *
+ * Import module
+ * ```
+ * import { neighbour } from 'iproute';
+ * ```
+ *
+ * Performs a neighbour lookup in the kernel and returns a neighbour entry.
+ * ```
+ * const entries = await neighbour.get({
+ *   to:  '10.0.1.10',
+ *   dev: 'eth0'
+ * });
+ * ```
+ */
+export async function get(options: NeighbourGetOptions,
+                          globalOptions: GlobalOptions = {}): Promise<Command<NeighbourGetOptions> | NeighbourInfo[]> {
+
+  const cmd = ['ip', 'neighbour', 'get'];
+
+  const ipCmd = new CommandWithReturnedData<NeighbourGetOptions>(
+    SchemaIds.NeighbourGet,
+    NeighbourGetSchema,
+    options,
+    {
+      ...globalOptions,
+      // Overrides for a better show.
+      '-details'   : true,
+      '-statistics': true,
+      '-json'      : true
+    },
+    cmd);
+
+  return await ipCmd.exec<NeighbourInfo[]>();
+}
+
 export default {
   add,
   del,
   change,
   replace,
   flush,
-  show
+  show,
+  get
 };

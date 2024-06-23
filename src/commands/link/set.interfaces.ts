@@ -106,7 +106,7 @@ export interface LinkSetCommonOptions {
   alias?: string;
   /**
    * Specify a Virtual Function device to be configured.
-   * The associated PF device must be specified using the {@link LinkSetDevOptions.dev_ | dev_} parameter.
+   * The associated PF device must be specified using the {@link LinkSetDevOptions.dev | dev} parameter.
    */
   vf?: number;
   vf_args?: {

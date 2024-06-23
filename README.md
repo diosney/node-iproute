@@ -1,15 +1,13 @@
 # node-iproute
 
-<a href="https://www.buymeacoffee.com/diosney" target="_blank"><img align="right" src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="117" style="width: 117px !important;"></a>
-
 Show and manipulate network devices, addresses, routing, policy routing, tunnels, IP forwarding, address labels and other `iproute` objects.
 
 Wrapper around native **iproute** suite to allow its functionality to be used in Node.js space.
 
+[![donate](https://shields.io/badge/ko--fi-donate-ff5f5f?logo=ko-fi&style=for-the-badgeKo-fi)](https://ko-fi.com/diosney)
 [![docs](https://github.com/diosney/node-iproute/actions/workflows/docs.yml/badge.svg?branch=master)](https://github.com/diosney/node-iproute/actions/workflows/docs.yml)
 [![tests](https://github.com/diosney/node-iproute/actions/workflows/tests.yml/badge.svg?branch=master)](https://github.com/diosney/node-iproute/actions/workflows/tests.yml)
 [![npm](https://img.shields.io/npm/v/iproute)](https://www.npmjs.com/package/iproute)
-[![GitHub master version](https://img.shields.io/github/package-json/v/diosney/node-iproute/master)](https://github.com/diosney/node-iproute)
 
 ## Installation
 
@@ -26,7 +24,7 @@ Wrapper around native **iproute** suite to allow its functionality to be used in
 | [rule](https://diosney.github.io/node-iproute/modules/rule.html)     | Routing policy database (RPDB) management.              | `add`, `del`, `save`, `restore`, `flush`, `show`, `list`                               |
 | [monitor](https://diosney.github.io/node-iproute/modules/monitor.html) | State monitoring.                                       | `on`, `close`                                                                          |
 | [addrlabel](https://diosney.github.io/node-iproute/modules/addrlabel.html) | Protocol address label management.                      | `add`, `del`, `list`, `flush`                                                          |
-| [neighbour](https://diosney.github.io/node-iproute/modules/neighbour.html) | Neighbour/ARP tables management.                        | `add`, `del`, `change`, `replace`, `flush`, `show`                                     |
+| [neighbour](https://diosney.github.io/node-iproute/modules/neighbour.html) | Neighbour/ARP tables management.                        | `add`, `del`, `change`, `replace`, `flush`, `show`, `get`                               |
 | [ntable](https://diosney.github.io/node-iproute/modules/ntable.html) | Neighbour table configuration.                          | `change`, `show`                                                                       |
 | [tunnel](https://diosney.github.io/node-iproute/modules/tunnel.html) | Tunnel configuration.                                   | `add`, `change`, `del`, `show`, `prl`, `6rd`                                           |
 | [tuntap](https://diosney.github.io/node-iproute/modules/tuntap.html) | TunTap tunnel configuration.                            | `add`, `del`, `show`, `list`, `lst`                                                    |
@@ -76,7 +74,10 @@ On Debian-based OSes, if it's not already installed, you can do it by issuing:
 
 Regarding the **iproute** version, the `-json` option is used for display operations and was introduced in `v4.10.0`.
 <br>
-Ensure that your system has at least this **iproute** version installed.
+Ensure that your system has at least this version installed.
+
+**Note:** JSON support for the `ip neighbour get` command was added at a later version, if you need this specific 
+command check the output in case it is not supported in your version. 
 
 ### Permission Level
 

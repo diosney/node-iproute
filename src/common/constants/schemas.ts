@@ -1,13 +1,9 @@
 import { JSONSchemaType } from 'ajv';
 
-import {
-  FilePathRequiredGlobalOption,
-  GlobalOptions, StdinRequiredGlobalOption
-} from '../interfaces/common';
+import { Empty, FilePathRequiredGlobalOption, GlobalOptions, StdinRequiredGlobalOption } from '../interfaces/common';
 
 import { ComplexIpCommandTestOptions } from '../interfaces/tests';
 import { TestEnum } from './tests';
-import { Empty } from '../interfaces/common';
 
 /**
  * Schema ids.
@@ -50,6 +46,7 @@ export enum SchemaIds {
   NeighbourAdd                = '#neighbour-add',
   NeighbourDel                = '#neighbour-del',
   NeighbourShow               = '#neighbour-show',
+  NeighbourGet                = '#neighbour-get',
 
   NtableShow                  = '#ntable-show',
   NtableChange                = '#ntable-change',

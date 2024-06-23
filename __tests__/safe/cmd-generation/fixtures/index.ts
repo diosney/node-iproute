@@ -57,7 +57,8 @@ import {
   change as neighbourChange,
   replace as neighbourReplace,
   flush as neighbourFlush,
-  show as neighbourShow
+  show as neighbourShow,
+  get as neighbourGet
 } from '../../../../src/commands/neighbour';
 
 import {
@@ -139,6 +140,7 @@ import { Tests as neighbourChangeTests } from './neighbour-change';
 import { Tests as neighbourReplaceTests } from './neighbour-replace';
 import { Tests as neighbourFlushTests } from './neighbour-flush';
 import { Tests as neighbourShowTests } from './neighbour-show';
+import { Tests as neighbourGetTests } from './neighbour-get';
 
 import { Tests as ntableChangeTests } from './ntable-change';
 import { Tests as ntableShowTests } from './ntable-show';
@@ -393,6 +395,11 @@ export const fixtures: TestDefinition = {
       operator   : 'show',
       testBattery: neighbourShowTests,
       method     : neighbourShow
+    },
+    {
+      operator   : 'get',
+      testBattery: neighbourGetTests,
+      method     : neighbourGet
     }
   ],
   ntable   : [

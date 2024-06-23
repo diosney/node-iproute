@@ -30,10 +30,10 @@ export interface NeighbourInfo {
   dst: string;
   dev: string;
   lladdr: string;
-  refcnt: number;
-  used: number;
-  confirmed: number;
-  updated: number;
-  probes: number;
   state: string[];
+  refcnt?: number;
+  used?: number;
+  confirmed?: number;
+  updated?: number;
+  probes?: number;
 }

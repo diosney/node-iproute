@@ -25,7 +25,6 @@
   Those interfaces are: `RuleInfo`, `RouteInfo`, `LinkInfo`, `LinkWithAddressInfo`.
 
 - `neighbour`
-  - Add `get` support after `json` support gets added.
   - Add exec tests.
 
 - `tunnel`
@@ -37,12 +36,6 @@
 ### Documentation
 
 - Document every property with schema `format` as a `@see {@link}` in the interfaces?.
-
-### Contact `ip` Developers
-
-- Add `-json` support for:
-  - `monitor`
-  - `ip neigh get`
 
 ### Tests
 

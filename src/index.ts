@@ -340,6 +340,7 @@ export { NudStates } from './commands/neighbour.constants';
 export { NeighbourAddOptions } from './commands/neighbour/add.interfaces';
 export { NeighbourDelOptions } from './commands/neighbour/del.interfaces';
 export { NeighbourShowOptions, NeighbourInfo } from './commands/neighbour/show.interfaces';
+export { NeighbourGetOptions } from './commands/neighbour/get.interfaces';
 
 /**
  * Neighbour table configuration.
